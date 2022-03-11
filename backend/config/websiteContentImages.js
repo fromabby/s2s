@@ -1,14 +1,14 @@
 const { CloudinaryStorage } = require('multer-storage-cloudinary')
 const cloudinary = require('cloudinary').v2
 
-const bannersImages = new CloudinaryStorage({
+const websiteContentImages = new CloudinaryStorage({
     cloudinary: cloudinary,
     params: (req, file) => {
         return new Promise((resolve, reject) => {
             const filename = Date.now() + '-' + (file.originalname)
             const fileInfo = {
                 public_id: filename,
-                folder: 'bannersImages',
+                folder: 'websiteContentImages',
                 resource_type: "raw" //resource type: raw, to accept all file types
             }
             resolve(fileInfo)
@@ -16,4 +16,4 @@ const bannersImages = new CloudinaryStorage({
     }
 })
 
-module.exports = bannersImages
+module.exports = websiteContentImages

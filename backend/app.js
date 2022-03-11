@@ -14,9 +14,11 @@ app.use(cookieParser())
 //Import all routes
 const auth = require('./routes/auth')
 const user = require('./routes/user')
+const content = require('./routes/content')
 
 app.use('/api/v1', user)
 app.use('/api/v1', auth)
+app.use('/api/v1', content)
 
 /*
 if(process.env.NODE_ENV === 'PRODUCTION'){
