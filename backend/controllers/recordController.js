@@ -1,69 +1,44 @@
 const Record = require('../models/record')
 const ErrorHandler = require('../utils/errorHandler')
 const catchAsyncErrors = require('../middlewares/catchAsyncErrors')
-const APIFeatures = require('../utils/apiFeatures')
 
 exports.createRecord = catchAsyncErrors(async (req, res, next) => {
-    const product = await Product.create(req.body)
+    const record = await Record.create(req.body)
 
     res.status(201).json({
         success: true,
-        message: "New product added!",
-        product
+        message: "New record added!",
+        record
     })
 })
 
 exports.getAllRecords = catchAsyncErrors(async (req, res, next) => {
-    const products = await Product.find()
+    const records = await Record.find()
     
     res.status(200).json({
         success: true,
-        productCount,
-        products
+        recordCount,
+        records
     })
 })
 
 exports.getSingleRecord = catchAsyncErrors(async (req, res, next) => {
-    const product = await Product.findById(req.params.id)
+    const record = await Record.findById(req.params.id)
 
-    if (!product) { return next(new ErrorHandler('Product not found', 404)) }
+    if (!record) { return next(new ErrorHandler('Record not found', 404)) }
 
     res.status(200).json({
         success: true,
-        product
+        record
     })
 })
 
 exports.updateRecord = catchAsyncErrors(async (req, res, next) => {
-    let product = await Product.findById(req.params.id)
+    let record = await Record.findById(req.params.id)
 
-    if (!product) { return next(new ErrorHandler('Product not found', 404)) }
+    if (!record) { return next(new ErrorHandler('Record not found', 404)) }
 
-    let newImages = req.files
-
-    const oldImages = product.images
-    const length = oldImages && oldImages.length
-    let ids = []
-
-    for (let i = 0; i < length; i++) {
-        ids.push(oldImages[i].filename)
-    }
-
-    if (newImages == null || newImages == '') {
-        newImages = product.images
-    } else {
-        if (ids.length != 0) {
-            for (let x = 0; x < ids.length; x++) {
-                cloudinary.uploader.destroy(ids[x],
-                    { resource_type: 'raw' })
-            }
-        }
-    }
-    
-    product = await Product.findByIdAndUpdate(req.params.id, {
-        ...req.body,
-        images: newImages
-    }, {
+    record = await Record.findByIdAndUpdate(req.params.id, req.body, {
         new: true,
         runValidators: true,
         useFindAndModify: false
@@ -71,35 +46,19 @@ exports.updateRecord = catchAsyncErrors(async (req, res, next) => {
 
     res.status(200).json({
         success: true,
-        product
+        record
     })
 })
 
 exports.deleteRecord = catchAsyncErrors(async (req, res, next) => {
+    const record = await Record.findById(req.params.id)
 
-    const product = await Product.findById(req.params.id)
+    if (!record) { return next(new ErrorHandler('Record not found', 404)) }
 
-    if (!product) { return next(new ErrorHandler('Product not found', 404)) }
-
-    const images = product.images
-    const length = images.length
-    let ids = []
-
-    for (let i = 0; i < length; i++) {
-        ids.push(images[i].filename)
-    }
-
-    if (ids.length != 0) {
-        for (let x = 0; x < ids.length; x++) {
-            cloudinary.uploader.destroy(ids[x],
-                { resource_type: 'raw' })
-        }
-    }
-    
-    await product.remove()
+    await record.remove()
 
     res.status(200).json({
         success: true,
-        message: 'Product is deleted successfully',
+        message: 'Record is deleted successfully',
     })
 })
