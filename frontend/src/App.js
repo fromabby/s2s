@@ -12,6 +12,7 @@ import { PostContextProvider } from './context/postContext';
 import './App.css';
 import Blogs from './components/Blog/Blogs';
 import Footer from './components/Footer/Footer';
+import Content from './components/Content/Content';
 
 
 function App() {
@@ -28,35 +29,25 @@ function App() {
   return (
     <div>
       <Router>
-        {/* <Header /> */}
-        {
-          isLoggedIn ?
-            <>
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/partners" element={<Partners />} />
-                <Route path="/about-us" element={<About />} />
-                <Route path="/contact-us" element={<Contact />} />
-                <Route path="/donate" element={<Donate />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/blog" element={
-                  <PostContextProvider>
-                    <Blogs />
-                  </PostContextProvider>
-                } />
+        <Header />
+        <>
+          <PostContextProvider>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/blog" element={<Blogs />} />
+              <Route path="/blog/:id" element={<Content />} />
+            </Routes>
+          </PostContextProvider>
 
-              </Routes>
-            </>
-            :
-            <>
-              <h1>Login</h1>
-              <button onClick={() => onLogin()}>Login</button>
-            </>
-        }
-        {/* <Home/> */}
-        <About/>
+          <Routes>
+            <Route path="/partners" element={<Partners />} />
+            <Route path="/about-us" element={<About />} />
+            <Route path="/contact-us" element={<Contact />} />
+            <Route path="/donate" element={<Donate />} />
+            <Route path="/login" element={<Login />} />
+          </Routes>
+        </>
         <Footer />
-
       </Router>
 
     </div>

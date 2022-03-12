@@ -5,24 +5,18 @@ import './Blog.css'
 
 const Blogs = () => {
 
-  const { posts, createPost: onCreate, deletePost } = useContext(PostContext)
-
-  const createPost = () => {
-    onCreate({ title: "New Post", body: "New Post Description", id: (posts.length + 1) })
-  }
+  const { posts: postData } = useContext(PostContext)
+  const { isLoading, posts } = postData
 
   return (
-    <div id="blog">
-      <div class="recent1">
-        <Blog />
-        <Blog />
-        <Blog />
-        <Blog />
-        <Blog />
-        <Blog />
-        <Blog />
+    isLoading ? <>Loading</> :
+      <div id="blog">
+        <div class="recent1">
+          {
+            posts && posts.map(post => <Blog post={post}/>)
+          }
+        </div>
       </div>
-    </div>
 
   )
 }
