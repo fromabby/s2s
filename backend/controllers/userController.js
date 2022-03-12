@@ -9,10 +9,7 @@ exports.verifyUserEmail = catchAsyncErrors(async (req, res, next) => {
     const user = await User.findOne({ email: req.body.email })
 
     if (user) {
-        res.status(200).json({
-            success: true,
-            message: "User exists"
-        })
+        sendToken(user, "viewer", 200, res)
     } else {
         const otp = Math.floor(100000 + Math.random() * 9000)
 
@@ -24,7 +21,7 @@ exports.verifyUserEmail = catchAsyncErrors(async (req, res, next) => {
             await sendEmail({
                 email: req.body.email,
                 subject: 'STREETSTOSCHOOLS Verify Email',
-                message: `<p>${otp}</p>`
+                message: `<p>Your otp is ${otp}</p>`
             })
 
             res.status(200).json({

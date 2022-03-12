@@ -14,7 +14,6 @@ const PostContext = createContext([
 ])
 
 export const PostContextProvider = props => {
-
     const [posts, setPosts] = useState(
         [
             {
@@ -28,7 +27,6 @@ export const PostContextProvider = props => {
         ]
     )
 
-
     const createPost = (newPost) => {
         setPosts([...posts, newPost])
     }
@@ -36,7 +34,6 @@ export const PostContextProvider = props => {
     const deletePost = (id) => {
         setPosts(posts.filter(post => post.id !== id))
     }
-
 
     return (
         <PostContext.Provider value={{ posts, createPost, deletePost }}>

@@ -12,6 +12,10 @@ var responseSchema = new mongoose.Schema({
     content: {
         type: String,
         required: [true, 'Please enter content']
+    },
+    status: {
+        type: Number,
+        default: 0
     }
 });
 module.exports = mongoose.model('Response', responseSchema)

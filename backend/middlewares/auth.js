@@ -21,7 +21,7 @@ exports.isVerified = catchAsyncErrors(async (req, res, next) => {
 
     if (!viewer) { return next(new ErrorHandler('Verify email first to access this resource.', 401)) }
 
-    const decoded = jwt.verify(viewer, process.env.JWT_SECRET)
+    const decoded = jwt.verify(viewer, process.env.JWT_VIEWER_SECRET)
     req.user = await User.findById(decoded.id)
     
     next()

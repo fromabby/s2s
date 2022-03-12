@@ -30,10 +30,10 @@ exports.logout = catchAsyncErrors(async (req, res, next) => {
         httpOnly: true
     })
 
-    res.cookie('viewer', null, {
-        expires: new Date(Date.now()),
-        httpOnly: true
-    })
+    // res.cookie('viewer', null, {
+    //     expires: new Date(Date.now()),
+    //     httpOnly: true
+    // })
 
     res.status(200).json({
         success: true,
