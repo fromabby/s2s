@@ -1,4 +1,5 @@
-const User = require('../models/auth')
+const Auth = require('../models/auth')
+const User = require('../models/user')
 const ErrorHandler = require("../utils/errorHandler")
 const catchAsyncErrors = require("./catchAsyncErrors")
 const jwt = require('jsonwebtoken')
@@ -10,7 +11,7 @@ exports.isAuthenticatedUser = catchAsyncErrors(async (req, res, next) => {
     if (!admin) { return next(new ErrorHandler('Login first to access this resource.', 401)) }
 
     const decoded = jwt.verify(admin, process.env.JWT_ADMIN_SECRET)
-    req.user = await User.findById(decoded.id)
+    req.user = await Auth.findById(decoded.id)
     
     next()
 })
@@ -20,7 +21,7 @@ exports.isVerified = catchAsyncErrors(async (req, res, next) => {
 
     if (!viewer) { return next(new ErrorHandler('Verify email first to access this resource.', 401)) }
 
-    const decoded = jwt.verify(viewer, process.env.JWT_VIEWER_SECRET)
+    const decoded = jwt.verify(viewer, process.env.JWT_SECRET)
     req.user = await User.findById(decoded.id)
     
     next()

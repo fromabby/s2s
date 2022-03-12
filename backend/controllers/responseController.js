@@ -2,11 +2,7 @@ const ErrorHandler = require('../utils/errorHandler')
 const catchAsyncErrors = require('../middlewares/catchAsyncErrors')
 const Response = require('../models/response')
 
-
-//*for about us content
 exports.createResponse = catchAsyncErrors(async (req, res, next) => {
-
-    console.log(req.user)
     const { _id: userId } = req.user
     const postId = req.params.post_id
 
