@@ -13,6 +13,7 @@ import './App.css';
 import Blogs from './components/Blog/Blogs';
 import Footer from './components/Footer/Footer';
 import Content from './components/Content/Content';
+import CreateBlogForm from './Admin/Blog/CreateBlogForm';
 
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/blog" element={<Blogs />} />
               <Route path="/blog/:id" element={<Content />} />
+              <Route path="/admin/blog/new" element={<CreateBlogForm />} />
             </Routes>
           </PostContextProvider>
 
