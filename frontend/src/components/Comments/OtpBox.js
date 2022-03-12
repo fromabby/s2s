@@ -28,7 +28,6 @@ const OtpBox = () => {
                 }
             })
 
-            console.log(data)
             if (data.success) {
                 setLoading(false)
                 // navigate(`/viewer/${data.slug}`)

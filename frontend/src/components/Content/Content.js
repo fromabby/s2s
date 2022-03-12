@@ -92,7 +92,7 @@ const Content = () => {
                         </div>
                         <br />
                         
-                        <CommentBox/>
+                        <CommentBox post_id={post._id}/>
                     </div>
                 </div>
             </div>

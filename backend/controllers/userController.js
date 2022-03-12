@@ -9,7 +9,7 @@ exports.verifyUserEmail = catchAsyncErrors(async (req, res, next) => {
     const user = await User.findOne({ email: req.body.email })
 
     if (user) {
-        sendToken(user, "viewer", 200, res)
+        sendToken({ user, post_id: req.body.post_id, status: 1 }, "viewer", 200, res)
     } else {
         const otp = Math.floor(100000 + Math.random() * 9000)
 
@@ -27,6 +27,7 @@ exports.verifyUserEmail = catchAsyncErrors(async (req, res, next) => {
             res.status(200).json({
                 success: true,
                 slug,
+                user: { status: 0 },
                 otp,
                 message: `OTP sent.\nKindly check your inbox or spam.`
             })
@@ -50,7 +51,7 @@ exports.saveUser = catchAsyncErrors(async (req, res, next) => {
                 User.findOne({ email }).exec((err, existingUser) => {
                     if (existingUser) { return next(new ErrorHandler('Email already exists')) }
                     const newUser = User.create({ email, full_name }).then((user) => {
-                        const createdUser = { user, post_id }
+                        const createdUser = { user, post_id, status: 2 }
                         return sendToken(createdUser, "viewer", 200, res)
                     }
                     )
