@@ -49,8 +49,8 @@ router.route('/admin/banner/:id').delete(isAuthenticatedUser, authorizeRoles('su
 //*donation
 router.route('/donations').get(content.getAllDonations)
 router.route('/admin/donation/:id').get(isAuthenticatedUser,authorizeRoles('superadmin', 'admin'), content.getSingleDonation)
-router.route('/admin/donation/new').post(isAuthenticatedUser, fileUpload.array('image'), authorizeRoles('superadmin', 'admin'), content.createDonation)
-router.route('/admin/donation/:id').put(isAuthenticatedUser, fileUpload.array('image'), authorizeRoles('superadmin', 'admin'), content.updateDonation)
+router.route('/admin/donation/new').post(isAuthenticatedUser, fileUpload.array('qr_code'), authorizeRoles('superadmin', 'admin'), content.createDonation)
+router.route('/admin/donation/:id').put(isAuthenticatedUser, fileUpload.array('qr_code'), authorizeRoles('superadmin', 'admin'), content.updateDonation)
 router.route('/admin/donation/:id').delete(isAuthenticatedUser, authorizeRoles('superadmin', 'admin'), content.deleteDonation)
 
 //*registration

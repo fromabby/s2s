@@ -4,6 +4,7 @@ const Donation = require('../models/donation')
 const Registration = require('../models/registration')
 const ErrorHandler = require('../utils/errorHandler')
 const catchAsyncErrors = require('../middlewares/catchAsyncErrors')
+const cloudinary = require('cloudinary').v2
 
 //*for about us content
 exports.createAbout = catchAsyncErrors(async (req, res, next) => {
@@ -261,7 +262,11 @@ exports.deleteDonation = catchAsyncErrors(async (req, res, next) => {
 })
 
 //*for registration content
-exports.createRegistration = catchAsyncErrors(async (req, res, next) => {
+exports.createRegistration = catchAsyncErrors(async (req, res, next) => {  
+    if(req.body.registrationType !== 1 && req.body.registrationType !== 2) {
+        return next(new ErrorHandler('Invalid registration type', 404))
+    }
+
     const registration = await Registration.create(req.body)
 
     res.status(201).json({
@@ -296,6 +301,10 @@ exports.updateRegistration = catchAsyncErrors(async (req, res, next) => {
 
     if (!registration) { return next(new ErrorHandler('Registration not found', 404)) }
 
+    if(req.body.registrationType !== 1 && req.body.registrationType !== 2) {
+        return next(new ErrorHandler('Invalid registration type', 404))
+    }
+    
     registration = await Registration.findByIdAndUpdate(req.params.id, req.body, {
         new: true,
         runValidators: true,
