@@ -7,7 +7,7 @@ const CommentList = () => {
 
     const [comments, setComments] = useState([])
 
-    const { id } = useParams()
+    const {id} = useParams()
 
     useEffect(() => {
         const fetchData = async () => {

@@ -37,8 +37,8 @@ const CommentBox = ({ post_id }) => {
                 }
             })
 
-            console.log(data)
             if (data.success) {
+                
                 setCommentLoading(false)
                 setIsPosted(true)
                 navigate(`/blog/${data.response.post}`)
