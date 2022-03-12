@@ -5,7 +5,7 @@ const sendEmail = require('../utils/sendEmail')
 const jwt = require('jsonwebtoken')
 
 exports.verifyUserEmail = catchAsyncErrors(async (req, res, next) => {
-    const user = await User.findOne({ email })
+    const user = await User.findOne({ email: req.body.email })
 
     if (user) {
         res.status(200).json({
@@ -13,30 +13,26 @@ exports.verifyUserEmail = catchAsyncErrors(async (req, res, next) => {
             message: "User exists"
         })
     } else {
+        const otp = Math.floor(100000 + Math.random() * 9000)
 
-        const registerToken = jwt.sign({ email }, process.env.ACCOUNT_TOKEN, { expiresIn: process.env.REGISTER_EXPIRES })
+        const slug = jwt.sign({ email: req.body.email, otp }, process.env.ACCOUNT_TOKEN, { expiresIn: process.env.REGISTER_EXPIRES })
 
-        // create reset password url
-        const link = `${req.protocol}://${process.env.HOST}/verify/${registerToken}`
         try {
             // const message = await resetPassword({ link })
 
             await sendEmail({
-                email: user.email,
+                email: req.body.email,
                 subject: 'STREETSTOSCHOOLS Verify Email',
-                message: `<p>${link}</p>`
+                message: `<p>${otp}</p>`
             })
 
             res.status(200).json({
                 success: true,
-                message: `Email sent.\nKindly check your inbox or spam.`
+                slug,
+                otp,
+                message: `OTP sent.\nKindly check your inbox or spam.`
             })
-
         } catch (error) {
-            user.resetPasswordToken = undefined
-            user.resetPasswordExpire = undefined
-
-            await user.save({ validateBeforeSave: false })
             return next(new ErrorHandler(error.message, 500))
         }
     }
@@ -44,22 +40,26 @@ exports.verifyUserEmail = catchAsyncErrors(async (req, res, next) => {
 
 exports.saveUser = catchAsyncErrors(async (req, res, next) => {
     const token = req.params.token
+    const { full_name } = req.body
 
     if (token) {
         jwt.verify(token, process.env.ACCOUNT_TOKEN, function (err, user) {
             if (err) { return next(new ErrorHandler('Token is invalid or expired')) }
 
-            const { email } = user
-
-            User.findOne({ email }).exec((err, existingUser) => {
-                if (existingUser) { return next(new ErrorHandler('Email already exists')) }
-                const newUser = User.create(user).then(() =>
-                    res.status(201).json({
-                        success: true,
-                        message: `Congratulations ${full_name}! You may now leave and manage your comments.`
-                    })
-                )
-            })
+            const { email, otp } = user
+            if (req.body.otp === otp) {
+                User.findOne({ email }).exec((err, existingUser) => {
+                    if (existingUser) { return next(new ErrorHandler('Email already exists')) }
+                    const newUser = User.create({ email, full_name }).then(() =>
+                        res.status(201).json({
+                            success: true,
+                            message: `Congratulations ${full_name}! You may now leave and manage your comments.`
+                        })
+                    )
+                })
+            } else {
+                return next(new ErrorHandler('Invalid OTP'))
+            }
         })
     } else {
         return next(new ErrorHandler('Token is invalid or expired'))

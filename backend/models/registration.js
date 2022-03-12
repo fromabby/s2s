@@ -1,9 +1,13 @@
 const mongoose = require('mongoose')
 
 const registrationSchema = new mongoose.Schema({
-    content: {
+    registrationType: {
+        type: Number,
+        required: [true, 'Please enter type'],
+    },
+    link: {
         type: String,
-        required: [true, 'Please enter content'],
+        required: [true, 'Please enter link'],
     }
 })
 

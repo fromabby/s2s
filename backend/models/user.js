@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const validator = require('validator')
+const crypto = require('crypto')
 
 const userSchema = new mongoose.Schema({
     email: {
@@ -15,5 +16,6 @@ const userSchema = new mongoose.Schema({
         select: false
     }
 })
+
 
 module.exports = mongoose.model('User', userSchema)
