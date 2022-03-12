@@ -1,9 +1,14 @@
 // Create and send token and save in cookie.
 
 const sendToken = (user, userType, statusCode, res) => {
+    let currentUser = user
+    
+    if(userType === "viewer") {
+        currentUser = user.user
+    }
 
     // Create Jwt Token 
-    const token = user.getJwtToken()
+    const token = currentUser.getJwtToken()
 
     // Options for cookie
     const options = {

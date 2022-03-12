@@ -11,6 +11,7 @@ const options = {
   transition: transitions.SCALE
 }
 
+
 ReactDOM.render(
   <React.StrictMode>
     <AlertProvider template={AlertTemplate} {...options}>
@@ -20,4 +21,12 @@ ReactDOM.render(
     </AlertProvider>
   </React.StrictMode>,
   document.getElementById('root')
+    <React.StrictMode>
+        <AlertProvider template={AlertTemplate} {...options}>
+            <AuthContextProvider>
+                <App />
+            </AuthContextProvider>
+        </AlertProvider>
+    </React.StrictMode>,
+    document.getElementById('root')
 )

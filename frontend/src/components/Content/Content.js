@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import PostContext from '../../context/postContext'
 import './Content.css'
+import CommentBox from '../Comments/CommentBox'
 
 const Content = () => {
 
@@ -15,7 +16,6 @@ const Content = () => {
         }
         return () => isMounted = false
     }, [])
-
 
     const { isLoading, post } = posts
 
@@ -91,9 +91,8 @@ const Content = () => {
                             </p>
                         </div>
                         <br />
-                        <h1 className="content-leave-header" style={{ fontStyle: "2vw" }}>
-                            Leave a comment
-                        </h1>
+                        
+                        <CommentBox/>
                     </div>
                 </div>
             </div>
