@@ -28,7 +28,7 @@ function App() {
   return (
     <div>
       <Router>
-        <Header />
+        {/* <Header /> */}
         {
           isLoggedIn ?
             <>
@@ -53,6 +53,8 @@ function App() {
               <button onClick={() => onLogin()}>Login</button>
             </>
         }
+        {/* <Home/> */}
+        <About/>
         <Footer />
 
       </Router>

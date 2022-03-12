@@ -1,7 +1,31 @@
-import React from "react";
-import "./About.css";
+import React, { useState, useEffect } from "react"
+import "./About.css"
+import axios from 'axios'
 
 const About = () => {
+    const [abouts, setAbouts] = useState([])
+    const [loading, setLoading] = useState(false)
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                setLoading(true)
+                const { data } = await axios.get('/api/v1/abouts')
+
+                if (data.success) {
+                    setAbouts(data.abouts)
+                    setLoading(false)
+                }
+
+            } catch (error) {
+                setLoading(false)
+                setAbouts(["not available"])
+                console.log('no response')
+            }
+        }
+        fetchData()
+    }, [])
+
   return (
     <div
       class="bg_image content-container"
@@ -388,7 +412,14 @@ const About = () => {
                 <br />
               </div>
 
-              <ul style={{ fontSize: "18px" }} class="aboutus-recognitions">
+            <ul style={{ fontSize: "18px" }} class="aboutus-recognitions">
+                {loading ? <h1>Loading</h1> : abouts && abouts.map(about => (
+                    <li>
+                        {about.content}
+                    </li>
+                ))}
+            </ul>
+              {/* <ul style={{ fontSize: "18px" }} class="aboutus-recognitions">
                 <li>Winner, ESD Okayama Awards 2021</li>
                 <li>
                   Outstanding GYS Alumni Safe Space Heroes 2021 [Karapatan at
@@ -434,7 +465,7 @@ const About = () => {
                   (Alitaptap)
                 </li>
                 <li>Finalist, Sikhay Youth Community Service Awards</li>
-              </ul>
+              </ul> */}
             </div>
           </div>
         </div>
