@@ -12,6 +12,7 @@ const OtpBox = () => {
     const [name, setName] = useState('')
     const [otp, setOtp] = useState('')
     const [loading, setLoading] = useState(false)
+    const [isVerified, setIsVerified] = useState(false)
 
     const submitHandler = e => {
         e.preventDefault()
@@ -31,9 +32,9 @@ const OtpBox = () => {
 
             if (data.success) {
                 setLoading(false)
-                // navigate(`/viewer/${data.slug}`)
+                setIsVerified(true)
                 console.log(data.user.post_id)
-                navigate(`/blog/${data.user.post_id}`)
+                navigate(`/blog/${data.user.post_id}/?verified=${isVerified}`)
                 alert.success('You may now leave a comment!')
             }
 
