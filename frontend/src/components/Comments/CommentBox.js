@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { Button, Form } from 'react-bootstrap';
 import { useAlert } from 'react-alert'
 import axios from 'axios'
 
@@ -17,7 +18,7 @@ const CommentBox = ({ post_id }) => {
     const submitHandler = e => {
         e.preventDefault()
 
-        if(isVerified) {
+        if (isVerified) {
             postComment()
         } else {
             verifyUser()
@@ -75,10 +76,20 @@ const CommentBox = ({ post_id }) => {
         <div className="content-leave-header">
             <form onSubmit={submitHandler}>
                 {isVerified ?
-                    <input type="text" value={comment} onChange={e => setComment(e.target.value)} placeholder="Enter comment" /> :
-                    <input type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="Enter email" />
+                    <Form.Group className="mb-3">
+                        <Form.Label>Leave a comment</Form.Label>
+                        <Form.Control type="text" name="comment" placeholder="Leave a comment..." value={comment} onChange={e => setComment(e.target.value)} />
+                    </Form.Group>
+                    :
+                    <Form.Group className="mb-3">
+                        <Form.Label>Title</Form.Label>
+                        <Form.Control type="email" name="email" placeholder="Enter your email..." value={email} onChange={e => setEmail(e.target.value)} />
+                    </Form.Group>
                 }
-                <input type='submit' value="submit" disabled={commentLoading || verifyLoading ? true : false}/>
+
+                <Button variant="primary" type="submit" disabled={commentLoading || verifyLoading ? true : false}>
+                    Submit
+                </Button>
             </form>
         </div>
     )

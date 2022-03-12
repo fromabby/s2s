@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useAlert } from 'react-alert'
+import { Button, Form } from 'react-bootstrap';
 import { useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
 
@@ -45,8 +46,18 @@ const OtpBox = () => {
     return (
         <div>
             <form onSubmit={submitHandler}>
-                <input type="text" value={otp} onChange={e => setOtp(e.target.value)} placeholder="Enter otp" /><input type="text" value={name} onChange={e => setName(e.target.value)} placeholder="Enter name" />
-                <input type='submit' value="submit" />
+                <Form.Group className="mb-3">
+                    <Form.Label>Enter OTP</Form.Label>
+                    <Form.Control type="text" name="otp" placeholder="xxxxxx" value={otp} onChange={e => setOtp(e.target.value)} />
+                </Form.Group>
+                <Form.Group className="mb-3">
+                    <Form.Label>Enter your name</Form.Label>
+                    <Form.Control type="text" name="name" placeholder="Juan Dela Cruz" value={name} onChange={e => setName(e.target.value)} />
+                </Form.Group>
+
+                <Button variant="primary" type="submit" disabled={loading ? true : false}>
+                    Submit
+                </Button>
             </form>
         </div>
     )
