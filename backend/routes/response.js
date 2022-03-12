@@ -10,7 +10,7 @@ router.route('/responses/:id').get(response.getSingleResponse)
 
 router.route('/responses/:post_id').post(isVerified, response.createResponse)
 router.route('/responses/:id').put(isAuthenticatedUser, authorizeRoles('superadmin', 'admin'), response.updateResponse)
-router.route('/responses/viewer/:id').delete(isVerified, response.deleteResponse)
-router.route('/responses/admin/:id').delete(isAuthenticatedUser, authorizeRoles('superadmin', 'admin'), response.deleteResponse)
+router.route('/responses/viewer/:id').delete(isVerified, response.deleteViewerResponse)
+router.route('/responses/admin/:id').delete(isAuthenticatedUser, authorizeRoles('superadmin', 'admin'), response.deleteAdminResponse)
 
 module.exports = router

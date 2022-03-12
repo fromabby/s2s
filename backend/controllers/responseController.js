@@ -39,7 +39,7 @@ exports.getSingleResponse = catchAsyncErrors(async (req, res, next) => {
     })
 })
 
-exports.deleteResponse = catchAsyncErrors(async (req, res, next) => {
+exports.deleteViewerResponse = catchAsyncErrors(async (req, res, next) => {
     const response = await Response.findOne({ _id: req.params.id, user: req.user._id })
 
     if (!response) { return next(new ErrorHandler('Response not found', 404)) }
@@ -67,6 +67,19 @@ exports.updateResponse = catchAsyncErrors(async (req, res, next) => {
     res.status(200).json({
         success: true,
         response
+    })
+})
+
+exports.deleteAdminResponse = catchAsyncErrors(async (req, res, next) => {
+    const response = await Response.findOne({ _id: req.params.id })
+
+    if (!response) { return next(new ErrorHandler('Response not found', 404)) }
+
+    await response.remove()
+
+    res.status(200).json({
+        success: true,
+        message: 'Response is deleted successfully',
     })
 })
 
