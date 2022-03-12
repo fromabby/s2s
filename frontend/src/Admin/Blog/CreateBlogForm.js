@@ -1,12 +1,17 @@
 import axios from 'axios';
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useContext, useState } from 'react'
 import { useAlert } from 'react-alert';
 import { Button, Form } from 'react-bootstrap';
+import AuthContext from '../../context/authContext';
 
 const CreateBlogForm = () => {
 
     const [post, setPost] = useState({})
     const [images, setImages] = useState([])
+
+    const auth = useContext(AuthContext)
+
+    console.log(auth)
 
     const changeHandler = (e) => {
         setPost({ ...post, [e.target.name]: e.target.value })
@@ -30,13 +35,17 @@ const CreateBlogForm = () => {
                     'Content-Type': 'multipart/form-data'
                 }
             }
-            const { data } = axios.post('/api/v1/posts', formData, multiformdata)
-            if (data.sucess) {
-                alert.success("Post created")
+            const createPost = async () => {
+                const { data } = await axios.post('/api/v1/posts', formData, multiformdata)
+                if (data.success) {
+                    alert.success("Post created")
+                }
             }
+            createPost()
         }
         catch (error) {
             alert.error("Error")
+            console.log(error)
         }
     }
 
