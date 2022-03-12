@@ -1,13 +1,21 @@
 import { useContext } from "react";
 import { Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import AuthContext from "../context/authContext";
+import AuthContext from "../../context/authContext";
+import './Header.css'
+
 
 const Header = () => {
 
   const { isLoggedIn, onLogout } = useContext(AuthContext)
   return (
     <Nav className="navbar navbar-custom navbar-light navbar-expand-lg">
+      <Link className="navbar-brand" to="/"><img
+        src="/images/logo.png"
+        width="100"
+        height="80"
+        alt="STS Logo"
+      /></Link>
       <button
         className="navbar-toggler"
         type="button"

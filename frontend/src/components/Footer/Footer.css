@@ -1,0 +1,123 @@
+/* FOOTER */
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+#footer {
+  padding-bottom: 20px;
+}
+
+#footer1 {
+  padding: 10px;
+}
+
+.responsive {
+  max-width: 200px;
+  height: auto;
+  padding: 20px;
+}
+
+body {
+  font-family: "Noto Sans", sans-serif;
+  margin: 0;
+  display: grid;
+  font-size: 14px;
+}
+
+.logo {
+  margin: auto auto;
+}
+
+.footer {
+  display: flex;
+  flex-flow: row wrap;
+  padding: 50px;
+  background-color: #f3f2d5;
+}
+
+.footer > * {
+  flex: 1 100%;
+}
+
+.l-footer {
+  margin-right: 1.25em;
+  margin-bottom: 2em;
+}
+
+h1 {
+  font-weight: bold;
+  font-size: 15px;
+  color: black;
+}
+
+h2 {
+  font-weight: bold;
+  font-size: 15px;
+  color: black;
+}
+
+.footer ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.footer li {
+  line-height: 2em;
+  color: black;
+}
+
+.footer a {
+  text-decoration: none;
+}
+
+.r-footer {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.r-footer > * {
+  flex: 1 100%;
+  /* margin-right: 1.25em; */
+}
+
+.box a {
+  color: black;
+}
+
+.box a:hover {
+  color: #467aac;
+}
+
+.b-footer {
+  text-align: center;
+  color: black;
+  padding-top: 10px;
+}
+
+@media screen and (min-width: 600px) {
+  .r-footer > * {
+    flex: 1;
+  }
+
+  .connect {
+    flex: 1 0px;
+  }
+
+  .r-footer {
+    flex: 2 0px;
+  }
+}
+
+.footer--pin {
+  position: relative;
+  left: 0;
+  bottom: 0;
+}
+
+.content-container {
+  min-height: calc(100vh - 361px);
+}
+
+/* END OF FOOTER */

@@ -1,17 +1,18 @@
 import { useContext, useState } from 'react';
-import { ToastContainer } from 'react-bootstrap';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
-import About from './components/About';
-import Blog from './components/Blog';
-import Blogs from './components/Blogs';
-import Contact from './components/Contact';
-import Donate from './components/Donate';
-import Header from './components/Header'
-import Home from './components/Home';
+import About from './components/About/About';
+import Contact from './components/Contacts/Contact';
+import Donate from './components/Donate/Donate';
+import Header from './components/Header/Header'
+import Home from './components/Home/Home';
 import Login from './components/Login';
-import Partners from './components/Partners';
+import Partners from './components/Partners/Partners';
 import AuthContext from './context/authContext';
 import { PostContextProvider } from './context/postContext';
+import './App.css';
+import Blogs from './components/Blog/Blogs';
+import Footer from './components/Footer/Footer';
+
 
 function App() {
 
@@ -52,6 +53,8 @@ function App() {
               <button onClick={() => onLogin()}>Login</button>
             </>
         }
+        <Footer />
+
       </Router>
 
     </div>

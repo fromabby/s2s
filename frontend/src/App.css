@@ -1,0 +1,54 @@
+body {
+    background-image: url("/public/images/bg.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-weight: bold;
+    font-family: "Noto Sans";
+}
+
+.sidenav {
+    background-color: rgba(255, 255, 255, 0.6);
+    height: 100%;
+    width: 320px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+    padding-top: 20px;
+    border-right: 1px solid black;
+}
+
+.sidenav a {
+    text-align: center;
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 20px;
+    display: block;
+    color: black !important;
+    font-family: "Noto Sans", sans-serif;
+}
+
+.sidenav #sidenav-logo {
+    width: 100%;
+    padding: 20px;
+}
+
+.sidenav .nav-link:hover {
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    /* background-image: url("../Assets/hover.png"); */
+
+}
+
+.main {
+    margin-left: 320px;
+    /* Same as the width of the sidenav */
+    font-size: 25px;
+    padding: 0px 10px;
+    max-width: 100%;
+}
+
+.sidenav .active {
+    /* background-image: url("../Assets/hover.png"); */
+}
