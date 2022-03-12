@@ -1,6 +1,7 @@
 const User = require('../models/user')
 const ErrorHandler = require('../utils/errorHandler')
 const catchAsyncErrors = require('../middlewares/catchAsyncErrors')
+const sendToken = require('../utils/jwtToken')
 const sendEmail = require('../utils/sendEmail')
 const jwt = require('jsonwebtoken')
 
@@ -50,11 +51,8 @@ exports.saveUser = catchAsyncErrors(async (req, res, next) => {
             if (req.body.otp === otp) {
                 User.findOne({ email }).exec((err, existingUser) => {
                     if (existingUser) { return next(new ErrorHandler('Email already exists')) }
-                    const newUser = User.create({ email, full_name }).then(() =>
-                        res.status(201).json({
-                            success: true,
-                            message: `Congratulations ${full_name}! You may now leave and manage your comments.`
-                        })
+                    const newUser = User.create({ email, full_name }).then((user) =>
+                        sendToken(user, "viewer", 200, res)
                     )
                 })
             } else {
