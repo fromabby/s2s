@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useAlert } from 'react-alert'
 import axios from 'axios'
 
 const CommentBox = () => {
@@ -16,6 +17,7 @@ const CommentBox = () => {
         fetchData()
     }
 
+    const alert= useAlert()
     const fetchData = async () => {
         try {
             setLoading(true)
