@@ -13,6 +13,8 @@ import './App.css';
 import Blogs from './components/Blog/Blogs';
 import Footer from './components/Footer/Footer';
 import Content from './components/Content/Content';
+import CommentBox from './components/Comments/CommentBox';
+import OtpBox from './components/Comments/OtpBox';
 
 
 function App() {
@@ -45,6 +47,8 @@ function App() {
             <Route path="/contact-us" element={<Contact />} />
             <Route path="/donate" element={<Donate />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/comment" element={<CommentBox />} />
+            <Route path="/verify/:slug" element={<OtpBox />} />
           </Routes>
         </>
         <Footer />

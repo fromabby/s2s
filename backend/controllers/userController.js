@@ -13,7 +13,7 @@ exports.verifyUserEmail = catchAsyncErrors(async (req, res, next) => {
     } else {
         const otp = Math.floor(100000 + Math.random() * 9000)
 
-        const slug = jwt.sign({ email: req.body.email, otp }, process.env.ACCOUNT_TOKEN, { expiresIn: process.env.REGISTER_EXPIRES })
+        const slug = jwt.sign({ email: req.body.email, otp, post_id: req.body.post_id }, process.env.ACCOUNT_TOKEN, { expiresIn: process.env.REGISTER_EXPIRES })
 
         try {
             // const message = await resetPassword({ link })
@@ -44,12 +44,15 @@ exports.saveUser = catchAsyncErrors(async (req, res, next) => {
         jwt.verify(token, process.env.ACCOUNT_TOKEN, function (err, user) {
             if (err) { return next(new ErrorHandler('Token is invalid or expired')) }
 
-            const { email, otp } = user
-            if (req.body.otp === otp) {
+            const { email, otp, post_id } = user
+
+            if (Number(req.body.otp) === otp) {
                 User.findOne({ email }).exec((err, existingUser) => {
                     if (existingUser) { return next(new ErrorHandler('Email already exists')) }
-                    const newUser = User.create({ email, full_name }).then((user) =>
-                        sendToken(user, "viewer", 200, res)
+                    const newUser = User.create({ email, full_name }).then((user) => {
+                        const createdUser = { user, post_id }
+                        return sendToken(createdUser, "viewer", 200, res)
+                    }
                     )
                 })
             } else {
