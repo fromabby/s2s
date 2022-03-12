@@ -12,6 +12,7 @@ const CommentBox = ({ post_id }) => {
     const [isPosted, setIsPosted] = useState(false)
 
     const navigate = useNavigate()
+    const alert = useAlert()
 
     const submitHandler = e => {
         e.preventDefault()
@@ -23,10 +24,6 @@ const CommentBox = ({ post_id }) => {
         }
     }
 
-    useEffect(() => {
-        
-    }, [isVerified])
-
     const postComment = async () => {
         try {
             setCommentLoading(true)
@@ -37,15 +34,15 @@ const CommentBox = ({ post_id }) => {
                 }
             })
 
-            console.log(data)
             if (data.success) {
                 setCommentLoading(false)
                 setIsPosted(true)
-                navigate(`/blog/${data.response.post}`)
+                // navigate(`/blog/${data.response.post}`)
+                alert.success(`${data.response.content} has been posted. Subject for approval`)
             }
-
         } catch (error) {
             setCommentLoading(false)
+            alert.error('cannot post comment')
         }
     }
 
