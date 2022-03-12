@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import PostContext from '../../context/postContext'
 import './Content.css'
 import CommentBox from '../Comments/CommentBox'
+import CommentList from '../Comments/CommentList'
 
 const Content = () => {
 
@@ -51,47 +52,7 @@ const Content = () => {
                         <h1 className="content-comment-header" style={{ fontStyle: "2vw" }}>
                             Comments
                         </h1>
-                        <div className="content-section-comment">
-                            <h1 style={{ fontStyle: "2vw" }} className="content-name">
-                                Juan Dela Cruz
-                            </h1>
-                            <p style={{ fontStyle: "2vw" }} className="content-comment">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, nulla
-                                pariatur.
-                            </p>
-                        </div>
-                        <br />
-                        <div className="content-section-comment">
-                            <h1 style={{ fontStyle: "2vw" }} className="content-name">
-                                Juan Dela Cruz
-                            </h1>
-                            <p style={{ fontStyle: "2vw" }} className="content-comment">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, nulla
-                                pariatur.
-                            </p>
-                        </div>
-                        <br />
-                        <div className="content-section-comment">
-                            <h1 style={{ fontStyle: "2vw" }} className="content-name">
-                                Juan Dela Cruz
-                            </h1>
-                            <p style={{ fontStyle: "2vw" }} className="content-comment">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, nulla
-                                pariatur.
-                            </p>
-                        </div>
-                        <br />
-                        <div className="content-section-comment">
-                            <h1 style={{ fontStyle: "2vw" }} className="content-name">
-                                Juan Dela Cruz
-                            </h1>
-                            <p style={{ fontStyle: "2vw" }} className="content-comment">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, nulla
-                                pariatur.
-                            </p>
-                        </div>
-                        <br />
-                        
+                        <CommentList />
                         <CommentBox post_id={post._id}/>
                     </div>
                 </div>
