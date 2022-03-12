@@ -9,7 +9,6 @@ exports.createResponse = catchAsyncErrors(async (req, res, next) => {
 
     const response = await Response.create({ ...req.body, user: userId, post: postId })
 
-    console.log(response)
     res.status(201).json({
         success: true,
         message: "New response created!",

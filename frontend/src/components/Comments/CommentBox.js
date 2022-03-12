@@ -4,13 +4,12 @@ import { Button, Form } from 'react-bootstrap';
 import { useAlert } from 'react-alert'
 import axios from 'axios'
 
-const CommentBox = ({ post_id }) => {
+const CommentBox = ({ post_id, setIsPosted, isPosted }) => {
     const [isVerified, setIsVerified] = useState('')
     const [comment, setComment] = useState('')
     const [email, setEmail] = useState('')
     const [verifyLoading, setVerifyLoading] = useState(false)
     const [commentLoading, setCommentLoading] = useState(false)
-    const [isPosted, setIsPosted] = useState(false)
 
     const navigate = useNavigate()
     const alert = useAlert()
@@ -36,10 +35,9 @@ const CommentBox = ({ post_id }) => {
             })
 
             if (data.success) {
-                
                 setCommentLoading(false)
                 setIsPosted(true)
-                // navigate(`/blog/${data.response.post}`)
+                setComment('')
                 alert.success(`${data.response.content} has been posted. Subject for approval`)
             }
         } catch (error) {

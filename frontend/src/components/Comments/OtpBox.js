@@ -3,6 +3,7 @@ import { useAlert } from 'react-alert'
 import { Button, Form } from 'react-bootstrap';
 import { useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
+import Metadata from '../Layout/Metadata'
 
 const OtpBox = () => {
     const { slug } = useParams()
@@ -46,6 +47,7 @@ const OtpBox = () => {
 
     return (
         <div>
+            <Metadata title={`Verify your account`} />
             <form onSubmit={submitHandler}>
                 <Form.Group className="mb-3">
                     <Form.Label>Enter OTP</Form.Label>
