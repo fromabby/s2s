@@ -3,7 +3,8 @@ import React, { Fragment, useContext, useEffect, useState } from 'react'
 import { useAlert } from 'react-alert';
 import { Button, Form } from 'react-bootstrap';
 import { useNavigate, useParams } from 'react-router-dom';
-import PostContext from '../../context/postContext';
+import PostContext from '../../../context/postContext'
+
 
 const UpdateBlogForm = () => {
 

@@ -1,12 +1,12 @@
 import React, { useState, useContext, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import PostContext from '../../context/postContext'
-import './Content.css'
-import CommentBox from '../Comments/CommentBox'
-import CommentList from '../Comments/CommentList'
-import Metadata from '../Layout/Metadata'
+import CommentBox from './blog/comments/CommentBox'
+import CommentList from './blog/comments/CommentList'
+import Metadata from '../layout/Metadata'
+import './css/BlogDetails.css'
 
-const Content = () => {
+const PublicBlogDetails = () => {
     const { id } = useParams()
     const { posts, fetchSingleData } = useContext(PostContext)
     const [isPosted, setIsPosted] = useState(false)
@@ -23,7 +23,7 @@ const Content = () => {
 
     return (
         <>
-            <Metadata title={post.title}/>
+            <Metadata title={post.title} />
             {
                 !isLoading && post ?
                     <div
@@ -67,4 +67,4 @@ const Content = () => {
     )
 }
 
-export default Content
+export default PublicBlogDetails

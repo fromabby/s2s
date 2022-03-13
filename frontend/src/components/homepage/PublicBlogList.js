@@ -1,21 +1,21 @@
 import React, { useContext, useState } from 'react'
 import PostContext from '../../context/postContext'
-import Blog from './Blog'
-import Metadata from '../Layout/Metadata'
-import './Blog.css'
+import BlogCard from './blog/BlogCard'
+import Metadata from '../layout/Metadata'
+import './css/Blog.css'
 import { Button } from 'react-bootstrap'
 
-const Blogs = () => {
+const PublicBlogList = () => {
 
     const { posts: postData } = useContext(PostContext)
     const { isLoading, posts } = postData
     const [maxDisplay, setMaxDisplay] = useState(8)
 
     const changeMaxHandler = () => {
-        if(maxDisplay === 8){
+        if (maxDisplay === 8) {
             setMaxDisplay(posts.length)
         }
-        else{
+        else {
             setMaxDisplay(8)
         }
     }
@@ -30,7 +30,7 @@ const Blogs = () => {
                             {
                                 posts && posts.map((post, index) => (
                                     index < maxDisplay
-                                        ? <Blog post={post} />
+                                        ? <BlogCard post={post} />
                                         : ''
                                 ))
                             }
@@ -47,4 +47,4 @@ const Blogs = () => {
     )
 }
 
-export default Blogs
+export default PublicBlogList

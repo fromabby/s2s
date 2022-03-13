@@ -47,11 +47,17 @@ const Login = () => {
     console.log(email)
     console.log(password)
 
+    const submitHandler = e => {
+        e.preventDefault()
+
+        console.log('clicked submit')
+    }
     return (
         <div>
-            <form>
+            <form onSubmit={submitHandler}>
                 <input type="email" value={email.value} onBlur={validateEmail} onChange={emailChangeHandler} />
                 <input type="password" value={password.value} onBlur={validatePassword} onChange={passwordChangeHandler} />
+                <button type="submit" value="submit" />
             </form>
         </div>
     )

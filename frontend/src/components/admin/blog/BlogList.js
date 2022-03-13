@@ -1,22 +1,20 @@
 import React, { useContext } from 'react'
 import { Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import PostContext from '../../context/postContext'
+import PostContext from '../../../context/postContext'
 import Blog from './Blog'
 
-const Blogs = () => {
+const BlogList = () => {
 
   const { posts: data, deleteData } = useContext(PostContext)
   const { posts, isLoading } = data
-
-
 
 
   return (
     isLoading ? <>Loading</>
       :
       <div>
-        <Link to="/admin/blog/new">
+        <Link to="/admin/blog/new">Î
           <Button>Create Post</Button>
         </Link>
         <div className='d-flex flex-column'>
@@ -29,4 +27,4 @@ const Blogs = () => {
   )
 }
 
-export default Blogs
+export default BlogList

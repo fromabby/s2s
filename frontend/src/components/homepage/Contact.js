@@ -1,6 +1,6 @@
 import React from 'react'
-import './Contact.css'
-import Metadata from '../Layout/Metadata'
+import './css/Contact.css'
+import Metadata from '../layout/Metadata'
 
 const Contact = () => {
     const faqs = [
@@ -34,7 +34,7 @@ const Contact = () => {
             answer:
                 "Monetary donations may be coursed through this link: [LINK] Rest assured, transparency reports will be released to inform you of how the donations are used for our projects.",
         },
-    ];
+    ]
 
     return (
         <div

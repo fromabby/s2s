@@ -3,7 +3,7 @@ import { useAlert } from 'react-alert'
 import { Button, Form } from 'react-bootstrap';
 import { useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
-import Metadata from '../Layout/Metadata'
+import Metadata from '../../../layout/Metadata'
 
 const OtpBox = () => {
     const { slug } = useParams()

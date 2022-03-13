@@ -1,6 +1,6 @@
 import React from "react";
-import "./Partners.css";
-import Metadata from '../Layout/Metadata'
+import "./css/Partners.css";
+import Metadata from '../layout/Metadata'
 
 const Partners = () => {
     return (

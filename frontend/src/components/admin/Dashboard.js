@@ -1,5 +1,5 @@
 import React from 'react'
-import SideNav from '../SideNav.js/SideNav'
+import SideNav from './SideNav'
 
 const Dashboard = ({ children }) => {
     return (

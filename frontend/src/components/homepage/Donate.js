@@ -1,6 +1,6 @@
 import React from 'react'
-import './Donate.css'
-import Metadata from '../Layout/Metadata'
+import './css/Donate.css'
+import Metadata from '../layout/Metadata'
 
 const Donate = () => {
     return (

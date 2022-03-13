@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
-import "./About.css"
+import "./css/About.css"
 import axios from 'axios'
-import Metadata from '../Layout/Metadata'
+import Metadata from '../layout/Metadata'
 
 const About = () => {
     const [abouts, setAbouts] = useState([])
