@@ -22,6 +22,7 @@ import CommentBox from './components/Comments/CommentBox';
 import OtpBox from './components/Comments/OtpBox';
 import UpdateBlogForm from './Admin/Blog/UpdateBlogForm';
 import AdminBlog from './Admin/Blog/Blogs';
+import Dashboard from './Admin/Dashboard/Dashboard';
 
 const ScrollToTop = ({ children }) => {
     const location = useLocation();
@@ -31,30 +32,42 @@ const ScrollToTop = ({ children }) => {
     return children
 }
 
+const NavBar = ({ children }) => {
+    const location = useLocation()
+    return (
+        <>
+            {
+                location.pathname.includes('admin')
+                    ?
+                    <>
+                        <Dashboard>
+                            {children}
+                        </Dashboard>
 
-function App() {
-    // const [user, setUser] = useState({
-    //     first_name: "Denver",
-    //     last_name: "Allam",
-    //     email: "test@test.com",
-    //     role: "admin"
-    // })
+                    </>
+                    :
+                    <>
+                        <Header />
+                        {children}
+                        <Footer />
+                    </>
+            }
 
-    //   const { loading } = useSelector(state => state.auth)
-    //     // const { dashboard } = useSelector(state => state.dashboard)
+        </>
+    )
+}
 
-    //     useEffect(() => {
-    //         store.dispatch(loadUser())
-    //     }, [])
+const App = () => {
+
 
     const { user } = useContext(AuthContext)
 
+
     return (
-        <Router  style={{ minHeight: "100vh" }}>
+        <Router style={{ minHeight: "100vh" }}>
             <div >
                 <ScrollToTop>
-                    <Header />
-                    <div>
+                    <NavBar>
                         <PostContextProvider>
                             <Routes>
                                 <Route path="/" element={<Home />} />
@@ -75,8 +88,9 @@ function App() {
                             <Route path="/comment" element={<CommentBox />} />
                             <Route path="/verify/:slug" element={<OtpBox />} />
                         </Routes>
-                    </div>
-                    <Footer />
+                        <Routes>
+                        </Routes>
+                    </NavBar>
                 </ScrollToTop>
             </div>
         </Router>

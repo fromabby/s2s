@@ -8,16 +8,23 @@ const Blogs = () => {
 
   const { posts: data, deleteData } = useContext(PostContext)
   const { posts, isLoading } = data
+
+
+
+
   return (
     isLoading ? <>Loading</>
       :
       <div>
-        {
-          posts.map(post => <Blog post={post} deletePost={deleteData} />)
-        }
         <Link to="/admin/blog/new">
           <Button>Create Post</Button>
         </Link>
+        <div className='d-flex flex-column'>
+          {
+            posts.map(post => <Blog post={post} deletePost={deleteData} />)
+          }
+        </div>
+
       </div>
   )
 }
