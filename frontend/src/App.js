@@ -2,6 +2,9 @@ import React, { useContext, useLayoutEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom'
 import './App.css'
 
+//*protected routes
+import SuperadminRoutes from './components/routes/SuperadminRoutes'
+
 //*contexts
 import AuthContext from './context/authContext';
 import { PostContextProvider } from './context/postContext';
@@ -69,6 +72,10 @@ const App = () => {
                                 <Route path="/admin/blog/edit/:id" element={<UpdateBlogForm />} />
                             </Routes>
                         </PostContextProvider>
+
+                        {/* <Route element={<SuperadminRoutes />}>
+                            
+                        </Route> */}
 
                         <Routes>
                             <Route path="/partners" element={<Partners />} />
