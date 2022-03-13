@@ -73,6 +73,14 @@
     font-family: 'Noto Sans', sans-serif;
     display: inline-block;
   }
+
+  .recent-wrapper{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
   .recent_card{
     display: flex;
     max-height: 400px;

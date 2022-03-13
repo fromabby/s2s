@@ -38,7 +38,7 @@ const CommentBox = ({ post_id, setIsPosted, isPosted }) => {
                 setCommentLoading(false)
                 setIsPosted(true)
                 setComment('')
-                alert.success(`${data.response.content} has been posted. Subject for approval`)
+                alert.success(`Comment has been posted. Subject for approval`)
             }
         } catch (error) {
             setCommentLoading(false)
@@ -67,7 +67,6 @@ const CommentBox = ({ post_id, setIsPosted, isPosted }) => {
 
         } catch (error) {
             setVerifyLoading(false)
-            console.log(error.data.response.message)
         }
     }
 
@@ -81,7 +80,7 @@ const CommentBox = ({ post_id, setIsPosted, isPosted }) => {
                     </Form.Group>
                     :
                     <Form.Group className="mb-3">
-                        <Form.Label>Title</Form.Label>
+                        <Form.Label>Enter your email</Form.Label>
                         <Form.Control type="email" name="email" placeholder="Enter your email..." value={email} onChange={e => setEmail(e.target.value)} />
                     </Form.Group>
                 }

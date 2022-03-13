@@ -6,8 +6,8 @@ var postSchema = new mongoose.Schema({
         required: [true, 'Please enter title'],
     },
     author: { 
-        type: mongoose.Schema.Types.ObjectId, 
-        ref: 'Auth'
+        type: String,
+        required: [true, 'Please enter author']
     },
     content: {
         type: String,

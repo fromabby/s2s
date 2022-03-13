@@ -40,7 +40,7 @@ const Content = () => {
                                     }
                                 </h1>
                                 <p className="content-author-date" style={{ fontStyle: "1vw" }}>
-                                    By {post?.author?.full_name} |{" "}
+                                    By {post.author} |{" "}
                                     {new Date().toLocaleDateString("en-US", { timeZone: "UTC" })}
                                 </p>
                                 {

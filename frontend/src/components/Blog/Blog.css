@@ -4,6 +4,15 @@
     background-color: #467aac;
   }
   
+  #blog{
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 3%;
+  }
+  
   #dropdown-item-button {
     border-color: #467aac;
     background-color: #467aac;
@@ -26,8 +35,8 @@
     text-overflow: ellipsis;
   }
   #featured_subpost1{
-    vertical-align: top;
-    display: inline-block;
+    /* vertical-align: top; */
+    /* display: inline-block; */
     padding: 10px;
     align-items: center;
     width: 350px;
@@ -57,18 +66,18 @@
   .recent1{
     font-family: 'Noto Sans', sans-serif;
     display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
-    align-items: center;
     justify-content: center;
+    align-items: center;
   }
   .card-block{
-    float: left;
     padding: 0;
     display: flex;
     background-color: white;
-    margin: auto;
+    /* margin: auto; */
     align-items: center;
-    margin: 50px;
+    margin: 20px;
     border-radius: 2px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     height:550px

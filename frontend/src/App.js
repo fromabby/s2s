@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect, useLayoutEffect } from 'react';
+import { useContext, useState, useEffect, useLayoutEffect, Fragment } from 'react';
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom'
 import './App.css'
 
@@ -20,6 +20,8 @@ import Content from './components/Content/Content';
 import CreateBlogForm from './Admin/Blog/CreateBlogForm';
 import CommentBox from './components/Comments/CommentBox';
 import OtpBox from './components/Comments/OtpBox';
+import UpdateBlogForm from './Admin/Blog/UpdateBlogForm';
+import AdminBlog from './Admin/Blog/Blogs';
 
 const ScrollToTop = ({ children }) => {
     const location = useLocation();
@@ -31,12 +33,12 @@ const ScrollToTop = ({ children }) => {
 
 
 function App() {
-    const [user, setUser] = useState({
-        first_name: "Denver",
-        last_name: "Allam",
-        email: "test@test.com",
-        role: "Admin"
-    })
+    // const [user, setUser] = useState({
+    //     first_name: "Denver",
+    //     last_name: "Allam",
+    //     email: "test@test.com",
+    //     role: "admin"
+    // })
 
     //   const { loading } = useSelector(state => state.auth)
     //     // const { dashboard } = useSelector(state => state.dashboard)
@@ -45,20 +47,22 @@ function App() {
     //         store.dispatch(loadUser())
     //     }, [])
 
-    const { isLoggedIn, onLogin, onLogout } = useContext(AuthContext)
+    const { user } = useContext(AuthContext)
 
     return (
-        <Router>
-            <div>
+        <Router  style={{ minHeight: "100vh" }}>
+            <div >
                 <ScrollToTop>
                     <Header />
-                    <>
+                    <div>
                         <PostContextProvider>
                             <Routes>
                                 <Route path="/" element={<Home />} />
                                 <Route path="/blog" element={<Blogs />} />
                                 <Route path="/blog/:id" element={<Content />} />
+                                <Route path="/admin/blog" element={<AdminBlog />} />
                                 <Route path="/admin/blog/new" element={<CreateBlogForm />} />
+                                <Route path="/admin/blog/edit/:id" element={<UpdateBlogForm />} />
                             </Routes>
                         </PostContextProvider>
 
@@ -71,9 +75,9 @@ function App() {
                             <Route path="/comment" element={<CommentBox />} />
                             <Route path="/verify/:slug" element={<OtpBox />} />
                         </Routes>
-                    </>
-                    <Footer />Î
-                    </ScrollToTop>
+                    </div>
+                    <Footer />
+                </ScrollToTop>
             </div>
         </Router>
     )

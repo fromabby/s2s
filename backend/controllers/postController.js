@@ -5,11 +5,10 @@ const cloudinary = require('cloudinary').v2
 
 //*for about us content
 exports.createPost = catchAsyncErrors(async (req, res, next) => {
-    const { _id: authorId } = req.user
 
     const images = req.files
 
-    const post = await Post.create({...req.body, author: authorId, images})
+    const post = await Post.create({...req.body, images})
 
     res.status(201).json({
         success: true,
@@ -19,7 +18,7 @@ exports.createPost = catchAsyncErrors(async (req, res, next) => {
 })
 
 exports.getAllPosts = catchAsyncErrors(async (req, res, next) => {
-    const posts = await Post.find().populate('author')
+    const posts = await Post.find()
 
     res.status(200).json({
         success: true,
@@ -28,7 +27,7 @@ exports.getAllPosts = catchAsyncErrors(async (req, res, next) => {
 })
 
 exports.getSinglePost = catchAsyncErrors(async (req, res, next) => {
-    const post = await Post.findById(req.params.id).populate('author')
+    const post = await Post.findById(req.params.id)
 
     if (!post) { return next(new ErrorHandler('Post not found', 404)) }
 
