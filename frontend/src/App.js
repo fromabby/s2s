@@ -4,9 +4,10 @@ import './App.css'
 
 //*protected routes
 import SuperadminRoutes from './components/routes/SuperadminRoutes'
+import AdminRoutes from './components/routes/AdminRoutes'
 
 //*contexts
-import AuthContext from './context/authContext';
+import AuthContext, { AuthContextProvider } from './context/authContext';
 import { PostContextProvider } from './context/postContext';
 
 //*layout components
@@ -55,43 +56,55 @@ const NavBar = ({ children }) => {
 }
 
 const App = () => {
-    const { user } = useContext(AuthContext)
+    const { auth, logout } = useContext(AuthContext)
+
+    console.log(auth)
 
     return (
         <Router style={{ minHeight: "100vh" }}>
             <div>
                 <ScrollToTop>
-                    <NavBar>
-                        <PostContextProvider>
+                    <AuthContextProvider>
+                        <NavBar>
+                            <PostContextProvider>
+                                <Routes>
+                                    <Route path="/" element={<Home />} />
+                                    <Route path="/blog" element={<PublicBlogList />} />
+                                    <Route path="/blog/:id" element={<PublicBlogDetails />} />
+                                    <Route path="/admin/blog" element={<BlogList />} />
+                                    <Route path="/admin/blog/new" element={<CreateBlogForm />} />
+                                    <Route path="/admin/blog/edit/:id" element={<UpdateBlogForm />} />
+                                </Routes>
+                            </PostContextProvider>
+
                             <Routes>
-                                <Route path="/" element={<Home />} />
-                                <Route path="/blog" element={<PublicBlogList />} />
-                                <Route path="/blog/:id" element={<PublicBlogDetails />} />
-                                <Route path="/admin/blog" element={<BlogList />} />
-                                <Route path="/admin/blog/new" element={<CreateBlogForm />} />
-                                <Route path="/admin/blog/edit/:id" element={<UpdateBlogForm />} />
+                                <Route element={<AdminRoutes />}>
+                                    <Route path="/admin/blog/new" element={<CreateBlogForm />} />
+                                    <Route path="/admin/blog/edit/:id" element={<UpdateBlogForm />} />
+                                </Route>
                             </Routes>
-                        </PostContextProvider>
+                            {/* <Route element={<SuperadminRoutes />}>
+                                    <Route path="/admin/blog/new" element={<CreateBlogForm />} />
+                                    <Route path="/admin/blog/edit/:id" element={<UpdateBlogForm />} />
+                            </Route> */}
 
-                        {/* <Route element={<SuperadminRoutes />}>
-                            
-                        </Route> */}
-
-                        <Routes>
-                            <Route path="/partners" element={<Partners />} />
-                            <Route path="/about-us" element={<About />} />
-                            <Route path="/contact-us" element={<Contact />} />
-                            <Route path="/donate" element={<Donate />} />
-                            <Route path="/login" element={<Login />} />
-                            <Route path="/verify/:slug" element={<OtpBox />} />
-                        </Routes>
-                        <Routes>
-                        </Routes>
-                    </NavBar>
+                            <Routes>
+                                <Route path="/partners" element={<Partners />} />
+                                <Route path="/about-us" element={<About />} />
+                                <Route path="/contact-us" element={<Contact />} />
+                                <Route path="/donate" element={<Donate />} />
+                                <Route path="/login" element={<Login />} />
+                                <Route path="/verify/:slug" element={<OtpBox />} />
+                            </Routes>
+                            <Routes>
+                            </Routes>
+                        </NavBar>
+                    </AuthContextProvider>
                 </ScrollToTop>
+                <button onClick={() => logout()}>logout</button>
             </div>
         </Router>
     )
 }
 
-export default App;
+export default App

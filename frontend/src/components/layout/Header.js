@@ -6,7 +6,12 @@ import './css/Header.css'
 
 
 const Header = () => {
-    const { isLoggedIn, onLogout } = useContext(AuthContext)
+    const { auth, logout } = useContext(AuthContext)
+
+    const logoutHandler = () => {
+        logout()
+        alert.success("Logged out successfully")
+    }
     return (
         <Nav className="navbar navbar-custom navbar-light navbar-expand-lg">
             <Link className="navbar-brand" to="/"><img
@@ -68,9 +73,9 @@ const Header = () => {
                         </Link>
                     </li>
                     {
-                        isLoggedIn &&
+                        auth.isAuthenticated &&
                         <li>
-                            <button onClick={() => onLogout()}>Logout</button>
+                            <button onClick={logoutHandler}>Logout</button>
                         </li>
                     }
                 </ul>

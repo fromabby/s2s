@@ -1,49 +1,82 @@
 import axios from 'axios';
-import { createContext, useEffect, useState } from 'react'
+import { createContext, useEffect, useReducer } from 'react'
+import authReducer from "../reducers/authReducer"
 
-const AuthContext = createContext({
-    isLoggedIn: false,
-});
+const AuthContext = createContext({})
 
 export const AuthContextProvider = props => {
-    //initial value
-    const [isLoggedIn, setIsLoggedIn] = useState(false)
-    const [user, setUser] = useState({})
+    const [auth, dispatch] = useReducer(authReducer, {
+        loading: false,
+        isAuthenticated: false,
+        user: {},
+        error: null
+    })
 
-    const logoutHandler = () => {
-        setIsLoggedIn(false)
-    }
+    const login = async (user) => {
+        try {
+            dispatch({ type: "LOGIN_REQUEST" })
 
-    const loginHandler = () => {
-        setIsLoggedIn(true)
-    }
-
-    useEffect(() => {
-        const fetchUser = async () => {
-
-            const config = {
+            const { data } = await axios.post('/api/v1/login', user, {
                 headers: {
                     'Content-Type': 'application/json'
                 }
-            }
+            })
 
-            const { data } = await axios.post('/api/v1/login',
-                {
-                    email: "test@test.com",
-                    password: "Test1234"
-                }, config)
+            dispatch({ type: "LOGIN_SUCCESS", payload: data.user })
 
-            if (data) {
-                setUser(data.user)
-            }
+        } catch (error) {
+            dispatch({ type: "LOGIN_FAIL", payload: error.response.data.message })
+            dispatch({ type: "CLEAR_ERRORS" })
         }
-        fetchUser()
+    }
+
+    const logout = async () => {
+        try {
+            dispatch({ type: "LOGOUT_REQUEST" })
+
+            await axios.get('/api/v1/logout')
+
+            dispatch({ type: "LOGOUT_SUCCESS" })
+
+        } catch (error) {
+            dispatch({ type: "LOGOUT_FAIL", payload: error.response.data.message })
+            dispatch({ type: "CLEAR_ERRORS" })
+        }
+    }
+
+    const loadUser = async () => {
+        try {
+            dispatch({ type: "LOAD_USER_REQUEST" })
+
+            const { data } = await axios.get('/api/v1/me/profile', {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+
+            dispatch({ type: "LOAD_USER_SUCCESS", payload: data.user })
+
+        } catch (error) {
+            dispatch({ type: "LOAD_USER_FAIL", payload: error.response.data.message })
+            dispatch({ type: "CLEAR_ERRORS" })
+            console.log('dispatched clear errors')
+        }
+    }
+
+    useEffect(() => {
+        let isMounted = true
+        if (isMounted) {
+            login()
+            loadUser()
+        }
+        return () => isMounted = false
     }, [])
 
     return (
-        <AuthContext.Provider value={{ user }}>
-            {props.children}
-        </AuthContext.Provider>
+        <AuthContext.Provider value={{ auth, login, logout, loadUser }
+        }>
+            { props.children}
+        </AuthContext.Provider >
     )
 
 };

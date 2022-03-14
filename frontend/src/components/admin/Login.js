@@ -1,4 +1,7 @@
-import React, { useReducer, useEffect } from 'react'
+import React, { useReducer, useContext, useEffect } from 'react'
+import AuthContext from '../../context/authContext'
+import { useAlert } from 'react-alert'
+import { useNavigate } from 'react-router-dom'
 
 const emailReducer = (state, action) => {
     switch (action.type) {
@@ -28,6 +31,12 @@ const Login = () => {
     const [email, dispatchEmail] = useReducer(emailReducer, { value: '', isValid: false });
     const [password, dispatchPassword] = useReducer(passwordReducer, { value: '', isValid: false })
 
+    const { login, auth } = useContext(AuthContext)
+    const { loading, error, isAuthenticated } = auth
+
+    const alert = useAlert()
+    const navigate = useNavigate()
+
     const emailChangeHandler = (e) => {
         dispatchEmail({ type: 'EMAIL_INPUT', payload: e.target.value })
     }
@@ -44,20 +53,28 @@ const Login = () => {
         dispatchPassword({ type: 'PASSWORD_INPUT_DONE' })
     }
 
-    console.log(email)
-    console.log(password)
-
     const submitHandler = e => {
         e.preventDefault()
+        login({ email: email.value, password: password.value })
 
-        console.log('clicked submit')
     }
+
+    useEffect(() => {
+        if (isAuthenticated) {
+            alert.success("Logged in successfully")
+            navigate('/')
+        }
+        if (error) {
+            alert.error(error)
+        }
+    }, [isAuthenticated, error])
+
     return (
         <div>
             <form onSubmit={submitHandler}>
                 <input type="email" value={email.value} onBlur={validateEmail} onChange={emailChangeHandler} />
                 <input type="password" value={password.value} onBlur={validatePassword} onChange={passwordChangeHandler} />
-                <button type="submit" value="submit" />
+                <button type="submit" value="submit" disabled={loading ? true : false}>Submit</button>
             </form>
         </div>
     )
