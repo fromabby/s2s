@@ -13,10 +13,10 @@ const SideNav = () => {
             <Link to="/admin/dashboard/manage-featured" className="nav-link">
                 Manage Featured
             </Link>
-            <Link to="/admin/dashboard/manage-post" className="nav-link">
+            <Link to="/admin/blog" className="nav-link">
                 Manage Post
             </Link>
-            <Link to="/admin/dashboard/manage-archives" className="nav-link">
+            <Link to="/admin/blog/archive" className="nav-link">
                 Manage Archives
             </Link>
             <Link to="/admin/dashboard/manage-comments" className="nav-link">

@@ -6,7 +6,7 @@ import Blog from './Blog'
 
 const BlogList = () => {
 
-  const { posts: data, deleteData } = useContext(PostContext)
+  const { posts: data, archiveData } = useContext(PostContext)
   const { posts, isLoading } = data
 
 
@@ -19,7 +19,10 @@ const BlogList = () => {
         </Link>
         <div className='d-flex flex-column'>
           {
-            posts.map(post => <Blog post={post} deletePost={deleteData} />)
+            posts.map(post => (
+              !post.isArchived &&
+              <Blog post={post} archivePost={archiveData} />
+            ))
           }
         </div>
 

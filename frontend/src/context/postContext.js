@@ -57,6 +57,31 @@ export const PostContextProvider = props => {
         }
     }
 
+    const archiveData = async (post) => {
+        try {
+            const { data } = await axios.put(`/api/v1/posts/${post._id}`, { ...post, isArchived: !post.isArchived })
+            const postIndex = posts.posts.findIndex(postData => post === postData)
+            const newPostList = posts.posts
+            newPostList.splice(postIndex, 1, data.post)
+            dispatchPost({ type: "UPDATE_POST_SUCCESS", payload: newPostList })
+        }
+        catch (error) {
+            dispatchPost({ type: "UPDATE_POST_FAIL", payload: error })
+        }
+    }
+
+    const updateData = async (post, newPost) => {
+        try {
+            const postIndex = posts.posts.findIndex(postData => post === postData)
+            const newPostList = posts.posts
+            newPostList.splice(postIndex, 1, newPost)
+            dispatchPost({ type: "UPDATE_POST_SUCCESS", payload: newPostList })
+        }
+        catch (error) {
+            dispatchPost({ type: "UPDATE_POST_FAIL", payload: error })
+        }
+    }
+
 
     const addData = async (post) => {
         try {
@@ -76,7 +101,7 @@ export const PostContextProvider = props => {
     }
 
     return (
-        <PostContext.Provider value={{ posts, fetchSingleData, deleteData, addData }}>
+        <PostContext.Provider value={{ posts, fetchSingleData, deleteData, addData, archiveData, updateData }}>
             {props.children}
         </PostContext.Provider>
     )

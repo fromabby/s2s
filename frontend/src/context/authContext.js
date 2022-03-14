@@ -6,10 +6,7 @@ const AuthContext = createContext({})
 
 export const AuthContextProvider = props => {
     const [auth, dispatch] = useReducer(authReducer, {
-        loading: false,
-        isAuthenticated: false,
-        user: {},
-        error: null
+        user: {}
     })
 
     const login = async (user) => {
@@ -66,15 +63,13 @@ export const AuthContextProvider = props => {
     useEffect(() => {
         let isMounted = true
         if (isMounted) {
-            login()
             loadUser()
         }
         return () => isMounted = false
     }, [])
 
     return (
-        <AuthContext.Provider value={{ auth, login, logout, loadUser }
-        }>
+        <AuthContext.Provider value={{ auth, login, logout, loadUser }}>
             { props.children}
         </AuthContext.Provider >
     )

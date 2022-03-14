@@ -24,6 +24,13 @@ const postReducer = (state, action) => {
         case "ADD_POST_FAIL":
             return { ...state, isLoading: false, error: action.payload }
 
+        case "UPDATE_POST_REQUEST":
+            return { ...state, isLoading: true }
+        case "UPDATE_POST_SUCCESS":
+            return { ...state, isLoading: false, posts: action.payload }
+        case "UPDATE_POST_FAIL":
+            return { ...state, isLoading: false, error: action.payload }
+
         //delete post
         case "DELETE_POST_REQUEST":
             return { ...state, isLoading: true }

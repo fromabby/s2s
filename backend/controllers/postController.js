@@ -1,6 +1,7 @@
 const ErrorHandler = require('../utils/errorHandler')
 const catchAsyncErrors = require('../middlewares/catchAsyncErrors')
 const Post = require('../models/post')
+const Response = require('../models/response')
 const cloudinary = require('cloudinary').v2
 
 //*for about us content
@@ -8,7 +9,7 @@ exports.createPost = catchAsyncErrors(async (req, res, next) => {
 
     const images = req.files
 
-    const post = await Post.create({...req.body, images})
+    const post = await Post.create({ ...req.body, images })
 
     res.status(201).json({
         success: true,
@@ -64,7 +65,7 @@ exports.updatePost = catchAsyncErrors(async (req, res, next) => {
         }
     }
 
-    post = await Post.findByIdAndUpdate(req.params.id, {...req.body, images }, {
+    post = await Post.findByIdAndUpdate(req.params.id, { ...req.body, images, updatedAt: new Date(Date.now()) }, {
         new: true,
         runValidators: true,
         useFindAndModify: false
@@ -80,6 +81,8 @@ exports.deletePost = catchAsyncErrors(async (req, res, next) => {
     const post = await Post.findById(req.params.id)
 
     if (!post) { return next(new ErrorHandler('Post not found', 404)) }
+
+    await Response.deleteMany({ post: req.params.id })
 
     const images = post.images
     const length = images.length

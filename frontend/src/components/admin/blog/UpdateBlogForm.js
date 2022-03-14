@@ -17,7 +17,7 @@ const UpdateBlogForm = () => {
 
     const { id } = useParams()
 
-    const { posts, fetchSingleData } = useContext(PostContext)
+    const { posts, fetchSingleData, updateData } = useContext(PostContext)
     const { post: postDetail, isLoading } = posts
 
     useEffect(() => {
@@ -51,10 +51,10 @@ const UpdateBlogForm = () => {
 
             const updatePost = async () => {
                 const { data } = await axios.put(`/api/v1/posts/${id}`, formData, multiformdata)
-                console.log(data)
                 if (data.success) {
+                    updateData(postDetail, data.post)
                     alert.success("Post Updated")
-                    navigate(`/blog/${data.post._id}`)
+                    navigate(`/admin/blog`)
                 }
             }
             updatePost()

@@ -1,6 +1,11 @@
 import React from 'react'
+import formatDate from '../../../formatDate'
+
 
 const Blog = ({post}) => {
+
+    
+
     return (
         <div className="recent_card">
             <img id="recent_img" src="/images/featured_sub_image.png" />
@@ -9,7 +14,7 @@ const Blog = ({post}) => {
                     {post.title}
                 </h1>
                 <p id="recent_date_author">
-                    By {post.author.full_name} | March 20, 2021
+                    By {post.author} | {formatDate(post.createdAt)}
                 </p>
                 <p id="recent_summary">
                     {post.content}

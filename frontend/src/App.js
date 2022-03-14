@@ -1,4 +1,4 @@
-import React, { useContext, useLayoutEffect } from 'react';
+import React, { useContext, useEffect, useLayoutEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom'
 import './App.css'
 
@@ -30,6 +30,7 @@ import Dashboard from './components/admin/Dashboard';
 import CreateBlogForm from './components/admin/blog/CreateBlogForm';
 import UpdateBlogForm from './components/admin/blog/UpdateBlogForm';
 import BlogList from './components/admin/blog/BlogList';
+import ArchiveBlogList from './components/admin/blog/ArchiveBlogList';
 
 const ScrollToTop = ({ children }) => {
     const location = useLocation();
@@ -43,7 +44,7 @@ const NavBar = ({ children }) => {
     const location = useLocation()
     return (
         <>
-            { location.pathname.includes('admin') ?
+            {location.pathname.includes('admin') ?
                 <Dashboard>{children}</Dashboard> :
                 <>
                     <Header />
@@ -56,9 +57,11 @@ const NavBar = ({ children }) => {
 }
 
 const App = () => {
-    const { auth, logout } = useContext(AuthContext)
+    const { auth, logout, loadUser } = useContext(AuthContext)
 
-    console.log(auth)
+    useEffect(() => {
+        loadUser()
+    }, [])
 
     return (
         <Router style={{ minHeight: "100vh" }}>
@@ -71,18 +74,15 @@ const App = () => {
                                     <Route path="/" element={<Home />} />
                                     <Route path="/blog" element={<PublicBlogList />} />
                                     <Route path="/blog/:id" element={<PublicBlogDetails />} />
-                                    <Route path="/admin/blog" element={<BlogList />} />
-                                    <Route path="/admin/blog/new" element={<CreateBlogForm />} />
-                                    <Route path="/admin/blog/edit/:id" element={<UpdateBlogForm />} />
+                                    <Route element={<AdminRoutes />}>
+                                        <Route path="/admin/blog" element={<BlogList />} />
+                                        <Route path="/admin/blog/archive" element={<ArchiveBlogList />} />
+                                        <Route path="/admin/blog/new" element={<CreateBlogForm />} />
+                                        <Route path="/admin/blog/edit/:id" element={<UpdateBlogForm />} />
+                                    </Route>
                                 </Routes>
                             </PostContextProvider>
 
-                            <Routes>
-                                <Route element={<AdminRoutes />}>
-                                    <Route path="/admin/blog/new" element={<CreateBlogForm />} />
-                                    <Route path="/admin/blog/edit/:id" element={<UpdateBlogForm />} />
-                                </Route>
-                            </Routes>
                             {/* <Route element={<SuperadminRoutes />}>
                                     <Route path="/admin/blog/new" element={<CreateBlogForm />} />
                                     <Route path="/admin/blog/edit/:id" element={<UpdateBlogForm />} />
@@ -103,7 +103,7 @@ const App = () => {
                 </ScrollToTop>
                 <button onClick={() => logout()}>logout</button>
             </div>
-        </Router>
+        </Router >
     )
 }
 
