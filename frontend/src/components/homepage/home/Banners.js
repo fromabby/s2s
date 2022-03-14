@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import { Carousel } from 'react-bootstrap'
 
 const Banners = () => {
     const [banners, setBanners] = useState([])
@@ -18,22 +19,29 @@ const Banners = () => {
 
             } catch (error) {
                 setLoading(false)
-                console.log('no response')
             }
         }
         fetchData()
     }, [])
 
     return (
-        <div>
-            {loading ?
-                <h1>Loading...</h1> :
-                banners && banners.map(banner => (
-                    <img src={banner.image[0].path} height="100"/>
-                ))
-            }
-        </div>
+        loading ?
+            <h1>Loading...</h1> :
+            <Carousel>
+                {
+                    banners && banners.map(banner => (
+                        <Carousel.Item>
+                            <img
+                                className="d-block w-100"
+                                src={banner.image[0].path}
+                            />
+                        </Carousel.Item>
+                    ))
+                }
+            </Carousel>
+
     )
 }
+
 
 export default Banners

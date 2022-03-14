@@ -17,8 +17,8 @@ const Home = () => {
     return (
         <div>
             <Metadata title={`Home`} />
+            <Banners />
             <div className="container-home container">
-                <Banners />
                 <FeaturedBlogs />
                 <RecentBlogs recentPosts={recentPosts} />
             </div>

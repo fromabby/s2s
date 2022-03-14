@@ -1,4 +1,5 @@
 import React from 'react'
+import { Button } from 'react-bootstrap'
 
 const Comment = ({ comment }) => {
     return (
@@ -8,6 +9,7 @@ const Comment = ({ comment }) => {
             </h1>
             <p style={{ fontStyle: "2vw" }} className="content-comment">
                 {comment?.content}
+                <Button className='btn btn-danger'>Delete</Button>
             </p>
         </div>
     )
