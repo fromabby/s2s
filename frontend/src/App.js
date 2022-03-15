@@ -55,11 +55,11 @@ const NavBar = ({ children }) => {
         <>
             {location.pathname.includes('admin') ?
                 <Dashboard>{children}</Dashboard> :
-                <>
+                <div className='set-bg'>
                     <Header />
                     {children}
                     <Footer />
-                </>
+                </div>
             }
         </>
     )
@@ -97,14 +97,6 @@ const App = () => {
                                 </CommentContextProvider>
                             </PostContextProvider>
 
-                            {/* <PostContextProvider>
-                                <CommentContextProvider>
-                                    <Routes>
-                                        <Route path="/blog/:id" element={<PublicBlogDetails />} />
-                                    </Routes>
-                                </CommentContextProvider>
-                            </PostContextProvider> */}
-
                             <Routes>
                                 <Route element={<AdminRoutes />}>
                                     <Route path="/me" element={<MyProfile />} />
@@ -113,10 +105,6 @@ const App = () => {
                                 </Route>
                             </Routes>
 
-                            {/* <Route element={<SuperadminRoutes />}>
-                                    <Route path="/admin/blog/new" element={<CreateBlogForm />} />
-                                    <Route path="/admin/blog/edit/:id" element={<UpdateBlogForm />} />
-                            </Route> */}
 
                             <Routes>
                                 <Route path="/partners" element={<Partners />} />
@@ -137,7 +125,6 @@ const App = () => {
                             </Routes>
                         </NavBar>
                     </AuthContextProvider>
-                    {/* </CommentContextProvider> */}
                 </ScrollToTop>
                 <button onClick={() => logout()}>logout</button>
             </div>

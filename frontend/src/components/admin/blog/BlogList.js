@@ -1,8 +1,9 @@
 import React, { useContext } from 'react'
-import { Button } from 'react-bootstrap'
+import { Button, Table } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import PostContext from '../../../context/postContext'
 import Blog from './Blog'
+import './Blog.css'
 
 const BlogList = () => {
 
@@ -13,19 +14,30 @@ const BlogList = () => {
   return (
     isLoading ? <>Loading</>
       :
-      <div>
-        <Link to="/admin/blog/new">Î
-          <Button>Create Post</Button>
-        </Link>
-        <div className='d-flex flex-column'>
-          {
-            posts.map(post => (
-              !post.isArchived &&
-              <Blog post={post} archivePost={archiveData} />
-            ))
-          }
+      <div className='manage-post-div'>
+        <div className='create-button'>
+          <Link to="/admin/blog/new">
+            <Button className='btn-success'>New Post</Button>
+          </Link>
         </div>
-
+        <Table responsive="sm">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">IMAGE</th>
+              <th scope="col">TITLE</th>
+              <th scope="col">ACTIONS</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              posts.map((post, index) => (
+                !post.isArchived &&
+                <Blog post={post} archivePost={archiveData} index={index+1} />
+              ))
+            }
+          </tbody>
+        </Table>
       </div>
   )
 }

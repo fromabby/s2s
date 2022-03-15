@@ -28,6 +28,14 @@ var postSchema = new mongoose.Schema({
     isArchived:{
         type: Boolean,
         default: false
+    },
+    isFeature:{
+        type: Boolean,
+        default: false
+    },
+    isSubFeature:{
+        type: Boolean,
+        default: false
     }
 });
 module.exports = mongoose.model('Post', postSchema)

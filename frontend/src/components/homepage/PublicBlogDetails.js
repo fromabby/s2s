@@ -11,10 +11,9 @@ import './css/BlogDetails.css'
 const PublicBlogDetails = () => {
     const { id } = useParams()
     const { posts, fetchSingleData } = useContext(PostContext)
-    const { commentState, getCurrentUser } = useContext(CommentContext)
+    const { commentState, getAllComments } = useContext(CommentContext)
 
-    console.log(commentState)
-    const { currentUser, isVerified, isLoading: userLoading, error: userError } = commentState
+    const { currentUser, isVerified, isLoading: userLoading, error: userError, commentList } = commentState
 
 
     const [isPosted, setIsPosted] = useState(false)
@@ -25,10 +24,13 @@ const PublicBlogDetails = () => {
         let isMounted = true
         if (isMounted) {
             fetchSingleData(id)
+            getAllComments(id)
             // getCurrentUser()
         }
         return () => isMounted = false
     }, [])
+
+    console.log(commentList)
 
     const { isLoading, post, error } = posts
 
@@ -73,7 +75,7 @@ const PublicBlogDetails = () => {
                                     <h1 className="content-comment-header" style={{ fontStyle: "2vw" }}>
                                         Comments
                                     </h1>
-                                    <CommentList isPosted={isPosted} setIsPosted={setIsPosted} />
+                                    <CommentList isPosted={isPosted} setIsPosted={setIsPosted} comments={commentList}/>
                                     <CommentBox post_id={post._id} isPosted={isPosted} setIsPosted={setIsPosted} />
                                 </div>
                             </div>

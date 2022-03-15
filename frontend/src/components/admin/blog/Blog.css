@@ -1,0 +1,41 @@
+.image {
+    width: 250px;
+    height: auto;
+}
+
+.create-button{
+    display: flex;
+    justify-content: end;
+    padding: 15px
+}
+
+.image-wrapper {
+    height: 150px;
+    width: 150px;
+    overflow: hidden;
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.manage-post-div{
+    width: 100%;
+}
+
+th{
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+td{
+    height: 150px;
+}
+
+.td-container{
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}

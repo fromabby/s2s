@@ -1,9 +1,12 @@
 body {
-    background-image: url("/public/images/bg.png");
     background-size: cover;
     background-repeat: no-repeat;
     font-weight: bold;
     font-family: "Noto Sans";
+}
+
+.set-bg{
+    background-image: url("/public/images/bg.png");
 }
 
 .sidenav {
@@ -17,6 +20,7 @@ body {
 
 .main-dashboard{
     margin-left: 320px;
+    width: 100%;
 }
 
 .sidenav a {

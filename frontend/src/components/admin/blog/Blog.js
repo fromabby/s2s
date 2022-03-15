@@ -22,30 +22,44 @@ const Blog = (props) => {
     }
 
     return (
-        <div className="card-block px-2" >
-            <div id="featured_subpost1">
-                <img id="recent_img1" src={images[0].path} />
-                <h1 id="recent_title1" >{title}</h1>
-                <p id="recent_date_author1">By {author} | {formatDate(createdAt)}</p>
-                <p id="recent_summary1">{content}</p>
-                <Link to={`/blog/${id}`}>
-                    <Button>View</Button>
-                </Link>
-                <Link to={`/admin/blog/edit/${id}`}>
-                    <Button>Edit</Button>
-                </Link>
-                <Button className={`btn ${isArchived ? 'btn-success' : 'btn-danger'}`} onClick={archiveItem}>
-                    {isArchived ? 'Restore' : 'Archive'}
-                </Button>
-                {
-                    isArchived &&
-                    <Button className="btn btn-danger" onClick={deleteItem}>
-                        Delete
-                    </Button>
-                }
+        <tr>
+            <td>
+                <div className='td-container'>
+                    {props.index}
+                </div>
+            </td>
+            <td>
+                <div className='td-container'>
+                    <div className='image-wrapper'>
+                        <img className='image' src={images[0].path} />
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div className='td-container'>
+                    {title}
+                </div>
+            </td>
+            <td>
+                <div className='td-container'>
+                    {
+                        !isArchived && <Link to={`/admin/blog/edit/${id}`}>
+                            <Button>Edit</Button>
+                        </Link>
+                    }
 
-            </div>
-        </div>
+                    <Button className={`btn ${isArchived ? 'btn-success' : 'btn-danger'}`} onClick={archiveItem}>
+                        {isArchived ? 'Restore' : 'Archive'}
+                    </Button>
+                    {
+                        isArchived &&
+                        <Button className="btn btn-danger" onClick={deleteItem}>
+                            Delete
+                        </Button>
+                    }
+                </div>
+            </td>
+        </tr>
     )
 }
 

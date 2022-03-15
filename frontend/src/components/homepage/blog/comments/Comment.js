@@ -3,8 +3,8 @@ import CommentContext from '../../../../context/commentContext'
 import { Button } from 'react-bootstrap'
 
 const Comment = ({ comment }) => {
-    const { commentState } = useContext(CommentContext)
-
+    const { commentState, deleteComment } = useContext(CommentContext)
+    
     return (
         <>
             <div className="content-section-comment">
@@ -14,7 +14,7 @@ const Comment = ({ comment }) => {
                 <p style={{ fontStyle: "2vw" }} className="content-comment">
                     {comment?.content}
                     {commentState?.currentUser?.email === comment.user.email &&
-                        <Button className='btn btn-danger'>Delete</Button>}
+                        <Button className='btn btn-danger' onClick={() => deleteComment(comment._id)}>Delete</Button>}
                 </p>
             </div>
         </>

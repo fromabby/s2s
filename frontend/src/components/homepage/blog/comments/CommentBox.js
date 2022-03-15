@@ -8,15 +8,14 @@ import axios from 'axios'
 const CommentBox = ({ post_id, setIsPosted, isPosted }) => {
     const [comment, setComment] = useState('')
     const [email, setEmail] = useState('')
-    const [commentLoading, setCommentLoading] = useState(false)
+    // const [commentLoading, setCommentLoading] = useState(false)
 
-    const { commentState, getCurrentUser, verifyUser } = useContext(CommentContext)
+    const { commentState, getCurrentUser, verifyUser, addComment } = useContext(CommentContext)
 
     const { currentUser, isLoading, isVerified, error } = commentState
 
     const navigate = useNavigate()
     const alert = useAlert()
-
 
 
     const submitHandler = e => {
@@ -34,22 +33,11 @@ const CommentBox = ({ post_id, setIsPosted, isPosted }) => {
 
     const postComment = async () => {
         try {
-            setCommentLoading(true)
-
-            const { data } = await axios.post(`/api/v1/responses/${post_id}`, { content: comment }, {
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            })
-
-            if (data.success) {
-                setCommentLoading(false)
-                setIsPosted(true)
-                setComment('')
-                alert.success(`Comment has been posted. Subject for approval`)
-            }
+            // setCommentLoading(true)
+            addComment(comment, post_id)
+            setComment('')
+            alert.success(`Comment has been posted. Subject for approval`)
         } catch (error) {
-            setCommentLoading(false)
             alert.error('cannot post comment')
         }
     }
@@ -70,7 +58,7 @@ const CommentBox = ({ post_id, setIsPosted, isPosted }) => {
                     </Form.Group>
                 }
 
-                <Button variant="primary" type="submit" disabled={commentLoading || isLoading ? true : false}>
+                <Button variant="primary" type="submit" disabled={ isLoading ? true : false}>
                     Submit
                 </Button>
             </form>
