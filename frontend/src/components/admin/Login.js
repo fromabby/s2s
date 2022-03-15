@@ -1,7 +1,7 @@
 import React, { useReducer, useContext, useEffect } from 'react'
 import AuthContext from '../../context/authContext'
 import { useAlert } from 'react-alert'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const emailReducer = (state, action) => {
     switch (action.type) {
@@ -75,6 +75,7 @@ const Login = () => {
                 <input type="email" value={email.value} onBlur={validateEmail} onChange={emailChangeHandler} />
                 <input type="password" value={password.value} onBlur={validatePassword} onChange={passwordChangeHandler} />
                 <button type="submit" value="submit" disabled={loading ? true : false}>Submit</button>
+                <Link to='/forgot-password'>Forgot password?</Link>                
             </form>
         </div>
     )

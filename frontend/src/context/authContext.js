@@ -73,6 +73,7 @@ export const AuthContextProvider = props => {
             dispatch({ type: "UPDATE_USER_RESET" })
         } catch (error) {
             dispatch({ type: "UPDATE_USER_FAIL", payload: error.response.data.message })
+            dispatch({ type: "UPDATE_USER_RESET" })
             dispatch({ type: "CLEAR_ERRORS" })
         }
     }
@@ -93,6 +94,7 @@ export const AuthContextProvider = props => {
             dispatch({ type: "UPDATE_PASSWORD_RESET" })
         } catch (error) {
             dispatch({ type: "UPDATE_PASSWORD_FAIL", payload: error.response.data.message })
+            dispatch({ type: "UPDATE_PASSWORD_RESET" })
             dispatch({ type: "CLEAR_ERRORS" })
         }
     }

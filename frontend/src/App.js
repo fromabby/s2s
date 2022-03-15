@@ -8,6 +8,7 @@ import AdminRoutes from './components/routes/AdminRoutes'
 
 //*contexts
 import AuthContext, { AuthContextProvider } from './context/authContext';
+import PasswordContext, { PasswordContextProvider } from './context/passwordContext';
 import { PostContextProvider } from './context/postContext';
 
 //*layout components
@@ -23,6 +24,9 @@ import Partners from './components/homepage/Partners';
 import PublicBlogList from './components/homepage/PublicBlogList';
 import PublicBlogDetails from './components/homepage/PublicBlogDetails';
 import OtpBox from './components/homepage/blog/comments/OtpBox'
+import ForgotPassword from './components/admin/ForgotPassword';
+import ResetPassword from './components/admin/ResetPassword';
+
 
 //*admin components
 import Login from './components/admin/Login';
@@ -61,7 +65,7 @@ const NavBar = ({ children }) => {
 }
 
 const App = () => {
-    const { auth, logout, loadUser } = useContext(AuthContext)
+    const { logout, loadUser } = useContext(AuthContext)
 
     useEffect(() => {
         loadUser()
@@ -108,6 +112,13 @@ const App = () => {
                                 <Route path="/login" element={<Login />} />
                                 <Route path="/verify/:slug" element={<OtpBox />} />
                             </Routes>
+
+                            <PasswordContextProvider>
+                                <Routes>
+                                    <Route path="/forgot-password" element={<ForgotPassword />} />
+                                    <Route path="/password/reset/:token" element={<ResetPassword />} />
+                                </Routes>
+                            </PasswordContextProvider>
                             <Routes>
                             </Routes>
                         </NavBar>

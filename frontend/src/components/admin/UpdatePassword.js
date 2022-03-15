@@ -34,9 +34,9 @@ const UpdatePassword = () => {
     return (
         <div>
             <form onSubmit={submitHandler}>
-                    <input type="text" value={oldPassword} onChange={e => setOldPassword(e.target.value)} />
-                    <input type="text" value={password} onChange={e => setPassword(e.target.value)} />
-                    <input type="text" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} />
+                    <input type="password" value={oldPassword} onChange={e => setOldPassword(e.target.value)} />
+                    <input type="password" value={password} onChange={e => setPassword(e.target.value)} />
+                    <input type="password" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} />
                     <input type="submit" value="submit" disabled={loading? true:false}/>
                 </form>
         </div>
