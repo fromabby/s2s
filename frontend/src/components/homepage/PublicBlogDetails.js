@@ -5,11 +5,17 @@ import { useNavigate } from 'react-router-dom'
 import CommentBox from './blog/comments/CommentBox'
 import CommentList from './blog/comments/CommentList'
 import Metadata from '../layout/Metadata'
+import CommentContext, { CommentContextProvider } from '../../context/commentContext'
 import './css/BlogDetails.css'
 
 const PublicBlogDetails = () => {
     const { id } = useParams()
     const { posts, fetchSingleData } = useContext(PostContext)
+    const { commentState, getCurrentUser } = useContext(CommentContext)
+
+    const { currentUser, isVerified, isLoading: userLoading, error: userError } = commentState
+
+
     const [isPosted, setIsPosted] = useState(false)
 
     const navigate = useNavigate()
@@ -18,6 +24,7 @@ const PublicBlogDetails = () => {
         let isMounted = true
         if (isMounted) {
             fetchSingleData(id)
+            // getCurrentUser()
         }
         return () => isMounted = false
     }, [])
@@ -25,7 +32,7 @@ const PublicBlogDetails = () => {
     const { isLoading, post, error } = posts
 
     useEffect(() => {
-        if(error){
+        if (error) {
             navigate('/')
         }
     }, [error])
@@ -65,8 +72,10 @@ const PublicBlogDetails = () => {
                                     <h1 className="content-comment-header" style={{ fontStyle: "2vw" }}>
                                         Comments
                                     </h1>
-                                    <CommentList isPosted={isPosted} setIsPosted={setIsPosted} />
-                                    <CommentBox post_id={post._id} isPosted={isPosted} setIsPosted={setIsPosted} />
+                                    <CommentContextProvider>
+                                        <CommentList isPosted={isPosted} setIsPosted={setIsPosted} />
+                                        <CommentBox post_id={post._id} isPosted={isPosted} setIsPosted={setIsPosted} />
+                                    </CommentContextProvider>
                                 </div>
                             </div>
                         </div>

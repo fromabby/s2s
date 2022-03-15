@@ -5,6 +5,15 @@ const sendToken = require('../utils/jwtToken')
 const sendEmail = require('../utils/sendEmail')
 const jwt = require('jsonwebtoken')
 
+exports.getCurrentUser = catchAsyncErrors(async (req, res, next) => {
+    const user = await User.findOne({ email: req.user.email })
+
+    res.status(200).json({
+        success: true,
+        user
+    })
+})
+
 exports.verifyUserEmail = catchAsyncErrors(async (req, res, next) => {
     const user = await User.findOne({ email: req.body.email })
 

@@ -1,18 +1,31 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Button, Form } from 'react-bootstrap';
 import { useAlert } from 'react-alert'
+import CommentContext, { CommentContextProvider } from '../../../../context/commentContext'
 import axios from 'axios'
 
 const CommentBox = ({ post_id, setIsPosted, isPosted }) => {
-    const [isVerified, setIsVerified] = useState('')
     const [comment, setComment] = useState('')
     const [email, setEmail] = useState('')
-    const [verifyLoading, setVerifyLoading] = useState(false)
     const [commentLoading, setCommentLoading] = useState(false)
+
+    const { commentState, getCurrentUser, verifyUser } = useContext(CommentContext)
+
+    console.log(commentState)
+    const { currentUser, isLoading, isVerified, error } = commentState
 
     const navigate = useNavigate()
     const alert = useAlert()
+
+    useEffect(() => {
+        getCurrentUser()
+        console.log(currentUser)
+
+        if (error) {
+            alert.error(error)
+        }
+    }, [isVerified, error])
 
     const submitHandler = e => {
         e.preventDefault()
@@ -20,7 +33,10 @@ const CommentBox = ({ post_id, setIsPosted, isPosted }) => {
         if (isVerified) {
             postComment()
         } else {
-            verifyUser()
+            verifyUser(email, post_id)
+            // if (currentUser.user.success && currentUser.user.user.status === 0) {
+            //     navigate(`/verify/${currentUser.user.slug}`)
+            // }
         }
     }
 
@@ -46,29 +62,6 @@ const CommentBox = ({ post_id, setIsPosted, isPosted }) => {
         }
     }
 
-    const verifyUser = async () => {
-        try {
-            setVerifyLoading(true)
-
-            const { data } = await axios.post(`/api/v1/viewer/verify`, { email, post_id }, {
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            })
-
-            if (data.success && data.user.status === 0) {
-                setVerifyLoading(false)
-                navigate(`/verify/${data.slug}`)
-            } else if (data.success && data.user.status === 1) {
-                setVerifyLoading(false)
-                setIsVerified(true)
-                //*add to state
-            }
-
-        } catch (error) {
-            setVerifyLoading(false)
-        }
-    }
 
     return (
         <div className="content-leave-header">
@@ -85,7 +78,7 @@ const CommentBox = ({ post_id, setIsPosted, isPosted }) => {
                     </Form.Group>
                 }
 
-                <Button variant="primary" type="submit" disabled={commentLoading || verifyLoading ? true : false}>
+                <Button variant="primary" type="submit" disabled={commentLoading || isLoading ? true : false}>
                     Submit
                 </Button>
             </form>

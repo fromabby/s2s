@@ -8,7 +8,8 @@ import AdminRoutes from './components/routes/AdminRoutes'
 
 //*contexts
 import AuthContext, { AuthContextProvider } from './context/authContext';
-import PasswordContext, { PasswordContextProvider } from './context/passwordContext';
+import { PasswordContextProvider } from './context/passwordContext';
+import CommentContext, { CommentContextProvider } from './context/commentContext';
 import { PostContextProvider } from './context/postContext';
 
 //*layout components
@@ -66,8 +67,10 @@ const NavBar = ({ children }) => {
 
 const App = () => {
     const { logout, loadUser } = useContext(AuthContext)
+    // const { getCurrentUser } = useContext(CommentContext)
 
     useEffect(() => {
+        // getCurrentUser()
         loadUser()
     }, [])
 
@@ -75,6 +78,7 @@ const App = () => {
         <Router style={{ minHeight: "100vh" }}>
             <div>
                 <ScrollToTop>
+                    {/* <CommentContextProvider> */}
                     <AuthContextProvider>
                         <NavBar>
                             <PostContextProvider>
@@ -82,6 +86,7 @@ const App = () => {
                                     <Route path="/" element={<Home />} />
                                     <Route path="/blog" element={<PublicBlogList />} />
                                     <Route path="/blog/:id" element={<PublicBlogDetails />} />
+
                                     <Route element={<AdminRoutes />}>
                                         <Route path="/admin/blog" element={<BlogList />} />
                                         <Route path="/admin/blog/archive" element={<ArchiveBlogList />} />
@@ -90,6 +95,14 @@ const App = () => {
                                     </Route>
                                 </Routes>
                             </PostContextProvider>
+
+                            {/* <PostContextProvider>
+                                <CommentContextProvider>
+                                    <Routes>
+                                        <Route path="/blog/:id" element={<PublicBlogDetails />} />
+                                    </Routes>
+                                </CommentContextProvider>
+                            </PostContextProvider> */}
 
                             <Routes>
                                 <Route element={<AdminRoutes />}>
@@ -123,6 +136,7 @@ const App = () => {
                             </Routes>
                         </NavBar>
                     </AuthContextProvider>
+                    {/* </CommentContextProvider> */}
                 </ScrollToTop>
                 <button onClick={() => logout()}>logout</button>
             </div>

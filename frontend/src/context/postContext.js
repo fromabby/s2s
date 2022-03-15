@@ -10,9 +10,22 @@ export const PostContextProvider = props => {
         {
             posts: [],
             post: {},
+            user: {},
             error: null
         })
 
+
+    //get all posts
+    const getCurrentUser = async () => {
+        dispatchPost({ type: "GET_CURRENT_USER_REQUEST" })
+        try {
+            const { data } = await axios.get('/api/v1/viewer')
+            dispatchPost({ type: "GET_CURRENT_USER_SUCCESS", payload: data.user })
+        }
+        catch (error) {
+            dispatchPost({ type: "GET_CURRENT_USER_FAIL", payload: error })
+        }
+    }
 
     //get all posts
     const fetchData = async () => {
