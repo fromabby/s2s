@@ -8,7 +8,6 @@ export const PostContextProvider = props => {
 
     const [posts, dispatchPost] = useReducer(postReducer,
         {
-            isLoading: false,
             posts: [],
             post: {},
             error: null

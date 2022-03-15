@@ -4,8 +4,6 @@ import formatDate from '../../../formatDate'
 
 const Blog = ({post}) => {
 
-    
-
     return (
         <div className="recent_card">
             <img id="recent_img" src="/images/featured_sub_image.png" />

@@ -79,6 +79,10 @@
   .content-comment {
     margin: 0px;
     word-wrap: break-word;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
   }
   
   .content-leave {
