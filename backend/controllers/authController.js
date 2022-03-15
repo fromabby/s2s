@@ -121,6 +121,7 @@ exports.register = catchAsyncErrors(async (req, res, next) => {
 exports.updatePassword = catchAsyncErrors(async (req, res, next) => {
     const user = await User.findById(req.user.id).select('+password')
 
+    console.log(user)
     const { oldPassword, password, confirmPassword } = req.body
     const isMatched = await user.comparePassword(oldPassword)
 
@@ -131,7 +132,8 @@ exports.updatePassword = catchAsyncErrors(async (req, res, next) => {
     user.password = password
 
     await user.save()
-    sendToken(user, 200, res)
+    console.log('saved')
+    sendToken(user, user.role, 200, res)
 })
 
 exports.getMyProfile = catchAsyncErrors(async (req, res, next) => {

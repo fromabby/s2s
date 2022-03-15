@@ -34,6 +34,7 @@ import ArchiveBlogList from './components/admin/blog/ArchiveBlogList';
 
 import MyProfile from './components/admin/MyProfile';
 import UpdateProfile from './components/admin/UpdateProfile';
+import UpdatePassword from './components/admin/UpdatePassword';
 
 const ScrollToTop = ({ children }) => {
     const location = useLocation();
@@ -90,6 +91,7 @@ const App = () => {
                                 <Route element={<AdminRoutes />}>
                                     <Route path="/me" element={<MyProfile />} />
                                     <Route path="/me/update" element={<UpdateProfile />} />
+                                    <Route path="/password/update" element={<UpdatePassword />} />
                                 </Route>
                             </Routes>
 

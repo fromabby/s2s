@@ -90,6 +90,7 @@ export const AuthContextProvider = props => {
             const { data } = await axios.put('/api/v1/update/password', passwords, config)
 
             dispatch({ type: "UPDATE_PASSWORD_SUCCESS", payload: data.user })
+            dispatch({ type: "UPDATE_PASSWORD_RESET" })
         } catch (error) {
             dispatch({ type: "UPDATE_PASSWORD_FAIL", payload: error.response.data.message })
             dispatch({ type: "CLEAR_ERRORS" })

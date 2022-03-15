@@ -11,7 +11,6 @@ const MyProfile = () => {
 
 
     useEffect(() => {
-        console.log(user)
         if (loadError) {
             alert.error(loadError)
         }
