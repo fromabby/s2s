@@ -177,7 +177,7 @@ exports.createDonation = catchAsyncErrors(async (req, res, next) => {
 
 exports.getAllDonations = catchAsyncErrors(async (req, res, next) => {
     const donations = await Donation.find()
-
+ 
     res.status(200).json({
         success: true,
         donations
