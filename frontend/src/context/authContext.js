@@ -1,20 +1,17 @@
 import axios from 'axios';
 import { createContext, useEffect, useReducer } from 'react'
-import * as auth from "../reducers/authReducer"
+import authReducer from "../reducers/authReducer"
 
 const AuthContext = createContext({})
 
 export const AuthContextProvider = props => {
-    const [auth, dispatchAuth] = useReducer(auth.authReducer, {
-        user: {}
-    })
-    const [manageUser, dispatchUser] = useReducer(auth.userReducer, {
+    const [auth, dispatch] = useReducer(authReducer, {
         user: {}
     })
 
     const login = async (user) => {
         try {
-            dispatchAuth({ type: "LOGIN_REQUEST" })
+            dispatch({ type: "LOGIN_REQUEST" })
 
             const { data } = await axios.post('/api/v1/login', user, {
                 headers: {
@@ -22,48 +19,46 @@ export const AuthContextProvider = props => {
                 }
             })
 
-            dispatchAuth({ type: "LOGIN_SUCCESS", payload: data.user })
+            dispatch({ type: "LOGIN_SUCCESS", payload: data.user })
 
         } catch (error) {
-            dispatchAuth({ type: "LOGIN_FAIL", payload: error.response.data.message })
-            dispatchAuth({ type: "CLEAR_ERRORS" })
+            dispatch({ type: "LOGIN_FAIL", payload: error.response.data.message })
+            dispatch({ type: "CLEAR_ERRORS" })
         }
     }
 
     const logout = async () => {
         try {
-            dispatchAuth({ type: "LOGOUT_REQUEST" })
+            dispatch({ type: "LOGOUT_REQUEST" })
 
             await axios.get('/api/v1/logout')
 
-            dispatchAuth({ type: "LOGOUT_SUCCESS" })
+            dispatch({ type: "LOGOUT_SUCCESS" })
 
         } catch (error) {
-            dispatchAuth({ type: "LOGOUT_FAIL", payload: error.response.data.message })
-            dispatchAuth({ type: "CLEAR_ERRORS" })
+            dispatch({ type: "LOGOUT_FAIL", payload: error.response.data.message })
+            dispatch({ type: "CLEAR_ERRORS" })
         }
     }
 
     const loadUser = async () => {
         try {
-            dispatchAuth({ type: "LOAD_USER_REQUEST" })
+            dispatch({ type: "LOAD_USER_REQUEST" })
 
             const { data } = await axios.get('/api/v1/me/profile')
 
-            dispatchAuth({ type: "LOAD_USER_SUCCESS", payload: data.user })
+            dispatch({ type: "LOAD_USER_SUCCESS", payload: data.user })
 
         } catch (error) {
-            dispatchAuth({ type: "LOAD_USER_FAIL", payload: error.response.data.message })
-            dispatchAuth({ type: "CLEAR_ERRORS" })
+            dispatch({ type: "LOAD_USER_FAIL", payload: error.response.data.message })
+            dispatch({ type: "CLEAR_ERRORS" })
         }
     }
 
 
     const updateProfile = async (user) => {
         try {
-            dispatchUser({
-                type: "UPDATE_USER_REQUEST"
-            })
+            dispatch({ type: "UPDATE_USER_REQUEST" })
 
             const config = {
                 headers: {
@@ -73,26 +68,18 @@ export const AuthContextProvider = props => {
 
             const { data } = await axios.put('/api/v1/me/update', user, config)
 
-            dispatchUser({
-                type: "UPDATE_USER_SUCCESS",
-                payload: data.user
-            })
+            dispatch({ type: "UPDATE_USER_SUCCESS", payload: data.user })
 
-            dispatchUser({ type: "UPDATE_USER_RESET" })
+            dispatch({ type: "UPDATE_USER_RESET" })
         } catch (error) {
-            dispatchUser({
-                type: "UPDATE_USER_FAIL",
-                payload: error.response.data.message
-            })
-            dispatchUser({ type: "CLEAR_ERRORS" })
+            dispatch({ type: "UPDATE_USER_FAIL", payload: error.response.data.message })
+            dispatch({ type: "CLEAR_ERRORS" })
         }
     }
 
     const updatePassword = async (passwords) => {
         try {
-            dispatchUser({
-                type: "UPDATE_PASSWORD_REQUEST"
-            })
+            dispatch({ type: "UPDATE_PASSWORD_REQUEST" })
 
             const config = {
                 headers: {
@@ -102,16 +89,10 @@ export const AuthContextProvider = props => {
 
             const { data } = await axios.put('/api/v1/update/password', passwords, config)
 
-            dispatchUser({
-                type: "UPDATE_PASSWORD_SUCCESS",
-                payload: data.user
-            })
+            dispatch({ type: "UPDATE_PASSWORD_SUCCESS", payload: data.user })
         } catch (error) {
-            dispatchUser({
-                type: "UPDATE_PASSWORD_FAIL",
-                payload: error.response.data.message
-            })
-            dispatchUser({ type: "CLEAR_ERRORS" })
+            dispatch({ type: "UPDATE_PASSWORD_FAIL", payload: error.response.data.message })
+            dispatch({ type: "CLEAR_ERRORS" })
         }
     }
 
@@ -124,7 +105,7 @@ export const AuthContextProvider = props => {
     }, [])
 
     return (
-        <AuthContext.Provider value={{ auth, manageUser, login, logout, loadUser, updateProfile, updatePassword }}>
+        <AuthContext.Provider value={{ auth, login, logout, loadUser, updateProfile, updatePassword }}>
             { props.children}
         </AuthContext.Provider >
     )

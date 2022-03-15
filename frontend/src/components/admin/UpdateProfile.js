@@ -7,28 +7,34 @@ const UpdateProfile = () => {
     const alert = useAlert()
     const navigate = useNavigate()
 
-    const { auth, manageUser, updateProfile, loadUser } = useContext(AuthContext)
-    const { loading, isUpdated, error } = manageUser
-
-    useEffect(() => {
-        console.log(auth.user)
-        if (isUpdated) {
-            alert.success('Profile has been updated.')
-            loadUser()
-            navigate('/me')
-        }
-
-        if (error) {
-            alert.error('Profile cannot be updated.')
-            navigate('/me')
-        }
-
-        setEmail(auth.user.email)
-        setName(auth.user.email)
-    }, [isUpdated, loading, error])
-
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
+
+    const { auth, updateProfile, loadUser } = useContext(AuthContext)
+    const { loading, isUpdated, loadError, user, error } = auth
+
+    useEffect(() => {
+        if (!loading) {
+            if (loadError) {
+                navigate('/')
+                alert.error(loadError)
+            }
+
+            if (isUpdated) {
+                alert.success('Profile has been updated.')
+                loadUser()
+                navigate('/me')
+            }
+
+            if (error) {
+                alert.error('Profile cannot be updated.')
+                navigate('/me')
+            }
+
+            setEmail(user.email)
+            setName(user.name)
+        }
+    }, [alert, loadError, user, navigate, isUpdated, error])
 
     const submitHandler = e => {
         e.preventDefault()

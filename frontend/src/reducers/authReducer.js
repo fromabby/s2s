@@ -1,4 +1,4 @@
-export const authReducer = (state = { user: {} }, action) => {
+const authReducer = (state = { user: {} }, action) => {
     switch (action.type) {
         case "LOGIN_REQUEST":
         case "LOAD_USER_REQUEST":
@@ -123,80 +123,82 @@ export const authReducer = (state = { user: {} }, action) => {
     }
 }
 
-export const userReducer = (state = { user: {} }, action) => {
-    switch (action.type) {
-        case "REGISTER_USER_REQUEST":
-        case "UPDATE_PASSWORD_REQUEST":
-        case "UPDATE_USER_REQUEST":
-        case "DELETE_USER_REQUEST":
-            return {
-                ...state,
-                loading: true
-            }
+export default authReducer
 
-        case "REGISTER_USER_SUCCESS":
-            return {
-                ...state,
-                loading: false,
-                isCreated: action.payload,
-                message: action.payload.message
-            }
+// export const userReducer = (state = { user: {} }, action) => {
+//     switch (action.type) {
+//         case "REGISTER_USER_REQUEST":
+//         case "UPDATE_PASSWORD_REQUEST":
+//         case "UPDATE_USER_REQUEST":
+//         case "DELETE_USER_REQUEST":
+//             return {
+//                 ...state,
+//                 loading: true
+//             }
 
-        case "UPDATE_PASSWORD_SUCCESS":
-        case "UPDATE_USER_SUCCESS":
-            return {
-                ...state,
-                loading: false,
-                isUpdated: action.payload
-            }
+//         case "REGISTER_USER_SUCCESS":
+//             return {
+//                 ...state,
+//                 loading: false,
+//                 isCreated: action.payload,
+//                 message: action.payload.message
+//             }
 
-        case "DELETE_USER_SUCCESS":
-            return {
-                ...state,
-                loading: false,
-                isDeleted: action.payload
-            }
+//         case "UPDATE_PASSWORD_SUCCESS":
+//         case "UPDATE_USER_SUCCESS":
+//             return {
+//                 ...state,
+//                 loading: false,
+//                 isUpdated: action.payload
+//             }
 
-        case "REGISTER_USER_FAIL":
-        case "UPDATE_PASSWORD_FAIL":
-        case "UPDATE_USER_FAIL":
-        case "DELETE_USER_FAIL":
-            return {
-                ...state,
-                loading: false,
-                error: action.payload
-            }
+//         case "DELETE_USER_SUCCESS":
+//             return {
+//                 ...state,
+//                 loading: false,
+//                 isDeleted: action.payload
+//             }
 
-        case "REGISTER_USER_RESET":
-            return {
-                ...state,
-                loading: false,
-                isCreated: false
-            }
+//         case "REGISTER_USER_FAIL":
+//         case "UPDATE_PASSWORD_FAIL":
+//         case "UPDATE_USER_FAIL":
+//         case "DELETE_USER_FAIL":
+//             return {
+//                 ...state,
+//                 loading: false,
+//                 error: action.payload
+//             }
 
-        case "UPDATE_PASSWORD_RESET":
-        case "UPDATE_USER_RESET":
-            return {
-                ...state,
-                loading: false,
-                isUpdated: false
-            }
+//         case "REGISTER_USER_RESET":
+//             return {
+//                 ...state,
+//                 loading: false,
+//                 isCreated: false
+//             }
 
-        case "DELETE_USER_RESET":
-            return {
-                ...state,
-                loading: false,
-                isDeleted: false
-            }
+//         case "UPDATE_PASSWORD_RESET":
+//         case "UPDATE_USER_RESET":
+//             return {
+//                 ...state,
+//                 loading: false,
+//                 isUpdated: false
+//             }
 
-        case "CLEAR_ERRORS":
-            return {
-                ...state,
-                loadError: null,
-                error: null
-            }
+//         case "DELETE_USER_RESET":
+//             return {
+//                 ...state,
+//                 loading: false,
+//                 isDeleted: false
+//             }
 
-        default:
-            return state
-    }
-}
+//         case "CLEAR_ERRORS":
+//             return {
+//                 ...state,
+//                 loadError: null,
+//                 error: null
+//             }
+
+//         default:
+//             return state
+//     }
+// }
