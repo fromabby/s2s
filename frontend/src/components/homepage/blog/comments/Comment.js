@@ -1,20 +1,23 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import CommentContext from '../../../../context/commentContext'
 import { Button } from 'react-bootstrap'
 
 const Comment = ({ comment }) => {
-
-    
+    const { commentState } = useContext(CommentContext)
 
     return (
-        <div className="content-section-comment">
-            <h1 style={{ fontStyle: "2vw" }} className={comment.user ? "content-name" : "content-name text-muted"}>
-                {comment?.user ? comment.user.email : 'Deleted account'}
-            </h1>
-            <p style={{ fontStyle: "2vw" }} className="content-comment">
-                {comment?.content}
-                <Button className='btn btn-danger'>Delete</Button>
-            </p>
-        </div>
+        <>
+            <div className="content-section-comment">
+                <h1 style={{ fontStyle: "2vw" }} className={comment.user ? "content-name" : "content-name text-muted"}>
+                    {comment?.user ? comment.user.email : 'Deleted account'}
+                </h1>
+                <p style={{ fontStyle: "2vw" }} className="content-comment">
+                    {comment?.content}
+                    {commentState?.currentUser?.email === comment.user.email &&
+                        <Button className='btn btn-danger'>Delete</Button>}
+                </p>
+            </div>
+        </>
     )
 }
 
