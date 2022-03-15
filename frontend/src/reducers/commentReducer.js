@@ -3,17 +3,17 @@ const commentReducer = (state, action) => {
         //current user
         case "SET_CURRENT_USER_REQUEST":
         case "GET_CURRENT_USER_REQUEST":
-            return { isLoading: true, isVerified: false }
+            return {...state, isLoading: true, isVerified: false }
 
         case "SET_CURRENT_USER_SUCCESS":
         case "GET_CURRENT_USER_SUCCESS":
             return { ...state, isLoading: false, isVerified: true, currentUser: action.payload }
 
         case "SET_CURRENT_USER_FAIL":
-            return { ...state, isLoading: false, isVerified: false, error: action.payload, currentUser: null }
+            return { ...state, isLoading: false, isVerified: false, error: action.payload }
 
         case "GET_CURRENT_USER_FAIL":
-            return { isLoading: false, isVerified: false, error: action.payload, currentUser: null }
+            return {...state, isLoading: false, isVerified: false, error: action.payload }
 
         case "SET_CURRENT_USER_RESET":
         case "GET_CURRENT_USER_RESET":

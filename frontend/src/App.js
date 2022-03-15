@@ -78,22 +78,23 @@ const App = () => {
         <Router style={{ minHeight: "100vh" }}>
             <div>
                 <ScrollToTop>
-                    {/* <CommentContextProvider> */}
                     <AuthContextProvider>
                         <NavBar>
                             <PostContextProvider>
-                                <Routes>
-                                    <Route path="/" element={<Home />} />
-                                    <Route path="/blog" element={<PublicBlogList />} />
-                                    <Route path="/blog/:id" element={<PublicBlogDetails />} />
+                                <CommentContextProvider>
+                                    <Routes>
+                                        <Route path="/" element={<Home />} />
+                                        <Route path="/blog" element={<PublicBlogList />} />
+                                        <Route path="/blog/:id" element={<PublicBlogDetails />} />
 
-                                    <Route element={<AdminRoutes />}>
-                                        <Route path="/admin/blog" element={<BlogList />} />
-                                        <Route path="/admin/blog/archive" element={<ArchiveBlogList />} />
-                                        <Route path="/admin/blog/new" element={<CreateBlogForm />} />
-                                        <Route path="/admin/blog/edit/:id" element={<UpdateBlogForm />} />
-                                    </Route>
-                                </Routes>
+                                        <Route element={<AdminRoutes />}>
+                                            <Route path="/admin/blog" element={<BlogList />} />
+                                            <Route path="/admin/blog/archive" element={<ArchiveBlogList />} />
+                                            <Route path="/admin/blog/new" element={<CreateBlogForm />} />
+                                            <Route path="/admin/blog/edit/:id" element={<UpdateBlogForm />} />
+                                        </Route>
+                                    </Routes>
+                                </CommentContextProvider>
                             </PostContextProvider>
 
                             {/* <PostContextProvider>

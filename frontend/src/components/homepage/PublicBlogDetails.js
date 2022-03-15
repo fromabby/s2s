@@ -13,6 +13,7 @@ const PublicBlogDetails = () => {
     const { posts, fetchSingleData } = useContext(PostContext)
     const { commentState, getCurrentUser } = useContext(CommentContext)
 
+    console.log(commentState)
     const { currentUser, isVerified, isLoading: userLoading, error: userError } = commentState
 
 
@@ -72,10 +73,8 @@ const PublicBlogDetails = () => {
                                     <h1 className="content-comment-header" style={{ fontStyle: "2vw" }}>
                                         Comments
                                     </h1>
-                                    <CommentContextProvider>
-                                        <CommentList isPosted={isPosted} setIsPosted={setIsPosted} />
-                                        <CommentBox post_id={post._id} isPosted={isPosted} setIsPosted={setIsPosted} />
-                                    </CommentContextProvider>
+                                    <CommentList isPosted={isPosted} setIsPosted={setIsPosted} />
+                                    <CommentBox post_id={post._id} isPosted={isPosted} setIsPosted={setIsPosted} />
                                 </div>
                             </div>
                         </div>

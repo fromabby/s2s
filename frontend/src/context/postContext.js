@@ -1,6 +1,7 @@
 import { createContext, useEffect, useReducer } from "react";
 import axios from 'axios';
 import postReducer from "../reducers/postReducer";
+import { CommentContextProvider } from "./commentContext";
 
 const PostContext = createContext({})
 
@@ -114,7 +115,7 @@ export const PostContextProvider = props => {
 
     return (
         <PostContext.Provider value={{ posts, fetchSingleData, deleteData, addData, archiveData, updateData }}>
-            {props.children}
+                {props.children}
         </PostContext.Provider>
     )
 }

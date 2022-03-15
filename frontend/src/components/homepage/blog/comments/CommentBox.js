@@ -12,20 +12,12 @@ const CommentBox = ({ post_id, setIsPosted, isPosted }) => {
 
     const { commentState, getCurrentUser, verifyUser } = useContext(CommentContext)
 
-    console.log(commentState)
     const { currentUser, isLoading, isVerified, error } = commentState
 
     const navigate = useNavigate()
     const alert = useAlert()
 
-    useEffect(() => {
-        getCurrentUser()
-        console.log(currentUser)
 
-        if (error) {
-            alert.error(error)
-        }
-    }, [isVerified, error])
 
     const submitHandler = e => {
         e.preventDefault()
@@ -34,9 +26,9 @@ const CommentBox = ({ post_id, setIsPosted, isPosted }) => {
             postComment()
         } else {
             verifyUser(email, post_id)
-            // if (currentUser.user.success && currentUser.user.user.status === 0) {
-            //     navigate(`/verify/${currentUser.user.slug}`)
-            // }
+            if (currentUser.user.success && currentUser.user.user.status === 0) {
+                navigate(`/verify/${currentUser.user.slug}`)
+            }
         }
     }
 
