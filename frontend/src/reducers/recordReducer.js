@@ -44,7 +44,8 @@ const recordReducer = (state, action) => {
                 ...state,
                 loading: false,
                 isUpdated: action.payload,
-                message: action.payload.message
+                message: action.payload.message,
+                record: action.payload
             }
 
         case "DELETE_RECORD_SUCCESS":

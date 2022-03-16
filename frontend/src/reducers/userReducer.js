@@ -44,7 +44,8 @@ const userReducer = (state, action) => {
                 ...state,
                 loading: false,
                 isUpdated: action.payload,
-                message: action.payload.message
+                message: action.payload.message,
+                user: action.payload
             }
 
         case "DELETE_USER_SUCCESS":

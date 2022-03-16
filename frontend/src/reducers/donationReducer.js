@@ -44,7 +44,8 @@ const donationReducer = (state, action) => {
                 ...state,
                 loading: false,
                 isUpdated: action.payload,
-                message: action.payload.message
+                message: action.payload.message,
+                donation: action.payload
             }
 
         case "DELETE_DONATION_SUCCESS":
