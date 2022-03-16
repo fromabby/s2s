@@ -66,7 +66,7 @@ export const CommentContextProvider = props => {
     const getAllComments = async (id) => {
         try {
             dispatchUser({ type: "GET_ALL_COMMENTS_REQUEST" })
-            const { data } = await axios.get(`/api/v1/${id}/responses/0`)
+            const { data } = await axios.get(`/api/v1/${id}/responses/1`)
             dispatchUser({ type: "GET_ALL_COMMENTS_SUCCESS", payload: data.responses })
         }
         catch (error) {

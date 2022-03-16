@@ -4,7 +4,7 @@ import { Button, Form } from 'react-bootstrap';
 import { useAlert } from 'react-alert'
 import CommentContext from '../../../../context/commentContext'
 
-const CommentBox = ({ post_id, setIsPosted, isPosted }) => {
+const CommentBox = ({ post_id }) => {
     const [comment, setComment] = useState('')
     const [email, setEmail] = useState('')
     const [verified, setVerified] = useState(false)

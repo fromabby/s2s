@@ -13,10 +13,7 @@ const PublicBlogDetails = () => {
     const { posts, fetchSingleData } = useContext(PostContext)
     const { commentState, getAllComments } = useContext(CommentContext)
 
-    const { currentUser, isVerified, isLoading: userLoading, error: userError, commentList } = commentState
-
-
-    const [isPosted, setIsPosted] = useState(false)
+    const { isLoading: userLoading, error: userError, commentList } = commentState
 
     const navigate = useNavigate()
 
@@ -73,8 +70,8 @@ const PublicBlogDetails = () => {
                                     <h1 className="content-comment-header" style={{ fontStyle: "2vw" }}>
                                         Comments
                                     </h1>
-                                    <CommentList isPosted={isPosted} setIsPosted={setIsPosted} comments={commentList}/>
-                                    <CommentBox post_id={post._id} isPosted={isPosted} setIsPosted={setIsPosted} />
+                                    <CommentList comments={commentList}/>
+                                    <CommentBox post_id={post._id}/>
                                 </div>
                             </div>
                         </div>
