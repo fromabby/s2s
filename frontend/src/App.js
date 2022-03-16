@@ -12,6 +12,7 @@ import { PasswordContextProvider } from './context/passwordContext';
 import { CommentContextProvider } from './context/commentContext';
 import { PostContextProvider } from './context/postContext';
 import { AboutContextProvider } from './context/aboutContext';
+import { BannerContextProvider } from './context/bannerContext';
 
 //*layout components
 import Header from './components/layout/Header'
@@ -41,6 +42,10 @@ import ArchiveBlogList from './components/admin/blog/ArchiveBlogList';
 import AboutList from './components/admin/about/AboutList';
 import CreateAboutForm from './components/admin/about/CreateAboutForm';
 import UpdateAboutForm from './components/admin/about/UpdateAboutForm';
+
+import BannerList from './components/admin/banner/BannerList';
+import CreateBannerForm from './components/admin/banner/CreateBannerForm';
+import UpdateBannerForm from './components/admin/banner/UpdateBannerForm';
 
 import MyProfile from './components/admin/MyProfile';
 import UpdateProfile from './components/admin/UpdateProfile';
@@ -109,7 +114,6 @@ const App = () => {
                                 </Route>
                             </Routes>
 
-
                             <AboutContextProvider>
                                 <Routes>
                                     <Route element={<AdminRoutes />}>
@@ -119,6 +123,16 @@ const App = () => {
                                     </Route>
                                 </Routes>
                             </AboutContextProvider>
+
+                            <BannerContextProvider>
+                                <Routes>
+                                    <Route element={<AdminRoutes />}>
+                                        <Route path="/admin/banner" element={<BannerList />} />
+                                        <Route path="/admin/banner/new" element={<CreateBannerForm />} />
+                                        <Route path="/admin/banner/:id" element={<UpdateBannerForm />} />
+                                    </Route>
+                                </Routes>
+                            </BannerContextProvider>
 
                             <Routes>
                                 <Route path="/partners" element={<Partners />} />

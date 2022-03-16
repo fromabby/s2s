@@ -7,7 +7,7 @@ const SideNav = () => {
             <Link to="/admin/dashboard/">
                 <img id="sidenav-logo" src="/images/logo.png" />
             </Link>
-            <Link to="/admin/dashboard/manage-banner" className="nav-link">
+            <Link to="/admin/banner" className="nav-link">
                 Manage Banner
             </Link>
             <Link to="/admin/dashboard/manage-featured" className="nav-link">
@@ -22,7 +22,7 @@ const SideNav = () => {
             <Link to="/admin/dashboard/manage-comments" className="nav-link">
                 Manage Comments
             </Link>
-            <Link to="/admin/dashboard/manage-aboutus" className="nav-link">
+            <Link to="/admin/about" className="nav-link">
                 Manage About Us
             </Link>
             <Link
@@ -32,13 +32,13 @@ const SideNav = () => {
             >
                 Manage Registration
             </Link>
-            <Link to="/admin/dashboard/manage-donation" className="nav-link">
+            <Link to="/admin/donation" className="nav-link">
                 Manage Donation
             </Link>
-            <Link to="/admin/dashboard/manage-records" className="nav-link">
+            <Link to="/admin/records" className="nav-link">
                 Manage Records
             </Link>
-            <Link to="/admin/dashboard/manage-changepassword" className="nav-link">
+            <Link to="/password/update" className="nav-link">
                 Change Password
             </Link>
             <Link exact to="/admin/dashboard/manage-logout" className="nav-link">
