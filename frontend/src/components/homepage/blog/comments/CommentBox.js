@@ -2,32 +2,42 @@ import React, { useState, useEffect, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Button, Form } from 'react-bootstrap';
 import { useAlert } from 'react-alert'
-import CommentContext, { CommentContextProvider } from '../../../../context/commentContext'
-import axios from 'axios'
+import CommentContext from '../../../../context/commentContext'
 
 const CommentBox = ({ post_id, setIsPosted, isPosted }) => {
     const [comment, setComment] = useState('')
     const [email, setEmail] = useState('')
-    // const [commentLoading, setCommentLoading] = useState(false)
+    const [verified, setVerified] = useState(false)
 
-    const { commentState, getCurrentUser, verifyUser, addComment } = useContext(CommentContext)
+    const { commentState, verifyUser, addComment } = useContext(CommentContext)
 
-    const { currentUser, isLoading, isVerified, error } = commentState
+    const { currentUser, isLoading, isSlug, slug, isVerified, error } = commentState
 
     const navigate = useNavigate()
     const alert = useAlert()
 
+    useEffect(() => {
+        if (isSlug) {
+            console.log(`/verify/${slug}`)
+            if (currentUser.user.status === 0) {
+                navigate(`/verify/${slug}`)
+            } else {
+                setVerified(true)
+            }
+        }
+
+        // if (!isSlug && error) {
+        //     alert.error('must be logged in to leave a comment')
+        // }
+    }, [isSlug, error])
 
     const submitHandler = e => {
         e.preventDefault()
 
-        if (isVerified) {
+        if (isVerified || verified) {
             postComment()
         } else {
             verifyUser(email, post_id)
-            if (currentUser.user.success && currentUser.user.user.status === 0) {
-                navigate(`/verify/${currentUser.user.slug}`)
-            }
         }
     }
 
@@ -46,7 +56,7 @@ const CommentBox = ({ post_id, setIsPosted, isPosted }) => {
     return (
         <div className="content-leave-header">
             <form onSubmit={submitHandler}>
-                {isVerified ?
+                {verified || isVerified ?
                     <Form.Group className="mb-3">
                         <Form.Label>Leave a comment</Form.Label>
                         <Form.Control type="text" name="comment" placeholder="Leave a comment..." value={comment} onChange={e => setComment(e.target.value)} />
@@ -58,7 +68,7 @@ const CommentBox = ({ post_id, setIsPosted, isPosted }) => {
                     </Form.Group>
                 }
 
-                <Button variant="primary" type="submit" disabled={ isLoading ? true : false}>
+                <Button variant="primary" type="submit" disabled={isLoading ? true : false}>
                     Submit
                 </Button>
             </form>

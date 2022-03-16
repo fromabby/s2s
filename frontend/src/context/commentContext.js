@@ -14,7 +14,7 @@ export const CommentContextProvider = props => {
         dispatchUser({ type: "GET_CURRENT_USER_REQUEST" })
         try {
             const { data } = await axios.get('/api/v1/viewer')
-            dispatchUser({ type: "GET_CURRENT_USER_SUCCESS", payload: data.user })
+            dispatchUser({ type: "GET_CURRENT_USER_SUCCESS", payload: data })
         }
         catch (error) {
             dispatchUser({ type: "GET_CURRENT_USER_FAIL", payload: error })
@@ -22,10 +22,35 @@ export const CommentContextProvider = props => {
         }
     }
 
+    const setUser = async (user, slug) => {
+        try {
+            dispatchUser({ type: "SET_CURRENT_USER_REQUEST " })
+
+            const config = {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }
+
+            console.log(user, slug)
+
+            const { data } = await axios.post(`/api/v1/viewer/create/${slug}`, { full_name: user.name, otp: user.otp }, config)
+
+            dispatchUser({ type: "SET_CURRENT_USER_SUCCESS", payload: data })
+
+        } catch (error) {
+            dispatchUser({ type: "SET_CURRENT_USER_FAIL", payload: error })
+            dispatchUser({ type: "CLEAR_ERRORS" })
+        }
+    }
+
+    const cancelVerification = async () => {
+        dispatchUser({ type: "VERIFY_USER_RESET" })
+    }
 
     const verifyUser = async (email, post_id) => {
         try {
-            dispatchUser({ type: "GET_CURRENT_USER_REQUEST" })
+            dispatchUser({ type: "VERIFY_USER_REQUEST" })
 
             const config = {
                 headers: {
@@ -35,10 +60,11 @@ export const CommentContextProvider = props => {
 
             const { data } = await axios.post(`/api/v1/viewer/verify`, { email: email, post_id: post_id }, config)
 
-            dispatchUser({ type: "GET_CURRENT_USER_SUCCESS", payload: data.user })
+            dispatchUser({ type: "VERIFY_USER_SUCCESS", payload: data })
+            dispatchUser({ type: "VERIFY_USER_RESET" })
 
         } catch (error) {
-            dispatchUser({ type: "SET_CURRENT_USER_FAIL", payload: error })
+            dispatchUser({ type: "VERIFY_USER_FAIL", payload: error })
             dispatchUser({ type: "CLEAR_ERRORS" })
         }
     }
@@ -90,10 +116,8 @@ export const CommentContextProvider = props => {
         return () => isMounted = false
     }, [])
 
-    console.log(commentState.currentUser)
-
     return (
-        <CommentContext.Provider value={{ commentState, verifyUser, getCurrentUser, getAllComments, addComment, deleteComment }}>
+        <CommentContext.Provider value={{ commentState, verifyUser, setUser, cancelVerification, getCurrentUser, getAllComments, addComment, deleteComment }}>
             {props.children}
         </CommentContext.Provider>
     )

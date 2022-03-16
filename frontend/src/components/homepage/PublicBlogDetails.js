@@ -30,8 +30,6 @@ const PublicBlogDetails = () => {
         return () => isMounted = false
     }, [])
 
-    console.log(commentList)
-
     const { isLoading, post, error } = posts
 
     useEffect(() => {

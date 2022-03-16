@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import { useAlert } from 'react-alert'
 import { Button, Form } from 'react-bootstrap';
 import { useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
 import Metadata from '../../../layout/Metadata'
+import CommentContext from '../../../../context/commentContext'
 
 const OtpBox = () => {
     const { slug } = useParams()
@@ -12,37 +13,26 @@ const OtpBox = () => {
 
     const [name, setName] = useState('')
     const [otp, setOtp] = useState('')
-    const [loading, setLoading] = useState(false)
-    const [isVerified, setIsVerified] = useState(false)
+
+    const { commentState, setUser } = useContext(CommentContext)
+
+    const { currentUser, isLoading, isVerified, error } = commentState
+
+    useEffect(() => {
+        if (currentUser?.success) {
+            navigate(`/blog/${currentUser.user.post_id}`)
+            alert.success('You may now leave a comment!')
+        }
+
+        // if (error) {
+        //     alert.error(error)
+        // }
+    }, [isVerified])
 
     const submitHandler = e => {
         e.preventDefault()
 
-        fetchData()
-    }
-
-    const fetchData = async () => {
-        try {
-            setLoading(true)
-
-            const { data } = await axios.post(`/api/v1/viewer/create/${slug}`, { full_name: name, otp }, {
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            })
-
-            if (data.success) {
-                setLoading(false)
-                setIsVerified(true)
-                console.log(data.user.post_id)
-                navigate(`/blog/${data.user.post_id}/?verified=${isVerified}`)
-                alert.success('You may now leave a comment!')
-            }
-
-        } catch (error) {
-            setLoading(false)
-            console.log(error)
-        }
+        setUser({ name, otp }, slug)
     }
 
     return (
@@ -58,7 +48,7 @@ const OtpBox = () => {
                     <Form.Control type="text" name="name" placeholder="Juan Dela Cruz" value={name} onChange={e => setName(e.target.value)} />
                 </Form.Group>
 
-                <Button variant="primary" type="submit" disabled={loading ? true : false}>
+                <Button variant="primary" type="submit" disabled={isLoading ? true : false}>
                     Submit
                 </Button>
             </form>

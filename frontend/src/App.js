@@ -86,6 +86,7 @@ const App = () => {
                                         <Route path="/" element={<Home />} />
                                         <Route path="/blog" element={<PublicBlogList />} />
                                         <Route path="/blog/:id" element={<PublicBlogDetails />} />
+                                        <Route path="/verify/:slug" element={<OtpBox />} />
 
                                         <Route element={<AdminRoutes />}>
                                             <Route path="/admin/blog" element={<BlogList />} />
@@ -112,7 +113,6 @@ const App = () => {
                                 <Route path="/contact-us" element={<Contact />} />
                                 <Route path="/donate" element={<Donate />} />
                                 <Route path="/login" element={<Login />} />
-                                <Route path="/verify/:slug" element={<OtpBox />} />
                             </Routes>
 
                             <PasswordContextProvider>

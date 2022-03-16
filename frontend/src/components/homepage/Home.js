@@ -12,8 +12,6 @@ const Home = () => {
 
     const { posts: recentPosts, isLoading } = posts
 
-    console.log(recentPosts)
-
     return (
         <div>
             <Metadata title={`Home`} />

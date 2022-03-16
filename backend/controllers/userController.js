@@ -57,10 +57,12 @@ exports.saveUser = catchAsyncErrors(async (req, res, next) => {
             const { email, otp, post_id } = user
 
             if (Number(req.body.otp) === otp) {
+                console.log('andito ako ')
                 User.findOne({ email }).exec((err, existingUser) => {
                     if (existingUser) { return next(new ErrorHandler('Email already exists')) }
                     const newUser = User.create({ email, full_name }).then((user) => {
                         const createdUser = { user, post_id, status: 2 }
+                        console.log(createdUser)
                         return sendToken(createdUser, "viewer", 200, res)
                     }
                     )
