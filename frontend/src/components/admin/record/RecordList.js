@@ -6,7 +6,7 @@ import { Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import Metadata from '../../layout/Metadata'
 import RecordContext from '../../../context/recordContext'
-import dateFormat from "dateformat";
+import formatDate from '../../../formatDate'
 
 const RecordList = () => {
     const navigate = useNavigate()
@@ -18,7 +18,6 @@ const RecordList = () => {
     const { record, deleteRecord } = useContext(RecordContext)
     const { loading: deleteLoading, isDeleted, error } = record
 
-    const convertDate = date => dateFormat(date, "ddd mmm d, yyyy, h:MM TT")
 
     useEffect(() => {
         const fetchData = async () => {
@@ -72,7 +71,7 @@ const RecordList = () => {
                         <tbody>
                             {records && records.map(record => (
                                 <tr>
-                                    <td>{convertDate(record.record_date)}</td>
+                                    <td>{formatDate(record.record_date)}</td>
                                     <td>{record.record_name}</td>
                                     <td>{record.record_platform}</td>
                                     <td>{record.record_amount}</td>

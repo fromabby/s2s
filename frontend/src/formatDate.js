@@ -1,11 +1,5 @@
-const formatDate = (string) => {
-    if (string === "") {
-        return "-";
-    } else {
-        let date = new Date(string);
-        var month = date.toLocaleString("default", { month: "short" });
-        return month + ". " + date.getDate() + ", " + date.getFullYear();
-    }
-};
+import dateFormat from "dateformat";
+
+const formatDate = date => dateFormat(date, "ddd mmm d, yyyy, h:MM TT")
 
 export default formatDate
