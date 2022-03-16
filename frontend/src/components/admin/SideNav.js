@@ -10,7 +10,7 @@ const SideNav = () => {
             <Link to="/admin/banner" className="nav-link">
                 Manage Banner
             </Link>
-            <Link to="/admin/dashboard/manage-featured" className="nav-link">
+            <Link to="/admin/blog/featured" className="nav-link">
                 Manage Featured
             </Link>
             <Link to="/admin/blog" className="nav-link">

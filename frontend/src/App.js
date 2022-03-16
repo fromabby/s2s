@@ -61,6 +61,7 @@ import UpdateDonationForm from './components/admin/donation/UpdateDonationForm';
 import RegistrationList from './components/admin/registration/RegistrationList';
 import CreateRegistrationForm from './components/admin/registration/CreateRegistrationForm';
 import UpdateRegistrationForm from './components/admin/registration/UpdateRegistrationForm';
+import FeaturedBlogList from './components/admin/featured/FeaturedBlogList';
 
 const ScrollToTop = ({ children }) => {
     const location = useLocation();
@@ -110,6 +111,7 @@ const App = () => {
                                         <Route element={<AdminRoutes />}>
                                             <Route path="/admin/blog" element={<BlogList />} />
                                             <Route path="/admin/blog/archive" element={<ArchiveBlogList />} />
+                                            <Route path="/admin/blog/featured" element={<FeaturedBlogList />} />
                                             <Route path="/admin/blog/new" element={<CreateBlogForm />} />
                                             <Route path="/admin/blog/edit/:id" element={<UpdateBlogForm />} />
                                         </Route>

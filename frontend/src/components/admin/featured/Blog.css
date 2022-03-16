@@ -3,7 +3,7 @@
     height: auto;
 }
 
-.create-button {
+.create-button{
     display: flex;
     justify-content: end;
     padding: 15px
@@ -19,21 +19,21 @@
     align-items: center;
 }
 
-.manage-post-div {
+.manage-post-div{
     width: 100%;
 }
 
-th {
+th{
     text-align: center;
     font-weight: bold;
     font-size: 20px;
 }
 
-td {
+td{
     height: 150px;
 }
 
-.td-container {
+.td-container{
     display: flex;
     height: 100%;
     justify-content: center;

@@ -10,15 +10,19 @@ const Home = () => {
 
     const { posts } = useContext(PostContext)
 
-    const { posts: recentPosts, isLoading } = posts
+    console.log(posts)
+    const { posts: postList, isLoading } = posts
 
+    const featuredPost = postList.filter(post => post.isFeature === true)[0] || postList[0]
+    const subFeaturedPost = postList.filter(post => post.isSubFeature === true) || postList
     return (
+        (!isLoading && postList.length > 0) &&
         <div>
             <Metadata title={`Home`} />
             <Banners />
             <div className="container-home container">
-                <FeaturedBlogs />
-                <RecentBlogs recentPosts={recentPosts} />
+                <FeaturedBlogs featuredPost={featuredPost} subFeaturedPost={subFeaturedPost}/>
+                <RecentBlogs recentPosts={postList} />
             </div>
         </div>
     )

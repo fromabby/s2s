@@ -72,7 +72,7 @@ export const PostContextProvider = props => {
 
     const archiveData = async (post) => {
         try {
-            const { data } = await axios.put(`/api/v1/posts/${post._id}`, { ...post, isArchived: !post.isArchived })
+            const { data } = await axios.put(`/api/v1/posts/${post._id}`, { ...post, isArchived: !post.isArchived, isFeature: false, isSubFeature: false })
             const postIndex = posts.posts.findIndex(postData => post === postData)
             const newPostList = posts.posts
             newPostList.splice(postIndex, 1, data.post)
@@ -85,7 +85,7 @@ export const PostContextProvider = props => {
 
     const updateData = async (post, newPost) => {
         try {
-            const postIndex = posts.posts.findIndex(postData => post === postData)
+            const postIndex = posts.posts.findIndex(postData => post._id === postData._id)
             const newPostList = posts.posts
             newPostList.splice(postIndex, 1, newPost)
             dispatchPost({ type: "UPDATE_POST_SUCCESS", payload: newPostList })

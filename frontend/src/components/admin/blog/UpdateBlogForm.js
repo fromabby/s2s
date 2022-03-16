@@ -54,10 +54,12 @@ const UpdateBlogForm = () => {
                 if (data.success) {
                     updateData(postDetail, data.post)
                     alert.success("Post Updated")
-                    navigate(`/admin/blog`)
                 }
             }
+            console.log(postDetail)
             updatePost()
+            navigate(`/admin/blog`)
+
         }
         catch (error) {
             alert.error("Error")
@@ -92,7 +94,7 @@ const UpdateBlogForm = () => {
 
                     <Button variant="primary" type="submit">
                         Submit
-                </Button>
+                    </Button>
                 </Form>
             </Fragment>
             : <>Loading</>
