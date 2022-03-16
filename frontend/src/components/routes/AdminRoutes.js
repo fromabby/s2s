@@ -1,7 +1,6 @@
 import React, { useContext } from 'react'
 import { Navigate, Outlet } from 'react-router-dom'
-import { useSelector } from 'react-redux'
-import AuthContext, { AuthContextProvider } from '../../context/authContext'
+import AuthContext from '../../context/authContext'
 
 function AdminRoutes() {
     // const { isAuthenticated, loading, user } = useSelector(state => state.auth)

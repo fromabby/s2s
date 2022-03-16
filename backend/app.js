@@ -17,12 +17,14 @@ const user = require('./routes/user')
 const content = require('./routes/content')
 const post = require('./routes/post')
 const response = require('./routes/response')
+const record = require('./routes/record')
 
 app.use('/api/v1', user)
 app.use('/api/v1', auth)
 app.use('/api/v1', content)
 app.use('/api/v1', post)
 app.use('/api/v1', response)
+app.use('/api/v1', record)
 
 /*
 if(process.env.NODE_ENV === 'PRODUCTION'){

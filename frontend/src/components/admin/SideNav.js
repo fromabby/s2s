@@ -35,7 +35,7 @@ const SideNav = () => {
             <Link to="/admin/donation" className="nav-link">
                 Manage Donation
             </Link>
-            <Link to="/admin/records" className="nav-link">
+            <Link to="/admin/record" className="nav-link">
                 Manage Records
             </Link>
             <Link to="/password/update" className="nav-link">
