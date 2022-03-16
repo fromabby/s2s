@@ -3,7 +3,7 @@ const ErrorHandler = require('../utils/errorHandler')
 const catchAsyncErrors = require('../middlewares/catchAsyncErrors')
 
 exports.createRecord = catchAsyncErrors(async (req, res, next) => {
-    const record = await Record.create(req.body)
+    const record = await Record.create({ ...req.body, record_date: new Date(req.body.record_date) })
 
     res.status(201).json({
         success: true,
@@ -14,7 +14,7 @@ exports.createRecord = catchAsyncErrors(async (req, res, next) => {
 
 exports.getAllRecords = catchAsyncErrors(async (req, res, next) => {
     const records = await Record.find()
-    
+
     res.status(200).json({
         success: true,
         records
@@ -37,7 +37,7 @@ exports.updateRecord = catchAsyncErrors(async (req, res, next) => {
 
     if (!record) { return next(new ErrorHandler('Record not found', 404)) }
 
-    record = await Record.findByIdAndUpdate(req.params.id, req.body, {
+    record = await Record.findByIdAndUpdate(req.params.id, { ...req.body, record_date: new Date(req.body.record_date) }, {
         new: true,
         runValidators: true,
         useFindAndModify: false
@@ -45,7 +45,8 @@ exports.updateRecord = catchAsyncErrors(async (req, res, next) => {
 
     res.status(200).json({
         success: true,
-        record
+        record,
+        message: "Content has been updated"
     })
 })
 

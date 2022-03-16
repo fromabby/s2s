@@ -1,36 +1,36 @@
-const donationReducer = (state, action) => {
+const recordReducer = (state, action) => {
     switch (action.type) {
-        //get donation content
-        case "GET_DONATION_REQUEST":
+        //get record content
+        case "GET_RECORD_REQUEST":
             return {
                 ...state,
                 loading: true
             }
 
-        case "GET_DONATION_SUCCESS":
+        case "GET_RECORD_SUCCESS":
             return {
                 loading: false,
                 success: action.payload.success,
-                donation: action.payload.donation
+                record: action.payload.record
             }
 
-        case "GET_DONATION_FAIL":
+        case "GET_RECORD_FAIL":
             return {
                 ...state,
                 loading: false,
                 error: action.payload
             }
 
-        //manage donation content
-        case "CREATE_DONATION_REQUEST":
-        case "UPDATE_DONATION_REQUEST":
-        case "DELETE_DONATION_REQUEST":
+        //manage record content
+        case "CREATE_RECORD_REQUEST":
+        case "UPDATE_RECORD_REQUEST":
+        case "DELETE_RECORD_REQUEST":
             return {
                 ...state,
                 loading: true
             }
 
-        case "CREATE_DONATION_SUCCESS":
+        case "CREATE_RECORD_SUCCESS":
             return {
                 ...state,
                 loading: false,
@@ -39,46 +39,46 @@ const donationReducer = (state, action) => {
             }
 
 
-        case "UPDATE_DONATION_SUCCESS":
+        case "UPDATE_RECORD_SUCCESS":
             return {
                 ...state,
                 loading: false,
                 isUpdated: action.payload,
                 message: action.payload.message,
-                donation: action.payload
+                record: action.payload
             }
 
-        case "DELETE_DONATION_SUCCESS":
+        case "DELETE_RECORD_SUCCESS":
             return {
                 ...state,
                 loading: false,
                 isDeleted: action.payload
             }
 
-        case "CREATE_DONATION_FAIL":
-        case "UPDATE_DONATION_FAIL":
-        case "DELETE_DONATION_FAIL":
+        case "CREATE_RECORD_FAIL":
+        case "UPDATE_RECORD_FAIL":
+        case "DELETE_RECORD_FAIL":
             return {
                 ...state,
                 loading: false,
                 error: action.payload
             }
 
-        case "CREATE_DONATION_RESET":
+        case "CREATE_RECORD_RESET":
             return {
                 ...state,
                 loading: false,
                 isCreated: false
             }
 
-        case "UPDATE_DONATION_RESET":
+        case "UPDATE_RECORD_RESET":
             return {
                 ...state,
                 loading: false,
                 isUpdated: false
             }
 
-        case "DELETE_DONATION_RESET":
+        case "DELETE_RECORD_RESET":
             return {
                 ...state,
                 loading: false,
@@ -96,4 +96,4 @@ const donationReducer = (state, action) => {
     }
 }
 
-export default donationReducer
+export default recordReducer

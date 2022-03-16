@@ -15,6 +15,8 @@ import { AboutContextProvider } from './context/aboutContext';
 import { BannerContextProvider } from './context/bannerContext';
 import { DonationContextProvider } from './context/donationContext';
 import { RegistrationContextProvider } from './context/registrationContext';
+import { UserContextProvider } from './context/userContext';
+import { RecordContextProvider } from './context/recordContext';
 
 //*layout components
 import Header from './components/layout/Header'
@@ -62,6 +64,15 @@ import RegistrationList from './components/admin/registration/RegistrationList';
 import CreateRegistrationForm from './components/admin/registration/CreateRegistrationForm';
 import UpdateRegistrationForm from './components/admin/registration/UpdateRegistrationForm';
 import FeaturedBlogList from './components/admin/featured/FeaturedBlogList';
+
+import RecordList from './components/admin/record/RecordList';
+import CreateRecordForm from './components/admin/record/CreateRecordForm';
+import UpdateRecordForm from './components/admin/record/UpdateRecordForm';
+
+//*superadmin components
+import UserList from './components/admin/user/UserList';
+import CreateUserForm from './components/admin/user/CreateUserForm';
+import UpdateUserForm from './components/admin/user/UpdateUserForm';
 
 const ScrollToTop = ({ children }) => {
     const location = useLocation();
@@ -166,6 +177,26 @@ const App = () => {
                                     </Route>
                                 </Routes>
                             </RegistrationContextProvider>
+
+                            <RecordContextProvider>
+                                <Routes>
+                                    <Route element={<AdminRoutes />}>
+                                        <Route path="/admin/record" element={<RecordList />} />
+                                        <Route path="/admin/record/new" element={<CreateRecordForm />} />
+                                        <Route path="/admin/record/:id" element={<UpdateRecordForm />} />
+                                    </Route>
+                                </Routes>
+                            </RecordContextProvider>
+
+                            <UserContextProvider>
+                                <Routes>
+                                    <Route element={<SuperadminRoutes />}>
+                                        <Route path="/admin/user" element={<UserList />} />
+                                        <Route path="/admin/user/new" element={<CreateUserForm />} />
+                                        <Route path="/admin/user/:id" element={<UpdateUserForm />} />
+                                    </Route>
+                                </Routes>
+                            </UserContextProvider>
 
                             <Routes>
                                 <Route path="/partners" element={<Partners />} />

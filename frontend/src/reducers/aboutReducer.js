@@ -44,7 +44,8 @@ const aboutReducer = (state, action) => {
                 ...state,
                 loading: false,
                 isUpdated: action.payload,
-                message: action.payload.message
+                message: action.payload.message,
+                about: action.payload
             }
 
         case "DELETE_ABOUT_SUCCESS":
