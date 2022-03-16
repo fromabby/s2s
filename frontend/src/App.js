@@ -9,7 +9,7 @@ import AdminRoutes from './components/routes/AdminRoutes'
 //*contexts
 import AuthContext, { AuthContextProvider } from './context/authContext';
 import { PasswordContextProvider } from './context/passwordContext';
-import CommentContext, { CommentContextProvider } from './context/commentContext';
+import { CommentContextProvider } from './context/commentContext';
 import { PostContextProvider } from './context/postContext';
 
 //*layout components
