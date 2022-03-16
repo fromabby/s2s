@@ -4,6 +4,13 @@ import commentReducer from "../reducers/commentReducer";
 
 const CommentContext = createContext({})
 
+const config = {
+    headers: {
+        'Content-Type': 'application/json'
+    }
+}
+
+
 export const CommentContextProvider = props => {
     const [commentState, dispatchUser] = useReducer(commentReducer, {
         currentUser: {},
@@ -26,14 +33,6 @@ export const CommentContextProvider = props => {
         try {
             dispatchUser({ type: "SET_CURRENT_USER_REQUEST " })
 
-            const config = {
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            }
-
-            console.log(user, slug)
-
             const { data } = await axios.post(`/api/v1/viewer/create/${slug}`, { full_name: user.name, otp: user.otp }, config)
 
             dispatchUser({ type: "SET_CURRENT_USER_SUCCESS", payload: data })
@@ -52,12 +51,6 @@ export const CommentContextProvider = props => {
         try {
             dispatchUser({ type: "VERIFY_USER_REQUEST" })
 
-            const config = {
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            }
-
             const { data } = await axios.post(`/api/v1/viewer/verify`, { email: email, post_id: post_id }, config)
 
             dispatchUser({ type: "VERIFY_USER_SUCCESS", payload: data })
@@ -66,6 +59,7 @@ export const CommentContextProvider = props => {
         } catch (error) {
             dispatchUser({ type: "VERIFY_USER_FAIL", payload: error })
             dispatchUser({ type: "CLEAR_ERRORS" })
+            dispatchUser({ type: "VERIFY_USER_RESET" })
         }
     }
 
@@ -83,11 +77,7 @@ export const CommentContextProvider = props => {
 
     const addComment = async (comment, post_id) => {
         try {
-            const { data } = await axios.post(`/api/v1/responses/${post_id}`, { content: comment }, {
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            })
+            const { data } = await axios.post(`/api/v1/responses/${post_id}`, { content: comment }, config)
             dispatchUser({ type: "ADD_COMMENT_SUCCESS", payload: data.response })
         }
         catch (error) {

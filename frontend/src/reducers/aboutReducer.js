@@ -1,5 +1,27 @@
 const aboutReducer = (state, action) => {
     switch (action.type) {
+        //get about content
+        case "GET_ABOUT_REQUEST":
+            return {
+                ...state,
+                loading: true
+            }
+
+        case "GET_ABOUT_SUCCESS":
+            return {
+                loading: false,
+                success: action.payload.success,
+                about: action.payload.about
+            }
+
+        case "GET_ABOUT_FAIL":
+            return {
+                ...state,
+                loading: false,
+                error: action.payload
+            }
+
+        //manage about content
         case "CREATE_ABOUT_REQUEST":
         case "UPDATE_ABOUT_REQUEST":
         case "DELETE_ABOUT_REQUEST":

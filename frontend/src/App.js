@@ -11,6 +11,7 @@ import AuthContext, { AuthContextProvider } from './context/authContext';
 import { PasswordContextProvider } from './context/passwordContext';
 import CommentContext, { CommentContextProvider } from './context/commentContext';
 import { PostContextProvider } from './context/postContext';
+import { AboutContextProvider } from './context/aboutContext';
 
 //*layout components
 import Header from './components/layout/Header'
@@ -38,6 +39,8 @@ import BlogList from './components/admin/blog/BlogList';
 import ArchiveBlogList from './components/admin/blog/ArchiveBlogList';
 
 import AboutList from './components/admin/about/AboutList';
+import CreateAboutForm from './components/admin/about/CreateAboutForm';
+import UpdateAboutForm from './components/admin/about/UpdateAboutForm';
 
 import MyProfile from './components/admin/MyProfile';
 import UpdateProfile from './components/admin/UpdateProfile';
@@ -69,10 +72,8 @@ const NavBar = ({ children }) => {
 
 const App = () => {
     const { logout, loadUser } = useContext(AuthContext)
-    // const { getCurrentUser } = useContext(CommentContext)
 
     useEffect(() => {
-        // getCurrentUser()
         loadUser()
     }, [])
 
@@ -105,10 +106,19 @@ const App = () => {
                                     <Route path="/me" element={<MyProfile />} />
                                     <Route path="/me/update" element={<UpdateProfile />} />
                                     <Route path="/password/update" element={<UpdatePassword />} />
-                                    <Route path="/admin/about" element={<AboutList />} />
                                 </Route>
                             </Routes>
 
+
+                            <AboutContextProvider>
+                                <Routes>
+                                    <Route element={<AdminRoutes />}>
+                                        <Route path="/admin/about" element={<AboutList />} />
+                                        <Route path="/admin/about/new" element={<CreateAboutForm />} />
+                                        <Route path="/admin/about/:id" element={<UpdateAboutForm />} />
+                                    </Route>
+                                </Routes>
+                            </AboutContextProvider>
 
                             <Routes>
                                 <Route path="/partners" element={<Partners />} />
