@@ -1,36 +1,36 @@
-const aboutReducer = (state, action) => {
+const donationReducer = (state, action) => {
     switch (action.type) {
-        //get about content
-        case "GET_ABOUT_REQUEST":
+        //get donation content
+        case "GET_DONATION_REQUEST":
             return {
                 ...state,
                 loading: true
             }
 
-        case "GET_ABOUT_SUCCESS":
+        case "GET_DONATION_SUCCESS":
             return {
                 loading: false,
                 success: action.payload.success,
-                about: action.payload.about
+                donation: action.payload.donation
             }
 
-        case "GET_ABOUT_FAIL":
+        case "GET_DONATION_FAIL":
             return {
                 ...state,
                 loading: false,
                 error: action.payload
             }
 
-        //manage about content
-        case "CREATE_ABOUT_REQUEST":
-        case "UPDATE_ABOUT_REQUEST":
-        case "DELETE_ABOUT_REQUEST":
+        //manage donation content
+        case "CREATE_DONATION_REQUEST":
+        case "UPDATE_DONATION_REQUEST":
+        case "DELETE_DONATION_REQUEST":
             return {
                 ...state,
                 loading: true
             }
 
-        case "CREATE_ABOUT_SUCCESS":
+        case "CREATE_DONATION_SUCCESS":
             return {
                 ...state,
                 loading: false,
@@ -39,7 +39,7 @@ const aboutReducer = (state, action) => {
             }
 
 
-        case "UPDATE_ABOUT_SUCCESS":
+        case "UPDATE_DONATION_SUCCESS":
             return {
                 ...state,
                 loading: false,
@@ -47,37 +47,37 @@ const aboutReducer = (state, action) => {
                 message: action.payload.message
             }
 
-        case "DELETE_ABOUT_SUCCESS":
+        case "DELETE_DONATION_SUCCESS":
             return {
                 ...state,
                 loading: false,
                 isDeleted: action.payload
             }
 
-        case "CREATE_ABOUT_FAIL":
-        case "UPDATE_ABOUT_FAIL":
-        case "DELETE_ABOUT_FAIL":
+        case "CREATE_DONATION_FAIL":
+        case "UPDATE_DONATION_FAIL":
+        case "DELETE_DONATION_FAIL":
             return {
                 ...state,
                 loading: false,
                 error: action.payload
             }
 
-        case "CREATE_ABOUT_RESET":
+        case "CREATE_DONATION_RESET":
             return {
                 ...state,
                 loading: false,
                 isCreated: false
             }
 
-        case "UPDATE_ABOUT_RESET":
+        case "UPDATE_DONATION_RESET":
             return {
                 ...state,
                 loading: false,
                 isUpdated: false
             }
 
-        case "DELETE_ABOUT_RESET":
+        case "DELETE_DONATION_RESET":
             return {
                 ...state,
                 loading: false,
@@ -95,4 +95,4 @@ const aboutReducer = (state, action) => {
     }
 }
 
-export default aboutReducer
+export default donationReducer

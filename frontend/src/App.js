@@ -13,6 +13,8 @@ import { CommentContextProvider } from './context/commentContext';
 import { PostContextProvider } from './context/postContext';
 import { AboutContextProvider } from './context/aboutContext';
 import { BannerContextProvider } from './context/bannerContext';
+import { DonationContextProvider } from './context/donationContext';
+import { RegistrationContextProvider } from './context/registrationContext';
 
 //*layout components
 import Header from './components/layout/Header'
@@ -33,7 +35,12 @@ import ResetPassword from './components/admin/ResetPassword';
 
 //*admin components
 import Login from './components/admin/Login';
+import MyProfile from './components/admin/MyProfile';
+import UpdateProfile from './components/admin/UpdateProfile';
+import UpdatePassword from './components/admin/UpdatePassword';
+
 import Dashboard from './components/admin/Dashboard';
+
 import CreateBlogForm from './components/admin/blog/CreateBlogForm';
 import UpdateBlogForm from './components/admin/blog/UpdateBlogForm';
 import BlogList from './components/admin/blog/BlogList';
@@ -47,9 +54,13 @@ import BannerList from './components/admin/banner/BannerList';
 import CreateBannerForm from './components/admin/banner/CreateBannerForm';
 import UpdateBannerForm from './components/admin/banner/UpdateBannerForm';
 
-import MyProfile from './components/admin/MyProfile';
-import UpdateProfile from './components/admin/UpdateProfile';
-import UpdatePassword from './components/admin/UpdatePassword';
+import DonationList from './components/admin/donation/DonationList';
+import CreateDonationForm from './components/admin/donation/CreateDonationForm';
+import UpdateDonationForm from './components/admin/donation/UpdateDonationForm';
+
+import RegistrationList from './components/admin/registration/RegistrationList';
+import CreateRegistrationForm from './components/admin/registration/CreateRegistrationForm';
+import UpdateRegistrationForm from './components/admin/registration/UpdateRegistrationForm';
 
 const ScrollToTop = ({ children }) => {
     const location = useLocation();
@@ -133,6 +144,26 @@ const App = () => {
                                     </Route>
                                 </Routes>
                             </BannerContextProvider>
+
+                            <DonationContextProvider>
+                                <Routes>
+                                    <Route element={<AdminRoutes />}>
+                                        <Route path="/admin/donation" element={<DonationList />} />
+                                        <Route path="/admin/donation/new" element={<CreateDonationForm />} />
+                                        <Route path="/admin/donation/:id" element={<UpdateDonationForm />} />
+                                    </Route>
+                                </Routes>
+                            </DonationContextProvider>
+
+                            <RegistrationContextProvider>
+                                <Routes>
+                                    <Route element={<AdminRoutes />}>
+                                        <Route path="/admin/registration" element={<RegistrationList />} />
+                                        <Route path="/admin/registration/new" element={<CreateRegistrationForm />} />
+                                        <Route path="/admin/registration/:id" element={<UpdateRegistrationForm />} />
+                                    </Route>
+                                </Routes>
+                            </RegistrationContextProvider>
 
                             <Routes>
                                 <Route path="/partners" element={<Partners />} />

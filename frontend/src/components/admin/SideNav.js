@@ -27,7 +27,7 @@ const SideNav = () => {
             </Link>
             <Link
                 exact
-                to="/admin/dashboard/manage-registration"
+                to="/admin/registration"
                 className="nav-link"
             >
                 Manage Registration

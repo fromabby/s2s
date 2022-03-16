@@ -43,7 +43,8 @@ const bannerReducer = (state, action) => {
             return {
                 ...state,
                 loading: false,
-                isUpdated: action.payload
+                isUpdated: action.payload,
+                message: action.payload.message
             }
 
         case "DELETE_BANNER_SUCCESS":

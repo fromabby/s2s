@@ -1,36 +1,36 @@
-const aboutReducer = (state, action) => {
+const registrationReducer = (state, action) => {
     switch (action.type) {
-        //get about content
-        case "GET_ABOUT_REQUEST":
+        //get registration content
+        case "GET_REGISTRATION_REQUEST":
             return {
                 ...state,
                 loading: true
             }
 
-        case "GET_ABOUT_SUCCESS":
+        case "GET_REGISTRATION_SUCCESS":
             return {
                 loading: false,
                 success: action.payload.success,
-                about: action.payload.about
+                registration: action.payload.registration
             }
 
-        case "GET_ABOUT_FAIL":
+        case "GET_REGISTRATION_FAIL":
             return {
                 ...state,
                 loading: false,
                 error: action.payload
             }
 
-        //manage about content
-        case "CREATE_ABOUT_REQUEST":
-        case "UPDATE_ABOUT_REQUEST":
-        case "DELETE_ABOUT_REQUEST":
+        //manage registration content
+        case "CREATE_REGISTRATION_REQUEST":
+        case "UPDATE_REGISTRATION_REQUEST":
+        case "DELETE_REGISTRATION_REQUEST":
             return {
                 ...state,
                 loading: true
             }
 
-        case "CREATE_ABOUT_SUCCESS":
+        case "CREATE_REGISTRATION_SUCCESS":
             return {
                 ...state,
                 loading: false,
@@ -39,7 +39,7 @@ const aboutReducer = (state, action) => {
             }
 
 
-        case "UPDATE_ABOUT_SUCCESS":
+        case "UPDATE_REGISTRATION_SUCCESS":
             return {
                 ...state,
                 loading: false,
@@ -47,37 +47,37 @@ const aboutReducer = (state, action) => {
                 message: action.payload.message
             }
 
-        case "DELETE_ABOUT_SUCCESS":
+        case "DELETE_REGISTRATION_SUCCESS":
             return {
                 ...state,
                 loading: false,
                 isDeleted: action.payload
             }
 
-        case "CREATE_ABOUT_FAIL":
-        case "UPDATE_ABOUT_FAIL":
-        case "DELETE_ABOUT_FAIL":
+        case "CREATE_REGISTRATION_FAIL":
+        case "UPDATE_REGISTRATION_FAIL":
+        case "DELETE_REGISTRATION_FAIL":
             return {
                 ...state,
                 loading: false,
                 error: action.payload
             }
 
-        case "CREATE_ABOUT_RESET":
+        case "CREATE_REGISTRATION_RESET":
             return {
                 ...state,
                 loading: false,
                 isCreated: false
             }
 
-        case "UPDATE_ABOUT_RESET":
+        case "UPDATE_REGISTRATION_RESET":
             return {
                 ...state,
                 loading: false,
                 isUpdated: false
             }
 
-        case "DELETE_ABOUT_RESET":
+        case "DELETE_REGISTRATION_RESET":
             return {
                 ...state,
                 loading: false,
@@ -95,4 +95,4 @@ const aboutReducer = (state, action) => {
     }
 }
 
-export default aboutReducer
+export default registrationReducer

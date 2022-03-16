@@ -50,7 +50,8 @@ exports.updateAbout = catchAsyncErrors(async (req, res, next) => {
 
     res.status(200).json({
         success: true,
-        about
+        about,
+        message: "Content updated"
     })
 })
 
@@ -132,7 +133,8 @@ exports.updateBanner = catchAsyncErrors(async (req, res, next) => {
 
     res.status(200).json({
         success: true,
-        banner
+        banner,
+        message: "Content updated"
     })
 })
 
@@ -166,7 +168,10 @@ exports.deleteBanner = catchAsyncErrors(async (req, res, next) => {
 
 //*for donation content
 exports.createDonation = catchAsyncErrors(async (req, res, next) => {
-    const donation = await Donation.create({ ...req.body, qr_code: req.files })
+    const donation = await Donation.create({ ...req.body, account_details: {
+        account_name: req.body.account_name,
+        account_number: req.body.account_number
+    }, qr_code: req.files })
 
     res.status(201).json({
         success: true,
@@ -221,7 +226,10 @@ exports.updateDonation = catchAsyncErrors(async (req, res, next) => {
         }
     }
 
-    donation = await Donation.findByIdAndUpdate(req.params.id, { ...req.body, qr_code }, {
+    donation = await Donation.findByIdAndUpdate(req.params.id, { ...req.body, account_details: {
+        account_name: req.body.account_name,
+        account_number: req.body.account_number
+    }, qr_code }, {
         new: true,
         runValidators: true,
         useFindAndModify: false
@@ -229,7 +237,8 @@ exports.updateDonation = catchAsyncErrors(async (req, res, next) => {
 
     res.status(200).json({
         success: true,
-        donation
+        donation,
+        message: "Content updated"
     })
 })
 
@@ -263,7 +272,7 @@ exports.deleteDonation = catchAsyncErrors(async (req, res, next) => {
 
 //*for registration content
 exports.createRegistration = catchAsyncErrors(async (req, res, next) => {  
-    if(req.body.registrationType !== 1 && req.body.registrationType !== 2) {
+    if(Number(req.body.registrationType) !== 1 && Number(req.body.registrationType) !== 2) {
         return next(new ErrorHandler('Invalid registration type', 404))
     }
 
@@ -301,7 +310,7 @@ exports.updateRegistration = catchAsyncErrors(async (req, res, next) => {
 
     if (!registration) { return next(new ErrorHandler('Registration not found', 404)) }
 
-    if(req.body.registrationType !== 1 && req.body.registrationType !== 2) {
+    if(Number(req.body.registrationType) !== 1 && Number(req.body.registrationType) !== 2) {
         return next(new ErrorHandler('Invalid registration type', 404))
     }
     
@@ -313,7 +322,8 @@ exports.updateRegistration = catchAsyncErrors(async (req, res, next) => {
 
     res.status(200).json({
         success: true,
-        registration
+        registration,
+        message: "Content updated"
     })
 })
 
