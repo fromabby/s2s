@@ -37,6 +37,8 @@ import UpdateBlogForm from './components/admin/blog/UpdateBlogForm';
 import BlogList from './components/admin/blog/BlogList';
 import ArchiveBlogList from './components/admin/blog/ArchiveBlogList';
 
+import AboutList from './components/admin/about/AboutList';
+
 import MyProfile from './components/admin/MyProfile';
 import UpdateProfile from './components/admin/UpdateProfile';
 import UpdatePassword from './components/admin/UpdatePassword';
@@ -103,6 +105,7 @@ const App = () => {
                                     <Route path="/me" element={<MyProfile />} />
                                     <Route path="/me/update" element={<UpdateProfile />} />
                                     <Route path="/password/update" element={<UpdatePassword />} />
+                                    <Route path="/admin/about" element={<AboutList />} />
                                 </Route>
                             </Routes>
 
@@ -126,7 +129,6 @@ const App = () => {
                         </NavBar>
                     </AuthContextProvider>
                 </ScrollToTop>
-                <button onClick={() => logout()}>logout</button>
             </div>
         </Router >
     )
