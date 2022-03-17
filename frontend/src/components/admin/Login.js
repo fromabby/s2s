@@ -2,6 +2,8 @@ import React, { useReducer, useContext, useEffect } from 'react'
 import AuthContext from '../../context/authContext'
 import { useAlert } from 'react-alert'
 import { Link, useNavigate } from 'react-router-dom'
+import Metadata from '../layout/Metadata'
+import { Button, Form } from 'react-bootstrap'
 
 const emailReducer = (state, action) => {
     switch (action.type) {
@@ -26,7 +28,7 @@ const passwordReducer = (state, action) => {
     }
 }
 
-const Login = () => {
+const Login = ({ title }) => {
 
     const [email, dispatchEmail] = useReducer(emailReducer, { value: '', isValid: false });
     const [password, dispatchPassword] = useReducer(passwordReducer, { value: '', isValid: false })
@@ -71,12 +73,21 @@ const Login = () => {
 
     return (
         <div>
-            <form onSubmit={submitHandler}>
-                <input type="email" value={email.value} onBlur={validateEmail} onChange={emailChangeHandler} />
-                <input type="password" value={password.value} onBlur={validatePassword} onChange={passwordChangeHandler} />
-                <button type="submit" value="submit" disabled={loading ? true : false}>Submit</button>
-                <Link to='/forgot-password'>Forgot password?</Link>                
-            </form>
+            <Metadata title={title} />
+            <Form className="container mt-2" onSubmit={submitHandler}>
+                <Form.Group className="mb-3">
+                    <Form.Label>Email address</Form.Label>
+                    <Form.Control type="text" name="email" placeholder="Enter email address" onChange={emailChangeHandler} required />
+                </Form.Group>
+                <Form.Group>
+                    <Form.Label>Password</Form.Label>
+                    <Form.Control type="password" name="password" placeholder="Enter password" onChange={passwordChangeHandler} required />
+                </Form.Group>
+                <Button variant="primary" type="submit" disabled={loading ? true : false} >
+                    Submit
+                </Button>
+                <Link to='/forgot-password'>Forgot password?</Link>
+            </Form>
         </div>
     )
 }

@@ -6,11 +6,10 @@ import Banners from './home/Banners'
 import Metadata from '../layout/Metadata'
 import PostContext from '../../context/postContext'
 
-const Home = () => {
+const Home = ({ title }) => {
 
     const { posts } = useContext(PostContext)
 
-    console.log(posts)
     const { posts: postList, isLoading } = posts
 
     const featuredPost = postList.filter(post => post.isFeature === true)[0] || postList[0]
@@ -18,10 +17,10 @@ const Home = () => {
     return (
         (!isLoading && postList.length > 0) &&
         <div>
-            <Metadata title={`Home`} />
+            <Metadata title={title} />
             <Banners />
             <div className="container-home container">
-                <FeaturedBlogs featuredPost={featuredPost} subFeaturedPost={subFeaturedPost}/>
+                <FeaturedBlogs featuredPost={featuredPost} subFeaturedPost={subFeaturedPost} />
                 <RecentBlogs recentPosts={postList} />
             </div>
         </div>

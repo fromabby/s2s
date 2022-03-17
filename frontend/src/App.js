@@ -114,15 +114,15 @@ const App = () => {
                             <PostContextProvider>
                                 <CommentContextProvider>
                                     <Routes>
-                                        <Route path="/" element={<Home />} />
-                                        <Route path="/blog" element={<PublicBlogList />} />
+                                        <Route path="/" element={<Home title={`Home`} />} />
+                                        <Route path="/blog" element={<PublicBlogList title={`Blogs`} />} />
                                         <Route path="/blog/:id" element={<PublicBlogDetails />} />
-                                        <Route path="/verify/:slug" element={<OtpBox />} />
+                                        <Route path="/verify/:slug" element={<OtpBox title={`Verify your account`} />} />
 
                                         <Route element={<AdminRoutes />}>
                                             <Route path="/admin/blog" element={<BlogList title={`Manage Blogs`} />} />
-                                            <Route path="/admin/blog/archive" element={<ArchiveBlogList title={`Manage Archived Blogs`}/>} />
-                                            <Route path="/admin/blog/featured" element={<FeaturedBlogList title={`Manage Featured Blogs`}/>} />
+                                            <Route path="/admin/blog/archive" element={<ArchiveBlogList title={`Manage Archived Blogs`} />} />
+                                            <Route path="/admin/blog/featured" element={<FeaturedBlogList title={`Manage Featured Blogs`} />} />
                                             <Route path="/admin/blog/new" element={<CreateBlogForm title={`Add New Blog`} />} />
                                             <Route path="/admin/blog/edit/:id" element={<UpdateBlogForm title={`Update Blog`} />} />
                                         </Route>
@@ -132,9 +132,9 @@ const App = () => {
 
                             <Routes>
                                 <Route element={<AdminRoutes />}>
-                                    <Route path="/me" element={<MyProfile title={`My Profile`}/>} />
-                                    <Route path="/me/update" element={<UpdateProfile title={`Update Profile`}/>} />
-                                    <Route path="/password/update" element={<UpdatePassword title={`Change Profile`}/>} />
+                                    <Route path="/me" element={<MyProfile title={`My Profile`} />} />
+                                    <Route path="/me/update" element={<UpdateProfile title={`Update Profile`} />} />
+                                    <Route path="/password/update" element={<UpdatePassword title={`Change Profile`} />} />
                                 </Route>
                             </Routes>
 
@@ -209,11 +209,9 @@ const App = () => {
                             <PasswordContextProvider>
                                 <Routes>
                                     <Route path="/forgot-password" element={<ForgotPassword title={`Forgot password?`} />} />
-                                    <Route path="/password/reset/:token" element={<ResetPassword />} />
+                                    <Route path="/password/reset/:token" element={<ResetPassword title={`Rest your password`} />} />
                                 </Routes>
                             </PasswordContextProvider>
-                            <Routes>
-                            </Routes>
                         </NavBar>
                     </AuthContextProvider>
                 </ScrollToTop>

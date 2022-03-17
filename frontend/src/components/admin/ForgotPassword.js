@@ -2,8 +2,10 @@ import React, { useState, useContext, useEffect } from 'react'
 import { useAlert } from 'react-alert'
 import { useNavigate } from 'react-router-dom'
 import PasswordContext from '../../context/passwordContext'
+import Metadata from '../layout/Metadata'
+import { Button, Form } from 'react-bootstrap'
 
-const ForgotPassword = () => {
+const ForgotPassword = ({ title }) => {
     const alert = useAlert()
     const navigate = useNavigate()
 
@@ -30,11 +32,16 @@ const ForgotPassword = () => {
     }
     return (
         <div>
-            forgot password
-            <form onSubmit={submitHandler}>
-                <input type='email' value={email} onChange={e => setEmail(e.target.value)} />
-                <input type='submit' value='submit' disabled={loading ? true : false} />
-            </form>
+            <Metadata title={title} />
+            <Form className="container mt-2" onSubmit={submitHandler}>
+                <Form.Group className="mb-3">
+                    <Form.Label>Email address</Form.Label>
+                    <Form.Control type="text" value={email} placeholder="Enter email address" onChange={e => setEmail(e.target.value)} required />
+                </Form.Group>
+                <Button variant="primary" type="submit" disabled={loading ? true : false} >
+                    Submit
+                </Button>
+            </Form>
         </div>
     )
 }

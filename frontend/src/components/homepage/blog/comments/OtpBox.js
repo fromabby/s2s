@@ -38,7 +38,7 @@ const OtpBox = () => {
     return (
         <div>
             <Metadata title={`Verify your account`} />
-            <form onSubmit={submitHandler}>
+            <Form className="container mt-2" onSubmit={submitHandler}>
                 <Form.Group className="mb-3">
                     <Form.Label>Enter OTP</Form.Label>
                     <Form.Control type="text" name="otp" placeholder="xxxxxx" value={otp} onChange={e => setOtp(e.target.value)} />
@@ -47,11 +47,10 @@ const OtpBox = () => {
                     <Form.Label>Enter your name</Form.Label>
                     <Form.Control type="text" name="name" placeholder="Juan Dela Cruz" value={name} onChange={e => setName(e.target.value)} />
                 </Form.Group>
-
                 <Button variant="primary" type="submit" disabled={isLoading ? true : false}>
                     Submit
                 </Button>
-            </form>
+            </Form>
         </div>
     )
 }

@@ -4,7 +4,7 @@ import formatDate from '../../../formatDate'
 
 const FeaturedBlogs = ({ featuredPost, subFeaturedPost }) => {
 
-    const { title, content, images, author, createdAt, _id:id } = featuredPost
+    const { title, content, images, author, createdAt, _id: id } = featuredPost
     return (
         <div>
             <div className="featured">

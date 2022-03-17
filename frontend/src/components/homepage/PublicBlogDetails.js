@@ -37,7 +37,7 @@ const PublicBlogDetails = () => {
 
     return (
         <>
-            <Metadata title={post.title} />
+            <Metadata title={post.title ? post.title : 'Blog Details'} />
             {
                 !isLoading ?
                     post ?

@@ -3,7 +3,7 @@ import axios from 'axios'
 import "./css/Partners.css";
 import Metadata from '../layout/Metadata'
 
-const Partners = () => {
+const Partners = ({ title }) => {
     const [partners, setPartners] = useState([])
     const [loading, setLoading] = useState(true)
 
@@ -33,7 +33,8 @@ const Partners = () => {
                 backgroundSize: "cover",
             }}
         >
-            <Metadata title={`Partners`} />
+            <Metadata title={title} />
+
             <div className="container-register">
                 <div id="register">
                     <h1 style={{ fontSize: "3.5vw" }} className="text-center">

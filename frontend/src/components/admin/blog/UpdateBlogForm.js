@@ -3,10 +3,11 @@ import React, { Fragment, useContext, useEffect, useState } from 'react'
 import { useAlert } from 'react-alert';
 import { Button, Form } from 'react-bootstrap';
 import { useNavigate, useParams } from 'react-router-dom';
+import Metadata from '../../layout/Metadata'
 import PostContext from '../../../context/postContext'
 
 
-const UpdateBlogForm = () => {
+const UpdateBlogForm = ({ title }) => {
 
     const [post, setPost] = useState({})
     const [images, setImages] = useState([])
@@ -70,26 +71,27 @@ const UpdateBlogForm = () => {
     return (
         !isLoading && post ?
             <Fragment>
+                <Metadata title={title} />
                 <Form className="container mt-2" onSubmit={submitHandler}>
 
                     <Form.Group className="mb-3">
                         <Form.Label>Title</Form.Label>
-                        <Form.Control type="text" name="title" placeholder="Enter Title" value={post.title} onChange={changeHandler} required/>
+                        <Form.Control type="text" name="title" placeholder="Enter Title" value={post.title} onChange={changeHandler} required />
                     </Form.Group>
 
                     <Form.Group className="mb-3">
                         <Form.Label>Author</Form.Label>
-                        <Form.Control type="text" name="author" placeholder="Enter Author" value={post.author} onChange={changeHandler} required/>
+                        <Form.Control type="text" name="author" placeholder="Enter Author" value={post.author} onChange={changeHandler} required />
                     </Form.Group>
 
                     <Form.Group className="mb-3">
                         <Form.Label>Content</Form.Label>
-                        <Form.Control as="textarea" name="content" value={post.content} onChange={changeHandler} required/>
+                        <Form.Control as="textarea" name="content" value={post.content} onChange={changeHandler} required />
                     </Form.Group>
 
                     <Form.Group className="mb-3">
                         <Form.Label>Select Images</Form.Label>
-                        <Form.Control type="file" multiple onChange={(e) => setImages(Array.from(e.target.files))}/>
+                        <Form.Control type="file" multiple onChange={(e) => setImages(Array.from(e.target.files))} />
                     </Form.Group>
 
                     <Button variant="primary" type="submit">

@@ -3,7 +3,7 @@ import "./css/About.css"
 import axios from 'axios'
 import Metadata from '../layout/Metadata'
 
-const About = () => {
+const About = ({ title }) => {
     const [abouts, setAbouts] = useState([])
     const [loading, setLoading] = useState(false)
 
@@ -35,7 +35,7 @@ const About = () => {
                 backgroundSize: "cover",
             }}
         >
-            <Metadata title={`About`} />
+            <Metadata title={title} />
             <div className="about">
 
                 <div class="about-us-body">

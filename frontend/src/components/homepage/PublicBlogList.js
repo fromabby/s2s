@@ -5,7 +5,7 @@ import Metadata from '../layout/Metadata'
 import './css/Blog.css'
 import { Button } from 'react-bootstrap'
 
-const PublicBlogList = () => {
+const PublicBlogList = ({ title }) => {
 
     const { posts: postData } = useContext(PostContext)
     const { isLoading, posts } = postData
@@ -22,7 +22,7 @@ const PublicBlogList = () => {
 
     return (
         <>
-            <Metadata title={`Blogs`} />
+            <Metadata title={title} />
             {
                 isLoading ? <>Loading</> :
                     <div id="blog">

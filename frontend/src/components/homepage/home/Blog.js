@@ -2,7 +2,7 @@ import React from 'react'
 import formatDate from '../../../formatDate'
 
 
-const Blog = ({post}) => {
+const Blog = ({ post }) => {
 
     return (
         <div className="recent_card">

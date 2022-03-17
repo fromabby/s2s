@@ -2,7 +2,7 @@ import React from 'react'
 import './css/Contact.css'
 import Metadata from '../layout/Metadata'
 
-const Contact = () => {
+const Contact = ({ title }) => {
     const faqs = [
         {
             question: "What is STS?",
@@ -43,7 +43,7 @@ const Contact = () => {
                 backgroundImage: 'url(/public/bg.png)',
                 backgroundSize: "cover"
             }}>
-            <Metadata title={`Contacts`} />
+            <Metadata title={title} />
 
             <div id="contact">
                 <br /><br /><br /><br />

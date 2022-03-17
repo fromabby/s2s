@@ -3,7 +3,7 @@ import axios from 'axios'
 import './css/Donate.css'
 import Metadata from '../layout/Metadata'
 
-const Donate = () => {
+const Donate = ({ title }) => {
     const [donationDetails, setDonationDetails] = useState([])
     const [loading, setLoading] = useState(true)
 
@@ -35,7 +35,8 @@ const Donate = () => {
                 backgroundImage: `url(/images/bg.png)`,
                 backgroundSize: "cover"
             }}>
-            <Metadata title={`Donate`} />
+            <Metadata title={title} />
+
 
             <div id="donate">
                 <h1 style={{ fontSize: '3.5vw' }} className="text-center">Donation Platforms</h1>
