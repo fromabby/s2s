@@ -2,13 +2,13 @@ import React, { useState, useContext, useEffect } from 'react'
 import axios from 'axios'
 import { useAlert } from 'react-alert'
 import { useNavigate } from 'react-router-dom'
-import { Button } from 'react-bootstrap'
+import { Button, Table } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import Metadata from '../../layout/Metadata'
 import RecordContext from '../../../context/recordContext'
 import formatDate from '../../../formatDate'
 
-const RecordList = () => {
+const RecordList = ({ title }) => {
     const navigate = useNavigate()
     const alert = useAlert()
 
@@ -52,39 +52,46 @@ const RecordList = () => {
 
     return (
         <div>
-            <Metadata title={`Manage Records`} />
+            <Metadata title={title} />
             <div>
-                <h1>Records</h1>
-                <Link to="/admin/record/new">
-                    <Button variant={"primary"}>Create</Button>
-                </Link>
-
                 {loading ? <h1>Loading...</h1> : <>
-                    <table>
-                        <thead>
-                            <th>Date</th>
-                            <th>Name</th>
-                            <th>Platform</th>
-                            <th>Amount</th>
-                            <th>Actions</th>
-                        </thead>
-                        <tbody>
-                            {records && records.map(record => (
+                    <div className='manage-post-div'>
+                        <h1>Manage Records</h1>
+                        <div className='create-button'>
+                            <Link to="/admin/record/new">
+                                <Button variant={"success"}>Add new record</Button>
+                            </Link>
+                        </div>
+                        <Table responsive="sm">
+                            <thead>
                                 <tr>
-                                    <td>{formatDate(record.record_date)}</td>
-                                    <td>{record.record_name}</td>
-                                    <td>{record.record_platform}</td>
-                                    <td>{record.record_amount}</td>
-                                    <td>
-                                        <Link to={`/admin/record/${record._id}`}>
-                                            <Button variant={"primary"}>Edit</Button>
-                                        </Link>
-                                        <Button variant={"danger"} onClick={() => deleteHandler(record._id)} disabled={deleteLoading ? true : false}>Delete</Button>
-                                    </td>
+                                    <th scope="col">DATE</th>
+                                    <th scope="col">NAME</th>
+                                    <th scope="col">PLATFORM</th>
+                                    <th scope="col">AMOUNT</th>
+                                    <th scope="col">ACTIONS</th>
                                 </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                {records && records.map(record => (
+                                    <tr>
+                                        <td><div className="td-container">{formatDate(record.record_date)}</div></td>
+                                        <td><div className="td-container">{record.record_name}</div></td>
+                                        <td><div className="td-container">{record.record_platform}</div></td>
+                                        <td><div className="td-container">{record.record_amount}</div></td>
+                                        <td>
+                                            <div className="td-container">
+                                                <Link to={`/admin/record/${record._id}`}>
+                                                    <Button variant={"primary"}>Edit</Button>
+                                                </Link>
+                                                <Button variant={"danger"} onClick={() => deleteHandler(record._id)} disabled={deleteLoading ? true : false}>Delete</Button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </Table>
+                    </div>
                 </>}
             </div>
         </div>

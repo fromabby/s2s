@@ -74,22 +74,22 @@ const UpdateBlogForm = () => {
 
                     <Form.Group className="mb-3">
                         <Form.Label>Title</Form.Label>
-                        <Form.Control type="text" name="title" placeholder="Enter Title" value={post.title} onChange={changeHandler} />
+                        <Form.Control type="text" name="title" placeholder="Enter Title" value={post.title} onChange={changeHandler} required/>
                     </Form.Group>
 
                     <Form.Group className="mb-3">
                         <Form.Label>Author</Form.Label>
-                        <Form.Control type="text" name="author" placeholder="Enter Author" value={post.author} onChange={changeHandler} />
+                        <Form.Control type="text" name="author" placeholder="Enter Author" value={post.author} onChange={changeHandler} required/>
                     </Form.Group>
 
                     <Form.Group className="mb-3">
                         <Form.Label>Content</Form.Label>
-                        <Form.Control as="textarea" name="content" value={post.content} onChange={changeHandler} />
+                        <Form.Control as="textarea" name="content" value={post.content} onChange={changeHandler} required/>
                     </Form.Group>
 
                     <Form.Group className="mb-3">
                         <Form.Label>Select Images</Form.Label>
-                        <Form.Control type="file" multiple onChange={(e) => setImages(Array.from(e.target.files))} />
+                        <Form.Control type="file" multiple onChange={(e) => setImages(Array.from(e.target.files))}/>
                     </Form.Group>
 
                     <Button variant="primary" type="submit">

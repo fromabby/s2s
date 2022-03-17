@@ -2,8 +2,10 @@ import React, { useState, useEffect, useContext } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useAlert } from 'react-alert'
 import RegistrationContext from '../../../context/registrationContext'
+import Metadata from '../../layout/Metadata'
+import { Button, Form } from 'react-bootstrap'
 
-const UpdateRegistrationForm = () => {
+const UpdateRegistrationForm = ({ title }) => {
     const navigate = useNavigate()
     const alert = useAlert()
     const { id } = useParams()
@@ -47,11 +49,26 @@ const UpdateRegistrationForm = () => {
 
     return (
         <>
-            {!detailsLoading && <form onSubmit={submitHandler}>
-                <input type="text" value={link} onChange={e => setLink(e.target.value)} required />
-                <input type="text" value={registrationType} onChange={e => setRegistrationType(e.target.value)} required />
-                <input type="submit" value="update" disabled={loading ? true : false} />
-            </form>}
+            <Metadata title={title} />
+            {!detailsLoading &&
+                <Form className="container mt-2" onSubmit={submitHandler}>
+                    <Form.Group className="mb-3">
+                        <Form.Label>Registration Link</Form.Label>
+                        <Form.Control type="text" value={link} placeholder="Enter registration link" onChange={e => setLink(e.target.value)} required />
+                    </Form.Group>
+                    <Form.Group className="mb-3">
+                        <Form.Label>Registration Type</Form.Label>
+                        <Form.Select name="registrationType" placeholder="Enter registration type" onChange={e => setRegistrationType(e.target.value)} required>
+                            <option>-</option>
+                            <option value="1" selected={registrationType == 1 ? true : false}>Partner</option>
+                            <option value="2" selected={registrationType == 2 ? true : false}>Volunteer</option>
+                        </Form.Select>
+                    </Form.Group>
+                    <Button variant="primary" type="submit" disabled={loading ? true : false} >
+                        Submit
+                    </Button>
+                </Form>
+            }
         </>
     )
 }

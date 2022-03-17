@@ -100,8 +100,9 @@ exports.resetPassword = catchAsyncErrors(async (req, res, next) => {
 })
 
 exports.register = catchAsyncErrors(async (req, res, next) => {
-    const { email, password, role, confirmPassword } = req.body
+    const { email, name, password, role, confirmPassword } = req.body
 
+    console.log(name)
     if (passVal.validate(req.body.password) !== true) { return next(new ErrorHandler('Please follow password format', 400)) }
     if (password !== confirmPassword) { return next(new ErrorHandler('Password does not match')) }
 
@@ -109,8 +110,9 @@ exports.register = catchAsyncErrors(async (req, res, next) => {
 
     if (user) { return next(new ErrorHandler('Email account already exists', 404)) }
 
-    const newUser = await User.create({ email, password, role })
+    const newUser = await User.create({ email, name, password, role })
 
+    console.log(newUser)
     res.status(201).json({
         success: true,
         message: "User created successfully",

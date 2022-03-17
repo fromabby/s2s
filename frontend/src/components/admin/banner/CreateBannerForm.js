@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAlert } from 'react-alert'
+import Metadata from '../../layout/Metadata'
+import { Button, Form } from 'react-bootstrap'
 import BannerContext from '../../../context/bannerContext'
 
-const CreateBannerForm = () => {
+const CreateBannerForm = ({ title }) => {
     const navigate = useNavigate()
     const alert = useAlert()
 
@@ -19,7 +21,7 @@ const CreateBannerForm = () => {
             navigate('/admin/banner')
         }
 
-        if(error) {
+        if (error) {
             alert.error(error)
         }
     }, [isCreated, message, error])
@@ -35,10 +37,16 @@ const CreateBannerForm = () => {
 
     return (
         <>
-            <form onSubmit={submitHandler}>
-                <input type="file" name={image} accept="image/*" onChange={e => setImage(Array.from(e.target.files))} required/>
-                <input type="submit" value="create" disabled={loading ? true : false} />
-            </form>
+            <Metadata title={title} />
+            <Form className="container mt-2" onSubmit={submitHandler}>
+                <Form.Group className="mb-3">
+                    <Form.Label>Banner image</Form.Label>
+                    <Form.Control type="file" name={image} accept="image/*" onChange={e => setImage(Array.from(e.target.files))} required  />
+                </Form.Group>
+                <Button variant="primary" type="submit" disabled={loading ? true : false} >
+                    Submit
+                </Button>
+            </Form>
         </>
     )
 }

@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAlert } from 'react-alert'
+import { Button, Form } from 'react-bootstrap'
 import AboutContext from '../../../context/aboutContext'
+import Metadata from '../../layout/Metadata'
 
-const CreateAboutForm = () => {
+const CreateAboutForm = ({ title }) => {
     const navigate = useNavigate()
     const alert = useAlert()
 
@@ -19,7 +21,7 @@ const CreateAboutForm = () => {
             navigate('/admin/about')
         }
 
-        if(error) {
+        if (error) {
             alert.error(error)
         }
     }, [isCreated, message, error])
@@ -32,10 +34,16 @@ const CreateAboutForm = () => {
 
     return (
         <>
-            <form onSubmit={submitHandler}>
-                <input type="text" value={content} onChange={e => setContent(e.target.value)} required />
-                <input type="submit" value="create" disabled={loading ? true : false} />
-            </form>
+            <Metadata title={title} />
+            <Form className="container mt-2" onSubmit={submitHandler}>
+                <Form.Group className="mb-3">
+                    <Form.Label>Content</Form.Label>
+                    <Form.Control type="text" name="title" placeholder="Enter content" value={content} onChange={e => setContent(e.target.value)} required />
+                </Form.Group>
+                <Button variant="primary" type="submit" disabled={loading ? true : false} >
+                    Submit
+                </Button>
+            </Form>
         </>
     )
 }

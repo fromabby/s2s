@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
+import { Button, Form } from 'react-bootstrap'
 import { useAlert } from 'react-alert'
+import Metadata from '../../layout/Metadata'
 import AboutContext from '../../../context/aboutContext'
 
-const UpdateAboutForm = () => {
+const UpdateAboutForm = ({ title }) => {
     const navigate = useNavigate()
     const alert = useAlert()
     const { id } = useParams()
@@ -15,7 +17,7 @@ const UpdateAboutForm = () => {
     const { loading, isUpdated, error, message, about: aboutDetails } = about
 
     useEffect(() => {
-        if(aboutDetails && aboutDetails._id !== id) {
+        if (aboutDetails && aboutDetails._id !== id) {
             getAbout(id)
         } else if (aboutDetails) {
             setContent(aboutDetails.content)
@@ -41,10 +43,20 @@ const UpdateAboutForm = () => {
 
     return (
         <>
-            {!loading && <form onSubmit={submitHandler}>
-                <input type="text" value={content} onChange={e => setContent(e.target.value)} style={{ width: '100' }} required />
-                <input type="submit" value="update" disabled={loading ? true : false} />
-            </form>}
+            {!loading &&
+                <>
+                    <Metadata title={title} />
+                    <Form className="container mt-2" onSubmit={submitHandler}>
+                        <Form.Group className="mb-3">
+                            <Form.Label>Content</Form.Label>
+                            <Form.Control type="text" name="title" placeholder="Enter content" value={content} onChange={e => setContent(e.target.value)} required />
+                        </Form.Group>
+                        <Button variant="primary" type="submit" disabled={loading ? true : false} >
+                            Submit
+                        </Button>
+                    </Form>
+                </>
+            }
         </>
     )
 }

@@ -2,12 +2,12 @@ import React, { useState, useContext, useEffect } from 'react'
 import axios from 'axios'
 import { useAlert } from 'react-alert'
 import { useNavigate } from 'react-router-dom'
-import { Button } from 'react-bootstrap'
+import { Button, Table } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import Metadata from '../../layout/Metadata'
 import RegistrationContext from '../../../context/registrationContext'
 
-const RegistrationList = () => {
+const RegistrationList = ({ title }) => {
     const navigate = useNavigate()
     const alert = useAlert()
 
@@ -50,35 +50,43 @@ const RegistrationList = () => {
 
     return (
         <div>
-            <Metadata title={`Manage Registration Links`} />
+            <Metadata title={title} />
             <div>
-                <h1>Awards and Recognitions</h1>
-                <Link to="/admin/registration/new">
-                    <Button variant={"primary"}>Create</Button>
-                </Link>
-
                 {loading ? <h1>Loading...</h1> : <>
-                    <table>
-                        <thead>
-                            <th>Link</th>
-                            <th>Type</th>
-                            <th>Actions</th>
-                        </thead>
-                        <tbody>
-                            {registrations && registrations.map(registration => (
+                    <div className='manage-post-div'>
+                        <h1>Manage Registration Links</h1>
+                        <div className="create-button">
+                            <Link to="/admin/registration/new">
+                                <Button variant={"success"}>Add registration link</Button>
+                            </Link>
+                        </div>
+
+                        <Table responsive="sm">
+                            <thead>
                                 <tr>
-                                    <td>{registration.link}</td>
-                                    <td>{registration.registrationType}</td>
-                                    <td>
-                                        <Link to={`/admin/registration/${registration._id}`}>
-                                            <Button variant={"primary"}>Edit</Button>
-                                        </Link>
-                                        <Button variant={"danger"} onClick={() => deleteHandler(registration._id)} disabled={deleteLoading ? true : false}>Delete</Button>
-                                    </td>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">LINK</th>
+                                    <th scope="col">TYPE</th>
+                                    <th scope="col">ACTIONS</th>
                                 </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                {registrations && registrations.map(registration => (
+                                    <tr>
+                                        <td><div className="td-container">id goes here</div></td>
+                                        <td><div className="td-container">{registration.link}</div></td>
+                                        <td><div className="td-container">{registration.registrationType}: {registration.registrationType === 1 ? "Partner" : "Volunteer"}</div></td>
+                                        <td><div className="td-container">
+                                            <Link to={`/admin/registration/${registration._id}`}>
+                                                <Button variant={"primary"}>Edit</Button>
+                                            </Link>
+                                            <Button variant={"danger"} onClick={() => deleteHandler(registration._id)} disabled={deleteLoading ? true : false}>Delete</Button>
+                                        </div></td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </Table>
+                    </div>
                 </>}
             </div>
         </div>

@@ -2,8 +2,10 @@ import React, { useState, useEffect, useContext } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useAlert } from 'react-alert'
 import BannerContext from '../../../context/bannerContext'
+import Metadata from '../../layout/Metadata'
+import { Button, Form } from 'react-bootstrap'
 
-const UpdateBannerForm = () => {
+const UpdateBannerForm = ({ title }) => {
     const navigate = useNavigate()
     const alert = useAlert()
     const { id } = useParams()
@@ -17,7 +19,7 @@ const UpdateBannerForm = () => {
     const [detailsLoading, setDetailsLoading] = useState(true)
 
     useEffect(() => {
-        if(bannerDetails && bannerDetails._id !== id) {
+        if (bannerDetails && bannerDetails._id !== id) {
             getBanner(id)
             setDetailsLoading(false)
         } else if (bannerDetails) {
@@ -55,11 +57,19 @@ const UpdateBannerForm = () => {
     }
     return (
         <>
-            {!detailsLoading && <form onSubmit={submitHandler}>
-                {oldImage && <img src={oldImage} height="100"/>}
-                <input type="file" name={image} accept="image/*" onChange={onChange} required/>
-                <input type="submit" value="update" disabled={loading ? true : false} />
-            </form>}
+            <Metadata title={title} />
+            {!detailsLoading &&
+                <Form className="container mt-2" onSubmit={submitHandler}>
+                    <Form.Group className="mb-3">
+                        <Form.Label>Banner image</Form.Label>
+                        {oldImage && <img src={oldImage} height="100" />}
+                        <Form.Control type="file" name={image} accept="image/*" onChange={onChange} required />
+                    </Form.Group>
+                    <Button variant="primary" type="submit" disabled={loading ? true : false} >
+                        Submit
+                    </Button>
+                </Form>
+            }
         </>
     )
 }

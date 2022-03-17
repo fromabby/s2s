@@ -2,12 +2,12 @@ import React, { useState, useContext, useEffect } from 'react'
 import axios from 'axios'
 import { useAlert } from 'react-alert'
 import { useNavigate } from 'react-router-dom'
-import { Button } from 'react-bootstrap'
+import { Button, Table } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import Metadata from '../../layout/Metadata'
 import AboutContext from '../../../context/aboutContext'
 
-const AboutList = () => {
+const AboutList = ({title}) => {
     const navigate = useNavigate()
     const alert = useAlert()
 
@@ -50,33 +50,40 @@ const AboutList = () => {
 
     return (
         <div>
-            <Metadata title={`Manage About Us`} />
+            <Metadata title={title} />
             <div>
-                <h1>Awards and Recognitions</h1>
-                <Link to="/admin/about/new">
-                    <Button variant={"primary"}>Create</Button>
-                </Link>
-
                 {loading ? <h1>Loading...</h1> : <>
-                    <table>
-                        <thead>
-                            <th>Content</th>
-                            <th>Actions</th>
-                        </thead>
-                        <tbody>
-                            {abouts && abouts.map(about => (
+                    <div className='manage-post-div'>
+                        <h1>Manage Awards and Recognitions</h1>
+                        <div className='create-button'>
+                            <Link to="/admin/about/new">
+                                <Button variant={"success"}>Add new about</Button>
+                            </Link>
+                        </div>
+                        <Table responsive="sm">
+                            <thead>
                                 <tr>
-                                    <td>{about.content}</td>
-                                    <td>
-                                        <Link to={`/admin/about/${about._id}`}>
-                                            <Button variant={"primary"}>Edit</Button>
-                                        </Link>
-                                        <Button variant={"danger"} onClick={() => deleteHandler(about._id)} disabled={deleteLoading ? true : false}>Delete</Button>
-                                    </td>
+                                    <th scope="col">CONTENT</th>
+                                    <th scope="col">ACTIONS</th>
                                 </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                {abouts && abouts.map(about => (
+                                    <tr>
+                                        <td><div className="td-container">{about.content}</div></td>
+                                        <td>
+                                            <div className="td-container">
+                                                <Link to={`/admin/about/${about._id}`}>
+                                                    <Button variant={"primary"}>Edit</Button>
+                                                </Link>
+                                                <Button variant={"danger"} onClick={() => deleteHandler(about._id)} disabled={deleteLoading ? true : false}>Delete</Button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </Table>
+                    </div>
                 </>}
             </div>
         </div>

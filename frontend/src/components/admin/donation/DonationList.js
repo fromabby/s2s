@@ -2,12 +2,12 @@ import React, { useState, useContext, useEffect } from 'react'
 import axios from 'axios'
 import { useAlert } from 'react-alert'
 import { useNavigate } from 'react-router-dom'
-import { Button } from 'react-bootstrap'
+import { Button, Table } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import Metadata from '../../layout/Metadata'
 import DonationContext from '../../../context/donationContext'
 
-const DonationList = () => {
+const DonationList = ({ title }) => {
     const navigate = useNavigate()
     const alert = useAlert()
 
@@ -50,39 +50,52 @@ const DonationList = () => {
 
     return (
         <div>
-            <Metadata title={`Manage Donations`} />
+            <Metadata title={title} />
             <div>
-                <h1>Donations</h1>
-                <Link to="/admin/donation/new">
-                    <Button variant={"primary"}>Create</Button>
-                </Link>
-
                 {loading ? <h1>Loading...</h1> : <>
-                    <table>
-                        <thead>
-                            <th>Bank Name</th>
-                            <th>Account Name</th>
-                            <th>Instructions</th>
-                            <th>QR Code</th>
-                            <th>Actions</th>
-                        </thead>
-                        <tbody>
-                            {donations && donations.map(donation => (
+                    <div className='manage-post-div'>
+                        <h1>Manage Donation Links</h1>
+                        <div className='create-button'>
+                            <Link to="/admin/donation/new">
+                                <Button variant={"success"}>Add new donation</Button>
+                            </Link>
+                        </div>
+                        <Table responsive="sm">
+                            <thead>
                                 <tr>
-                                    <td>{donation.bank_name}</td>
-                                    <td>{donation.account_details.account_name}</td>
-                                    <td>{donation.instructions}</td>
-                                    <td><img src={donation.qr_code[0].path} height="100"/></td>
-                                    <td>
-                                        <Link to={`/admin/donation/${donation._id}`}>
-                                            <Button variant={"primary"}>Edit</Button>
-                                        </Link>
-                                        <Button variant={"danger"} onClick={() => deleteHandler(donation._id)} disabled={deleteLoading ? true : false}>Delete</Button>
-                                    </td>
+                                    <th scope="col">BANK NAME</th>
+                                    <th scope="col">ACCOUNT NAME</th>
+                                    <th scope="col">INSTRUCTIONS</th>
+                                    <th scope="col">QR CODE</th>
+                                    <th scope="col">ACTIONS</th>
                                 </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                {donations && donations.map(donation => (
+                                    <tr>
+                                        <td><div className="td-container">{donation.bank_name}</div></td>
+                                        <td><div className="td-container">{donation.account_details.account_name}</div></td>
+                                        <td><div className="td-container">{donation.instructions}</div></td>
+                                        <td>
+                                            <div className="td-container">
+                                                <div className='image-wrapper'>
+                                                    <img className='image' src={donation.qr_code[0].path} />
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div className="td-container">
+                                                <Link to={`/admin/donation/${donation._id}`}>
+                                                    <Button variant={"primary"}>Edit</Button>
+                                                </Link>
+                                                <Button variant={"danger"} onClick={() => deleteHandler(donation._id)} disabled={deleteLoading ? true : false}>Delete</Button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </Table>
+                    </div>
                 </>}
             </div>
         </div>

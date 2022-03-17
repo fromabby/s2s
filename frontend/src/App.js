@@ -120,11 +120,11 @@ const App = () => {
                                         <Route path="/verify/:slug" element={<OtpBox />} />
 
                                         <Route element={<AdminRoutes />}>
-                                            <Route path="/admin/blog" element={<BlogList />} />
-                                            <Route path="/admin/blog/archive" element={<ArchiveBlogList />} />
-                                            <Route path="/admin/blog/featured" element={<FeaturedBlogList />} />
-                                            <Route path="/admin/blog/new" element={<CreateBlogForm />} />
-                                            <Route path="/admin/blog/edit/:id" element={<UpdateBlogForm />} />
+                                            <Route path="/admin/blog" element={<BlogList title={`Manage Blogs`} />} />
+                                            <Route path="/admin/blog/archive" element={<ArchiveBlogList title={`Manage Archived Blogs`}/>} />
+                                            <Route path="/admin/blog/featured" element={<FeaturedBlogList title={`Manage Featured Blogs`}/>} />
+                                            <Route path="/admin/blog/new" element={<CreateBlogForm title={`Add New Blog`} />} />
+                                            <Route path="/admin/blog/edit/:id" element={<UpdateBlogForm title={`Update Blog`} />} />
                                         </Route>
                                     </Routes>
                                 </CommentContextProvider>
@@ -132,18 +132,18 @@ const App = () => {
 
                             <Routes>
                                 <Route element={<AdminRoutes />}>
-                                    <Route path="/me" element={<MyProfile />} />
-                                    <Route path="/me/update" element={<UpdateProfile />} />
-                                    <Route path="/password/update" element={<UpdatePassword />} />
+                                    <Route path="/me" element={<MyProfile title={`My Profile`}/>} />
+                                    <Route path="/me/update" element={<UpdateProfile title={`Update Profile`}/>} />
+                                    <Route path="/password/update" element={<UpdatePassword title={`Change Profile`}/>} />
                                 </Route>
                             </Routes>
 
                             <AboutContextProvider>
                                 <Routes>
                                     <Route element={<AdminRoutes />}>
-                                        <Route path="/admin/about" element={<AboutList />} />
-                                        <Route path="/admin/about/new" element={<CreateAboutForm />} />
-                                        <Route path="/admin/about/:id" element={<UpdateAboutForm />} />
+                                        <Route path="/admin/about" element={<AboutList title={`Manage Awards and Recognitions`} />} />
+                                        <Route path="/admin/about/new" element={<CreateAboutForm title={`Add New Awards and Recognition`} />} />
+                                        <Route path="/admin/about/:id" element={<UpdateAboutForm title={`Update Awards and Recognitions`} />} />
                                     </Route>
                                 </Routes>
                             </AboutContextProvider>
@@ -151,9 +151,9 @@ const App = () => {
                             <BannerContextProvider>
                                 <Routes>
                                     <Route element={<AdminRoutes />}>
-                                        <Route path="/admin/banner" element={<BannerList />} />
-                                        <Route path="/admin/banner/new" element={<CreateBannerForm />} />
-                                        <Route path="/admin/banner/:id" element={<UpdateBannerForm />} />
+                                        <Route path="/admin/banner" element={<BannerList title={`Manage Banners`} />} />
+                                        <Route path="/admin/banner/new" element={<CreateBannerForm title={`Add New Banner`} />} />
+                                        <Route path="/admin/banner/:id" element={<UpdateBannerForm title={`Update Banner`} />} />
                                     </Route>
                                 </Routes>
                             </BannerContextProvider>
@@ -161,9 +161,9 @@ const App = () => {
                             <DonationContextProvider>
                                 <Routes>
                                     <Route element={<AdminRoutes />}>
-                                        <Route path="/admin/donation" element={<DonationList />} />
-                                        <Route path="/admin/donation/new" element={<CreateDonationForm />} />
-                                        <Route path="/admin/donation/:id" element={<UpdateDonationForm />} />
+                                        <Route path="/admin/donation" element={<DonationList title={`Manage Donation Links`} />} />
+                                        <Route path="/admin/donation/new" element={<CreateDonationForm title={`Add New Donation Link`} />} />
+                                        <Route path="/admin/donation/:id" element={<UpdateDonationForm title={`Update Donation Link`} />} />
                                     </Route>
                                 </Routes>
                             </DonationContextProvider>
@@ -171,9 +171,9 @@ const App = () => {
                             <RegistrationContextProvider>
                                 <Routes>
                                     <Route element={<AdminRoutes />}>
-                                        <Route path="/admin/registration" element={<RegistrationList />} />
-                                        <Route path="/admin/registration/new" element={<CreateRegistrationForm />} />
-                                        <Route path="/admin/registration/:id" element={<UpdateRegistrationForm />} />
+                                        <Route path="/admin/registration" element={<RegistrationList title={`Manage Registration Links`} />} />
+                                        <Route path="/admin/registration/new" element={<CreateRegistrationForm title={`Add New Registration Link`} />} />
+                                        <Route path="/admin/registration/:id" element={<UpdateRegistrationForm title={`Update Registration Link`} />} />
                                     </Route>
                                 </Routes>
                             </RegistrationContextProvider>
@@ -181,9 +181,9 @@ const App = () => {
                             <RecordContextProvider>
                                 <Routes>
                                     <Route element={<AdminRoutes />}>
-                                        <Route path="/admin/record" element={<RecordList />} />
-                                        <Route path="/admin/record/new" element={<CreateRecordForm />} />
-                                        <Route path="/admin/record/:id" element={<UpdateRecordForm />} />
+                                        <Route path="/admin/record" element={<RecordList title={`Manage Records`} />} />
+                                        <Route path="/admin/record/new" element={<CreateRecordForm title={`Add New Record`} />} />
+                                        <Route path="/admin/record/:id" element={<UpdateRecordForm title={`Update Record`} />} />
                                     </Route>
                                 </Routes>
                             </RecordContextProvider>
@@ -191,24 +191,24 @@ const App = () => {
                             <UserContextProvider>
                                 <Routes>
                                     <Route element={<SuperadminRoutes />}>
-                                        <Route path="/admin/user" element={<UserList />} />
-                                        <Route path="/admin/user/new" element={<CreateUserForm />} />
-                                        <Route path="/admin/user/:id" element={<UpdateUserForm />} />
+                                        <Route path="/admin/user" element={<UserList title={`Manage Users`} />} />
+                                        <Route path="/admin/user/new" element={<CreateUserForm title={`Add New User`} />} />
+                                        <Route path="/admin/user/:id" element={<UpdateUserForm title={`Update User`} />} />
                                     </Route>
                                 </Routes>
                             </UserContextProvider>
 
                             <Routes>
-                                <Route path="/partners" element={<Partners />} />
-                                <Route path="/about-us" element={<About />} />
-                                <Route path="/contact-us" element={<Contact />} />
-                                <Route path="/donate" element={<Donate />} />
-                                <Route path="/login" element={<Login />} />
+                                <Route path="/partners" element={<Partners title={`Partners and Volunteers`} />} />
+                                <Route path="/about-us" element={<About title={`About Us`} />} />
+                                <Route path="/contact-us" element={<Contact title={`Contact Us`} />} />
+                                <Route path="/donate" element={<Donate title={`Donate`} />} />
+                                <Route path="/login" element={<Login title={`Login`} />} />
                             </Routes>
 
                             <PasswordContextProvider>
                                 <Routes>
-                                    <Route path="/forgot-password" element={<ForgotPassword />} />
+                                    <Route path="/forgot-password" element={<ForgotPassword title={`Forgot password?`} />} />
                                     <Route path="/password/reset/:token" element={<ResetPassword />} />
                                 </Routes>
                             </PasswordContextProvider>

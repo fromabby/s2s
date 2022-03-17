@@ -1,12 +1,11 @@
-import axios from 'axios';
 import React, { Fragment, useContext, useState } from 'react'
 import { useAlert } from 'react-alert';
 import { Button, Form } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import PostContext from '../../../context/postContext'
+import Metadata from '../../layout/Metadata'
 
-const CreateBlogForm = () => {
-
+const CreateBlogForm = ({ title }) => {
     const [post, setPost] = useState({})
     const [images, setImages] = useState([])
 
@@ -42,6 +41,7 @@ const CreateBlogForm = () => {
 
     return (
         <Fragment>
+            <Metadata title={title} />
             <Form className="container mt-2" onSubmit={submitHandler}>
 
                 <Form.Group className="mb-3">

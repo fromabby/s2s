@@ -12,10 +12,16 @@ const authSchema = new mongoose.Schema({
         validate: [validator.isEmail, 'Please enter a valid email address']
     },
     name: {
-        first_name: String,
-        last_name: String
+        first_name: {
+            type: String,
+            required: [true, 'Please enter your first name']
+        },
+        last_name: {
+            type: String,
+            required: [true, 'Please enter your last name']
+        }
     },
-    password:{
+    password: {
         type: String,
         required: [true, 'Please enter your password'],
         minLength: [6, 'Passwords must be at least 6 characters long'],
@@ -26,12 +32,12 @@ const authSchema = new mongoose.Schema({
         required: [true, 'Please enter your role']
     },
     resetPasswordToken: String,
-    resetPasswordExpire:Date
+    resetPasswordExpire: Date
 })
 
 // Encrypting password before saving user
 authSchema.pre('save', async function (next) {
-    if(!this.isModified('password')){
+    if (!this.isModified('password')) {
         next()
     }
 
@@ -44,7 +50,7 @@ authSchema.methods.comparePassword = async function (enteredPassword) {
 }
 
 // return JWT Token
-authSchema.methods.getJwtToken = function() {
+authSchema.methods.getJwtToken = function () {
     return jwt.sign({ id: this._id }, process.env.JWT_ADMIN_SECRET, {
         expiresIn: process.env.JWT_ADMIN_EXPIRES_TIME
     });
