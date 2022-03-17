@@ -4,6 +4,7 @@ const router = express.Router()
 const { isVerified, isAuthenticatedUser, authorizeRoles } = require('../middlewares/auth')
 const response = require('../controllers/responseController')
 
+router.route('/responses').get(response.getAllResponses)
 router.route('/responses/:status').get(response.getAllResponses)
 router.route('/:id/responses/:status').get(response.getAllPostResponses)
 router.route('/responses/:id').get(response.getSingleResponse)

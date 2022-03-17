@@ -22,11 +22,11 @@ const commentReducer = (state, action) => {
 
         case "SET_CURRENT_USER_SUCCESS":
         case "GET_CURRENT_USER_SUCCESS":
-            return { 
-                ...state, 
-                isLoading: false, 
-                isVerified: true, 
-                currentUser: action.payload 
+            return {
+                ...state,
+                isLoading: false,
+                isVerified: true,
+                currentUser: action.payload
             }
 
         case "VERIFY_USER_FAIL":
@@ -52,26 +52,33 @@ const commentReducer = (state, action) => {
 
         case "SET_CURRENT_USER_RESET":
         case "GET_CURRENT_USER_RESET":
-            return { 
-                ...state, 
-                isLoading: false, 
-                error: null, 
+            return {
+                ...state,
+                isLoading: false,
+                error: null,
                 isVerified: false,
                 currentUser: null
             }
 
 
         case "GET_ALL_COMMENTS_REQUEST":
+        case "GET_ALL_COMMENTS_FOR_ADMIN_REQUEST":
             return { ...state, isLoading: true }
         case "GET_ALL_COMMENTS_SUCCESS":
             return { ...state, isLoading: false, commentList: action.payload }
+        case "GET_ALL_COMMENTS_FOR_ADMIN_SUCCESS":
+            return { ...state, isLoading: false, allComments: action.payload }
         case "GET_ALL_COMMENTS_FAIL":
+        case "GET_ALL_COMMENTS_FOR_ADMIN_FAIL":
             return { ...state, isLoading: false, error: action.payload }
 
 
         case "ADD_COMMENT_SUCCESS":
             return { ...state, isLoading: false, commentList: [...state.commentList, action.payload] }
+        case "UPDATE_COMMENT_SUCCESS":
+            return { ...state, isLoading: false, commentList: action.payload }
         case "ADD_COMMENT_FAIL":
+        case "UPDATE_COMMENT_FAIL":
             return { ...state, isLoading: false, error: action.payload }
 
         case "DELETE_COMMENT_SUCCESS":

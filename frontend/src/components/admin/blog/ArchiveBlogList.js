@@ -10,6 +10,7 @@ const ArchiveBlogList = () => {
     const { posts: data, archiveData, deleteData } = useContext(PostContext)
     const { posts, isLoading } = data
 
+    const filteredPost = posts.filter(post => post.isArchived === true)
 
     return (
         isLoading ? <>Loading</>
@@ -25,9 +26,8 @@ const ArchiveBlogList = () => {
                 </thead>
                 <tbody>
                     {
-                        posts.map((post, index) => (
-                            post.isArchived &&
-                            <Blog post={post} archivePost={archiveData} index={index} />
+                        filteredPost.map((post, index) => (
+                            <Blog post={post} archivePost={archiveData} index={index + 1} />
                         ))
                     }
                 </tbody>

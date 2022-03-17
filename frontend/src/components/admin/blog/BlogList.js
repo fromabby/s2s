@@ -7,10 +7,14 @@ import './Blog.css'
 
 const BlogList = () => {
 
-    const { posts: data, archiveData } = useContext(PostContext)
+    const { posts: data, updateData } = useContext(PostContext)
     const { posts, isLoading } = data
 
 
+    const filteredPost = posts.filter(post => post.isArchived === false)
+    let featureCount = posts.filter(post => post.isFeature === true).length
+    let subfeatureCount = posts.filter(post => post.isSubFeature === true).length
+    
     return (
         isLoading ? <>Loading</>
             :
@@ -31,9 +35,8 @@ const BlogList = () => {
                     </thead>
                     <tbody>
                         {
-                            posts.map((post, index) => (
-                                !post.isArchived &&
-                                <Blog post={post} archivePost={archiveData} index={index + 1} />
+                            filteredPost.map((post, index) => (
+                                <Blog post={post} updateItem={updateData} count={featureCount} subCount={subfeatureCount} index={index+1} />
                             ))
                         }
                     </tbody>

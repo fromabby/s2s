@@ -63,7 +63,6 @@ import UpdateDonationForm from './components/admin/donation/UpdateDonationForm';
 import RegistrationList from './components/admin/registration/RegistrationList';
 import CreateRegistrationForm from './components/admin/registration/CreateRegistrationForm';
 import UpdateRegistrationForm from './components/admin/registration/UpdateRegistrationForm';
-import FeaturedBlogList from './components/admin/featured/FeaturedBlogList';
 
 import RecordList from './components/admin/record/RecordList';
 import CreateRecordForm from './components/admin/record/CreateRecordForm';
@@ -73,6 +72,7 @@ import UpdateRecordForm from './components/admin/record/UpdateRecordForm';
 import UserList from './components/admin/user/UserList';
 import CreateUserForm from './components/admin/user/CreateUserForm';
 import UpdateUserForm from './components/admin/user/UpdateUserForm';
+import CommentList from './components/admin/comment/CommentList';
 
 const ScrollToTop = ({ children }) => {
     const location = useLocation();
@@ -122,9 +122,9 @@ const App = () => {
                                         <Route element={<AdminRoutes />}>
                                             <Route path="/admin/blog" element={<BlogList title={`Manage Blogs`} />} />
                                             <Route path="/admin/blog/archive" element={<ArchiveBlogList title={`Manage Archived Blogs`} />} />
-                                            <Route path="/admin/blog/featured" element={<FeaturedBlogList title={`Manage Featured Blogs`} />} />
                                             <Route path="/admin/blog/new" element={<CreateBlogForm title={`Add New Blog`} />} />
                                             <Route path="/admin/blog/edit/:id" element={<UpdateBlogForm title={`Update Blog`} />} />
+                                            <Route path="/admin/comment" element={<CommentList  />} />
                                         </Route>
                                     </Routes>
                                 </CommentContextProvider>

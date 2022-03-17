@@ -14,7 +14,8 @@ const config = {
 export const CommentContextProvider = props => {
     const [commentState, dispatchUser] = useReducer(commentReducer, {
         currentUser: {},
-        commentList: []
+        commentList: [],
+        allComments: []
     })
 
     const getCurrentUser = async () => {
@@ -63,6 +64,20 @@ export const CommentContextProvider = props => {
         }
     }
 
+
+    const getAllCommentsForAdmin = async () => {
+        try {
+            dispatchUser({ type: "GET_ALL_COMMENTS_FOR_ADMIN_REQUEST" })
+            const { data } = await axios.get(`/api/v1/responses`)
+            console.log(data)
+            dispatchUser({ type: "GET_ALL_COMMENTS_FOR_ADMIN_SUCCESS", payload: data.responses })
+        }
+        catch (error) {
+            dispatchUser({ type: "GET_ALL_COMMENTS_FOR_ADMIN_FAIL", payload: error })
+            dispatchUser({ type: "CLEAR_ERRORS" })
+        }
+    }
+
     const getAllComments = async (id) => {
         try {
             dispatchUser({ type: "GET_ALL_COMMENTS_REQUEST" })
@@ -86,6 +101,21 @@ export const CommentContextProvider = props => {
         }
     }
 
+    const updateComment = async (comment, status) => {
+        try {
+            const { data } = await axios.put(`/api/v1/responses/${comment._id}`, { ...comment, status: status }, config)
+            const index = commentState.allComments.findIndex(response => response._id === comment._id)
+            const newAllComments = commentState.allComments
+            newAllComments.splice(index, 1, data.response)
+            console.log(index, newAllComments)
+            dispatchUser({ type: "UPDATE_COMMENT_SUCCESS", payload: newAllComments })
+        }
+        catch (error) {
+            dispatchUser({ type: "UPDATE_COMMENT_FAIL", payload: error })
+            dispatchUser({ type: "CLEAR_ERRORS" })
+        }
+    }
+
     const deleteComment = async (id) => {
         try {
             const { data } = await axios.delete(`/api/v1/responses/viewer/${id}`)
@@ -102,12 +132,13 @@ export const CommentContextProvider = props => {
         let isMounted = true
         if (isMounted) {
             getCurrentUser()
+            getAllCommentsForAdmin()
         }
         return () => isMounted = false
     }, [])
 
     return (
-        <CommentContext.Provider value={{ commentState, verifyUser, setUser, cancelVerification, getCurrentUser, getAllComments, addComment, deleteComment }}>
+        <CommentContext.Provider value={{ commentState, verifyUser, setUser, cancelVerification, getCurrentUser, updateComment, getAllComments, getAllCommentsForAdmin, addComment, deleteComment }}>
             {props.children}
         </CommentContext.Provider>
     )

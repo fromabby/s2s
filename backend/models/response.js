@@ -16,6 +16,10 @@ var responseSchema = new mongoose.Schema({
     status: {
         type: Number,
         default: 0
+    },
+    createdAt:{
+        type:Date,
+        default: new Date(Date.now())
     }
 });
 module.exports = mongoose.model('Response', responseSchema)
