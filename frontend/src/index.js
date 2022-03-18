@@ -4,6 +4,9 @@ import App from './App'
 import { AuthContextProvider } from './context/authContext'
 import { positions, transitions, Provider as AlertProvider } from 'react-alert'
 import AlertTemplate from 'react-alert-template-snackbar-material-ui'
+import '@fortawesome/fontawesome-free/css/all.min.css';
+// import 'bootstrap-css-only/css/bootstrap.min.css';
+// import 'mdbreact/dist/css/mdb.css';
 
 const options = {
   timeout: 5000,

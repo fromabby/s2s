@@ -6,6 +6,7 @@ import { Button, Table } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import Metadata from '../../layout/Metadata'
 import UserContext from '../../../context/userContext'
+import { MDBDataTableV5 } from 'mdbreact'
 
 const UserList = ({ title }) => {
     const navigate = useNavigate()
@@ -48,6 +49,50 @@ const UserList = ({ title }) => {
         }
     }
 
+    const setData = () => {
+        const data = {
+            columns: [
+                {
+                    label: 'ID',
+                    field: 'id',
+                    width: 200,
+                },
+                {
+                    label: 'Email',
+                    field: 'email',
+                    width: 200,
+                },
+                {
+                    label: 'Role',
+                    field: 'role',
+                    width: 200,
+                },
+                {
+                    label: 'Actions',
+                    field: 'actions',
+                    width: 200,
+                },
+
+            ],
+            rows: []
+        }
+
+        users && users.forEach(user => {
+            data.rows.push({
+                id: "id goes here",
+                email: user.email,
+                role: user.role,
+                actions: <div className="td-container">
+                    <Link to={`/admin/user/${user._id}`}>
+                        <Button variant={"primary"}>Edit</Button>
+                    </Link>
+                    <Button variant={"danger"} onClick={() => deleteHandler(user._id)} disabled={user.role === 'superadmin' ? true : deleteLoading ? true : false}>Delete</Button>
+                </div>
+            })
+        })
+
+        return data
+    }
     return (
         <div>
             <Metadata title={title} />
@@ -60,33 +105,14 @@ const UserList = ({ title }) => {
                                 <Button variant={"success"}>Add user</Button>
                             </Link>
                         </div>
-                        <Table responsive="sm">
-                            <thead>
-                                <tr>
-                                    <th scope="col">ID</th>
-                                    <th scope="col">EMAIL</th>
-                                    <th scope="col">ROLE</th>
-                                    <th scope="col">ACTIONS</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {users && users.map(user => (
-                                    <tr>
-                                        <td><div className="td-container">id goes here</div></td>
-                                        <td><div className="td-container">{user.email}</div></td>
-                                        <td><div className="td-container">{user.role}</div></td>
-                                        <td>
-                                            <div className="td-container">
-                                                <Link to={`/admin/user/${user._id}`}>
-                                                    <Button variant={"primary"}>Edit</Button>
-                                                </Link>
-                                                <Button variant={"danger"} onClick={() => deleteHandler(user._id)} disabled={user.role === 'superadmin' ? true : deleteLoading ? true : false}>Delete</Button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </Table>
+                        <MDBDataTableV5
+                            hover
+                            entriesOptions={[5, 20, 25]}
+                            entries={5}
+                            pagesAmount={4}
+                            data={setData()}
+                            fullPagination
+                        />
                     </div>
                 </>}
             </div>
