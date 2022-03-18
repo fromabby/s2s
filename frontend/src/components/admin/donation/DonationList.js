@@ -6,6 +6,7 @@ import { Button, Table } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import Metadata from '../../layout/Metadata'
 import DonationContext from '../../../context/donationContext'
+import { MDBDataTableV5 } from 'mdbreact'
 
 const DonationList = ({ title }) => {
     const navigate = useNavigate()
@@ -48,6 +49,61 @@ const DonationList = ({ title }) => {
         }
     }
 
+    const setData = () => {
+        const data = {
+            columns: [
+                {
+                    label: 'Bank Name',
+                    field: 'bank',
+                    width: 200,
+                },
+                {
+                    label: 'Account Name',
+                    field: 'name',
+                    width: 200,
+                },
+                {
+                    label: 'Instructions',
+                    field: 'instructions',
+                    width: 200,
+                },
+                {
+                    label: 'QR Code',
+                    field: 'qr',
+                    width: 200,
+                },
+                {
+                    label: 'Actions',
+                    field: 'actions',
+                    width: 200,
+                },
+
+            ],
+            rows: []
+        }
+        
+        donations && donations.forEach(donation => {
+            data.rows.push({
+                bank: donation.bank_name,
+                name: donation.account_details.account_name,
+                instructions: donation.instructions,
+                qr: <div className="td-container">
+                    <div className='image-wrapper'>
+                        <img className='image' src={donation.qr_code[0].path} />
+                    </div>
+                </div>,
+                actions: <div className="td-container">
+                    <Link to={`/admin/donation/${donation._id}`}>
+                        <Button variant={"primary"}>Edit</Button>
+                    </Link>
+                    <Button variant={"danger"} onClick={() => deleteHandler(donation._id)} disabled={deleteLoading ? true : false}>Delete</Button>
+                </div>
+            })
+        })
+
+        return data
+    }
+
     return (
         <div>
             <Metadata title={title} />
@@ -60,41 +116,14 @@ const DonationList = ({ title }) => {
                                 <Button variant={"success"}>Add new donation</Button>
                             </Link>
                         </div>
-                        <Table responsive="sm">
-                            <thead>
-                                <tr>
-                                    <th scope="col">BANK NAME</th>
-                                    <th scope="col">ACCOUNT NAME</th>
-                                    <th scope="col">INSTRUCTIONS</th>
-                                    <th scope="col">QR CODE</th>
-                                    <th scope="col">ACTIONS</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {donations && donations.map(donation => (
-                                    <tr>
-                                        <td><div className="td-container">{donation.bank_name}</div></td>
-                                        <td><div className="td-container">{donation.account_details.account_name}</div></td>
-                                        <td><div className="td-container">{donation.instructions}</div></td>
-                                        <td>
-                                            <div className="td-container">
-                                                <div className='image-wrapper'>
-                                                    <img className='image' src={donation.qr_code[0].path} />
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div className="td-container">
-                                                <Link to={`/admin/donation/${donation._id}`}>
-                                                    <Button variant={"primary"}>Edit</Button>
-                                                </Link>
-                                                <Button variant={"danger"} onClick={() => deleteHandler(donation._id)} disabled={deleteLoading ? true : false}>Delete</Button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </Table>
+                        <MDBDataTableV5
+                            hover
+                            entriesOptions={[5, 20, 25]}
+                            entries={5}
+                            pagesAmount={4}
+                            data={setData()}
+                            fullPagination
+                        />
                     </div>
                 </>}
             </div>

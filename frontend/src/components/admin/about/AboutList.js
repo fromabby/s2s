@@ -6,8 +6,9 @@ import { Button, Table } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import Metadata from '../../layout/Metadata'
 import AboutContext from '../../../context/aboutContext'
+import { MDBDataTableV5 } from 'mdbreact'
 
-const AboutList = ({title}) => {
+const AboutList = ({ title }) => {
     const navigate = useNavigate()
     const alert = useAlert()
 
@@ -48,6 +49,39 @@ const AboutList = ({title}) => {
         }
     }
 
+    const setData = () => {
+        const data = {
+            columns: [
+                {
+                    label: 'Content',
+                    field: 'content',
+                    width: 800,
+                },
+                {
+                    label: 'Actions',
+                    field: 'actions',
+                    width: 200,
+                },
+
+            ],
+            rows: []
+        }
+
+        abouts && abouts.forEach(about => {
+            data.rows.push({
+                content: <div className="td-container">{about.content}</div>,
+                actions: <div className="td-container">
+                    <Link to={`/admin/about/${about._id}`}>
+                        <Button variant={"primary"}>Edit</Button>
+                    </Link>
+                    <Button variant={"danger"} onClick={() => deleteHandler(about._id)} disabled={deleteLoading ? true : false}>Delete</Button>
+                </div>
+            })
+        })
+
+        return data
+    }
+
     return (
         <div>
             <Metadata title={title} />
@@ -60,29 +94,14 @@ const AboutList = ({title}) => {
                                 <Button variant={"success"}>Add new about</Button>
                             </Link>
                         </div>
-                        <Table responsive="sm">
-                            <thead>
-                                <tr>
-                                    <th scope="col">CONTENT</th>
-                                    <th scope="col">ACTIONS</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {abouts && abouts.map(about => (
-                                    <tr>
-                                        <td><div className="td-container">{about.content}</div></td>
-                                        <td>
-                                            <div className="td-container">
-                                                <Link to={`/admin/about/${about._id}`}>
-                                                    <Button variant={"primary"}>Edit</Button>
-                                                </Link>
-                                                <Button variant={"danger"} onClick={() => deleteHandler(about._id)} disabled={deleteLoading ? true : false}>Delete</Button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </Table>
+                        <MDBDataTableV5
+                            hover
+                            entriesOptions={[5, 20, 25]}
+                            entries={5}
+                            pagesAmount={4}
+                            data={setData()}
+                            fullPagination
+                        />
                     </div>
                 </>}
             </div>

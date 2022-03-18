@@ -6,6 +6,7 @@ import { Button, Table } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import Metadata from '../../layout/Metadata'
 import BannerContext from '../../../context/bannerContext'
+import { MDBDataTableV5 } from 'mdbreact'
 
 const BannerList = ({ title }) => {
     const navigate = useNavigate()
@@ -48,6 +49,43 @@ const BannerList = ({ title }) => {
         }
     }
 
+    const setData = () => {
+        const data = {
+            columns: [
+                {
+                    label: 'Image',
+                    field: 'image',
+                    width: 800,
+                },
+                {
+                    label: 'Actions',
+                    field: 'actions',
+                    width: 200,
+                },
+
+            ],
+            rows: []
+        }
+
+        banners && banners.forEach(banner => {
+            data.rows.push({
+                image: <div className="td-container">
+                    <div className='image-wrapper'>
+                        <img className='image' src={banner.image[0].path} />
+                    </div>
+                </div>,
+                actions: <div className="td-container">
+                    <Link to={`/admin/banner/${banner._id}`}>
+                        <Button variant={"primary"}>Edit</Button>
+                    </Link>
+                    <Button variant={"danger"} onClick={() => deleteHandler(banner._id)} disabled={deleteLoading ? true : false}>Delete</Button>
+                </div>
+            })
+        })
+
+        return data
+    }
+
     return (
         <div>
             <Metadata title={title} />
@@ -60,35 +98,14 @@ const BannerList = ({ title }) => {
                                 <Button variant={"success"}>Add new banner</Button>
                             </Link>
                         </div>
-                        <Table responsive="sm">
-                            <thead>
-                                <tr>
-                                    <th scope="col">IMAGE</th>
-                                    <th scope="col">ACTIONS</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {banners && banners.map(banner => (
-                                    <tr>
-                                        <td>
-                                            <div className="td-container">
-                                                <div className='image-wrapper'>
-                                                    <img className='image' src={banner.image[0].path} />
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div className="td-container">
-                                                <Link to={`/admin/banner/${banner._id}`}>
-                                                    <Button variant={"primary"}>Edit</Button>
-                                                </Link>
-                                                <Button variant={"danger"} onClick={() => deleteHandler(banner._id)} disabled={deleteLoading ? true : false}>Delete</Button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </Table>
+                        <MDBDataTableV5
+                            hover
+                            entriesOptions={[5, 20, 25]}
+                            entries={5}
+                            pagesAmount={4}
+                            data={setData()}
+                            fullPagination
+                        />
                     </div>
                 </>}
             </div>
