@@ -7,7 +7,7 @@ exports.createResponse = catchAsyncErrors(async (req, res, next) => {
     const { _id: userId } = req.user
     const postId = req.params.post_id
 
-    const response = await Response.create({ ...req.body, user: userId, post: postId })
+    const response = await Response.create({ ...req.body, user: userId, post: postId, createdAt: new Date(Date.now()) })
 
     await response.populate('user')
 
