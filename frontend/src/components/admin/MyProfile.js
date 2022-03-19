@@ -38,10 +38,10 @@ const MyProfile = ({ title }) => {
                             <Form.Control type="text" value={user.role} disabled />
                         </Form.Group>
                     </div>
-                    <Link to='/me/update'>
+                    <Link to='/admin/me/update'>
                         <Button variant="primary">Update Profile</Button>
                     </Link>
-                    <Link to='/password/update'>
+                    <Link to='/admin/password/update'>
                         <Button variant="success">Update Password</Button>
                     </Link>
                 </>

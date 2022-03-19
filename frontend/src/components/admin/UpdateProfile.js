@@ -26,12 +26,12 @@ const UpdateProfile = ({ title }) => {
             if (isUpdated) {
                 alert.success('Profile has been updated.')
                 loadUser()
-                navigate('/me')
+                navigate('/admin/me')
             }
 
             if (error) {
                 alert.error('Profile cannot be updated.')
-                navigate('/me')
+                navigate('/admin/me')
             }
 
             setEmail(user.email)

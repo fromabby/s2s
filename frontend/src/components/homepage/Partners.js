@@ -44,7 +44,7 @@ const Partners = ({ title }) => {
 
                         {!loading && partners && partners.length > 0 ? partners.map(partner => (
                             <div className="partner">
-                                <a href={partner.link}>
+                                <a href={partner.link} target="_blank">
                                     <img src={partner.registrationType === 1 ? "/images/PART.png" : "/images/VOL.png"} alt={partner.registrationType === 1 ? "Partnership" : "Volunteer"} style={{ width: "100%" }} />
                                 </a>
                             </div>

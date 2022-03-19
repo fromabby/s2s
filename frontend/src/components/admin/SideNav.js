@@ -1,7 +1,18 @@
-import React from 'react'
+import React, { useEffect, useContext } from 'react'
 import { Link } from 'react-router-dom'
+import AuthContext from '../../context/authContext'
 
 const SideNav = () => {
+
+    const { auth } = useContext(AuthContext)
+    const { loading, user, loadError } = auth
+
+
+    useEffect(() => {
+        if (loadError) {
+            alert.error(loadError)
+        }
+    }, [user, loadError])
     return (
         <div className="sidenav">
             <Link to="/admin/dashboard/">
@@ -35,7 +46,21 @@ const SideNav = () => {
             <Link to="/admin/record" className="nav-link">
                 Manage Records
             </Link>
-            <Link to="/password/update" className="nav-link">
+
+
+            <Link to="/admin/me" className="nav-link">
+                My Profile
+            </Link>
+
+
+            {user && user.role === 'superadmin' &&
+                <Link to="/admin/user" className="nav-link">
+                    Manage users
+                </Link>
+            }
+
+
+            <Link to="/admin/password/update" className="nav-link">
                 Change Password
             </Link>
             <Link exact to="/admin/dashboard/manage-logout" className="nav-link">
