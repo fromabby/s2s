@@ -36,20 +36,31 @@ const PublicBlogList = ({ title }) => {
     }
 
 
-    useEffect(() => {
-        let filteredPost = posts.filter(post => post.title.toLowerCase().includes(searchQuery.toLowerCase()))
-        setPostList(filteredPost)
-    }, [searchQuery, posts])
+    // useEffect(() => {
+    //     let filteredPost = posts.filter(post => post.category.toLowerCase().includes(categoryQuery.toLowerCase()))
+    //     let searchedPost = filteredPost.filter(post => post.title.toLowerCase().includes(searchQuery.toLowerCase()))
+    //     setPostList(searchedPost)
+    // }, [searchQuery, categoryQuery, posts])
+
+    console.log(searchQuery)
 
     useEffect(() => {
         if (categoryQuery === "-") {
-            setPostList(posts)
-        }
-        else {
-            let filteredPost = posts.filter(post => post.category.toLowerCase().includes(categoryQuery.toLowerCase()))
+            let filteredPost = posts.filter(post => post.title.toLowerCase().includes(searchQuery.toLowerCase()))
             setPostList(filteredPost)
         }
-    }, [categoryQuery, posts])
+        else {
+            let filteredPost = []
+            if (searchQuery) {
+                let newPostList = posts.filter(post => post.category.toLowerCase().includes(categoryQuery.toLowerCase()))
+                filteredPost = newPostList.filter(post => post.title.toLowerCase().includes(searchQuery.toLowerCase()))
+            }
+            else {
+                filteredPost = posts.filter(post => post.category.toLowerCase().includes(categoryQuery.toLowerCase()))
+            }
+            setPostList(filteredPost)
+        }
+    }, [searchQuery, categoryQuery, posts])
 
     useEffect(() => {
         setCategories(getAllCategories())
@@ -61,15 +72,18 @@ const PublicBlogList = ({ title }) => {
             {
                 isLoading ? <>Loading</> :
                     <div id="blog">
-                        <Form.Control type="text" onChange={(e) => setSearchQuery(e.target.value)} />
-                        <select className="form-select" onChange={(e) => setCategoryQuery(e.target.value)}>
-                            <option selected>-</option>
-                            {
-                                categories.map(category => (
-                                    <option value={category}>{category}</option>
-                                ))
-                            }
-                        </select>
+                        <div className='filter-container'>
+                            <Form.Control type="text" style={{ width: '500px' }} onChange={(e) => setSearchQuery(e.target.value)} />
+                            <select className="form-select" style={{ width: '200px' }} onChange={(e) => setCategoryQuery(e.target.value)}>
+                                <option selected>-</option>
+                                {
+                                    categories.map(category => (
+                                        <option value={category}>{category}</option>
+                                    ))
+                                }
+                            </select>
+                        </div>
+
                         <div className="recent1">
                             {
                                 postList && postList.map((post, index) => (
