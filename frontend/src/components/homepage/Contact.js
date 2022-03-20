@@ -38,11 +38,7 @@ const Contact = ({ title }) => {
 
     return (
         <div
-            class="bg_image content-container"
-            style={{
-                backgroundImage: 'url(/public/bg.png)',
-                backgroundSize: "cover"
-            }}>
+            className="bg_image content-container">
             <Metadata title={title} />
 
             <div id="contact">

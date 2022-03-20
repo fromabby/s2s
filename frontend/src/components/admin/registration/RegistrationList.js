@@ -76,16 +76,16 @@ const RegistrationList = ({ title }) => {
             rows: []
         }
 
-        registrations && registrations.forEach(registration => {
+        registrations && registrations.forEach((registration, index) => {
             data.rows.push({
-                id: "id goes here",
+                id: index+1,
                 link: registration.link,
                 type: `${registration.registrationType}: ${registration.registrationType === 1 ? `Partner` : `Volunteer`}`,
                 actions: <div className="td-container">
                     <Link to={`/admin/registration/${registration._id}`}>
-                        <Button variant={"primary"}>Edit</Button>
+                        <Button variant={"primary"} className="admin-button primary">Edit</Button>
                     </Link>
-                    <Button variant={"danger"} onClick={() => deleteHandler(registration._id)} disabled={deleteLoading ? true : false}>Delete</Button>
+                    <Button variant={"danger"} className="admin-button danger" onClick={() => deleteHandler(registration._id)} disabled={deleteLoading ? true : false}>Delete</Button>
                 </div>
             })
         })
@@ -102,7 +102,7 @@ const RegistrationList = ({ title }) => {
                         <h1>Manage Registration Links</h1>
                         <div className="create-button">
                             <Link to="/admin/registration/new">
-                                <Button variant={"success"}>Add registration link</Button>
+                                <Button variant={"success"} className='success'>Add registration link</Button>
                             </Link>
                         </div>
                         <MDBDataTableV5
@@ -112,6 +112,8 @@ const RegistrationList = ({ title }) => {
                             pagesAmount={4}
                             data={setData()}
                             fullPagination
+                            searchTop
+                            searchBottom={false}
                         />
                     </div>
                 </>}

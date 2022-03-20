@@ -4,9 +4,13 @@ import formatDate from '../../../formatDate'
 
 const Blog = ({ post }) => {
 
+    const spliceContent = (content) => {
+        return content.length > 100 ? content.substring(0, 97) + "..." : content
+    }
+
     return (
         <div className="recent_card">
-            <img id="recent_img" src="/images/featured_sub_image.png" />
+            <img id="recent_img" src={post.images[0].path} />
             <div id="recent_text">
                 <h1 id="recent_title">
                     {post.title}
@@ -15,7 +19,7 @@ const Blog = ({ post }) => {
                     By {post.author} | {formatDate(post.createdAt)}
                 </p>
                 <p id="recent_summary">
-                    {post.content}
+                    {spliceContent(post.content)}
                 </p>
                 <a className="btn read-btn" href={`/blog/${post._id}`}>
                     Read More

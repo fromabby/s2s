@@ -29,25 +29,21 @@ const About = ({ title }) => {
 
     return (
         <div
-            class="bg_image content-container"
-            style={{
-                backgroundImage: 'url(/public/images/bg.png)',
-                backgroundSize: "cover",
-            }}
+            className="bg_image content-container"
         >
             <Metadata title={title} />
             <div className="about">
 
-                <div class="about-us-body">
-                    <div class="container-md">
-                        <div class="row">
-                            <div class="col-md-3">
-                                <div class="flex-container">
+                <div className="about-us-body">
+                    <div className="container-md">
+                        <div className="row">
+                            <div className="col-md-3">
+                                <div className="flex-container">
                                     <img id="aboutus-img" src="/images/Footer_logo.png" />
                                 </div>
                             </div>
-                            <div class="col-md-9">
-                                <div class="text">
+                            <div className="col-md-9">
+                                <div className="text">
                                     <br />
                                     <p style={{ fontSize: "20px" }}>
                                         <b>Streets to Schools</b> is a youth organization actively
@@ -61,12 +57,12 @@ const About = ({ title }) => {
                         </div>
                     </div>
 
-                    <div class="container-md">
-                        <div class="col-md-12">
-                            <div class="text">
+                    <div className="container-md">
+                        <div className="col-md-12">
+                            <div className="text">
                                 {" "}
                                 <br />
-                                <h1 class="title">OUR MISSION</h1>
+                                <h1 className="title">OUR MISSION</h1>
                                 <br />
                                 <p style={{ fontSize: 18 }}>
                                     Showcase the significance of quality education and highlight
@@ -80,11 +76,11 @@ const About = ({ title }) => {
                             </div>
                         </div>
                     </div>
-                    <div class="container-md">
-                        <div class="col-md-12">
-                            <div class="text">
+                    <div className="container-md">
+                        <div className="col-md-12">
+                            <div className="text">
                                 <br />
-                                <h1 class="title">OUR VISION</h1> <br />
+                                <h1 className="title">OUR VISION</h1> <br />
                                 <p style={{ fontSize: 18 }}>
                                     Streets to Schools envisions itself as an avenue for all
                                     stakeholders and beneficiaries to be in a continued
@@ -99,22 +95,22 @@ const About = ({ title }) => {
                         </div>
                     </div>
 
-                    <div class="container-md">
-                        <div class="row">
-                            <div class="col-xs-12 center-block text-center">
-                                <div class="text">
-                                    <h1 class="title">
+                    <div className="container-md">
+                        <div className="row">
+                            <div className="col-xs-12 center-block text-center">
+                                <div className="text">
+                                    <h1 className="title">
                                         <b>MEET THE TEAM</b>
                                     </h1>
                                     <br />
                                     <br />
                                 </div>
                             </div>
-                            <div class="col">
-                                <div class="img-container">
+                            <div className="col">
+                                <div className="img-container">
                                     <img id="team-img" src="/images/member5.png" style={{ width: "100%" }} alt='member' />
                                 </div>
-                                <div class="text-team">
+                                <div className="text-team">
                                     <br />
                                     <p style={{ fontSize: "22px" }}>
                                         <b>Qjiel Mariano</b>
@@ -124,11 +120,11 @@ const About = ({ title }) => {
                   </p>
                                 </div>
                             </div>
-                            <div class="col">
-                                <div class="img-container">
+                            <div className="col">
+                                <div className="img-container">
                                     <img id="team-img" src="/images/member4.png" style={{ width: "100%" }} alt='member' />
                                 </div>
-                                <div class="text-team">
+                                <div className="text-team">
                                     <br />
                                     <p style={{ fontSize: "22px" }}>
                                         <b>Marie Frances Pagaduan</b>
@@ -138,11 +134,11 @@ const About = ({ title }) => {
                   </p>
                                 </div>
                             </div>
-                            <div class="col">
-                                <div class="img-container">
+                            <div className="col">
+                                <div className="img-container">
                                     <img id="team-img" src="/images/member17.png" style={{ width: "100%" }} alt='member' />
                                 </div>
-                                <div class="text-team">
+                                <div className="text-team">
                                     <br />
                                     <p style={{ fontSize: "22px" }}>
                                         <b>Charlene Joyce Uy</b>
@@ -152,11 +148,11 @@ const About = ({ title }) => {
                   </p>
                                 </div>
                             </div>
-                            <div class="col">
-                                <div class="img-container">
+                            <div className="col">
+                                <div className="img-container">
                                     <img id="team-img" src="/images/member6.png" style={{ width: "100%" }} alt='member' />
                                 </div>
-                                <div class="text-team">
+                                <div className="text-team">
                                     <br />
                                     <p style={{ fontSize: "22px" }}>
                                         <b>Emilyn Dunton</b>
@@ -166,11 +162,11 @@ const About = ({ title }) => {
                   </p>
                                 </div>
                             </div>
-                            <div class="col">
-                                <div class="img-container">
+                            <div className="col">
+                                <div className="img-container">
                                     <img id="team-img" src="/images/member7.png" style={{ width: "100%" }} alt='member' />
                                 </div>
-                                <div class="text-team">
+                                <div className="text-team">
                                     <br />
                                     <p style={{ fontSize: "22px" }}>
                                         <b>Richard Gonzalez</b>
@@ -180,11 +176,11 @@ const About = ({ title }) => {
                   </p>
                                 </div>
                             </div>
-                            <div class="col">
-                                <div class="img-container">
+                            <div className="col">
+                                <div className="img-container">
                                     <img id="team-img" src="/images/member10.png" style={{ width: "100%" }} alt='member' />
                                 </div>
-                                <div class="text-team">
+                                <div className="text-team">
                                     <br />
                                     <p style={{ fontSize: "22px" }}>
                                         <b>Kiara Delgado</b>
@@ -194,11 +190,11 @@ const About = ({ title }) => {
                   </p>
                                 </div>
                             </div>
-                            <div class="col">
-                                <div class="img-container">
+                            <div className="col">
+                                <div className="img-container">
                                     <img id="team-img" src="/images/member21.png" style={{ width: "100%" }} alt='member' />
                                 </div>
-                                <div class="text-team">
+                                <div className="text-team">
                                     <br />
                                     <p style={{ fontSize: "22px" }}>
                                         <b>Nicole Ann Vergara</b>
@@ -208,11 +204,11 @@ const About = ({ title }) => {
                   </p>
                                 </div>
                             </div>
-                            <div class="col">
-                                <div class="img-container">
+                            <div className="col">
+                                <div className="img-container">
                                     <img id="team-img" src="/images/member1.png" style={{ width: "100%" }} alt='member' />
                                 </div>
-                                <div class="text-team">
+                                <div className="text-team">
                                     <br />
                                     <p style={{ fontSize: "22px" }}>
                                         <b>Ambriel Pascual</b>
@@ -222,11 +218,11 @@ const About = ({ title }) => {
                   </p>
                                 </div>
                             </div>
-                            <div class="col">
-                                <div class="img-container">
+                            <div className="col">
+                                <div className="img-container">
                                     <img id="team-img" src="/images/member2.png" style={{ width: "100%" }} alt='member' />
                                 </div>
-                                <div class="text-team">
+                                <div className="text-team">
                                     <br />
                                     <p style={{ fontSize: "22px" }}>
                                         <b>Patricia Bojador</b>
@@ -236,11 +232,11 @@ const About = ({ title }) => {
                   </p>
                                 </div>
                             </div>
-                            <div class="col">
-                                <div class="img-container">
+                            <div className="col">
+                                <div className="img-container">
                                     <img id="team-img" src="/images/member9.png" style={{ width: "100%" }} alt='member' />
                                 </div>
-                                <div class="text-team">
+                                <div className="text-team">
                                     <br />
                                     <p style={{ fontSize: "22px" }}>
                                         <b>Jessica Dimaandal</b>
@@ -250,11 +246,11 @@ const About = ({ title }) => {
                   </p>
                                 </div>
                             </div>
-                            <div class="col">
-                                <div class="img-container">
+                            <div className="col">
+                                <div className="img-container">
                                     <img id="team-img" src="/images/member15.png" style={{ width: "100%" }} alt='member' />
                                 </div>
-                                <div class="text-team">
+                                <div className="text-team">
                                     <br />
                                     <p style={{ fontSize: "22px" }}>
                                         <b>Alexa Taay</b>
@@ -264,11 +260,11 @@ const About = ({ title }) => {
                   </p>
                                 </div>
                             </div>
-                            <div class="col">
-                                <div class="img-container">
+                            <div className="col">
+                                <div className="img-container">
                                     <img id="team-img" src="/images/member11.png" style={{ width: "100%" }} alt='member' />
                                 </div>
-                                <div class="text-team">
+                                <div className="text-team">
                                     <br />
                                     <p style={{ fontSize: "22px" }}>
                                         <b>Trixie Bautista</b>
@@ -278,11 +274,11 @@ const About = ({ title }) => {
                   </p>
                                 </div>
                             </div>
-                            <div class="col">
-                                <div class="img-container">
+                            <div className="col">
+                                <div className="img-container">
                                     <img id="team-img" src="/images/member13.png" style={{ width: "100%" }} alt='member' />
                                 </div>
-                                <div class="text-team">
+                                <div className="text-team">
                                     <br />
                                     <p style={{ fontSize: "22px" }}>
                                         <b>Bianca Adia</b>
@@ -292,11 +288,11 @@ const About = ({ title }) => {
                   </p>
                                 </div>
                             </div>
-                            <div class="col">
-                                <div class="img-container">
+                            <div className="col">
+                                <div className="img-container">
                                     <img id="team-img" src="/images/member12.png" style={{ width: "100%" }} alt='member' />
                                 </div>
-                                <div class="text-team">
+                                <div className="text-team">
                                     <br />
                                     <p style={{ fontSize: "22px" }}>
                                         <b>Kayla Fernandez</b>
@@ -306,11 +302,11 @@ const About = ({ title }) => {
                   </p>
                                 </div>
                             </div>
-                            <div class="col">
-                                <div class="img-container">
+                            <div className="col">
+                                <div className="img-container">
                                     <img id="team-img" src="/images/member20.png" style={{ width: "100%" }} alt='member' />
                                 </div>
-                                <div class="text-team">
+                                <div className="text-team">
                                     <br />
                                     <p style={{ fontSize: "22px" }}>
                                         <b>Margarita Tipton</b>
@@ -320,11 +316,11 @@ const About = ({ title }) => {
                   </p>
                                 </div>
                             </div>
-                            <div class="col">
-                                <div class="img-container">
+                            <div className="col">
+                                <div className="img-container">
                                     <img id="team-img" src="/images/member14.png" style={{ width: "100%" }} alt='member' />
                                 </div>
-                                <div class="text-team">
+                                <div className="text-team">
                                     <br />
                                     <p style={{ fontSize: "22px" }}>
                                         <b>Aaliyah Duran</b>
@@ -334,11 +330,11 @@ const About = ({ title }) => {
                   </p>
                                 </div>
                             </div>
-                            <div class="col">
-                                <div class="img-container">
+                            <div className="col">
+                                <div className="img-container">
                                     <img id="team-img" src="/images/member3.png" style={{ width: "100%" }} alt='member' />
                                 </div>
-                                <div class="text-team">
+                                <div className="text-team">
                                     <br />
                                     <p style={{ fontSize: "22px" }}>
                                         <b>Daphne Basuel</b>
@@ -348,11 +344,11 @@ const About = ({ title }) => {
                   </p>
                                 </div>
                             </div>
-                            <div class="col">
-                                <div class="img-container">
+                            <div className="col">
+                                <div className="img-container">
                                     <img id="team-img" src="/images/member8.png" style={{ width: "100%" }} alt='member' />
                                 </div>
-                                <div class="text-team">
+                                <div className="text-team">
                                     <br />
                                     <p style={{ fontSize: "22px" }}>
                                         <b>Janis Santiago</b>
@@ -362,11 +358,11 @@ const About = ({ title }) => {
                   </p>
                                 </div>
                             </div>
-                            <div class="col">
-                                <div class="img-container">
+                            <div className="col">
+                                <div className="img-container">
                                     <img id="team-img" src="/images/member16.png" style={{ width: "100%" }} alt='member' />
                                 </div>
-                                <div class="text-team">
+                                <div className="text-team">
                                     <br />
                                     <p style={{ fontSize: "22px" }}>
                                         <b>Anne Drea Camus</b>
@@ -376,11 +372,11 @@ const About = ({ title }) => {
                   </p>
                                 </div>
                             </div>
-                            <div class="col">
-                                <div class="img-container">
+                            <div className="col">
+                                <div className="img-container">
                                     <img id="team-img" src="/images/member18.png" style={{ width: "100%" }} alt='member' />
                                 </div>
-                                <div class="text-team">
+                                <div className="text-team">
                                     <br />
                                     <p style={{ fontSize: "22px" }}>
                                         <b>Jeremiah Dimasacat</b>
@@ -390,11 +386,11 @@ const About = ({ title }) => {
                   </p>
                                 </div>
                             </div>
-                            <div class="col">
-                                <div class="img-container">
+                            <div className="col">
+                                <div className="img-container">
                                     <img id="team-img" src="/images/member19.png" style={{ width: "100%" }} alt='member' />
                                 </div>
-                                <div class="text-team">
+                                <div className="text-team">
                                     <br />
                                     <p style={{ fontSize: "22px" }}>
                                         <b>Troy Angelo Bisa</b>
@@ -407,21 +403,21 @@ const About = ({ title }) => {
                         </div>
                     </div>
 
-                    <div class="container-md">
-                        <div class="col-md-12">
-                            <div class="text">
-                                <h1 class="title">AWARDS & RECOGNITIONS</h1>
+                    <div className="container-md">
+                        <div className="col-md-12">
+                            <div className="text">
+                                <h1 className="title">AWARDS & RECOGNITIONS</h1>
                                 <br />
                             </div>
 
-                            <ul style={{ fontSize: "18px" }} class="aboutus-recognitions">
+                            <ul style={{ fontSize: "18px" }} className="aboutus-recognitions">
                                 {loading ? <h1>Loading</h1> : abouts && abouts.map(about => (
                                     <li>
                                         {about.content}
                                     </li>
                                 ))}
                             </ul>
-                            {/* <ul style={{ fontSize: "18px" }} class="aboutus-recognitions">
+                            {/* <ul style={{ fontSize: "18px" }} className="aboutus-recognitions">
                 <li>Winner, ESD Okayama Awards 2021</li>
                 <li>
                   Outstanding GYS Alumni Safe Space Heroes 2021 [Karapatan at

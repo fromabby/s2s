@@ -1,6 +1,7 @@
 .image {
-    width: 250px;
+    width: 200px;
     height: auto;
+    border-radius: 25px;
 }
 
 .create-button {
@@ -9,33 +10,56 @@
     padding: 15px
 }
 
-.image-wrapper {
-    height: 150px;
-    width: 150px;
-    overflow: hidden;
-    border-radius: 25px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 .manage-post-div {
     width: 100%;
 }
 
+.primary{
+    background-color: #467AAC;
+}
+
+.danger{
+    background-color: #FF6961;
+}
+
+.success{
+    background-color: #4C9188;
+}
+
+.admin-button {
+    width: 100px;
+    border-radius: 25px !important;
+    margin: 5px;
+}
+
+.admin-switch{
+    display: flex;
+    justify-content: space-evenly;
+}
+
 th {
     text-align: center;
-    font-weight: bold;
-    font-size: 20px;
+    vertical-align: middle !important;
+    padding: 0 !important;
+}
+
+tr {
+    position: relative;
 }
 
 td {
-    height: 150px;
+    text-align: center;
+    vertical-align: middle !important;
 }
 
-.td-container {
-    display: flex;
-    height: 100%;
-    justify-content: center;
-    align-items: center;
+.sorting::before{
+    display: none !important;
+}
+
+.sorting_desc::after {
+    display: none !important;
+}
+
+.sorting_asc::before {
+    display: none !important;
 }

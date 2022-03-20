@@ -13,6 +13,10 @@ var postSchema = new mongoose.Schema({
         type: String,
         required: [true, 'Please enter title']
     },
+    category: {
+        type: String,
+        required: [true, 'Please enter category']
+    },
     images: {
         type: Array,
         required: [true, 'Please enter image']

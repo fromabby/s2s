@@ -55,6 +55,11 @@ const RecordList = ({ title }) => {
         const data = {
             columns: [
                 {
+                    label: 'ID',
+                    field: 'id',
+                    width: 200,
+                },
+                {
                     label: 'Date',
                     field: 'date',
                     width: 200,
@@ -84,17 +89,18 @@ const RecordList = ({ title }) => {
             rows: []
         }
 
-        records && records.forEach(record => {
+        records && records.forEach((record,index) => {
             data.rows.push({
+                id: index+1,
                 date: formatDate(record.record_date),
                 name: record.record_name,
                 platform: record.record_platform,
                 amount: record.record_amount,
                 actions: <div className="td-container">
                     <Link to={`/admin/record/${record._id}`}>
-                        <Button variant={"primary"}>Edit</Button>
+                        <Button variant="primary" className="admin-button primary">Edit</Button>
                     </Link>
-                    <Button variant={"danger"} onClick={() => deleteHandler(record._id)} disabled={deleteLoading ? true : false}>Delete</Button>
+                    <Button variant="danger" className="admin-button danger" onClick={() => deleteHandler(record._id)} disabled={deleteLoading ? true : false}>Delete</Button>
                 </div>
             })
         })
@@ -111,7 +117,7 @@ const RecordList = ({ title }) => {
                         <h1>Manage Records</h1>
                         <div className='create-button'>
                             <Link to="/admin/record/new">
-                                <Button variant={"success"}>Add new record</Button>
+                                <Button variant={"success"} className='success'>Add new record</Button>
                             </Link>
                         </div>
                         <MDBDataTableV5
@@ -121,6 +127,8 @@ const RecordList = ({ title }) => {
                             pagesAmount={4}
                             data={setData()}
                             fullPagination
+                            searchTop
+                            searchBottom={false}
                         />
                     </div>
                 </>}

@@ -112,6 +112,8 @@ const UserList = ({ title }) => {
                             pagesAmount={4}
                             data={setData()}
                             fullPagination
+                            searchTop
+                            searchBottom={false}
                         />
                     </div>
                 </>}

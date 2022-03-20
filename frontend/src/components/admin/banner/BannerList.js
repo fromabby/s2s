@@ -53,6 +53,11 @@ const BannerList = ({ title }) => {
         const data = {
             columns: [
                 {
+                    label: 'ID',
+                    field: 'id',
+                    width: 800,
+                },
+                {
                     label: 'Image',
                     field: 'image',
                     width: 800,
@@ -67,18 +72,15 @@ const BannerList = ({ title }) => {
             rows: []
         }
 
-        banners && banners.forEach(banner => {
+        banners && banners.forEach((banner, index) => {
             data.rows.push({
-                image: <div className="td-container">
-                    <div className='image-wrapper'>
-                        <img className='image' src={banner.image[0].path} />
-                    </div>
-                </div>,
-                actions: <div className="td-container">
+                id: index + 1,
+                image: <img className='image' src={banner.image[0].path} />,
+                actions: <div>
                     <Link to={`/admin/banner/${banner._id}`}>
-                        <Button variant={"primary"}>Edit</Button>
+                        <Button variant={"primary"} className="admin-button primary">Edit</Button>
                     </Link>
-                    <Button variant={"danger"} onClick={() => deleteHandler(banner._id)} disabled={deleteLoading ? true : false}>Delete</Button>
+                    <Button variant={"danger"} className="admin-button danger" onClick={() => deleteHandler(banner._id)} disabled={deleteLoading ? true : false}>Delete</Button>
                 </div>
             })
         })
@@ -95,7 +97,7 @@ const BannerList = ({ title }) => {
                         <h1>Manage Banners</h1>
                         <div className='create-button'>
                             <Link to="/admin/banner/new">
-                                <Button variant={"success"}>Add new banner</Button>
+                                <Button variant={"success"} className="success">Add new banner</Button>
                             </Link>
                         </div>
                         <MDBDataTableV5
@@ -105,6 +107,8 @@ const BannerList = ({ title }) => {
                             pagesAmount={4}
                             data={setData()}
                             fullPagination
+                            searchTop
+                            searchBottom={false}
                         />
                     </div>
                 </>}

@@ -68,7 +68,7 @@ const CommentBox = ({ post_id }) => {
                     </Form.Group>
                 }
 
-                <Button variant="primary" type="submit" disabled={isLoading ? true : false}>
+                <Button variant="primary" type="submit" disabled={isLoading || !comment}>
                     Submit
                 </Button>
             </form>

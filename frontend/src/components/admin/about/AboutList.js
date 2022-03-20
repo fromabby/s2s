@@ -53,6 +53,11 @@ const AboutList = ({ title }) => {
         const data = {
             columns: [
                 {
+                    label: 'ID',
+                    field: 'id',
+                    width: 200,
+                },
+                {
                     label: 'Content',
                     field: 'content',
                     width: 800,
@@ -67,14 +72,15 @@ const AboutList = ({ title }) => {
             rows: []
         }
 
-        abouts && abouts.forEach(about => {
+        abouts && abouts.forEach((about, index) => {
             data.rows.push({
+                id: index + 1,
                 content: <div className="td-container">{about.content}</div>,
                 actions: <div className="td-container">
                     <Link to={`/admin/about/${about._id}`}>
-                        <Button variant={"primary"}>Edit</Button>
+                        <Button variant={"primary"} className="admin-button primary">Edit</Button>
                     </Link>
-                    <Button variant={"danger"} onClick={() => deleteHandler(about._id)} disabled={deleteLoading ? true : false}>Delete</Button>
+                    <Button variant={"danger"} className="admin-button danger" onClick={() => deleteHandler(about._id)} disabled={deleteLoading ? true : false}>Delete</Button>
                 </div>
             })
         })
@@ -91,7 +97,7 @@ const AboutList = ({ title }) => {
                         <h1>Manage Awards and Recognitions</h1>
                         <div className='create-button'>
                             <Link to="/admin/about/new">
-                                <Button variant={"success"}>Add new about</Button>
+                                <Button variant={"success"} className="success">Add new about</Button>
                             </Link>
                         </div>
                         <MDBDataTableV5
@@ -101,6 +107,8 @@ const AboutList = ({ title }) => {
                             pagesAmount={4}
                             data={setData()}
                             fullPagination
+                            searchTop
+                            searchBottom={false}
                         />
                     </div>
                 </>}

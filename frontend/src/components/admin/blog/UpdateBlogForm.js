@@ -85,8 +85,13 @@ const UpdateBlogForm = ({ title }) => {
                     </Form.Group>
 
                     <Form.Group className="mb-3">
-                        <Form.Label>Content</Form.Label>
-                        <Form.Control as="textarea" name="content" value={post.content} onChange={changeHandler} required />
+                        <Form.Label>Category</Form.Label>
+                        <Form.Control type="text" name="category" placeholder="Enter Category" value={post.category} onChange={changeHandler} required />
+                    </Form.Group>
+
+                    <Form.Group className="mb-3">
+                        <Form.Label>Descrpition</Form.Label>
+                        <Form.Control as="textarea" name="content" placeholder="Enter content" value={post.content} onChange={changeHandler} required />
                     </Form.Group>
 
                     <Form.Group className="mb-3">
@@ -94,9 +99,12 @@ const UpdateBlogForm = ({ title }) => {
                         <Form.Control type="file" multiple onChange={(e) => setImages(Array.from(e.target.files))} />
                     </Form.Group>
 
-                    <Button variant="primary" type="submit">
-                        Submit
-                    </Button>
+                    <div className='d-flex flex-row justify-content-end'>
+                        <Button variant="primary" type="submit">
+                            Update
+                        </Button>
+                    </div>
+
                 </Form>
             </Fragment>
             : <>Loading</>

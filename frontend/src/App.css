@@ -5,9 +5,12 @@ body {
     font-family: "Noto Sans";
 }
 
-.set-bg{
-    background-image: url("/public/images/bg.png");
+.set-bg {
+    background-image: url("/public/images/new-bg.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
 }
+
 
 .sidenav {
     background-color: rgba(255, 255, 255, 0.6);
@@ -18,9 +21,21 @@ body {
     position: fixed;
 }
 
-.main-dashboard{
+.nav-active {
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    background-color: #FDDA76;
+}
+
+.main-dashboard {
     margin-left: 320px;
     width: 100%;
+    margin-top: 25px;
+}
+
+.dashboardBG {
+    background-color: #ffecac;
+    min-height: 100vh;
 }
 
 .sidenav a {

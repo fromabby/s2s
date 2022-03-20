@@ -39,6 +39,8 @@ const CreateBlogForm = ({ title }) => {
         }
     }
 
+    console.log(images)
+
     return (
         <Fragment>
             <Metadata title={title} />
@@ -46,7 +48,7 @@ const CreateBlogForm = ({ title }) => {
 
                 <Form.Group className="mb-3">
                     <Form.Label>Title</Form.Label>
-                    <Form.Control type="text" name="title" placeholder="Enter Title" value={post.title} onChange={changeHandler} />
+                    <Form.Control type="text" name="title" placeholder="Enter Title" value={post.title} onChange={changeHandler} required />
                 </Form.Group>
 
                 <Form.Group className="mb-3">
@@ -54,19 +56,34 @@ const CreateBlogForm = ({ title }) => {
                     <Form.Control type="text" name="author" placeholder="Enter Author" value={post.author} onChange={changeHandler} />
                 </Form.Group>
 
+                {images &&
+                    <div>
+                        {
+                            images.map(image => <>{image?.name}</>)
+                        }
+                    </div>
+                }
+
+
+                <Form.Group className="mb-3">
+                    <Form.Label>Category</Form.Label>
+                    <Form.Control type="text" name="category" placeholder="Enter Category" value={post.category} onChange={changeHandler} />
+                </Form.Group>
+
                 <Form.Group className="mb-3">
                     <Form.Label>Content</Form.Label>
-                    <Form.Control as="textarea" name="content" value={post.content} onChange={changeHandler} />
+                    <Form.Control as="textarea" name="content" placeholder="Enter content" value={post.content} onChange={changeHandler} />
                 </Form.Group>
 
                 <Form.Group className="mb-3">
                     <Form.Label>Select Images</Form.Label>
                     <Form.Control type="file" multiple onChange={(e) => setImages(Array.from(e.target.files))} />
                 </Form.Group>
-
-                <Button variant="primary" type="submit">
-                    Submit
-                </Button>
+                <div className='d-flex flex-row justify-content-end'>
+                    <Button variant="success" type="submit">
+                        Submit
+                    </Button>
+                </div>
             </Form>
         </Fragment>
     )

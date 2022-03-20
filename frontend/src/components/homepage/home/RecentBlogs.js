@@ -15,7 +15,7 @@ const RecentBlogs = ({ recentPosts }) => {
             <div className="recent">
                 {
                     recentPosts.map((post, index) => (
-                        index < 4 &&
+                        index < 4 && !post.isArchived &&
                         <Blog post={post} />
                     ))
                 }

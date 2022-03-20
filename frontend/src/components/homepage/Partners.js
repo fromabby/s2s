@@ -27,11 +27,8 @@ const Partners = ({ title }) => {
     }, [])
     return (
         <div
-            class="bg_image content-container"
-            style={{
-                backgroundImage: `url(/images/bg.png)`,
-                backgroundSize: "cover",
-            }}
+            className="bg_image content-container"
+
         >
             <Metadata title={title} />
 

@@ -8,7 +8,7 @@ import formatDate from '../../../formatDate'
 const CommentList = () => {
 
 
-    const { commentState, updateComment } = useContext(CommentContext)
+    const { commentState, updateComment, adminDeleteComment } = useContext(CommentContext)
     const { allComments } = commentState
 
     const alert = useAlert()
@@ -21,6 +21,12 @@ const CommentList = () => {
         else {
             alert.error("Comment Denied")
         }
+    }
+
+
+    const deleteItem = (id) => {
+        adminDeleteComment(id)
+        alert.success("Comment Deleted")
     }
 
     const setData = () => {
@@ -47,6 +53,11 @@ const CommentList = () => {
                     width: 200,
                 },
                 {
+                    label: 'STATUS',
+                    field: 'status',
+                    width: 200,
+                },
+                {
                     label: 'ACTIONS',
                     field: 'actions',
                     width: 200,
@@ -55,28 +66,27 @@ const CommentList = () => {
             rows: []
         }
         allComments && allComments.forEach((comment, index) => {
-            const { user, createdAt, content, status } = comment
+            const { user, createdAt, content, status, _id: id } = comment
             data.rows.push({
-                id: <div className='td-container'>
-                    {index + 1}
-                </div>,
-                email: <div className='td-container'>
-                    {user?.email}
-                </div>,
-                response: <div className='td-container'>
-                    {content}
-                </div>,
-                date: <div className='td-container'>
-                    {formatDate(createdAt)}
-                </div>,
-                actions: <div className='td-container'>
-                    <Form.Check
+                id: index + 1,
+                email: user?.email,
+                response: content,
+                date: formatDate(createdAt),
+                status: status === 1 ? 'Allowed' : 'Denied',
+                actions: <div>
+                    {/* <Form.Check
                         checked={comment.status === 1 ? true : false}
                         type="switch"
                         label="Allow"
                         id="disabled-custom-switch"
-                        onChange={updateItem}
-                    />
+                        onChange={() => updateItem(comment, status)}
+                    /> */}
+                    <Button variant={status === 1 ? 'danger' : 'success'} className={`${status === 1 ? 'danger' : 'success'} admin-button`} onClick={() => updateItem(comment, status)}>
+                        {status === 1 ? 'Deny' : 'Allow'}
+                    </Button>
+                    <Button variant="danger" className="danger admin-button" onClick={() => deleteItem(id)}>
+                        Delete
+                    </Button>
                 </div>
             })
         })
@@ -85,24 +95,6 @@ const CommentList = () => {
     }
 
     return (
-        // <Table responsive="sm">
-        //     <thead>
-        //         <tr>
-        //             <th scope="col">ID</th>
-        //             <th scope="col">EMAIL</th>
-        //             <th scope="col">RESPONSE</th>
-        //             <th scope="col">DATE</th>
-        //             <th scope="col">ACTION</th>
-        //         </tr>
-        //     </thead>
-        //     <tbody>
-        //         {
-        //             allComments.map((comment, index) => (
-        //                 <Comment comment={comment} index={index + 1} updateComment={updateComment} />
-        //             ))
-        //         }
-        //     </tbody>
-        // </Table>
 
         <MDBDataTableV5
             hover
@@ -111,6 +103,8 @@ const CommentList = () => {
             pagesAmount={4}
             data={setData()}
             fullPagination
+            searchTop
+            searchBottom={false}
         />
     )
 }

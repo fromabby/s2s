@@ -87,7 +87,8 @@ const NavBar = ({ children }) => {
     return (
         <>
             {location.pathname.includes('admin') ?
-                <Dashboard>{children}</Dashboard> :
+                <Dashboard>{children}</Dashboard>
+                :
                 <div className='set-bg'>
                     <Header />
                     {children}
@@ -124,7 +125,7 @@ const App = () => {
                                             <Route path="/admin/blog/archive" element={<ArchiveBlogList title={`Manage Archived Blogs`} />} />
                                             <Route path="/admin/blog/new" element={<CreateBlogForm title={`Add New Blog`} />} />
                                             <Route path="/admin/blog/edit/:id" element={<UpdateBlogForm title={`Update Blog`} />} />
-                                            <Route path="/admin/comment" element={<CommentList  />} />
+                                            <Route path="/admin/comment" element={<CommentList />} />
                                         </Route>
                                     </Routes>
                                 </CommentContextProvider>

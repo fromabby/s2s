@@ -82,7 +82,8 @@ const commentReducer = (state, action) => {
             return { ...state, isLoading: false, error: action.payload }
 
         case "DELETE_COMMENT_SUCCESS":
-            return { ...state, isLoading: false, commentList: state.commentList.filter(comment => comment._id !== action.payload) }
+            console.log(action.payload)
+            return { ...state, isLoading: false, commentList: state.commentList.filter(comment => comment._id !== action.payload), allComments: state.allComments.filter(comment => comment._id !== action.payload) }
         case "DELETE_COMMENT_FAIL":
             return { ...state, isLoading: false, error: action.payload }
         default:

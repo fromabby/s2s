@@ -53,6 +53,11 @@ const DonationList = ({ title }) => {
         const data = {
             columns: [
                 {
+                    label: 'ID',
+                    field: 'id',
+                    width: 200,
+                },
+                {
                     label: 'Bank Name',
                     field: 'bank',
                     width: 200,
@@ -82,8 +87,9 @@ const DonationList = ({ title }) => {
             rows: []
         }
         
-        donations && donations.forEach(donation => {
+        donations && donations.forEach((donation, index) => {
             data.rows.push({
+                id: index+1,
                 bank: donation.bank_name,
                 name: donation.account_details.account_name,
                 instructions: donation.instructions,
@@ -94,9 +100,9 @@ const DonationList = ({ title }) => {
                 </div>,
                 actions: <div className="td-container">
                     <Link to={`/admin/donation/${donation._id}`}>
-                        <Button variant={"primary"}>Edit</Button>
+                        <Button variant={"primary"} className="admin-button primary">Edit</Button>
                     </Link>
-                    <Button variant={"danger"} onClick={() => deleteHandler(donation._id)} disabled={deleteLoading ? true : false}>Delete</Button>
+                    <Button variant={"danger"} className="admin-button danger" onClick={() => deleteHandler(donation._id)} disabled={deleteLoading ? true : false}>Delete</Button>
                 </div>
             })
         })
@@ -113,7 +119,7 @@ const DonationList = ({ title }) => {
                         <h1>Manage Donation Links</h1>
                         <div className='create-button'>
                             <Link to="/admin/donation/new">
-                                <Button variant={"success"}>Add new donation</Button>
+                                <Button variant={"success"} className="success">Add new donation</Button>
                             </Link>
                         </div>
                         <MDBDataTableV5
@@ -123,6 +129,8 @@ const DonationList = ({ title }) => {
                             pagesAmount={4}
                             data={setData()}
                             fullPagination
+                            searchTop
+                            searchBottom={false}
                         />
                     </div>
                 </>}

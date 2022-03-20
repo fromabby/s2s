@@ -128,6 +128,18 @@ export const CommentContextProvider = props => {
     }
 
 
+    const adminDeleteComment = async (id) => {
+        try {
+            const { data } = await axios.delete(`/api/v1/responses/admin/${id}`)
+            dispatchUser({ type: "DELETE_COMMENT_SUCCESS", payload: id })
+        }
+        catch (error) {
+            dispatchUser({ type: "DELETE_COMMENT_FAIL", payload: error })
+            dispatchUser({ type: "CLEAR_ERRORS" })
+        }
+    }
+
+
     useEffect(() => {
         let isMounted = true
         if (isMounted) {
@@ -138,7 +150,7 @@ export const CommentContextProvider = props => {
     }, [])
 
     return (
-        <CommentContext.Provider value={{ commentState, verifyUser, setUser, cancelVerification, getCurrentUser, updateComment, getAllComments, getAllCommentsForAdmin, addComment, deleteComment }}>
+        <CommentContext.Provider value={{ commentState, verifyUser, setUser, cancelVerification, getCurrentUser, updateComment, adminDeleteComment, getAllComments, getAllCommentsForAdmin, addComment, deleteComment }}>
             {props.children}
         </CommentContext.Provider>
     )

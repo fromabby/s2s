@@ -18,6 +18,7 @@ const ArchiveBlogList = () => {
     useEffect(() => {
         setPosts(postList)
     }, [postList])
+
     const filteredPost = posts.filter(post => post.isArchived === true)
 
     const alert = useAlert()
@@ -45,48 +46,41 @@ const ArchiveBlogList = () => {
                 {
                     label: 'ID',
                     field: 'id',
-                    width: 200,
                 },
                 {
                     label: 'IMAGE',
                     field: 'image',
-                    width: 200,
                 },
                 {
                     label: 'TITLE',
                     field: 'title',
-                    width: 200,
+                },
+                {
+                    label: 'CATEGORY',
+                    field: 'category',
                 },
                 {
                     label: 'ACTIONS',
                     field: 'actions',
-                    width: 200,
                 }
             ],
             rows: []
         }
 
         filteredPost && filteredPost.forEach((post, index) => {
-            const { title, images, _id: id, isFeature, isSubFeature, isArchived } = post
+            const { title, images, _id: id, category } = post
             data.rows.push({
-                id: <div className='td-container'>
-                    {index + 1}
-                </div>,
-                image: <div className='td-container'>
-                    <div className='image-wrapper'>
-                        <img className='image' src={images[0].path} />
-                    </div>
-                </div>,
-                title: <div className='td-container'>
-                    {title}
-                </div>,
-                actions: <div className='td-container'>
-                    <Button className={`btn ${post.isArchived ? 'btn-success' : 'btn-danger'}`} onClick={() => archiveItem(post)}>
+                id: index + 1,
+                image: <img className='image' src={images[0].path} />,
+                title: title,
+                category: category,
+                actions: <div>
+                    <Button variant="success" className="success admin-button" onClick={() => archiveItem(post)}>
                         {post.isArchived ? 'Restore' : 'Archive'}
                     </Button>
                     {
                         post.isArchived &&
-                        <Button className="btn btn-danger" onClick={() => deleteItem(post._id)}>
+                        <Button variant="danger" className="admin-button danger" onClick={() => deleteItem(post._id)}>
                             Delete
                         </Button>
                     }
@@ -103,7 +97,7 @@ const ArchiveBlogList = () => {
         isLoading ? <>Loading</>
             :
             <div className='manage-post-div'>
-                <Form.Control type='text' onChange={(e) => setPosts(postList.filter(post => post.title.includes(e.target.value)))} />
+                {/* <Form.Control type='text' onChange={(e) => setPosts(postList.filter(post => post.title.includes(e.target.value)))} /> */}
 
                 <MDBDataTableV5
                     hover
@@ -112,7 +106,7 @@ const ArchiveBlogList = () => {
                     pagesAmount={4}
                     data={setData()}
                     fullPagination
-                    searching={false}
+                    // searching={false}
                     searchTop
                     searchBottom={false}
                 />
