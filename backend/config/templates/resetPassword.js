@@ -45,10 +45,10 @@ module.exports = ({ link }) => {
                             </tr>
                             
                             <tr style="border-collapse:collapse">
-                                <td width="640" align="center" bgcolor="#8A0020" style="font-family:HelveticaNeue,sans-serif;border-collapse:collapse">
+                                <td width="640" align="center" bgcolor="green" style="font-family:HelveticaNeue,sans-serif;border-collapse:collapse">
                                     <div align="center" style="text-align:center;display: flex;justify-content: center;align-items: center; padding-bottom: 10px;">
-                                        <a href="https://thomcare.herokuapp.com/" target="_blank" style="font-size:36px; color:#fff; text-decoration:none; font-family:'calibri', arial, verdana; display:block; margin:20px 0px;">
-                                            <img style="max-width: 45px;" src="https://res.cloudinary.com/dwcxehcui/image/upload/v1630769727/logo/UST-Seal-College-of-Information-Computing-Sciences_ghtsuq.png" alt="logo"> <span style="font-size: 40px;">ThomCare</span>
+                                        <a href="https://localhost:3000/" target="_blank" style="font-size:36px; color:#fff; text-decoration:none; font-family:'calibri', arial, verdana; display:block; margin:20px 0px;">
+                                            <img style="max-width: 45px;" src="" alt="logo"> <span style="font-size: 40px;">Streets To Schools</span>
                                         </a><br />
                                     </div>
                                 </td>

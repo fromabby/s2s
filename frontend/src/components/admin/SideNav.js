@@ -1,8 +1,22 @@
-import React from 'react'
+import React, { useEffect, useContext } from 'react'
 import { Link, useLocation } from 'react-router-dom'
+import AuthContext from '../../context/authContext'
+
 
 const SideNav = () => {
+
+    const { auth } = useContext(AuthContext)
+    const { loading, user, loadError } = auth
+
     const location = useLocation()
+
+    useEffect(() => {
+        if (loadError) {
+            alert.error(loadError)
+        }
+    }, [user, loadError])
+
+
     return (
         <div className="sidenav">
             <Link to="/admin/dashboard/">

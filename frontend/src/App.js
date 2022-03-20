@@ -133,9 +133,9 @@ const App = () => {
 
                             <Routes>
                                 <Route element={<AdminRoutes />}>
-                                    <Route path="/me" element={<MyProfile title={`My Profile`} />} />
-                                    <Route path="/me/update" element={<UpdateProfile title={`Update Profile`} />} />
-                                    <Route path="/password/update" element={<UpdatePassword title={`Change Profile`} />} />
+                                    <Route path="/admin/me" element={<MyProfile title={`My Profile`} />} />
+                                    <Route path="/admin/me/update" element={<UpdateProfile title={`Update Profile`} />} />
+                                    <Route path="/admin/password/update" element={<UpdatePassword title={`Change Profile`} />} />
                                 </Route>
                             </Routes>
 
@@ -210,7 +210,7 @@ const App = () => {
                             <PasswordContextProvider>
                                 <Routes>
                                     <Route path="/forgot-password" element={<ForgotPassword title={`Forgot password?`} />} />
-                                    <Route path="/password/reset/:token" element={<ResetPassword title={`Rest your password`} />} />
+                                    <Route path="/password/reset/:token" element={<ResetPassword title={`Reset your password`} />} />
                                 </Routes>
                             </PasswordContextProvider>
                         </NavBar>

@@ -7,7 +7,7 @@ const crypto = require('crypto')
 const passVal = require('../utils/passwordValidation')
 
 // templates
-// const verifyEmail = require('../config/templates/verifyEmail')
+const resetPassword = require('../config/templates/resetPassword')
 
 exports.login = catchAsyncErrors(async (req, res, next) => {
     const { email, password } = req.body
@@ -53,12 +53,12 @@ exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
     const link = `${req.protocol}://${process.env.HOST}/password/reset/${resetToken}`
 
     try {
-        // const message = await resetPassword({ link })
+        const message = await resetPassword({ link })
 
         await sendEmail({
             email: user.email,
             subject: 'STREETSTOSCHOOLS Password Recovery',
-            message: `<h1>Reset link: ${link}</h1>`
+            message
         })
 
         res.status(200).json({
@@ -84,7 +84,10 @@ exports.resetPassword = catchAsyncErrors(async (req, res, next) => {
         resetPasswordExpire: { $gt: Date.now() }
     })
     if (!user) { return next(new ErrorHandler('Password reset link is invalid or has expired')) }
-    if (passVal.validate(req.body.password) !== true) { return next(new ErrorHandler('Please follow password format', 400)) }
+    
+    
+    
+    if (passVal.validate(req.body.password) !== true) { return next(new ErrorHandler('minimum of 8 characters, mixture of upper case and lower case letters, and has digits', 400)) }
     if (password !== confirmPassword) { return next(new ErrorHandler('Password does not match')) }
 
     user.password = password
@@ -102,7 +105,6 @@ exports.resetPassword = catchAsyncErrors(async (req, res, next) => {
 exports.register = catchAsyncErrors(async (req, res, next) => {
     const { email, name, password, role, confirmPassword } = req.body
 
-    console.log(name)
     if (passVal.validate(req.body.password) !== true) { return next(new ErrorHandler('Please follow password format', 400)) }
     if (password !== confirmPassword) { return next(new ErrorHandler('Password does not match')) }
 
@@ -112,7 +114,6 @@ exports.register = catchAsyncErrors(async (req, res, next) => {
 
     const newUser = await User.create({ email, name, password, role })
 
-    console.log(newUser)
     res.status(201).json({
         success: true,
         message: "User created successfully",
@@ -123,18 +124,16 @@ exports.register = catchAsyncErrors(async (req, res, next) => {
 exports.updatePassword = catchAsyncErrors(async (req, res, next) => {
     const user = await User.findById(req.user.id).select('+password')
 
-    console.log(user)
     const { oldPassword, password, confirmPassword } = req.body
     const isMatched = await user.comparePassword(oldPassword)
 
     if (!isMatched) { return next(new ErrorHandler('Old password is incorrect')) }
-    if (passVal.validate(req.body.password) !== true) { return next(new ErrorHandler('Please follow password format', 400)) }
+    if (passVal.validate(password) !== true) { return next(new ErrorHandler('minimum of 8 characters, mixture of upper case and lower case letters, and has digits', 400)) }
     if (password !== confirmPassword) { return next(new ErrorHandler('Password and Confirm Password does not match')) }
 
     user.password = password
 
     await user.save()
-    console.log('saved')
     sendToken(user, user.role, 200, res)
 })
 
@@ -181,6 +180,12 @@ exports.getUser = catchAsyncErrors(async (req, res, next) => {
 })
 
 exports.updateUser = catchAsyncErrors(async (req, res, next) => {
+    const users = await User.find({ role: 'superadmin' })
+
+    if (users.length < 2 && req.body.role === 'admin') {
+        return (next(new ErrorHandler('Cannot update role of user')))
+    }
+
     const user = await User.findByIdAndUpdate(req.params.id, req.body, {
         new: true,
         runValidators: true,
@@ -197,6 +202,13 @@ exports.updateUser = catchAsyncErrors(async (req, res, next) => {
 })
 
 exports.deleteUser = catchAsyncErrors(async (req, res, next) => {
+    const users = await User.find({ role: 'superadmin' })
+
+    if(users.length === 1) {
+        return (next(new ErrorHandler('Cannot delete superadmin')))
+    }
+
+
     const user = await User.findById(req.params.id)
 
     if (!user) { return next(new ErrorHandler(`User not found with this id:(${req.params.id})`)) }
