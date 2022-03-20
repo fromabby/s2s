@@ -13,7 +13,8 @@ const PublicBlogList = ({ title }) => {
     const [searchQuery, setSearchQuery] = useState('')
     const [categoryQuery, setCategoryQuery] = useState('')
     const [postList, setPostList] = useState(posts)
-    const [categories, setCategories] = useState([])
+    const [categories, setCategories] = useState(["Environment", "Children’s rights", "Partnerships", "Health"])
+
 
     const changeMaxHandler = () => {
         if (maxDisplay === 8) {
@@ -24,25 +25,6 @@ const PublicBlogList = ({ title }) => {
         }
     }
 
-    const getAllCategories = () => {
-        let categories = []
-        posts.forEach(post => {
-            let { category } = post
-            if (!categories.includes(category) && !post.isArchived) {
-                categories.push(category)
-            }
-        })
-        return categories
-    }
-
-
-    // useEffect(() => {
-    //     let filteredPost = posts.filter(post => post.category.toLowerCase().includes(categoryQuery.toLowerCase()))
-    //     let searchedPost = filteredPost.filter(post => post.title.toLowerCase().includes(searchQuery.toLowerCase()))
-    //     setPostList(searchedPost)
-    // }, [searchQuery, categoryQuery, posts])
-
-    console.log(searchQuery)
 
     useEffect(() => {
         if (categoryQuery === "-") {
@@ -62,10 +44,6 @@ const PublicBlogList = ({ title }) => {
         }
     }, [searchQuery, categoryQuery, posts])
 
-    useEffect(() => {
-        setCategories(getAllCategories())
-    }, [posts])
-
     return (
         <>
             <Metadata title={title} />
@@ -74,14 +52,17 @@ const PublicBlogList = ({ title }) => {
                     <div id="blog">
                         <div className='filter-container'>
                             <Form.Control type="text" style={{ width: '500px' }} onChange={(e) => setSearchQuery(e.target.value)} />
-                            <select className="form-select" style={{ width: '200px' }} onChange={(e) => setCategoryQuery(e.target.value)}>
-                                <option selected>-</option>
-                                {
-                                    categories.map(category => (
-                                        <option value={category}>{category}</option>
-                                    ))
-                                }
-                            </select>
+                            < Form.Select style={{ width: '200px' }} name="category" value={categoryQuery} onChange={(e) => setCategoryQuery(e.target.value)} >
+                                <option value="">Select Category</option>
+                                <option value="Environment">Environment</option>
+                                <option value="Children’s rights">Children’s rights</option>
+                                <option value="Partnerships">Partnerships</option>
+                                <option value="Health">Health</option>
+                            </Form.Select >
+                            <Button style={{ marginLeft: "10px" }} onClick={() => {
+                                setSearchQuery('')
+                                setCategoryQuery('')
+                            }}>Clear Filter</Button>
                         </div>
 
                         <div className="recent1">
@@ -93,11 +74,15 @@ const PublicBlogList = ({ title }) => {
                                 ))
                             }
                         </div>
-                        <Button onClick={changeMaxHandler}>
-                            {
-                                maxDisplay === 8 ? 'See More' : 'See Less'
-                            }
-                        </Button>
+                        {
+                            postList.length > 8 &&
+                            <Button onClick={changeMaxHandler}>
+                                {
+                                    maxDisplay === 8 ? 'See More' : 'See Less'
+                                }
+                            </Button>
+                        }
+
                     </div>
             }
         </>

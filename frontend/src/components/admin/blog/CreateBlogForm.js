@@ -28,14 +28,20 @@ const CreateBlogForm = ({ title }) => {
 
         images.map(image => formData.append('images', image))
 
-        try {
-            addData(formData)
-            alert.success("Post created")
-            navigate('/admin/blog')
+        const { title, content, category, author } = post
+        if (title, content, category, author) {
+            try {
+                addData(formData)
+                alert.success("Post created")
+                navigate('/admin/blog')
+            }
+            catch (error) {
+                alert.error("Error")
+                console.log(error)
+            }
         }
-        catch (error) {
-            alert.error("Error")
-            console.log(error)
+        else {
+            alert.error("Fill out the form")
         }
     }
 
@@ -53,31 +59,28 @@ const CreateBlogForm = ({ title }) => {
 
                 <Form.Group className="mb-3">
                     <Form.Label>Author</Form.Label>
-                    <Form.Control type="text" name="author" placeholder="Enter Author" value={post.author} onChange={changeHandler} />
+                    <Form.Control type="text" name="author" placeholder="Enter Author" value={post.author} onChange={changeHandler} required />
                 </Form.Group>
-
-                {images &&
-                    <div>
-                        {
-                            images.map(image => <>{image?.name}</>)
-                        }
-                    </div>
-                }
-
 
                 <Form.Group className="mb-3">
                     <Form.Label>Category</Form.Label>
-                    <Form.Control type="text" name="category" placeholder="Enter Category" value={post.category} onChange={changeHandler} />
+                    <Form.Select aria-label="Default select example" name="category" defaultValue={null} value={post.category} onChange={changeHandler} required>
+                        <option value={null}>Select Category</option>
+                        <option value="Environment">Environment</option>
+                        <option value="Children’s rights">Children’s rights</option>
+                        <option value="Partnerships">Partnerships</option>
+                        <option value="Health">Health</option>
+                    </Form.Select>
                 </Form.Group>
 
                 <Form.Group className="mb-3">
                     <Form.Label>Content</Form.Label>
-                    <Form.Control as="textarea" name="content" placeholder="Enter content" value={post.content} onChange={changeHandler} />
+                    <Form.Control as="textarea" name="content" placeholder="Enter content" value={post.content} onChange={changeHandler} required/>
                 </Form.Group>
 
                 <Form.Group className="mb-3">
                     <Form.Label>Select Images</Form.Label>
-                    <Form.Control type="file" multiple onChange={(e) => setImages(Array.from(e.target.files))} />
+                    <Form.Control type="file" multiple onChange={(e) => setImages(Array.from(e.target.files))} required/>
                 </Form.Group>
                 <div className='d-flex flex-row justify-content-end'>
                     <Button variant="success" type="submit">

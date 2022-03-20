@@ -86,11 +86,17 @@ const UpdateBlogForm = ({ title }) => {
 
                     <Form.Group className="mb-3">
                         <Form.Label>Category</Form.Label>
-                        <Form.Control type="text" name="category" placeholder="Enter Category" value={post.category} onChange={changeHandler} required />
+                        <Form.Select aria-label="Default select example" name="category" defaultValue={null} value={post.category} onChange={changeHandler} required>
+                            <option value={null}>Select Category</option>
+                            <option value="Environment">Environment</option>
+                            <option value="Children’s rights">Children’s rights</option>
+                            <option value="Partnerships">Partnerships</option>
+                            <option value="Health">Health</option>
+                        </Form.Select>
                     </Form.Group>
 
                     <Form.Group className="mb-3">
-                        <Form.Label>Descrpition</Form.Label>
+                        <Form.Label>Content</Form.Label>
                         <Form.Control as="textarea" name="content" placeholder="Enter content" value={post.content} onChange={changeHandler} required />
                     </Form.Group>
 
@@ -98,13 +104,11 @@ const UpdateBlogForm = ({ title }) => {
                         <Form.Label>Select Images</Form.Label>
                         <Form.Control type="file" multiple onChange={(e) => setImages(Array.from(e.target.files))} />
                     </Form.Group>
-
                     <div className='d-flex flex-row justify-content-end'>
-                        <Button variant="primary" type="submit">
-                            Update
+                        <Button variant="success" type="submit">
+                            Submit
                         </Button>
                     </div>
-
                 </Form>
             </Fragment>
             : <>Loading</>
