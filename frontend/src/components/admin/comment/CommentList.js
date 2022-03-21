@@ -43,6 +43,11 @@ const CommentList = () => {
                     width: 200,
                 },
                 {
+                    label: 'NAME',
+                    field: 'name',
+                    width: 200,
+                },
+                {
                     label: 'RESPONSE',
                     field: 'response',
                     width: 200,
@@ -70,6 +75,7 @@ const CommentList = () => {
             data.rows.push({
                 id: index + 1,
                 email: user?.email,
+                name: user?.full_name,
                 response: content,
                 date: formatDate(createdAt),
                 status: status === 1 ? 'Allowed' : 'Denied',

@@ -28,7 +28,7 @@ const Comment = (props) => {
       </td>
       <td>
         <div className='td-container'>
-          {user?.email}
+          {user?.full_name}
         </div>
       </td>
       <td>
