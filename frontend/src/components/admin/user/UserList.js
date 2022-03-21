@@ -18,6 +18,24 @@ const UserList = ({ title }) => {
     const { user, deleteUser } = useContext(UserContext)
     const { loading: deleteLoading, isDeleted, error } = user
 
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const { data } = await axios.get('/api/v1/admin/users')
+                if (data.success) {
+                    setUsers(data.users)
+                    setLoading(false)
+                }
+            } catch (error) {
+                setLoading(false)
+                alert.error(error)
+            }
+        }
+        fetchData()
+    }, [])
+
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -77,16 +95,16 @@ const UserList = ({ title }) => {
             rows: []
         }
 
-        users && users.forEach(user => {
+        users && users?.forEach(user => {
             data.rows.push({
                 id: "id goes here",
                 email: user.email,
                 role: user.role,
                 actions: <div className="td-container">
                     <Link to={`/admin/user/${user._id}`}>
-                        <Button variant={"primary"}>Edit</Button>
+                        <Button variant={"primary"} className="admin-button primary">Edit</Button>
                     </Link>
-                    <Button variant={"danger"} onClick={() => deleteHandler(user._id)} disabled={user.role === 'superadmin' ? true : deleteLoading ? true : false}>Delete</Button>
+                    <Button variant={"danger"} className="admin-button danger" onClick={() => deleteHandler(user._id)} disabled={user.role === 'superadmin' ? true : deleteLoading ? true : false}>Delete</Button>
                 </div>
             })
         })
@@ -102,7 +120,7 @@ const UserList = ({ title }) => {
                         <h1>Manage Users</h1>
                         <div className='create-button'>
                             <Link to="/admin/user/new">
-                                <Button variant={"success"}>Add user</Button>
+                                <Button variant={"success"} className="success">Add user</Button>
                             </Link>
                         </div>
                         <MDBDataTableV5

@@ -9,7 +9,7 @@ const PublicBlogList = ({ title }) => {
 
     const { posts: postData } = useContext(PostContext)
     const { isLoading, posts } = postData
-    const [maxDisplay, setMaxDisplay] = useState(8)
+    const [maxDisplay, setMaxDisplay] = useState(6)
     const [searchQuery, setSearchQuery] = useState('')
     const [categoryQuery, setCategoryQuery] = useState('')
     const [postList, setPostList] = useState(posts)
@@ -17,11 +17,11 @@ const PublicBlogList = ({ title }) => {
 
 
     const changeMaxHandler = () => {
-        if (maxDisplay === 8) {
+        if (maxDisplay === 6) {
             setMaxDisplay(posts.length)
         }
         else {
-            setMaxDisplay(8)
+            setMaxDisplay(6)
         }
     }
 
@@ -75,10 +75,10 @@ const PublicBlogList = ({ title }) => {
                             }
                         </div>
                         {
-                            postList.length > 8 &&
+                            postList.length > 6 &&
                             <Button onClick={changeMaxHandler}>
                                 {
-                                    maxDisplay === 8 ? 'See More' : 'See Less'
+                                    maxDisplay === 6 ? 'See More' : 'See Less'
                                 }
                             </Button>
                         }
