@@ -89,7 +89,7 @@ const UpdateDonationForm = ({ title }) => {
                     </Form.Group>
                     <Form.Group className="mb-3">
                         <Form.Label>Instructions</Form.Label>
-                        <Form.Control type="text" value={instructions} placeholder="Enter instructions" onChange={e => setInstructions(e.target.value)} required />
+                        <Form.Control as="textarea" value={instructions} placeholder="Enter instructions" onChange={e => setInstructions(e.target.value)} required />
                     </Form.Group>
                     <Form.Group className="mb-3">
                         <Form.Label>Donation link</Form.Label>

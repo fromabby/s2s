@@ -54,7 +54,7 @@ const Donate = ({ title }) => {
                                     <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" />
                                 </div>
                                 <div className="modal-body d-lg-flex flex-row">
-                                    <div className="d-flex align-items-center justify-content-center mr-lg-2">
+                                    <div className="d-flex align-items-center justify-content-center">
                                         <img src={donation.qr_code[0].path} className="img-fluid" />
                                     </div>
                                     <div className="p-lg-2 mx-lg-3">
