@@ -8,7 +8,12 @@ import { Button, Dropdown, DropdownButton, Form } from 'react-bootstrap'
 const PublicBlogList = ({ title }) => {
 
     const { posts: postData } = useContext(PostContext)
-    const { isLoading, posts } = postData
+    const { isLoading, posts: postsData } = postData
+
+    const posts = postsData.sort(function (a, b) {
+        return new Date(b.createdAt || b.updatedAt) - new Date(a.createdAt || a.updatedAt);
+    });
+
     const [maxDisplay, setMaxDisplay] = useState(6)
     const [searchQuery, setSearchQuery] = useState('')
     const [categoryQuery, setCategoryQuery] = useState('')

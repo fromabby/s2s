@@ -1,9 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import formatDate from '../../../formatDate'
 
 const BlogCard = (props) => {
 
-    const { title, content, images, author, _id: id } = props.post
+    const { title, content, images, author, _id: id, createdAt } = props.post
 
     const spliceContent = (content) => {
         return content.length > 100 ? content.substring(0, 97) + "..." : content
@@ -17,7 +18,7 @@ const BlogCard = (props) => {
                 </div>
                 <div className='featured_content'>
                     <h1 id="recent_title1" >{title}</h1>
-                    <p id="recent_date_author1"><span style={{ fontStyle: "italic" }}>By {author}</span> | March 20, 2021</p>
+                    <p id="recent_date_author1"><span style={{ fontStyle: "italic" }}>By {author}</span> | {formatDate(createdAt)}</p>
                     <p className='blog_content'>{spliceContent(content)}</p>
                 </div>
                 <div className='featured_button'>
