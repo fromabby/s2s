@@ -64,7 +64,7 @@ const Login = ({ title }) => {
     useEffect(() => {
         if (isAuthenticated) {
             alert.success("Logged in successfully")
-            navigate('/')
+            navigate('/admin')
         }
         if (error) {
             alert.error(error)
