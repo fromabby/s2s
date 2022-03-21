@@ -45,7 +45,7 @@ const Donate = ({ title }) => {
                     </div>
                 </div>
                 {/*GCASH Modal */}
-                {!loading ? donationDetails.length > 0 ? donationDetails.map((donation, index) => (
+                {!loading ? donationDetails.length > 0 && donationDetails.map((donation, index) => (
                     <div className="modal fade" id={`${ids[index]}`} aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div className="modal-dialog modal-dialog-centered modal-fullscreen-md-down">
                             <div className="modal-content container-fluid">
@@ -61,13 +61,13 @@ const Donate = ({ title }) => {
                                         <p>{donation.instructions}</p>
                                         <p>{donation.account_details.account_name}</p>
                                         <p>{donation.account_details.account_number}</p>
-                                        <a href={donation.donation_link} target="_blank">{donation.donation_link}</a>
+                                        <a href={donation.donation_link} target="_blank">Donation form</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                )) : <p>Loading...</p> : <p>walang laman</p>}
+                )) : <p>Loading...</p>}
             </div>
         </div>
     )

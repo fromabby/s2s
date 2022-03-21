@@ -35,8 +35,8 @@ const post = require('../controllers/postController')
 router.route('/posts').get(post.getAllPosts)
 router.route('/posts/:id').get(post.getSinglePost)
 
-router.route('/posts').post(isAuthenticatedUser, fileUpload.array('images'), authorizeRoles('superadmin', 'admin'), post.createPost)
-router.route('/posts/:id').put(isAuthenticatedUser, fileUpload.array('images'), authorizeRoles('superadmin', 'admin'), post.updatePost)
-router.route('/posts/:id').delete(isAuthenticatedUser, authorizeRoles('superadmin', 'admin'), post.deletePost)
+router.route('/posts').post(isAuthenticatedUser, fileUpload.array('images'), authorizeRoles('admin', 'contributor'), post.createPost)
+router.route('/posts/:id').put(isAuthenticatedUser, fileUpload.array('images'), authorizeRoles('admin', 'contributor'), post.updatePost)
+router.route('/posts/:id').delete(isAuthenticatedUser, authorizeRoles('admin', 'contributor'), post.deletePost)
 
 module.exports = router

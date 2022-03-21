@@ -180,7 +180,7 @@ exports.getUser = catchAsyncErrors(async (req, res, next) => {
 })
 
 exports.updateUser = catchAsyncErrors(async (req, res, next) => {
-    const users = await User.find({ role: 'superadmin' })
+    const users = await User.find({ role: 'admin' })
 
     if (users.length < 2 && req.body.role === 'admin') {
         return (next(new ErrorHandler('Cannot update role of user')))
@@ -202,12 +202,11 @@ exports.updateUser = catchAsyncErrors(async (req, res, next) => {
 })
 
 exports.deleteUser = catchAsyncErrors(async (req, res, next) => {
-    const users = await User.find({ role: 'superadmin' })
+    const users = await User.find({ role: 'admin' })
 
     if(users.length === 1) {
         return (next(new ErrorHandler('Cannot delete superadmin')))
     }
-
 
     const user = await User.findById(req.params.id)
 

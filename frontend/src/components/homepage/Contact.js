@@ -90,15 +90,6 @@ const Contact = ({ title }) => {
                                 <img src="/images/ContactUs_IG.png" alt="ig" style={{ width: "100%" }} />
                             </a>
                         </div>
-                        <div className="flex-item-contact" id="div-contact">
-                            <a href="#">
-                                <img
-                                    src="/images/ContactUs_TWT.png"
-                                    alt="twitter"
-                                    style={{ width: "100%", background: "none" }}
-                                />
-                            </a>
-                        </div>
                     </div>
                     <br />
                 </div>
