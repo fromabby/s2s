@@ -1,7 +1,7 @@
 import React, { useEffect, useContext } from 'react'
 import { useAlert } from 'react-alert'
 import { Button } from 'react-bootstrap'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import AuthContext from '../../context/authContext'
 
 
@@ -20,6 +20,13 @@ const SideNav = () => {
         }
     }, [user, loadError])
 
+
+    const navigate = useNavigate()
+
+    const logoutUser = () => {
+        logout()
+        navigate('/login')
+    }
 
     return (
         <div className="sidenav">
@@ -89,7 +96,7 @@ const SideNav = () => {
                 </Link>
             </div>
             <div className="nav-link">
-                <a onClick={logout}>
+                <a onClick={logoutUser}>
                     Log Out
                 </a>
             </div>
