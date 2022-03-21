@@ -1,14 +1,18 @@
 import React, { useEffect, useContext } from 'react'
+import { useAlert } from 'react-alert'
+import { Button } from 'react-bootstrap'
 import { Link, useLocation } from 'react-router-dom'
 import AuthContext from '../../context/authContext'
 
 
 const SideNav = () => {
 
-    const { auth } = useContext(AuthContext)
+    const { auth, logout } = useContext(AuthContext)
     const { loading, user, loadError } = auth
 
     const location = useLocation()
+
+    const alert = useAlert()
 
     useEffect(() => {
         if (loadError) {
@@ -65,7 +69,7 @@ const SideNav = () => {
                 </Link>
             </div>
             {
-                user && user.role === 'superadmin' && <div className={location.pathname.includes('/admin/user') && 'nav-active'}>
+                user?.role === 'superadmin' && <div className={location.pathname.includes('/admin/user') && 'nav-active'}>
                     <Link to="/admin/user" className="nav-link">
                         Manage Users
                     </Link>
@@ -84,11 +88,10 @@ const SideNav = () => {
                     Change Password
                 </Link>
             </div>
-            <div className={location.pathname.includes('/admin/dashboard/manage-logout') && 'nav-active'}>
-
-                <Link exact to="/admin/dashboard/manage-logout" className="nav-link">
+            <div className="nav-link">
+                <a onClick={logout}>
                     Log Out
-                </Link>
+                </a>
             </div>
         </div>
     )
