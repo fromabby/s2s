@@ -22,17 +22,14 @@ const Home = ({ title }) => {
         return new Date(b.createdAt || b.updatedAt) - new Date(a.createdAt || a.updatedAt);
     });
 
-    console.log(recent)
 
     return (
         (!isLoading && postList.length > 0) &&
         <div>
             <Metadata title={title} />
             <Banners />
-            <div className="container-home container">
-                <FeaturedBlogs featuredPost={featuredPost} subFeaturedPost={subFeaturedPost} />
-                <RecentBlogs recentPosts={recent} />
-            </div>
+            <FeaturedBlogs featuredPost={featuredPost} subFeaturedPost={subFeaturedPost} />
+            <RecentBlogs recentPosts={recent} />
         </div>
     )
 }

@@ -30,7 +30,7 @@
 
 #recent_date_author1 {
   font-size: 12px;
-  padding: 5px;
+  /* padding: 5px; */
   color: #4C9188;
 }
 
@@ -86,7 +86,7 @@
 }
 
 #recent_img1 {
-  height: 300px;
+  height: 400px;
   width: auto;
 }
 

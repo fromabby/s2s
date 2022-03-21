@@ -9,7 +9,7 @@ const RecentBlogs = ({ recentPosts }) => {
 
     return (
         <div className='recent-wrapper'>
-            <h1 className="text-left" style={{ fontSize: 38.4 }}>
+            <h1 className="text-left"style={{ fontSize: 38.4 }}>
                 RECENT POSTS
             </h1>
             <div className="recent">
