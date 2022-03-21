@@ -8,6 +8,8 @@ import Metadata from '../../layout/Metadata'
 import RecordContext from '../../../context/recordContext'
 import formatDate from '../../../formatDate'
 import { MDBDataTableV5 } from 'mdbreact'
+import generatePDF from '../../../generateReport'
+
 
 const RecordList = ({ title }) => {
     const navigate = useNavigate()
@@ -24,7 +26,6 @@ const RecordList = ({ title }) => {
         const fetchData = async () => {
             try {
                 const { data } = await axios.get('/api/v1/records')
-                console.log(data)
                 if (data.success) {
                     setRecords(data.records)
                     setLoading(false)
@@ -89,9 +90,9 @@ const RecordList = ({ title }) => {
             rows: []
         }
 
-        records && records.forEach((record,index) => {
+        records && records.forEach((record, index) => {
             data.rows.push({
-                id: index+1,
+                id: index + 1,
                 date: formatDate(record.record_date),
                 name: record.record_name,
                 platform: record.record_platform,
@@ -130,6 +131,7 @@ const RecordList = ({ title }) => {
                             searchTop
                             searchBottom={false}
                         />
+                        <Button onClick={() => generatePDF(records)}>Generate Report</Button>
                     </div>
                 </>}
             </div>
