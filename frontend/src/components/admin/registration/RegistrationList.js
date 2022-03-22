@@ -78,7 +78,7 @@ const RegistrationList = ({ title }) => {
 
         registrations && registrations.forEach((registration, index) => {
             data.rows.push({
-                id: index+1,
+                id: index + 1,
                 link: registration.link,
                 type: `${registration.registrationType}: ${registration.registrationType === 1 ? `Partner` : `Volunteer`}`,
                 actions: <div className="td-container">
@@ -100,11 +100,15 @@ const RegistrationList = ({ title }) => {
                 {loading ? <h1>Loading...</h1> : <>
                     <div className='manage-post-div'>
                         <h1>Manage Registration Links</h1>
-                        <div className="create-button">
-                            <Link to="/admin/registration/new">
-                                <Button variant={"success"} className='success'>Add registration link</Button>
-                            </Link>
-                        </div>
+                        {
+                            registrations.length < 2 &&
+                            <div className="create-button">
+                                <Link to="/admin/registration/new">
+                                    <Button variant={"success"} className='success'>Add registration link</Button>
+                                </Link>
+                            </div>
+                        }
+
                         <MDBDataTableV5
                             hover
                             entriesOptions={[5, 20, 25]}
