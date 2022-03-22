@@ -117,11 +117,15 @@ const DonationList = ({ title }) => {
                 {loading ? <h1>Loading...</h1> : <>
                     <div className='manage-post-div'>
                         <h1>Manage Donation Links</h1>
-                        <div className='create-button'>
+                        {
+                         donations.length < 2 &&
+                         <div className='create-button'>
                             <Link to="/admin/donation/new">
                                 <Button variant={"success"} className="success">Add new donation</Button>
                             </Link>
                         </div>
+                        }
+
                         <MDBDataTableV5
                             hover
                             entriesOptions={[5, 20, 25]}
