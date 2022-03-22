@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-route
 import './App.css'
 
 //*protected routes
-import SuperadminRoutes from './components/routes/SuperadminRoutes'
+import ContributorRoutes from './components/routes/ContributorRoutes'
 import AdminRoutes from './components/routes/AdminRoutes'
 
 //*contexts
@@ -35,7 +35,7 @@ import ForgotPassword from './components/admin/ForgotPassword';
 import ResetPassword from './components/admin/ResetPassword';
 
 
-//*admin components
+//*contributor components
 import Login from './components/admin/Login';
 import MyProfile from './components/admin/MyProfile';
 import UpdateProfile from './components/admin/UpdateProfile';
@@ -68,7 +68,7 @@ import RecordList from './components/admin/record/RecordList';
 import CreateRecordForm from './components/admin/record/CreateRecordForm';
 import UpdateRecordForm from './components/admin/record/UpdateRecordForm';
 
-//*superadmin components
+//*admin components
 import UserList from './components/admin/user/UserList';
 import CreateUserForm from './components/admin/user/CreateUserForm';
 import UpdateUserForm from './components/admin/user/UpdateUserForm';
@@ -100,7 +100,7 @@ const NavBar = ({ children }) => {
 }
 
 const App = () => {
-    const { logout, loadUser } = useContext(AuthContext)
+    const { loadUser } = useContext(AuthContext)
 
     useEffect(() => {
         loadUser()
@@ -120,7 +120,7 @@ const App = () => {
                                         <Route path="/blog/:id" element={<PublicBlogDetails />} />
                                         <Route path="/verify/:slug" element={<OtpBox title={`Verify your account`} />} />
 
-                                        <Route element={<AdminRoutes />}>
+                                        <Route element={<ContributorRoutes />}>
                                             <Route path="/admin/blog" element={<BlogList title={`Manage Blogs`} />} />
                                             <Route path="/admin/blog/archive" element={<ArchiveBlogList title={`Manage Archived Blogs`} />} />
                                             <Route path="/admin/blog/new" element={<CreateBlogForm title={`Add New Blog`} />} />
@@ -132,7 +132,7 @@ const App = () => {
                             </PostContextProvider>
 
                             <Routes>
-                                <Route element={<AdminRoutes />}>
+                                <Route element={<ContributorRoutes />}>
                                     <Route path="/admin/me" element={<MyProfile title={`My Profile`} />} />
                                     <Route path="/admin/me/update" element={<UpdateProfile title={`Update Profile`} />} />
                                     <Route path="/admin/password/update" element={<UpdatePassword title={`Change Profile`} />} />
@@ -141,7 +141,7 @@ const App = () => {
 
                             <AboutContextProvider>
                                 <Routes>
-                                    <Route element={<AdminRoutes />}>
+                                    <Route element={<ContributorRoutes />}>
                                         <Route path="/admin/about" element={<AboutList title={`Manage Awards and Recognitions`} />} />
                                         <Route path="/admin/about/new" element={<CreateAboutForm title={`Add New Awards and Recognition`} />} />
                                         <Route path="/admin/about/:id" element={<UpdateAboutForm title={`Update Awards and Recognitions`} />} />
@@ -151,7 +151,7 @@ const App = () => {
 
                             <BannerContextProvider>
                                 <Routes>
-                                    <Route element={<AdminRoutes />}>
+                                    <Route element={<ContributorRoutes />}>
                                         <Route path="/admin/banner" element={<BannerList title={`Manage Banners`} />} />
                                         <Route path="/admin/banner/new" element={<CreateBannerForm title={`Add New Banner`} />} />
                                         <Route path="/admin/banner/:id" element={<UpdateBannerForm title={`Update Banner`} />} />
@@ -161,7 +161,7 @@ const App = () => {
 
                             <DonationContextProvider>
                                 <Routes>
-                                    <Route element={<AdminRoutes />}>
+                                    <Route element={<ContributorRoutes />}>
                                         <Route path="/admin/donation" element={<DonationList title={`Manage Donation Links`} />} />
                                         <Route path="/admin/donation/new" element={<CreateDonationForm title={`Add New Donation Link`} />} />
                                         <Route path="/admin/donation/:id" element={<UpdateDonationForm title={`Update Donation Link`} />} />
@@ -171,7 +171,7 @@ const App = () => {
 
                             <RegistrationContextProvider>
                                 <Routes>
-                                    <Route element={<AdminRoutes />}>
+                                    <Route element={<ContributorRoutes />}>
                                         <Route path="/admin/registration" element={<RegistrationList title={`Manage Registration Links`} />} />
                                         <Route path="/admin/registration/new" element={<CreateRegistrationForm title={`Add New Registration Link`} />} />
                                         <Route path="/admin/registration/:id" element={<UpdateRegistrationForm title={`Update Registration Link`} />} />
@@ -181,7 +181,7 @@ const App = () => {
 
                             <RecordContextProvider>
                                 <Routes>
-                                    <Route element={<AdminRoutes />}>
+                                    <Route element={<ContributorRoutes />}>
                                         <Route path="/admin/record" element={<RecordList title={`Manage Records`} />} />
                                         <Route path="/admin/record/new" element={<CreateRecordForm title={`Add New Record`} />} />
                                         <Route path="/admin/record/:id" element={<UpdateRecordForm title={`Update Record`} />} />
@@ -191,7 +191,7 @@ const App = () => {
 
                             <UserContextProvider>
                                 <Routes>
-                                    <Route element={<SuperadminRoutes />}>
+                                    <Route element={<AdminRoutes />}>
                                         <Route path="/admin/user" element={<UserList title={`Manage Users`} />} />
                                         <Route path="/admin/user/new" element={<CreateUserForm title={`Add New User`} />} />
                                         <Route path="/admin/user/:id" element={<UpdateUserForm title={`Update User`} />} />

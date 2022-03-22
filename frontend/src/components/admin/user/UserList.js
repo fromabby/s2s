@@ -104,7 +104,7 @@ const UserList = ({ title }) => {
                     <Link to={`/admin/user/${user._id}`}>
                         <Button variant={"primary"} className="admin-button primary">Edit</Button>
                     </Link>
-                    <Button variant={"danger"} className="admin-button danger" onClick={() => deleteHandler(user._id)} disabled={user.role === 'superadmin' ? true : deleteLoading ? true : false}>Delete</Button>
+                    <Button variant={"danger"} className="admin-button danger" onClick={() => deleteHandler(user._id)} disabled={user.role === 'admin' ? true : deleteLoading ? true : false}>Delete</Button>
                 </div>
             })
         })

@@ -76,7 +76,7 @@ const UpdateUserForm = ({ title }) => {
                         <Form.Select name="role" onChange={e => setRole(e.target.value)} required>
                             <option>-</option>
                             <option value="admin" selected={role == "admin"}>admin</option>
-                            <option value="superadmin" selected={role == "superadmin"}>superadmin</option>
+                            <option value="contributor" selected={role == "contributor"}>contributor</option>
                         </Form.Select>
                     </Form.Group>
                     <Button variant="primary" type="submit" disabled={loading ? true : false} >

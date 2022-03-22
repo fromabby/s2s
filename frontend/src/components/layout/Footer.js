@@ -35,9 +35,6 @@ const Footer = () => {
                                     className="img-fluid mx-1 rounded"
                                 />
                             </a>
-                            <a href="#" target="_blank">
-                                <img src="/images/Footer_Twitter.png" className="img-fluid mx-1 rounded" />
-                            </a>
                         </div>
                     </div>
 

@@ -33,11 +33,19 @@ const SideNav = () => {
             <Link to="/admin/dashboard/">
                 <img id="sidenav-logo" src="/images/logo.png" />
             </Link>
+            {user?.role === 'admin' &&
+                <div className={location.pathname.includes('/admin/user') && 'nav-active'}>
+                    <Link to="/admin/user" className="nav-link">
+                        Manage Users
+                    </Link>
+                </div>
+            }
             <div className={location.pathname.includes('/admin/banner') && 'nav-active'}>
                 <Link to="/admin/banner" className="nav-link">
                     Manage Banner
                 </Link>
             </div>
+
             <div className={location.pathname === '/admin/blog' && 'nav-active'}>
                 <Link to="/admin/blog" className="nav-link">
                     Manage Post
@@ -75,14 +83,6 @@ const SideNav = () => {
                     Manage Donation
                 </Link>
             </div>
-            {
-                user?.role === 'superadmin' && <div className={location.pathname.includes('/admin/user') && 'nav-active'}>
-                    <Link to="/admin/user" className="nav-link">
-                        Manage Users
-                    </Link>
-                </div>
-
-            }
 
             <div className={location.pathname.includes('/admin/record') && 'nav-active'}>
 
