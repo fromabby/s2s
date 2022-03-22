@@ -118,12 +118,12 @@ const DonationList = ({ title }) => {
                     <div className='manage-post-div'>
                         <h1>Manage Donation Links</h1>
                         {
-                         donations.length < 2 &&
-                         <div className='create-button'>
-                            <Link to="/admin/donation/new">
-                                <Button variant={"success"} className="success">Add new donation</Button>
-                            </Link>
-                        </div>
+                            donations.length < 2 &&
+                            <div className='create-button'>
+                                <Link to="/admin/donation/new">
+                                    <Button variant={"success"} className="success">Add new donation</Button>
+                                </Link>
+                            </div>
                         }
 
                         <MDBDataTableV5
