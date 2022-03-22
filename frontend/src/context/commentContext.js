@@ -15,7 +15,8 @@ export const CommentContextProvider = props => {
     const [commentState, dispatchUser] = useReducer(commentReducer, {
         currentUser: {},
         commentList: [],
-        allComments: []
+        allComments: [],
+        isLoading: false
     })
 
     const getCurrentUser = async () => {

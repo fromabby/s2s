@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom'
 import Metadata from '../../layout/Metadata'
 import BannerContext from '../../../context/bannerContext'
 import { MDBDataTableV5 } from 'mdbreact'
+import Load from '../../layout/Load'
 
 const BannerList = ({ title }) => {
     const navigate = useNavigate()
@@ -89,10 +90,10 @@ const BannerList = ({ title }) => {
     }
 
     return (
-        <div>
-            <Metadata title={title} />
+        loading ? <Load /> :
             <div>
-                {loading ? <h1>Loading...</h1> : <>
+                <Metadata title={title} />
+                <div>
                     <div className='manage-post-div'>
                         <h1>Manage Banners</h1>
                         <div className='create-button'>
@@ -111,9 +112,8 @@ const BannerList = ({ title }) => {
                             searchBottom={false}
                         />
                     </div>
-                </>}
-            </div>
-        </div >
+                </div>
+            </div >
     )
 }
 

@@ -5,6 +5,7 @@ import RecordContext from '../../../context/recordContext'
 import dateFormat from "dateformat";
 import Metadata from '../../layout/Metadata'
 import { Button, Form } from 'react-bootstrap'
+import Load from '../../layout/Load';
 
 const UpdateRecordForm = ({ title }) => {
     const navigate = useNavigate()
@@ -62,9 +63,9 @@ const UpdateRecordForm = ({ title }) => {
     }
 
     return (
+        detailsLoading ? <Load /> :
         <>
             <Metadata title={title} />
-            {!detailsLoading &&
                 <Form className="container mt-2" onSubmit={submitHandler}>
                     <Form.Group className="mb-3">
                         <Form.Label>Record Date</Form.Label>
@@ -86,7 +87,6 @@ const UpdateRecordForm = ({ title }) => {
                         Submit
                     </Button>
                 </Form>
-            }
         </>
     )
 }

@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom'
 import Metadata from '../../layout/Metadata'
 import DonationContext from '../../../context/donationContext'
 import { MDBDataTableV5 } from 'mdbreact'
+import Load from '../../layout/Load'
 
 const DonationList = ({ title }) => {
     const navigate = useNavigate()
@@ -86,10 +87,10 @@ const DonationList = ({ title }) => {
             ],
             rows: []
         }
-        
+
         donations && donations.forEach((donation, index) => {
             data.rows.push({
-                id: index+1,
+                id: index + 1,
                 bank: donation.bank_name,
                 name: donation.account_details.account_name,
                 instructions: donation.instructions,
@@ -111,10 +112,10 @@ const DonationList = ({ title }) => {
     }
 
     return (
-        <div>
-            <Metadata title={title} />
+        loading ? <Load /> :
             <div>
-                {loading ? <h1>Loading...</h1> : <>
+                <Metadata title={title} />
+                <div>
                     <div className='manage-post-div'>
                         <h1>Manage Donation Links</h1>
                         {
@@ -137,9 +138,8 @@ const DonationList = ({ title }) => {
                             searchBottom={false}
                         />
                     </div>
-                </>}
+                </div>
             </div>
-        </div>
     )
 }
 

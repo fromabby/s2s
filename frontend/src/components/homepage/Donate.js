@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import './css/Donate.css'
 import Metadata from '../layout/Metadata'
+import Load from '../layout/Load'
 
 const Donate = ({ title }) => {
     const [donationDetails, setDonationDetails] = useState([])
@@ -29,47 +30,49 @@ const Donate = ({ title }) => {
     const ids = ['gcashModal', 'bpiModal']
 
     return (
-        <div
-            className="bg_image content-container">
-            <Metadata title={title} />
+        loading ? <Load /> :
+            <div
+                className="bg_image content-container">
+                <Metadata title={title} />
 
 
-            <div id="donate">
-                <h1 style={{ fontSize: '3.5vw' }} className="text-center">Donation Platforms</h1>
-                <div className="flex-container">
-                    <div data-bs-toggle="modal" data-bs-target="#gcashModal" className='donate'>
-                        <img src="./images/gcash.png" alt="Gcash" className="zoom" />
+                <div id="donate">
+                    <h1 style={{ fontSize: '3.5vw' }} className="text-center">Donation Platforms</h1>
+                    <div className="flex-container">
+                        <div data-bs-toggle="modal" data-bs-target="#gcashModal" className='donate'>
+                            <img src="./images/gcash.png" alt="Gcash" className="zoom" />
+                        </div>
+                        <div data-bs-toggle="modal" data-bs-target="#bpiModal" className='donate'>
+                            <img src="/images/bpi.png" alt="BPI" className="zoom" />
+                        </div>
                     </div>
-                    <div data-bs-toggle="modal" data-bs-target="#bpiModal" className='donate'>
-                        <img src="/images/bpi.png" alt="BPI" className="zoom" />
-                    </div>
-                </div>
-                {/*GCASH Modal */}
-                {!loading ? donationDetails.length > 0 && donationDetails.map((donation, index) => (
-                    <div className="modal fade" id={`${ids[index]}`} aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div className="modal-dialog modal-dialog-centered modal-fullscreen-md-down">
-                            <div className="modal-content container-fluid">
-                                <div className="modal-header">
-                                    <h3 className="text-center">How to Donate ({donation.bank_name})</h3>
-                                    <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" />
-                                </div>
-                                <div className="modal-body d-lg-flex flex-row">
-                                    <div className="d-flex align-items-center justify-content-center">
-                                        <img src={donation.qr_code[0].path} className="img-fluid" />
+                    {/*GCASH Modal */}
+                    {donationDetails.length > 0 && donationDetails.map((donation, index) => (
+                        <div className="modal fade" id={`${ids[index]}`} aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div className="modal-dialog modal-dialog-centered modal-fullscreen-md-down">
+                                <div className="modal-content container-fluid">
+                                    <div className="modal-header">
+                                        <h3 className="text-center">How to Donate ({donation.bank_name})</h3>
+                                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" />
                                     </div>
-                                    <div className="p-lg-2 mx-lg-3">
-                                        <p>{donation.instructions}</p>
-                                        <p>{donation.account_details.account_name}</p>
-                                        <p>{donation.account_details.account_number}</p>
-                                        <a href={donation.donation_link} target="_blank">Donation form</a>
+                                    <div className="modal-body d-lg-flex flex-row">
+                                        <div className="d-flex align-items-center justify-content-center">
+                                            <img src={donation.qr_code[0].path} className="img-fluid" />
+                                        </div>
+                                        <div className="p-lg-2 mx-lg-3">
+                                            <p>{donation.instructions}</p>
+                                            <p>{donation.account_details.account_name}</p>
+                                            <p>{donation.account_details.account_number}</p>
+                                            <a href={donation.donation_link} target="_blank">Donation form</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                )) : <p>Loading...</p>}
+                    ))
+                    }
+                </div>
             </div>
-        </div>
     )
 }
 

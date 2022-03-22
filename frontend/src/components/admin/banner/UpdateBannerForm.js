@@ -4,6 +4,7 @@ import { useAlert } from 'react-alert'
 import BannerContext from '../../../context/bannerContext'
 import Metadata from '../../layout/Metadata'
 import { Button, Form } from 'react-bootstrap'
+import Load from '../../layout/Load'
 
 const UpdateBannerForm = ({ title }) => {
     const navigate = useNavigate()
@@ -56,9 +57,9 @@ const UpdateBannerForm = ({ title }) => {
         setImage(Array.from(e.target.files))
     }
     return (
-        <>
-            <Metadata title={title} />
-            {!detailsLoading &&
+        detailsLoading ? <Load /> :
+            <>
+                <Metadata title={title} />
                 <Form className="container mt-2" onSubmit={submitHandler}>
                     <Form.Group className="mb-3">
                         <Form.Label>Banner image</Form.Label>
@@ -69,8 +70,7 @@ const UpdateBannerForm = ({ title }) => {
                         Submit
                     </Button>
                 </Form>
-            }
-        </>
+            </>
     )
 }
 

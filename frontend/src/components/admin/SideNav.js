@@ -23,8 +23,9 @@ const SideNav = () => {
 
     const navigate = useNavigate()
 
-    const logoutUser = () => {
-        logout()
+    const logoutUser = async () => {
+
+        await logout()
         navigate('/login')
     }
 

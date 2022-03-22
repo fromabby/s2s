@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom'
 import Metadata from '../../layout/Metadata'
 import RegistrationContext from '../../../context/registrationContext'
 import { MDBDataTableV5 } from 'mdbreact'
+import Load from '../../layout/Load'
 
 const RegistrationList = ({ title }) => {
     const navigate = useNavigate()
@@ -94,10 +95,10 @@ const RegistrationList = ({ title }) => {
     }
 
     return (
-        <div>
-            <Metadata title={title} />
+        loading ? <Load /> :
             <div>
-                {loading ? <h1>Loading...</h1> : <>
+                <Metadata title={title} />
+                <div>
                     <div className='manage-post-div'>
                         <h1>Manage Registration Links</h1>
                         {
@@ -120,9 +121,8 @@ const RegistrationList = ({ title }) => {
                             searchBottom={false}
                         />
                     </div>
-                </>}
+                </div>
             </div>
-        </div>
     )
 }
 

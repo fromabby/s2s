@@ -7,6 +7,7 @@ import CommentList from './blog/comments/CommentList'
 import Metadata from '../layout/Metadata'
 import CommentContext, { CommentContextProvider } from '../../context/commentContext'
 import './css/BlogDetails.css'
+import Load from '../layout/Load'
 
 const PublicBlogDetails = () => {
     const { id } = useParams()
@@ -36,10 +37,10 @@ const PublicBlogDetails = () => {
     }, [error])
 
     return (
-        <>
-            <Metadata title={post.title ? post.title : 'Blog Details'} />
-            {
-                !isLoading ?
+        isLoading ? <Load /> :
+            <div>
+                <Metadata title={post.title ? post.title : 'Blog Details'} />
+                {
                     post ?
                         <div
                             className="bg_image content-container"
@@ -70,15 +71,14 @@ const PublicBlogDetails = () => {
                                     <h1 className="content-comment-header" style={{ fontStyle: "2vw" }}>
                                         Comments
                                     </h1>
-                                    <CommentList comments={commentList}/>
-                                    <CommentBox post_id={post._id}/>
+                                    <CommentList comments={commentList} />
+                                    <CommentBox post_id={post._id} />
                                 </div>
                             </div>
                         </div>
                         : ''
-                    : <>Loading</>
-            }
-        </>
+                }
+            </div>
     )
 }
 

@@ -95,9 +95,9 @@ const UserList = ({ title }) => {
             rows: []
         }
 
-        users && users?.forEach(user => {
+        users && users?.forEach((user, index) => {
             data.rows.push({
-                id: "id goes here",
+                id: (index + 1),
                 email: user.email,
                 role: user.role,
                 actions: <div className="td-container">

@@ -4,6 +4,7 @@ import { Button, Form } from 'react-bootstrap'
 import { useAlert } from 'react-alert'
 import Metadata from '../../layout/Metadata'
 import AboutContext from '../../../context/aboutContext'
+import Load from '../../layout/Load'
 
 const UpdateAboutForm = ({ title }) => {
     const navigate = useNavigate()
@@ -42,22 +43,20 @@ const UpdateAboutForm = ({ title }) => {
     }
 
     return (
-        <>
-            {!loading &&
-                <>
-                    <Metadata title={title} />
-                    <Form className="container mt-2" onSubmit={submitHandler}>
-                        <Form.Group className="mb-3">
-                            <Form.Label>Content</Form.Label>
-                            <Form.Control type="text" name="title" placeholder="Enter content" value={content} onChange={e => setContent(e.target.value)} required />
-                        </Form.Group>
-                        <Button variant="primary" type="submit" disabled={loading ? true : false} >
-                            Submit
-                        </Button>
-                    </Form>
-                </>
-            }
-        </>
+        loading ? <Load /> :
+            <>
+                <Metadata title={title} />
+                <Form className="container mt-2" onSubmit={submitHandler}>
+                    <Form.Group className="mb-3">
+                        <Form.Label>Content</Form.Label>
+                        <Form.Control type="text" name="title" placeholder="Enter content" value={content} onChange={e => setContent(e.target.value)} required />
+                    </Form.Group>
+                    <Button variant="primary" type="submit" disabled={loading ? true : false} >
+                        Submit
+                    </Button>
+                </Form>
+            </>
+
     )
 }
 

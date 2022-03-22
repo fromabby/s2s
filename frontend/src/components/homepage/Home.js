@@ -5,6 +5,7 @@ import RecentBlogs from './home/RecentBlogs'
 import Banners from './home/Banners'
 import Metadata from '../layout/Metadata'
 import PostContext from '../../context/postContext'
+import Load from '../layout/Load'
 
 const Home = ({ title }) => {
 
@@ -24,13 +25,14 @@ const Home = ({ title }) => {
 
 
     return (
-        (!isLoading && postList.length > 0) &&
-        <div>
-            <Metadata title={title} />
-            <Banners />
-            <FeaturedBlogs featuredPost={featuredPost} subFeaturedPost={subFeaturedPost} />
-            <RecentBlogs recentPosts={recent} />
-        </div>
+        isLoading ? <Load /> :
+            (postList.length > 0) &&
+            <div>
+                <Metadata title={title} />
+                <Banners />
+                <FeaturedBlogs featuredPost={featuredPost} subFeaturedPost={subFeaturedPost} />
+                <RecentBlogs recentPosts={recent} />
+            </div>
     )
 }
 

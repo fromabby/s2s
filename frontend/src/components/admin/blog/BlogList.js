@@ -7,6 +7,7 @@ import PostContext from '../../../context/postContext'
 import { useAlert } from 'react-alert'
 import Blog from './Blog'
 import './Blog.css'
+import Load from '../../layout/Load'
 
 const BlogList = () => {
 
@@ -207,7 +208,7 @@ const BlogList = () => {
 
 
     return (
-        isLoading ? <>Loading</>
+        isLoading ? <Load />
             :
             <div className='manage-post-div'>
                 <div className='create-button'>

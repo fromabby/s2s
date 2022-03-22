@@ -4,6 +4,7 @@ import { useAlert } from 'react-alert'
 import DonationContext from '../../../context/donationContext'
 import Metadata from '../../layout/Metadata'
 import { Button, Form } from 'react-bootstrap'
+import Load from '../../layout/Load'
 
 const UpdateDonationForm = ({ title }) => {
     const navigate = useNavigate()
@@ -71,9 +72,9 @@ const UpdateDonationForm = ({ title }) => {
         setQrCode(Array.from(e.target.files))
     }
     return (
-        <>
-            <Metadata title={title} />
-            {!detailsLoading &&
+        detailsLoading ? <Load /> :
+            <>
+                <Metadata title={title} />
                 <Form className="container mt-2" onSubmit={submitHandler}>
                     <Form.Group className="mb-3">
                         <Form.Label>Account Name</Form.Label>
@@ -104,8 +105,7 @@ const UpdateDonationForm = ({ title }) => {
                         Submit
                     </Button>
                 </Form>
-            }
-        </>
+            </>
     )
 }
 

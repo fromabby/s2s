@@ -73,6 +73,7 @@ import UserList from './components/admin/user/UserList';
 import CreateUserForm from './components/admin/user/CreateUserForm';
 import UpdateUserForm from './components/admin/user/UpdateUserForm';
 import CommentList from './components/admin/comment/CommentList';
+import Load from './components/layout/Load';
 
 const ScrollToTop = ({ children }) => {
     const location = useLocation();
@@ -82,18 +83,20 @@ const ScrollToTop = ({ children }) => {
     return children
 }
 
+
 const NavBar = ({ children }) => {
     const location = useLocation()
     return (
         <>
             {location.pathname.includes('admin') ?
                 <Dashboard>{children}</Dashboard>
-                :
-                <div className='set-bg'>
-                    <Header />
-                    {children}
-                    <Footer />
-                </div>
+                : location.pathname.includes('login') || location.pathname.includes('forgot-password')
+                    ? <div>{children}</div> :
+                    <div className='set-bg'>
+                        <Header />
+                        {children}
+                        <Footer />
+                    </div>
             }
         </>
     )
@@ -116,6 +119,7 @@ const App = () => {
                                 <CommentContextProvider>
                                     <Routes>
                                         <Route path="/" element={<Home title={`Home`} />} />
+                                        <Route path="/load" element={<Load title={`Home`} />} />
                                         <Route path="/blog" element={<PublicBlogList title={`Blogs`} />} />
                                         <Route path="/blog/:id" element={<PublicBlogDetails />} />
                                         <Route path="/verify/:slug" element={<OtpBox title={`Verify your account`} />} />

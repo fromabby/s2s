@@ -31,16 +31,16 @@ const ForgotPassword = ({ title }) => {
         forgotPassword({ email })
     }
     return (
-        <div>
+        <div className='loginDiv'>
             <Metadata title={title} />
-            <Form className="container mt-2" onSubmit={submitHandler}>
-                <Form.Group className="mb-3">
-                    <Form.Label>Email address</Form.Label>
+            <Form className="loginForm" onSubmit={submitHandler}>
+                <img src='/images/logo.png' className='loginLogo' />
+                <Form.Group className="inputField">
                     <Form.Control type="text" value={email} placeholder="Enter email address" onChange={e => setEmail(e.target.value)} required />
                 </Form.Group>
-                <Button variant="primary" type="submit" disabled={loading ? true : false} >
+                <button className='login-button' type="submit" disabled={loading ? true : false} >
                     Submit
-                </Button>
+                </button>
             </Form>
         </div>
     )

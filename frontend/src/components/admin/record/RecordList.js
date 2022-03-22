@@ -9,6 +9,7 @@ import RecordContext from '../../../context/recordContext'
 import formatDate from '../../../formatDate'
 import { MDBDataTableV5 } from 'mdbreact'
 import generatePDF from '../../../generateReport'
+import Load from '../../layout/Load'
 
 
 const RecordList = ({ title }) => {
@@ -110,10 +111,10 @@ const RecordList = ({ title }) => {
     }
 
     return (
-        <div>
-            <Metadata title={title} />
+        loading ? <Load /> :
             <div>
-                {loading ? <h1>Loading...</h1> : <>
+                <Metadata title={title} />
+                <div>
                     <div className='manage-post-div'>
                         <h1>Manage Records</h1>
                         <div className='create-button'>
@@ -133,9 +134,8 @@ const RecordList = ({ title }) => {
                         />
                         <Button onClick={() => generatePDF(records)}>Generate Report</Button>
                     </div>
-                </>}
+                </div>
             </div>
-        </div>
     )
 }
 

@@ -5,6 +5,7 @@ import { Button, Form } from 'react-bootstrap';
 import { useNavigate, useParams } from 'react-router-dom';
 import Metadata from '../../layout/Metadata'
 import PostContext from '../../../context/postContext'
+import Load from '../../layout/Load';
 
 
 const UpdateBlogForm = ({ title }) => {
@@ -69,49 +70,50 @@ const UpdateBlogForm = ({ title }) => {
     }
 
     return (
-        !isLoading && post ?
-            <Fragment>
-                <Metadata title={title} />
-                <Form className="container mt-2" onSubmit={submitHandler}>
+        isLoading ? <Load /> :
+            post ?
+                <Fragment>
+                    <Metadata title={title} />
+                    <Form className="container mt-2" onSubmit={submitHandler}>
 
-                    <Form.Group className="mb-3">
-                        <Form.Label>Title</Form.Label>
-                        <Form.Control type="text" name="title" placeholder="Enter Title" value={post.title} onChange={changeHandler} required />
-                    </Form.Group>
+                        <Form.Group className="mb-3">
+                            <Form.Label>Title</Form.Label>
+                            <Form.Control type="text" name="title" placeholder="Enter Title" value={post.title} onChange={changeHandler} required />
+                        </Form.Group>
 
-                    <Form.Group className="mb-3">
-                        <Form.Label>Author</Form.Label>
-                        <Form.Control type="text" name="author" placeholder="Enter Author" value={post.author} onChange={changeHandler} required />
-                    </Form.Group>
+                        <Form.Group className="mb-3">
+                            <Form.Label>Author</Form.Label>
+                            <Form.Control type="text" name="author" placeholder="Enter Author" value={post.author} onChange={changeHandler} required />
+                        </Form.Group>
 
-                    <Form.Group className="mb-3">
-                        <Form.Label>Category</Form.Label>
-                        <Form.Select aria-label="Default select example" name="category" defaultValue={null} value={post.category} onChange={changeHandler} required>
-                            <option value={null}>Select Category</option>
-                            <option value="Environment">Environment</option>
-                            <option value="Children’s rights">Children’s rights</option>
-                            <option value="Partnerships">Partnerships</option>
-                            <option value="Health">Health</option>
-                        </Form.Select>
-                    </Form.Group>
+                        <Form.Group className="mb-3">
+                            <Form.Label>Category</Form.Label>
+                            <Form.Select aria-label="Default select example" name="category" defaultValue={null} value={post.category} onChange={changeHandler} required>
+                                <option value={null}>Select Category</option>
+                                <option value="Environment">Environment</option>
+                                <option value="Children’s rights">Children’s rights</option>
+                                <option value="Partnerships">Partnerships</option>
+                                <option value="Health">Health</option>
+                            </Form.Select>
+                        </Form.Group>
 
-                    <Form.Group className="mb-3">
-                        <Form.Label>Content</Form.Label>
-                        <Form.Control as="textarea" name="content" placeholder="Enter content" value={post.content} onChange={changeHandler} required />
-                    </Form.Group>
+                        <Form.Group className="mb-3">
+                            <Form.Label>Content</Form.Label>
+                            <Form.Control as="textarea" name="content" placeholder="Enter content" value={post.content} onChange={changeHandler} required />
+                        </Form.Group>
 
-                    <Form.Group className="mb-3">
-                        <Form.Label>Select Images</Form.Label>
-                        <Form.Control type="file" multiple onChange={(e) => setImages(Array.from(e.target.files))} />
-                    </Form.Group>
-                    <div className='d-flex flex-row justify-content-end'>
-                        <Button variant="success" type="submit">
-                            Submit
-                        </Button>
-                    </div>
-                </Form>
-            </Fragment>
-            : <>Loading</>
+                        <Form.Group className="mb-3">
+                            <Form.Label>Select Images</Form.Label>
+                            <Form.Control type="file" multiple onChange={(e) => setImages(Array.from(e.target.files))} />
+                        </Form.Group>
+                        <div className='d-flex flex-row justify-content-end'>
+                            <Button variant="success" type="submit">
+                                Submit
+                            </Button>
+                        </div>
+                    </Form>
+                </Fragment>
+                : <>Loading</>
     )
 }
 

@@ -4,6 +4,7 @@ import { useAlert } from 'react-alert'
 import RegistrationContext from '../../../context/registrationContext'
 import Metadata from '../../layout/Metadata'
 import { Button, Form } from 'react-bootstrap'
+import Load from '../../layout/Load'
 
 const UpdateRegistrationForm = ({ title }) => {
     const navigate = useNavigate()
@@ -48,9 +49,9 @@ const UpdateRegistrationForm = ({ title }) => {
     }
 
     return (
-        <>
-            <Metadata title={title} />
-            {!detailsLoading &&
+        detailsLoading ? <Load /> :
+            <>
+                <Metadata title={title} />
                 <Form className="container mt-2" onSubmit={submitHandler}>
                     <Form.Group className="mb-3">
                         <Form.Label>Registration Link</Form.Label>
@@ -68,8 +69,7 @@ const UpdateRegistrationForm = ({ title }) => {
                         Submit
                     </Button>
                 </Form>
-            }
-        </>
+            </>
     )
 }
 

@@ -2,14 +2,16 @@ import React, { useContext } from 'react'
 import { useAlert } from 'react-alert'
 import { Button, Form } from 'react-bootstrap'
 import CommentContext from '../../../context/commentContext'
-import Comment from './Comment'
 import { MDBDataTableV5 } from 'mdbreact'
 import formatDate from '../../../formatDate'
+import Load from '../../layout/Load'
+
+
 const CommentList = () => {
 
 
     const { commentState, updateComment, adminDeleteComment } = useContext(CommentContext)
-    const { allComments } = commentState
+    const { allComments, isLoading } = commentState
 
     const alert = useAlert()
 
@@ -80,13 +82,6 @@ const CommentList = () => {
                 date: formatDate(createdAt),
                 status: status === 1 ? 'Allowed' : 'Denied',
                 actions: <div>
-                    {/* <Form.Check
-                        checked={comment.status === 1 ? true : false}
-                        type="switch"
-                        label="Allow"
-                        id="disabled-custom-switch"
-                        onChange={() => updateItem(comment, status)}
-                    /> */}
                     <Button variant={status === 1 ? 'danger' : 'success'} className={`${status === 1 ? 'danger' : 'success'} admin-button`} onClick={() => updateItem(comment, status)}>
                         {status === 1 ? 'Deny' : 'Allow'}
                     </Button>
@@ -101,17 +96,17 @@ const CommentList = () => {
     }
 
     return (
-
-        <MDBDataTableV5
-            hover
-            entriesOptions={[5, 20, 25]}
-            entries={5}
-            pagesAmount={4}
-            data={setData()}
-            fullPagination
-            searchTop
-            searchBottom={false}
-        />
+        isLoading ? <Load /> :
+            <MDBDataTableV5
+                hover
+                entriesOptions={[5, 20, 25]}
+                entries={5}
+                pagesAmount={4}
+                data={setData()}
+                fullPagination
+                searchTop
+                searchBottom={false}
+            />
     )
 }
 

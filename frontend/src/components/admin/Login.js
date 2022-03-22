@@ -4,6 +4,7 @@ import { useAlert } from 'react-alert'
 import { Link, useNavigate } from 'react-router-dom'
 import Metadata from '../layout/Metadata'
 import { Button, Form } from 'react-bootstrap'
+import '../layout/css/Login.css'
 
 const emailReducer = (state, action) => {
     switch (action.type) {
@@ -64,7 +65,7 @@ const Login = ({ title }) => {
     useEffect(() => {
         if (isAuthenticated) {
             alert.success("Logged in successfully")
-            navigate('/admin')
+            navigate('/admin/banner')
         }
         if (error) {
             alert.error(error)
@@ -72,21 +73,25 @@ const Login = ({ title }) => {
     }, [isAuthenticated, error])
 
     return (
-        <div>
+        <div className='loginDiv'>
             <Metadata title={title} />
-            <Form className="container mt-2" onSubmit={submitHandler}>
-                <Form.Group className="mb-3">
-                    <Form.Label>Email address</Form.Label>
-                    <Form.Control type="text" name="email" placeholder="Enter email address" onChange={emailChangeHandler} required />
+            <Form className="loginForm" onSubmit={submitHandler}>
+                <img src='/images/logo.png' className='loginLogo' />
+                <Form.Group className="inputField">
+                    <Form.Control type="text" name="email" placeholder="Email" onChange={emailChangeHandler} required />
                 </Form.Group>
-                <Form.Group>
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" name="password" placeholder="Enter password" onChange={passwordChangeHandler} required />
+                <Form.Group className='inputField'>
+                    <Form.Control type="password" name="password" placeholder="Password" onChange={passwordChangeHandler} required />
                 </Form.Group>
-                <Button variant="primary" type="submit" disabled={loading ? true : false} >
-                    Submit
-                </Button>
-                <Link to='/forgot-password'>Forgot password?</Link>
+                <div className='forgotPasswordDiv'>
+                    <Link to='/forgot-password'>Forgot password?</Link>
+                </div>
+                <div className='d-flex flex-column container align-items-center my-2'>
+                    <button type="submit" className='login-button' disabled={loading ? true : false} >
+                        Submit
+                    </button>
+                </div>
+
             </Form>
         </div>
     )
