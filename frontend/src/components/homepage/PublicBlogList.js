@@ -73,14 +73,14 @@ const PublicBlogList = ({ title }) => {
                         <div className="recent1">
                             {
                                 postList && postList.map((post, index) => (
-                                    index < maxDisplay && !post.isArchived
+                                    index <= maxDisplay && !post.isArchived
                                         ? <BlogCard post={post} />
                                         : ''
                                 ))
                             }
                         </div>
                         {
-                            postList.length > 6 &&
+                            postList.length >= 6 &&
                             <Button onClick={changeMaxHandler}>
                                 {
                                     maxDisplay === 6 ? 'See More' : 'See Less'

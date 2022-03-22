@@ -18,7 +18,9 @@ const BlogCard = (props) => {
                 </div>
                 <div className='featured_content'>
                     <h1 id="recent_title1" >{title}</h1>
-                    <p id="recent_date_author1"><span style={{ fontStyle: "italic" }}>By {author}</span> | {formatDate(createdAt)}</p>
+                    <p id="recent_date_author1">
+                        By {author} | {formatDate(createdAt)}
+                    </p>
                     <p className='blog_content'>{spliceContent(content)}</p>
                 </div>
                 <div className='featured_button'>

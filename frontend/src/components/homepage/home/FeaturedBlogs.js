@@ -11,7 +11,7 @@ const FeaturedBlogs = ({ featuredPost, subFeaturedPost }) => {
 
     const { title, content, images, author, createdAt, _id: id } = featuredPost
     return (
-        <div className="featured">
+        <div className="featured my-5">
             <div className="featured_container_1">
                 <Link to={`/blog/${id}`} style={{ textDecoration: "none" }}>
                     <div id="home">
