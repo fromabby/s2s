@@ -1,6 +1,7 @@
 import React from 'react'
 import './css/Contact.css'
 import Metadata from '../layout/Metadata'
+import { Accordion } from 'react-bootstrap'
 
 const Contact = ({ title }) => {
     const faqs = [
@@ -47,19 +48,13 @@ const Contact = ({ title }) => {
                     Frequently Asked Questions
                 </h1>
                 <br />
-                <div className="container">
-                    <div className="accordion" id="accordionExample">
-                        {faqs.map((faq, index) => (
-                            <Accordion faq={faq} index={index} />
-                        ))}
-                    </div>
-                </div>
+                <FrequentlyAskedQuestions faqs={faqs} />
 
                 <div className="main_content">
                     <br />
                     <h1 style={{ fontSize: "3.5vw" }} className="text-center">
                         Contact Us
-                </h1>
+                    </h1>
                     <div style={{ fontSize: "2vw" }} className="info">
                         Get in touch and let us know how we can help
                     </div>
@@ -98,31 +93,22 @@ const Contact = ({ title }) => {
     );
 };
 
-const Accordion = (props) => {
+
+
+const FrequentlyAskedQuestions = ({ faqs }) => {
     return (
-        <div className="accordion-item">
-            <h2 className="accordion-header" id="headingOne">
-                <button
-                    className="accordion-button"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target={`#accordion${props.index}`}
-                    aria-expanded="true"
-                    aria-controls={`accordion${props.index}`}
-                >
-                    {props.faq.question}
-                </button>
-            </h2>
-            <div
-                id={`accordion${props.index}`}
-                className="accordion-collapse collapse"
-                aria-labelledby="headingOne"
-                data-bs-parent="#accordionExample"
-            >
-                <div className="accordion-body">{props.faq.answer}</div>
-            </div>
-        </div>
-    );
-};
+        <Accordion className='container'>
+            {faqs.map((faq, index) => (
+                <Accordion.Item eventKey={index}>
+                    <Accordion.Header>{faq.question}</Accordion.Header>
+                    <Accordion.Body>
+                        {faq.answer}
+                    </Accordion.Body>
+                </Accordion.Item>
+            ))}
+
+        </Accordion>
+    )
+}
 
 export default Contact

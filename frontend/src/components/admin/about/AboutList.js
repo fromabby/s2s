@@ -76,7 +76,7 @@ const AboutList = ({ title }) => {
         abouts && abouts.forEach((about, index) => {
             data.rows.push({
                 id: index + 1,
-                content: <div className="td-container">{about.content}</div>,
+                content: about.content,
                 actions: <div className="td-container">
                     <Link to={`/admin/about/${about._id}`}>
                         <Button variant={"primary"} className="admin-button primary">Edit</Button>
