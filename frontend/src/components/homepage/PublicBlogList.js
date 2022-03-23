@@ -56,7 +56,7 @@ const PublicBlogList = ({ title }) => {
                 <Metadata title={title} />
                 <div id="blog">
                     <div className='filter-container'>
-                        <Form.Control type="text" style={{ width: '500px' }} onChange={(e) => setSearchQuery(e.target.value)} />
+                        <Form.Control type="text" style={{ width: '500px' }} placeholder="Search title..." onChange={(e) => setSearchQuery(e.target.value)} />
                         < Form.Select style={{ width: '200px' }} name="category" value={categoryQuery} onChange={(e) => setCategoryQuery(e.target.value)} >
                             <option value="">Select Category</option>
                             <option value="Environment">Environment</option>

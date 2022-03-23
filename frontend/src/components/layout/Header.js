@@ -1,19 +1,10 @@
-import { useContext } from "react";
 import { Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import AuthContext from "../../context/authContext";
-import { useAlert } from 'react-alert'
 import './css/Header.css'
 
 
 const Header = () => {
-    const { auth, logout } = useContext(AuthContext)
-    const alert = useAlert()
 
-    const logoutHandler = () => {
-        logout()
-        alert.success("Logged out successfully")
-    }
 
     return (
         <Nav className="navbar navbar-custom navbar-light navbar-expand-lg">
@@ -75,12 +66,7 @@ const Header = () => {
                             <a className="btn nav-link donate-btn">Donate</a>
                         </Link>
                     </li>
-                    {
-                        auth.isAuthenticated &&
-                        <li>
-                            <button onClick={logoutHandler}>Logout</button>
-                        </li>
-                    }
+
                 </ul>
             </div>
         </Nav>
