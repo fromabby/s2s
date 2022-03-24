@@ -17,23 +17,26 @@ export const PostContextProvider = props => {
 
 
     //get all posts
-    const getCurrentUser = async () => {
-        dispatchPost({ type: "GET_CURRENT_USER_REQUEST" })
-        try {
-            const { data } = await axios.get('/api/v1/viewer')
-            dispatchPost({ type: "GET_CURRENT_USER_SUCCESS", payload: data.user })
-        }
-        catch (error) {
-            dispatchPost({ type: "GET_CURRENT_USER_FAIL", payload: error })
-        }
-    }
+    // const getCurrentUser = async () => {
+    //     dispatchPost({ type: "GET_CURRENT_USER_REQUEST" })
+    //     try {
+    //         const { data } = await axios.get('/api/v1/viewer')
+    //         dispatchPost({ type: "GET_CURRENT_USER_SUCCESS", payload: data.user })
+    //     }
+    //     catch (error) {
+    //         dispatchPost({ type: "GET_CURRENT_USER_FAIL", payload: error })
+    //     }
+    // }
 
     //get all posts
     const fetchData = async () => {
         dispatchPost({ type: "GET_ALL_POST_REQUEST" })
         try {
             const { data } = await axios.get('/api/v1/posts')
-            dispatchPost({ type: "GET_ALL_POST_SUCCESS", payload: data.posts })
+            let sortedPostList = data.posts.sort(function (a, b) {
+                return new Date(b.createdAt) - new Date(a.createdAt);
+            });
+            dispatchPost({ type: "GET_ALL_POST_SUCCESS", payload: sortedPostList })
         }
         catch (error) {
             dispatchPost({ type: "GET_ALL_POST_FAIL", payload: error })
@@ -76,7 +79,10 @@ export const PostContextProvider = props => {
             const postIndex = posts.posts.findIndex(postData => post === postData)
             const newPostList = posts.posts
             newPostList.splice(postIndex, 1, data.post)
-            dispatchPost({ type: "UPDATE_POST_SUCCESS", payload: newPostList })
+            let sortedPostList = newPostList.sort(function (a, b) {
+                return new Date(b.createdAt) - new Date(a.createdAt);
+            });
+            dispatchPost({ type: "UPDATE_POST_SUCCESS", payload: sortedPostList })
         }
         catch (error) {
             dispatchPost({ type: "UPDATE_POST_FAIL", payload: error })
@@ -85,10 +91,15 @@ export const PostContextProvider = props => {
 
     const updateData = async (post, newPost) => {
         try {
+            dispatchPost({ type: "UPDATE_POST_REQUEST" })
             const postIndex = posts.posts.findIndex(postData => post._id === postData._id)
             const newPostList = posts.posts
             newPostList.splice(postIndex, 1, newPost)
-            dispatchPost({ type: "UPDATE_POST_SUCCESS", payload: newPostList })
+            let sortedPostList = newPostList.sort(function (a, b) {
+                return new Date(b.createdAt) - new Date(a.createdAt);
+            });
+
+            dispatchPost({ type: "UPDATE_POST_SUCCESS", payload: sortedPostList })
         }
         catch (error) {
             dispatchPost({ type: "UPDATE_POST_FAIL", payload: error })
@@ -98,6 +109,7 @@ export const PostContextProvider = props => {
 
     const addData = async (post) => {
         try {
+            dispatchPost({ type: "ADD_POST_REQUEST" })
             const multiformdata = {
                 headers: {
                     'Content-Type': 'multipart/form-data'
@@ -115,7 +127,7 @@ export const PostContextProvider = props => {
 
     return (
         <PostContext.Provider value={{ posts, fetchSingleData, deleteData, addData, archiveData, updateData }}>
-                {props.children}
+            {props.children}
         </PostContext.Provider>
     )
 }

@@ -14,14 +14,23 @@ const BlogList = () => {
     const { posts: data, updateData: updateItem, archiveData: archivePost, deleteData: deletePost } = useContext(PostContext)
     const { posts: postList, isLoading } = data
 
+    let newPostList = postList.sort(function (a, b) {
+        return new Date(b.createdAt) - new Date(a.createdAt);
+    });
 
-    const [posts, setPosts] = useState(postList)
+    const [posts, setPosts] = useState(newPostList)
+
+
+    console.log(newPostList)
 
     useEffect(() => {
-        setPosts(postList)
+        newPostList = postList.sort(function (a, b) {
+            return new Date(b.createdAt) - new Date(a.createdAt);
+        });
+        setPosts(newPostList)
     }, [postList])
 
-    const filteredPost = posts.filter(post => post.isArchived === false)
+    let filteredPost = posts.filter(post => post.isArchived === false)
     let featureCount = posts.filter(post => post.isFeature === true).length
     let subfeatureCount = posts.filter(post => post.isSubFeature === true).length
 
@@ -106,16 +115,15 @@ const BlogList = () => {
         }
     }
     const archiveItem = (post) => {
-        const { isArchived } = post
-        archivePost(post)
-        alert.success(isArchived ? 'Post restored' : 'Moved to Archives')
+        if (window.confirm('It will be permanently deleted after 90 days. Are you sure you want to archive the post?')) {
+            const { isArchived } = post
+            archivePost(post)
+            alert.success(isArchived ? 'Post restored' : 'Moved to Archives')
+        }
     }
 
 
-    const deleteItem = (id) => {
-        deletePost(id)
-        alert.success('Post Deleted')
-    }
+
 
     const setData = () => {
         const data = {

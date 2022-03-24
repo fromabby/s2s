@@ -34,9 +34,11 @@ const ArchiveBlogList = () => {
     }
 
 
-    const deleteItem = (id) => {
-        deletePost(id)
-        alert.success('Post Deleted')
+    const deleteItem = async (id) => {
+        if (window.confirm("Are you sure you want to delete this post?")) {
+            await deletePost(id)
+            alert.success('Post Deleted')
+        }
     }
 
 

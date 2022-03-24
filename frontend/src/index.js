@@ -9,7 +9,7 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 // import 'mdbreact/dist/css/mdb.css';
 
 const options = {
-  timeout: 5000,
+  timeout: 2000,
   position: positions.BOTTOM_CENTER,
   transition: transitions.SCALE
 }

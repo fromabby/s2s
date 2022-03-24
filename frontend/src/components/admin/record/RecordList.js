@@ -132,7 +132,7 @@ const RecordList = ({ title }) => {
                             searchTop
                             searchBottom={false}
                         />
-                        <Button onClick={() => generatePDF(records)}>Generate Report</Button>
+                        <Button variant="primary" onClick={() => generatePDF(records)} className='primary ms-2'>Generate Report</Button>
                     </div>
                 </div>
             </div>

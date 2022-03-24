@@ -34,7 +34,7 @@ const UpdateBlogForm = ({ title }) => {
     const alert = useAlert()
     const navigate = useNavigate()
 
-    const submitHandler = (e) => {
+    const submitHandler = async (e) => {
         e.preventDefault();
 
         var formData = new FormData()
@@ -54,12 +54,11 @@ const UpdateBlogForm = ({ title }) => {
             const updatePost = async () => {
                 const { data } = await axios.put(`/api/v1/posts/${id}`, formData, multiformdata)
                 if (data.success) {
-                    updateData(postDetail, data.post)
+                    await updateData(postDetail, data.post)
                     alert.success("Post Updated")
                 }
             }
-            console.log(postDetail)
-            updatePost()
+            await updatePost()
             navigate(`/admin/blog`)
 
         }
