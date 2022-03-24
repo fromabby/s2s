@@ -65,11 +65,16 @@ exports.updatePost = catchAsyncErrors(async (req, res, next) => {
         }
     }
 
-    post = await Post.findByIdAndUpdate(req.params.id, { ...req.body, images, updatedAt: new Date(Date.now()) }, {
+
+    let expiresAt = req.body.isArchived ? new Date(Date.now()) : null
+
+    post = await Post.findByIdAndUpdate(req.params.id, { ...req.body, expiresAt, images, updatedAt: new Date(Date.now()) }, {
         new: true,
         runValidators: true,
         useFindAndModify: false
     });
+
+    console.log(post)
 
     res.status(200).json({
         success: true,

@@ -29,15 +29,19 @@ var postSchema = new mongoose.Schema({
         type: Date,
         default: new Date(Date.now())
     },
-    isArchived:{
+    isArchived: {
         type: Boolean,
         default: false
     },
-    isFeature:{
+    expiresAt: {
+        type: Date,
+        expires: '131400m'
+    },
+    isFeature: {
         type: Boolean,
         default: false
     },
-    isSubFeature:{
+    isSubFeature: {
         type: Boolean,
         default: false
     }
