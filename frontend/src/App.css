@@ -71,3 +71,7 @@ body {
 .sidenav .active {
     /* background-image: url("../Assets/hover.png"); */
 }
+
+section {
+    min-height: 50vh;
+}

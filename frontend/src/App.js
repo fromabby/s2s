@@ -94,7 +94,9 @@ const NavBar = ({ children }) => {
                     ? <div>{children}</div> :
                     <div className='set-bg'>
                         <Header />
-                        {children}
+                        <section>
+                            {children}
+                        </section>
                         <Footer />
                     </div>
             }

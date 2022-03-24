@@ -1,29 +1,64 @@
 @media screen and (max-width: 500px) {
-    .column {
-      width: 100%;
-    }
+  .column {
+    width: 100%;
   }
-  
-  .zoom:hover {
-    transform: scale(1.1);
+}
+
+.zoom:hover {
+  transform: scale(1.1);
+}
+
+h1 {
+  text-align: center;
+  text-decoration: none;
+  font-weight: bold;
+  font-family: "Noto Sans", sans-serif;
+}
+
+
+.flex-container {
+  display: flex;
+  justify-content: center;
+}
+
+.flex-container>.donate {
+  width: auto;
+  margin: 20px;
+  border-radius: 50px;
+  text-align: center;
+  line-height: 100px;
+}
+
+.donate-instructions {
+  width: 60%;
+  margin: 15px;
+  text-align: justify;
+}
+
+.modalBody {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+
+@media screen and (max-width: 990px) {
+  .donate-instructions {
+    width: 100%;
+    text-align: justify;
   }
-  
-  h1 {
-    text-align: center;
-    text-decoration: none;
-    font-weight: bold;
-    font-family: "Noto Sans", sans-serif;
-  }
-  
-  .flex-container {
+
+  .modalBody {
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: centerD;
   }
-  
-  .flex-container > .donate {
-    width: auto;
-    margin: 20px;
-    border-radius: 50px;
-    text-align: center;
-    line-height: 100px;
-  }
+}
+
+.content-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}

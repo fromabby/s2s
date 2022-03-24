@@ -78,9 +78,6 @@ const BannerList = ({ title }) => {
                 id: index + 1,
                 image: <img className='image' src={banner.image[0].path} />,
                 actions: <div>
-                    <Link to={`/admin/banner/${banner._id}`}>
-                        <Button variant={"primary"} className="admin-button primary">Edit</Button>
-                    </Link>
                     <Button variant={"danger"} className="admin-button danger" onClick={() => deleteHandler(banner._id)} disabled={deleteLoading ? true : false}>Delete</Button>
                 </div>
             })
