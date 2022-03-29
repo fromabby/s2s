@@ -36,18 +36,20 @@ const ResetPassword = ({ title }) => {
     return (
         <div>
             <Metadata title={title} />
-            <Form className="container mt-2" onSubmit={submitHandler}>
-                <Form.Group className="mb-3">
+            <Form className="loginForm" onSubmit={submitHandler}>
+                <Form.Group className="inputField">
                     <Form.Label>New Password</Form.Label>
                     <Form.Control type="password" value={newPassword} onChange={e => setPassword(e.target.value)} required />
                 </Form.Group>
-                <Form.Group className="mb-3">
+                <Form.Group className="inputField">
                     <Form.Label>Confirm password</Form.Label>
                     <Form.Control type="password" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} required />
                 </Form.Group>
-                <Button variant="primary" type="submit" disabled={loading ? true : false} >
-                    Submit
-                </Button>
+                <div className='d-flex flex-column container align-items-center my-2'>
+                    <button type="submit" className='login-button' disabled={loading ? true : false} >
+                        Submit
+                    </button>
+                </div>
             </Form>
         </div>
     )

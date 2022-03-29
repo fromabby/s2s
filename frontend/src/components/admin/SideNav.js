@@ -92,7 +92,7 @@ const SideNav = () => {
                 </Link>
             </div>
             <div className={location.pathname.includes('/admin/update') && 'nav-active'}>
-                <Link to="/password/update" className="nav-link">
+                <Link to="/admin/password/update" className="nav-link">
                     Change Password
                 </Link>
             </div>

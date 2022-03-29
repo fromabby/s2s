@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { useAlert } from 'react-alert'
 import { useNavigate } from 'react-router-dom'
+import { Form } from 'react-bootstrap'
 import AuthContext from '../../context/authContext'
 import Metadata from '../layout/Metadata'
 
@@ -34,13 +35,23 @@ const UpdatePassword = ({ title }) => {
 
     return (
         <div>
-            <Metadata title={title}/>
-            <form onSubmit={submitHandler}>
-                    <input type="password" value={oldPassword} onChange={e => setOldPassword(e.target.value)} placeholder="Enter old password" required />
-                    <input type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Enter new password" required/>
-                    <input type="password" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} placeholder="Confirm new password" required/>
-                    <input type="submit" value="submit" disabled={loading? true:false}/>
-                </form>
+            <Metadata title={title} />
+            <Form className="loginForm" onSubmit={submitHandler}>
+                <Form.Group className='inputField'>
+                    <Form.Control type="password" value={oldPassword} placeholder="Enter old password" onChange={e => setOldPassword(e.target.value)} required />
+                </Form.Group>
+                <Form.Group className='inputField'>
+                    <Form.Control type="password" value={password} placeholder="Enter new password" onChange={e => setPassword(e.target.value)} required />
+                </Form.Group>
+                <Form.Group className='inputField'>
+                    <Form.Control type="password" value={confirmPassword} placeholder="Confirm new password" onChange={e => setConfirmPassword(e.target.value)} required />
+                </Form.Group>
+                <div className='d-flex flex-column container align-items-center my-2'>
+                    <button type="submit" className='login-button' disabled={loading ? true : false} >
+                        Submit
+                    </button>
+                </div>
+            </Form>
         </div>
     )
 }
