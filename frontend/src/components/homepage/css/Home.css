@@ -117,7 +117,7 @@
 
 .recent_card {
   display: flex;
-  max-height: 400px;
+  /* max-height: 400px; */
   background-color: white;
   margin-top: 10px;
   border-radius: 10px;
@@ -130,7 +130,7 @@
 }
 
 #recent_img {
-  max-width: 300px;
+  width: 300px;
   height: auto;
 }
 
@@ -154,7 +154,7 @@
 #recent_summary {
   padding-top: 20px;
   text-align: justify;
-  font-size: 15px;
+  font-size: 1em;
 }
 
 .read-btn {

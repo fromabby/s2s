@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Carousel } from 'react-bootstrap'
+import Load from '../../layout/Load'
 
 const Banners = () => {
     const [banners, setBanners] = useState([])
@@ -26,7 +27,7 @@ const Banners = () => {
 
     return (
         loading ?
-            <h1>Loading...</h1> :
+            <Load /> :
             <Carousel>
                 {
                     banners && banners.map(banner => (
