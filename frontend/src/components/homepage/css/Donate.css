@@ -8,12 +8,12 @@
   transform: scale(1.1);
 }
 
-.content-container {
+/* .content-container {
   height: calc(100vh - 361px) !important;
   display: flex;
   justify-content: center;
   align-items: center;
-}
+} */
 
 .donation-modal {
   display: flex;
@@ -21,6 +21,10 @@
   width: 100%;
   justify-content: center;
   align-items: center;
+}
+
+.donate{
+    margin: 25px;
 }
 
 .image-container-donate {

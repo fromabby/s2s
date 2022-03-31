@@ -32,7 +32,7 @@ const Donate = ({ title }) => {
   return loading ? (
     <Load />
   ) : (
-    <div className="bg_image content-container" style={{minHeight: "90vh"}}>
+    <div className="bg_image content-container" style={{ minHeight: "90vh" }}>
       <Metadata title={title} />
       <DonateModal donationDetails={donationDetails} />
     </div>
