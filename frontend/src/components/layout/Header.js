@@ -81,6 +81,19 @@ const Header = () => {
                 //     ? "item-active"
                 //     : "nav-link"
                 // }
+                to="faqs"
+              >
+                FAQs
+              </Link>
+            </NavDropdown.Item>
+            <NavDropdown.Item>
+              <Link
+                className="nav-link"
+                // className={
+                //   location.pathname.includes("/contact-us")
+                //     ? "item-active"
+                //     : "nav-link"
+                // }
                 to="contact-us"
               >
                 Contact Us

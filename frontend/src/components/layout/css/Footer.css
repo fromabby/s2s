@@ -118,6 +118,9 @@ h2 {
 
 .content-container {
   min-height: calc(100vh - 361px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* END OF FOOTER */

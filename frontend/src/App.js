@@ -74,6 +74,7 @@ import CreateUserForm from './components/admin/user/CreateUserForm';
 import UpdateUserForm from './components/admin/user/UpdateUserForm';
 import CommentList from './components/admin/comment/CommentList';
 import Load from './components/layout/Load';
+import FrequentlyAskedQuestions from './components/homepage/FAQ';
 
 const ScrollToTop = ({ children }) => {
     const location = useLocation();
@@ -209,6 +210,7 @@ const App = () => {
                                 <Route path="/partners" element={<Partners title={`Partners and Volunteers`} />} />
                                 <Route path="/about-us" element={<About title={`About Us`} />} />
                                 <Route path="/contact-us" element={<Contact title={`Contact Us`} />} />
+                                <Route path="/faqs" element={<FrequentlyAskedQuestions title={`Frequently Asked Questions`} />} />
                                 <Route path="/donate" element={<Donate title={`Donate`} />} />
                                 <Route path="/login" element={<Login title={`Login`} />} />
                             </Routes>

@@ -59,6 +59,13 @@ body {
   border-bottom: 1px solid transparent;
 }
 
+.content-container {
+  min-height: calc(100vh - 361px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .sidenav .nav-link:hover {
   border-top: 1px solid black;
   border-bottom: 1px solid black;

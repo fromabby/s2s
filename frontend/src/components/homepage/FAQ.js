@@ -1,9 +1,7 @@
 import React from "react";
-import "./css/Contact.css";
-import Metadata from "../layout/Metadata";
 import { Accordion } from "react-bootstrap";
 
-const Contact = ({ title }) => {
+const FrequentlyAskedQuestions = () => {
   const faqs = [
     {
       question: "What is STS?",
@@ -36,74 +34,23 @@ const Contact = ({ title }) => {
         "Monetary donations may be coursed through this link: [LINK] Rest assured, transparency reports will be released to inform you of how the donations are used for our projects.",
     },
   ];
-
   return (
-    <div className="bg_image content-container">
-      <Metadata title={title} />
-
-      <div id="contact">
-        <div className="main_content">
-          <br />
-          <h1 style={{ fontSize: "3.5vw" }} className="text-center">
-            Contact Us
-          </h1>
-          <div style={{ fontSize: "2vw" }} className="info">
-            Get in touch and let us know how we can help
-          </div>
-
-          <div className="flex-container-contact">
-            <div className="flex-item-contact" id="div-contact">
-              <a href="mailto:streetstoschools.org@gmail.com" target="_blank">
-                <img
-                  src="/images/ContactUs_Gmail.png"
-                  alt="gmail"
-                  style={{ width: "100%" }}
-                />
-              </a>
-            </div>
-            <div className="flex-item-contact" id="div-contact">
-              <a
-                href="https://www.facebook.com/StreetstoSchoolsProject/"
-                target="_blank"
-              >
-                <img
-                  src="/images/ContactUs_FB.png"
-                  alt="fb"
-                  style={{ width: "100%" }}
-                />
-              </a>
-            </div>
-            <div className="flex-item-contact" id="div-contact">
-              <a
-                href="https://www.instagram.com/streetstoschools.project/"
-                target="_blank"
-              >
-                <img
-                  src="/images/ContactUs_IG.png"
-                  alt="ig"
-                  style={{ width: "100%" }}
-                />
-              </a>
-            </div>
-          </div>
-          <br />
-        </div>
+    <div className="bg_image content-container" style={{minHeight: '90vh'}}>
+      <div className="d-flex flex-column container">
+        <h1 className="text-center" style={{ fontSize: "3.5vw" }}>
+          Frequently Asked Questions
+        </h1>
+        <Accordion>
+          {faqs.map((faq, index) => (
+            <Accordion.Item eventKey={index}>
+              <Accordion.Header>{faq.question}</Accordion.Header>
+              <Accordion.Body>{faq.answer}</Accordion.Body>
+            </Accordion.Item>
+          ))}
+        </Accordion>
       </div>
     </div>
   );
 };
 
-const FrequentlyAskedQuestions = ({ faqs }) => {
-  return (
-    <Accordion className="container">
-      {faqs.map((faq, index) => (
-        <Accordion.Item eventKey={index}>
-          <Accordion.Header>{faq.question}</Accordion.Header>
-          <Accordion.Body>{faq.answer}</Accordion.Body>
-        </Accordion.Item>
-      ))}
-    </Accordion>
-  );
-};
-
-export default Contact;
+export default FrequentlyAskedQuestions;

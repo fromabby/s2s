@@ -8,6 +8,9 @@
 .container-register {
     padding: 25px;
     height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .flex-container-partner {
