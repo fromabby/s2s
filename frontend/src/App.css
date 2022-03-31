@@ -66,6 +66,10 @@ body {
   align-items: center;
 }
 
+.post-form {
+  width: 60%;
+}
+
 .sidenav .nav-link:hover {
   border-top: 1px solid black;
   border-bottom: 1px solid black;

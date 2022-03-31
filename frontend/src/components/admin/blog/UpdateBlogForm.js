@@ -73,7 +73,7 @@ const UpdateBlogForm = ({ title }) => {
             post ?
                 <Fragment>
                     <Metadata title={title} />
-                    <Form className="container mt-2" onSubmit={submitHandler}>
+                    <Form className="container mt-2 post-form" onSubmit={submitHandler}>
 
                         <Form.Group className="mb-3">
                             <Form.Label>Title</Form.Label>
