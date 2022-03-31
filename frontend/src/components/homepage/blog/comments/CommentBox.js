@@ -25,10 +25,6 @@ const CommentBox = ({ post_id }) => {
                 setVerified(true)
             }
         }
-
-        // if (!isSlug && error) {
-        //     alert.error('must be logged in to leave a comment')
-        // }
     }, [isSlug, error])
 
     const submitHandler = e => {
@@ -43,7 +39,6 @@ const CommentBox = ({ post_id }) => {
 
     const postComment = async () => {
         try {
-            // setCommentLoading(true)
             addComment(comment, post_id)
             setComment('')
             alert.success(`Comment has been posted. Subject for approval`)
@@ -68,7 +63,7 @@ const CommentBox = ({ post_id }) => {
                     </Form.Group>
                 }
 
-                <Button variant="primary" type="submit" disabled={isLoading}>
+                <Button type="submit" className="admin-button primary" disabled={isLoading}>
                     Submit
                 </Button>
             </form>

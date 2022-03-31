@@ -22,7 +22,7 @@ const RecentBlogs = ({ recentPosts }) => {
             </div>
             <div className='d-flex justify-content-center mt-5'>
                 <Link to="/blog">
-                    <Button>See More</Button>
+                    <Button  className="admin-button primary">See More</Button>
                 </Link>
             </div>
         </div>

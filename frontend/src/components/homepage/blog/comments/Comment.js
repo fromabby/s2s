@@ -17,12 +17,12 @@ const Comment = ({ comment }) => {
                 </h1>
                 <p style={{ fontStyle: "2vw" }} className="content-comment">
                     {comment?.content}
-                    {
+                    {/* {
                         commentState &&
                             commentState.currentUser?.user?.email === (comment.user ? comment.user.email : 'Deleted account') ?
                             <Button className='btn btn-danger' onClick={() => deleteComment(comment._id)}>Delete</Button> :
                             ''
-                    }
+                    } */}
                     {/* {commentState?.currentUser?.email === commenter &&
                         <Button className='btn btn-danger' onClick={() => deleteComment(comment._id)}>Delete</Button>} */}
                 </p>

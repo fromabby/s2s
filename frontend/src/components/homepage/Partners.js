@@ -28,12 +28,8 @@ const Partners = ({ title }) => {
     }, [])
     return (
         loading ? <Load /> :
-            <div
-                className="bg_image content-container"
-
-            >
+            <div className="bg_image content-container">
                 <Metadata title={title} />
-
                 <div className="container-register">
                     <div id="register">
                         <h1 style={{ fontSize: "3.5vw" }} className="text-center">

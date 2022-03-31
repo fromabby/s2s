@@ -1,92 +1,108 @@
 .content-body {
     padding: 50px;
-  }
-  .container-md {
+}
+
+.container-md {
     background-color: white;
     margin: 0px auto;
     margin-top: 0px;
     border-radius: 10px;
     padding: 2rem;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  }
-  .content-title {
+}
+
+.content-title {
     margin: 0px;
     text-align: left;
+    font-size: 2.5rem;
     font-family: "Noto Sans", sans-serif;
-  }
-  .content-author-date {
+}
+
+.content-author-date {
     padding-bottom: 25px;
-  }
-  .content-container-1 img {
+}
+
+.content-container-1 img {
     width: 100%;
-  }
-  .content-paragraph {
+}
+
+.content-paragraph {
     white-space: pre-line;
     text-align: justify;
     padding-top: 25px;
     word-wrap: break-word;
     font-family: "Noto Sans", sans-serif;
-  }
-  .content-line {
+}
+
+.content-line {
     margin-top: 50px;
     height: 3px;
     border-radius: 5px;
     background-color: black;
     opacity: 0.5;
-  }
-  
-  .content-section-comment {
+}
+
+.content-section-comment {
     background-color: white;
     margin: 0px auto;
     margin-top: 10px;
     border-radius: 10px;
     padding: 20px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  }
-  .btn-submit {
+}
+
+.btn-submit {
     background-color: #4c9188;
     border-color: #4c9188;
     color: white;
     width: 100px;
     border-radius: 10px;
-  }
-  .btn-cancel {
+}
+
+.btn-cancel {
     border-color: #ff6961;
     background-color: white;
     color: black;
     width: 100px;
     border-radius: 10px;
-  }
-  .btn-submit:hover {
+}
+
+.btn-submit:hover {
     background-color: #438078;
     color: white;
-  }
-  .btn-cancel:hover {
+}
+
+.btn-cancel:hover {
     background-color: #ff6961;
     color: white;
-  }
-  .row {
+}
+
+.row {
     padding-top: 10px;
-  }
-  .form-control {
+}
+
+.form-control {
     border-radius: 10px;
-  }
-  .content-name {
+}
+
+.content-name {
     margin: 0px;
     word-wrap: break-word;
     text-align: left;
     padding-bottom: 5px;
-  }
-  .content-comment {
+    padding-top: 0px;
+}
+
+.content-comment {
     margin: 0px;
     word-wrap: break-word;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-  }
-  
-  .content-leave {
+}
+
+.content-leave {
     background-color: rgba(255, 255, 255, 1);
     border-radius: 10px;
     width: 97%;
@@ -94,24 +110,22 @@
     font-size: 2vw;
     height: 150px;
     resize: none;
-  }
-  
-  .content-inputs {
+}
+
+.content-inputs {
     padding-top: 25px;
     border-radius: 10px;
-  }
-  
-  .content-inputs h1 {
+}
+
+.content-inputs h1 {
     font-weight: 500;
     margin: auto auto auto 0px;
-  }
-  
-  .content-leave-header,
-  .content-comment-header {
+}
+
+.content-leave-header,
+.content-comment-header {
     margin-top: 30px;
     margin-bottom: 25px;
     display: block;
     text-align: left;
-  }
-  
-  
+}

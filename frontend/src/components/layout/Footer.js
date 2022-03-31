@@ -46,10 +46,10 @@ const Footer = () => {
                                     <Link to={"/donate"}>Donate Now</Link>
                                 </li>
                                 <li>
-                                    <Link to={"/registration"}>Partner</Link>
+                                    <Link to={"/partners"}>Partner</Link>
                                 </li>
                                 <li>
-                                    <Link to={"/registration"}>Volunteer</Link>
+                                    <Link to={"/partners"}>Volunteer</Link>
                                 </li>
                             </ul>
                         </li>
@@ -57,13 +57,13 @@ const Footer = () => {
                             <h2>CONNECT</h2>
                             <ul className="box">
                                 <li>
-                                    <Link to={"/about"}>About Us</Link>
+                                    <Link to={"/about-us"}>About Us</Link>
                                 </li>
                                 <li>
-                                    <Link to={"/contacts"}>Contact Us</Link>
+                                    <Link to={"/contact-us"}>Contact Us</Link>
                                 </li>
                                 <li>
-                                    <Link to={"/contacts"}>FAQ</Link>
+                                    <Link to={"/"}>FAQ</Link>
                                 </li>
                             </ul>
                         </li>

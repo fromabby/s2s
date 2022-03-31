@@ -64,7 +64,7 @@ const PublicBlogList = ({ title }) => {
                             <option value="Partnerships">Partnerships</option>
                             <option value="Health">Health</option>
                         </Form.Select >
-                        <Button style={{ marginLeft: "10px" }} onClick={() => {
+                        <Button style={{ marginLeft: "10px", width: 'fit-content' }}  className="admin-button primary" onClick={() => {
                             setSearchQuery('')
                             setCategoryQuery('')
                         }}>Clear Filter</Button>
@@ -81,7 +81,7 @@ const PublicBlogList = ({ title }) => {
                     </div>
                     {
                         postList.length >= 6 &&
-                        <Button onClick={changeMaxHandler}>
+                        <Button onClick={changeMaxHandler} className="admin-button primary">
                             {
                                 maxDisplay === 6 ? 'See More' : 'See Less'
                             }

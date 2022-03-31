@@ -51,9 +51,7 @@ const PublicBlogDetails = () => {
                             <div className="content-body">
                                 <div className="container-md">
                                     <h1 className="content-title" style={{ fontStyle: "5vw" }}>
-                                        {
-                                            post.title
-                                        }
+                                        {post.title}
                                     </h1>
                                     <p className="content-author-date" style={{ fontStyle: "1vw" }}>
                                         By {post.author} |{" "}
