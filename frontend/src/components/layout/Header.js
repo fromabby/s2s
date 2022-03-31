@@ -1,76 +1,100 @@
-import { Nav } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import './css/Header.css'
-
+import { Nav, NavDropdown, NavItem } from "react-bootstrap";
+import { Link, useLocation } from "react-router-dom";
+import "./css/Header.css";
 
 const Header = () => {
+  const location = useLocation();
 
-
-    return (
-        <Nav className="navbar navbar-custom navbar-light navbar-expand-lg">
-            <Link className="navbar-brand" to="/"><img
-                src="/images/logo.png"
-                width="100"
-                height="80"
-                alt="STS Logo"
-            /></Link>
-            <button
-                className="navbar-toggler"
-                type="button"
-                data-toggle="collapse"
-                data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
+  return (
+    <Nav className="navbar navbar-custom navbar-light navbar-expand-lg">
+      <Link className="navbar-brand" to="/">
+        <img src="/images/logo.png" width="100" height="80" alt="STS Logo" />
+      </Link>
+      <button
+        className="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span className="navbar-toggler-icon"></span>
+      </button>
+      <div className="collapse navbar-collapse " id="navbarSupportedContent">
+        <ul className="navbar-nav ml-auto d-flex align-items-center">
+          <Nav.Item>
+            <Link
+              className={location.pathname === "/" ? "item-active" : "nav-link"}
+              to="/"
             >
-                <span className="navbar-toggler-icon"></span>
-            </button>
-            <div
-                className="collapse navbar-collapse "
-                id="navbarSupportedContent"
+              Home
+            </Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Link
+              className={
+                location.pathname.includes("/blog") ? "item-active" : "nav-link"
+              }
+              to="blog"
             >
-                <ul className="navbar-nav ml-auto d-flex align-items-center">
-                    <li className="nav-item">
-                        <Link className="nav-link" to="/">
-                            <a className="nav-link">Home</a>
-                        </Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link className="nav-link" to="blog" >
-                            <a className="nav-link">Blog</a>
-                        </Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link
-                            className="nav-link"
-                            to="partners"
-                        >
-                            <a className="nav-link">Partner & Volunteer</a>
-                        </Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link className="nav-link" to="about-us">
-                            <a className="nav-link">About Us</a>
-                        </Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link
-                            className="nav-link"
-                            to="contact-us"
-                        >
-                            <a className="nav-link">Contact Us</a>
-                        </Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link className="nav-link" to="donate">
-                            <a className="btn nav-link donate-btn">Donate</a>
-                        </Link>
-                    </li>
+              Blog
+            </Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Link
+              className={
+                location.pathname.includes("/partners")
+                  ? "item-active"
+                  : "nav-link"
+              }
+              to="partners"
+            >
+              Partner & Volunteer
+            </Link>
+          </Nav.Item>
 
-                </ul>
-            </div>
-        </Nav>
-    );
-}
+          <NavDropdown
+            title="About"
+            as={NavItem}
+            id="nav-dropdown"
+            className="nav-dropdown"
+          >
+            <NavDropdown.Item>
+              <Link
+                className="nav-link"
+                // className={
+                //   location.pathname.includes("/about-us")
+                //     ? "item-active"
+                //     : "nav-link"
+                // }
+                to="about-us"
+              >
+                About Us
+              </Link>
+            </NavDropdown.Item>
+            <NavDropdown.Item>
+              <Link
+                className="nav-link"
+                // className={
+                //   location.pathname.includes("/contact-us")
+                //     ? "item-active"
+                //     : "nav-link"
+                // }
+                to="contact-us"
+              >
+                Contact Us
+              </Link>
+            </NavDropdown.Item>
+          </NavDropdown>
+          <Nav.Item>
+            <Link className="nav-link" to="donate">
+              <a className="btn nav-link donate-btn">Donate</a>
+            </Link>
+          </Nav.Item>
+        </ul>
+      </div>
+    </Nav>
+  );
+};
 export default Header;
-
