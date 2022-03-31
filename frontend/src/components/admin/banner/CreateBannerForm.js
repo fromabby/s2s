@@ -39,7 +39,7 @@ const CreateBannerForm = ({ title }) => {
         <>
             <Metadata title={title} />
             <Form className="container mt-2" onSubmit={submitHandler}>
-                <Form.Group className="mb-3">
+                <Form.Group className="mb-3" style={{width: '500px'}}>
                     <Form.Label>Banner image</Form.Label>
                     <Form.Control type="file" name={image} accept="image/*" onChange={e => setImage(Array.from(e.target.files))} required  />
                 </Form.Group>

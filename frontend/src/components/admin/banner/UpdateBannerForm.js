@@ -61,7 +61,7 @@ const UpdateBannerForm = ({ title }) => {
             <>
                 <Metadata title={title} />
                 <Form className="container mt-2" onSubmit={submitHandler}>
-                    <Form.Group className="mb-3">
+                    <Form.Group className="mb-3" style={{width: '500px'}}>
                         <Form.Label>Banner image</Form.Label>
                         {oldImage && <img src={oldImage} height="100" />}
                         <Form.Control type="file" name={image} accept="image/*" onChange={onChange} required />

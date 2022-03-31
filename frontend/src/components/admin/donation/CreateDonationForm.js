@@ -42,7 +42,6 @@ const CreateDonationForm = ({ title }) => {
         formData.append('donation_link', donationLink)
         qrCode && qrCode.map(qr => formData.append('qr_code', qr))
 
-
         createDonation(formData)
     }
 

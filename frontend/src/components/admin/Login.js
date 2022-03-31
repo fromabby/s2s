@@ -84,7 +84,7 @@ const Login = ({ title }) => {
                     <Form.Control type="password" name="password" placeholder="Password" onChange={passwordChangeHandler} required />
                 </Form.Group>
                 <div className='forgotPasswordDiv'>
-                    <Link to='/forgot-password'>Forgot password?</Link>
+                    <Link to='/forgot-password'  style={{fontSize: '14px'}}>Forgot password?</Link>
                 </div>
                 <div className='d-flex flex-column container align-items-center my-2'>
                     <button type="submit" className='login-button' disabled={loading ? true : false} >

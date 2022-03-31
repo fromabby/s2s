@@ -52,12 +52,12 @@ const CommentBox = ({ post_id }) => {
         <div className="content-leave-header">
             <form onSubmit={submitHandler}>
                 {verified || isVerified ?
-                    <Form.Group className="mb-3">
+                    <Form.Group className="mb-3" style={{ width: '800px' }}>
                         <Form.Label>Leave a comment</Form.Label>
-                        <Form.Control type="text" name="comment" placeholder="Leave a comment..." value={comment} onChange={e => setComment(e.target.value)} />
+                        <textarea class="form-control" rows="3" name="comment" placeholder="Leave a comment..." value={comment} onChange={e => setComment(e.target.value)}></textarea>
                     </Form.Group>
                     :
-                    <Form.Group className="mb-3">
+                    <Form.Group className="mb-3" style={{ width: '500px' }}>
                         <Form.Label>Enter your email</Form.Label>
                         <Form.Control type="email" name="email" placeholder="Enter your email..." value={email} onChange={e => setEmail(e.target.value)} />
                     </Form.Group>

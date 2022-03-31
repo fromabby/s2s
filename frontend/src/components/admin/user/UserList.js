@@ -6,7 +6,9 @@ import { Button, Table } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import Metadata from '../../layout/Metadata'
 import UserContext from '../../../context/userContext'
+import Load from '../../layout/Load'
 import { MDBDataTableV5 } from 'mdbreact'
+import './../mdbtable.css'
 
 const UserList = ({ title }) => {
     const navigate = useNavigate()
@@ -115,7 +117,7 @@ const UserList = ({ title }) => {
         <div>
             <Metadata title={title} />
             <div>
-                {loading ? <h1>Loading...</h1> : <>
+                {loading ? <Load /> : <>
                     <div className='manage-post-div'>
                         <h1>Manage Users</h1>
                         <div className='create-button'>

@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { useAlert } from 'react-alert'
 import DonationContext from '../../../context/donationContext'
 import Metadata from '../../layout/Metadata'
-import { Button, Form } from 'react-bootstrap'
+import { Button, Form, Row, Col } from 'react-bootstrap'
 import Load from '../../layout/Load'
 
 const UpdateDonationForm = ({ title }) => {
@@ -76,27 +76,35 @@ const UpdateDonationForm = ({ title }) => {
             <>
                 <Metadata title={title} />
                 <Form className="container mt-2" onSubmit={submitHandler}>
-                    <Form.Group className="mb-3">
-                        <Form.Label>Account Name</Form.Label>
-                        <Form.Control type="text" value={accountName} placeholder="Enter account name" onChange={e => setAccountName(e.target.value)} required />
-                    </Form.Group>
-                    <Form.Group className="mb-3">
-                        <Form.Label>Account Number</Form.Label>
-                        <Form.Control type="text" value={accountNumber} placeholder="Enter account number" onChange={e => setAccountNumber(e.target.value)} required />
-                    </Form.Group>
-                    <Form.Group className="mb-3">
-                        <Form.Label>Bank Name</Form.Label>
-                        <Form.Control type="text" value={bankName} placeholder="Enter bank name" onChange={e => setBankName(e.target.value)} required />
-                    </Form.Group>
+                    <Row>
+                        <Form.Group className="mb-3" style={{ width: '500px' }}>
+                            <Form.Label>Account Name</Form.Label>
+                            <Form.Control type="text" value={accountName} placeholder="Enter account name" onChange={e => setAccountName(e.target.value)} required />
+                        </Form.Group>
+                    </Row>
+                    <Row>
+                        <Col>
+                            <Form.Group className="mb-3" style={{ width: '250px' }}>
+                                <Form.Label>Account Number</Form.Label>
+                                <Form.Control type="text" value={accountNumber} placeholder="Enter account number" onChange={e => setAccountNumber(e.target.value)} required />
+                            </Form.Group>
+                        </Col>
+                        <Col>
+                            <Form.Group className="mb-3" style={{ width: '250px' }}>
+                                <Form.Label>Bank Name</Form.Label>
+                                <Form.Control type="text" value={bankName} placeholder="Enter bank name" onChange={e => setBankName(e.target.value)} required />
+                            </Form.Group>
+                        </Col>
+                    </Row>
                     <Form.Group className="mb-3">
                         <Form.Label>Instructions</Form.Label>
                         <Form.Control as="textarea" value={instructions} placeholder="Enter instructions" onChange={e => setInstructions(e.target.value)} required />
                     </Form.Group>
-                    <Form.Group className="mb-3">
+                    <Form.Group className="mb-3" style={{ width: '500px' }}>
                         <Form.Label>Donation link</Form.Label>
                         <Form.Control type="text" value={donationLink} placeholder="Enter donation link" onChange={e => setDonationLink(e.target.value)} required />
                     </Form.Group>
-                    <Form.Group className="mb-3">
+                    <Form.Group className="mb-3" style={{ width: '500px' }}>
                         <Form.Label>QR Code</Form.Label>
                         {oldQrCode && <img src={oldQrCode} height="100" />}
                         <Form.Control type="file" name={qrCode} accept="image/*" onChange={onChange} />

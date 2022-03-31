@@ -36,7 +36,7 @@ const CreateAboutForm = ({ title }) => {
         <>
             <Metadata title={title} />
             <Form className="container mt-2" onSubmit={submitHandler}>
-                <Form.Group className="mb-3">
+                <Form.Group className="mb-3" style={{width: '800px'}}>
                     <Form.Label>Content</Form.Label>
                     <Form.Control type="text" name="title" placeholder="Enter content" value={content} onChange={e => setContent(e.target.value)} required />
                 </Form.Group>
