@@ -31,7 +31,7 @@ const SideNav = () => {
 
     return (
         <div className="sidenav">
-            <Link to="/admin/dashboard/">
+            <Link to="/admin">
                 <img id="sidenav-logo" src="/images/logo.png" />
             </Link>
             {user?.role === 'admin' &&

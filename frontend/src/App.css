@@ -1,77 +1,83 @@
 body {
-    background-size: cover;
-    background-repeat: no-repeat;
-    font-weight: bold;
-    font-family: "Noto Sans";
+  background-size: cover;
+  background-repeat: no-repeat;
+  font-weight: bold;
+  font-family: "Noto Sans";
 }
 
 .set-bg {
-    background-image: url("/public/images/new-bg.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
+  background-image: url("/public/images/new-bg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
-
 .sidenav {
-    background-color: rgba(255, 255, 255, 0.6);
-    min-height: 100vh;
-    width: 320px;
-    padding-top: 20px;
-    border-right: 1px solid black;
-    position: fixed;
+  background-color: rgba(255, 255, 255, 0.6);
+  min-height: 100vh;
+  width: 320px;
+  padding-top: 20px;
+  border-right: 1px solid black;
+  position: fixed;
 }
 
 .nav-active {
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
-    background-color: #FDDA76;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  background-color: #fdda76;
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
 }
 
 .main-dashboard {
-    margin-left: 320px;
-    width: 100%;
-    margin-top: 25px;
+  margin-left: 320px;
+  width: 100%;
+  margin-top: 25px;
 }
 
 .dashboardBG {
-    background-color: #ffecac;
-    min-height: 100vh;
+  background-color: #ffecac;
+  min-height: 100vh;
 }
 
 .sidenav a {
-    text-align: center;
-    padding: 6px 8px 6px 16px;
-    text-decoration: none;
-    font-size: 20px;
-    display: block;
-    color: black !important;
-    font-family: "Noto Sans", sans-serif;
+  text-align: center;
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 20px;
+  display: block;
+  color: black !important;
+  font-family: "Noto Sans", sans-serif;
 }
 
 .sidenav #sidenav-logo {
-    width: 100%;
-    padding: 20px;
+  width: 100%;
+  padding: 20px;
+}
+
+.sidenav .nav-link {
+  border-top: 1px solid transparent;
+  border-bottom: 1px solid transparent;
 }
 
 .sidenav .nav-link:hover {
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
-    /* background-image: url("../Assets/hover.png"); */
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
 
+  /* background-image: url("../Assets/hover.png"); */
 }
 
 .main {
-    margin-left: 320px;
-    /* Same as the width of the sidenav */
-    font-size: 25px;
-    padding: 0px 10px;
-    max-width: 100%;
+  margin-left: 320px;
+  /* Same as the width of the sidenav */
+  font-size: 25px;
+  padding: 0px 10px;
+  max-width: 100%;
 }
 
 .sidenav .active {
-    /* background-image: url("../Assets/hover.png"); */
+  /* background-image: url("../Assets/hover.png"); */
 }
 
 section {
-    min-height: 50vh;
+  min-height: 50vh;
 }

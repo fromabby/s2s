@@ -1,15 +1,105 @@
-@media screen and (min-width: 5000px) {
+/* @media screen and (min-width: 5000px) {
   #aboutus-img {
     width: 100%;
   }
-}
+} */
 
 .col-md-3 {
   padding-top: 13px;
 }
 
+.sts-about {
+  display: flex;
+  flex-direction: row;
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 2rem;
+  margin: 0px auto;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  text-align: justify;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  max-width: 1320px;
+  min-height: 50vh;
+}
+
+.sts-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+}
+
+.sts-image-logo {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sts-image-logo img {
+  width: 70%;
+}
+
 .about-us-body {
   padding: 25px;
+}
+
+@media screen and (max-width: 1250px) {
+  .sts-about {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sts-image-logo img {
+    width: 40%;
+  }
+}
+
+.mission-vision-div {
+  display: flex;
+  flex-direction: row;
+  border-radius: 10px;
+  padding: 2rem 0rem;
+  margin: 0px auto;
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  text-align: justify;
+  max-width: 1320px;
+  min-height: 50vh;
+
+}
+
+.about-card-div {
+  background-color: #ffffff;
+  width: 48%;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+  padding: 40px;
+}
+
+.about-card-div h1 {
+  font-size: 2rem;
+  margin-bottom: 50px;
+}
+
+@media screen and (max-width: 900px) {
+  .mission-vision-div {
+    display: flex;
+    flex-direction: column;
+    margin-top: 0;
+  }
+
+  .about-card-div {
+    background-color: #ffffff;
+    width: 100%;
+    margin: 30px 0;
+    border-radius: 10px;
+    padding: 40px;
+  }
 }
 
 .about .container-md {
@@ -62,7 +152,7 @@
   justify-content: center;
 }
 
-.flex-container>div {
+.flex-container > div {
   text-align: center;
 }
 
@@ -83,7 +173,6 @@
 .text p {
   overflow: hidden;
   margin: 20px 0px;
-
 }
 
 .text-team {

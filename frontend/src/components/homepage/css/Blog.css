@@ -31,7 +31,7 @@
 #recent_date_author1 {
   font-size: 12px;
   /* padding: 5px; */
-  color: #4C9188;
+  color: #4c9188;
 }
 
 #recent_summary1 {
@@ -42,7 +42,7 @@
 }
 
 .recent1 {
-  font-family: 'Noto Sans', sans-serif;
+  font-family: "Noto Sans", sans-serif;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -51,7 +51,6 @@
   width: 75%;
   /* background-color: red; */
 }
-
 
 .searchField {
   width: 30%;
@@ -84,7 +83,6 @@
 }
 
 #featured_subpost1 {
-
   border-radius: 15px;
   width: 100%;
 }
@@ -105,22 +103,22 @@
     flex-direction: column;
     width: 100%;
     justify-content: center;
+    align-items: center;
   }
 
   .searchField {
     width: 100%;
     border-radius: 10px;
     height: 40px;
-
     box-shadow: none;
   }
 
   .selectField {
+    margin: 10px 0px;
     width: auto;
     border-radius: 10px;
     box-shadow: none;
     height: 40px;
-
   }
 }
 
@@ -185,15 +183,12 @@
   color: white;
 }
 
-
-
-
 #more_btn1 {
   display: flex;
   float: right;
   margin: 0px 50px 30px 0px;
-  border-color: #4C9188;
-  background-color: #4C9188;
+  border-color: #4c9188;
+  background-color: #4c9188;
   border-radius: 50px;
   border-width: 2px;
   border-style: solid;
