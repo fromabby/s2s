@@ -53,7 +53,7 @@ exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
     const link = `${req.protocol}://${process.env.HOST}/password/reset/${resetToken}`
 
     try {
-        const message = await resetPassword({ link })
+        const message = await resetPassword({ link, website: process.env.HOST })
 
         await sendEmail({
             email: user.email,
