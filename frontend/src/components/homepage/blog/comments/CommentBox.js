@@ -50,23 +50,29 @@ const CommentBox = ({ post_id }) => {
 
     return (
         <div className="content-leave-header">
-            <form onSubmit={submitHandler}>
-                {verified || isVerified ?
+            {verified || isVerified ?
+                <Form onSubmit={submitHandler}>
                     <Form.Group className="mb-3" style={{ width: '800px' }}>
                         <Form.Label>Leave a comment</Form.Label>
                         <textarea class="form-control" rows="3" name="comment" placeholder="Leave a comment..." value={comment} onChange={e => setComment(e.target.value)}></textarea>
                     </Form.Group>
-                    :
-                    <Form.Group className="mb-3" style={{ width: '500px' }}>
-                        <Form.Label>Enter your email</Form.Label>
-                        <Form.Control type="email" name="email" placeholder="Enter your email..." value={email} onChange={e => setEmail(e.target.value)} />
-                    </Form.Group>
-                }
-
-                <Button type="submit" className="admin-button primary" disabled={isLoading}>
-                    Submit
-                </Button>
-            </form>
+                    <Button type="submit" className="admin-button primary" disabled={isLoading}>
+                        Submit
+                        </Button>
+                </Form>
+                :
+                <>
+                    <Form className="loginForm" onSubmit={submitHandler}>
+                        <img src='/images/logo.png' className='loginLogo' />
+                        <Form.Group className="inputField">
+                            <Form.Control type="email" name="email" placeholder="Enter your email..." value={email} onChange={e => setEmail(e.target.value)} />
+                        </Form.Group>
+                        <button className='login-button primary' type="submit" disabled={isLoading ? true : false} >
+                            Submit
+                        </button>
+                    </Form>
+                </>
+            }
         </div>
     )
 }

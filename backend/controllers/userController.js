@@ -4,6 +4,7 @@ const catchAsyncErrors = require('../middlewares/catchAsyncErrors')
 const sendToken = require('../utils/jwtToken')
 const sendEmail = require('../utils/sendEmail')
 const jwt = require('jsonwebtoken')
+const otp = require('../config/templates/otp')
 
 exports.getCurrentUser = catchAsyncErrors(async (req, res, next) => {
     const user = await User.findOne({ email: req.user.email })
@@ -25,12 +26,12 @@ exports.verifyUserEmail = catchAsyncErrors(async (req, res, next) => {
         const slug = jwt.sign({ email: req.body.email, otp, post_id: req.body.post_id }, process.env.ACCOUNT_TOKEN, { expiresIn: process.env.REGISTER_EXPIRES })
 
         try {
-            // const message = await resetPassword({ link })
+            const message = await otp({ otp })
 
             await sendEmail({
                 email: req.body.email,
-                subject: 'STREETSTOSCHOOLS Verify Email',
-                message: `<p>Your otp is ${otp}</p>`
+                subject: 'STREETSTOSCHOOLS OTP',
+                message
             })
 
             res.status(200).json({
