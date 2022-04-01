@@ -99,21 +99,15 @@ const PublicBlogList = ({ title }) => {
 
         <div className="recent1">
           {postList &&
-            postList.map((post, index) =>
-              index < maxDisplay && !post.isArchived ? (
-                <BlogCard post={post} />
-              ) : (
-                ""
-              )
-            )}
+            postList
+              .filter((post) => !post.isArchived)
+              .map(
+                (post, index) => index < maxDisplay && <BlogCard post={post} />
+              )}
         </div>
-        {postList.length > 9 && (
+        {postList.filter((post) => !post.isArchived).length > 9 && (
           <Button onClick={changeMaxHandler} className="admin-button primary">
-            {postList.filter((post) => !post.isArchived).length >= maxDisplay &&
-              (postList.filter((post) => !post.isArchived).length !== 9 &&
-              maxDisplay === 9
-                ? "See More"
-                : "See Less")}
+            {maxDisplay === 9 ? "See more" : "See Less"}
           </Button>
         )}
       </div>
