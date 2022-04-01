@@ -5,9 +5,10 @@ const commentReducer = (state, action) => {
             return {
                 ...state,
                 isLoading: true,
-                isSlug: false
+                isSlug: false,
+                currentUser: {}
             }
-        case "SET_CURRENT_USER_REQUEST":
+        case "CREATE_USER_REQUEST":
         case "GET_CURRENT_USER_REQUEST":
             return { ...state, isLoading: true, isVerified: false }
 
@@ -20,7 +21,7 @@ const commentReducer = (state, action) => {
                 slug: action.payload.slug
             }
 
-        case "SET_CURRENT_USER_SUCCESS":
+        case "CREATE_USER_SUCCESS":
         case "GET_CURRENT_USER_SUCCESS":
             return {
                 ...state,
@@ -37,7 +38,9 @@ const commentReducer = (state, action) => {
                 error: action.payload
             }
 
-        case "SET_CURRENT_USER_FAIL":
+        case "CREATE_USER_FAIL":
+            return { ...state, isLoading: false, isVerified: false, createError: action.payload }
+
         case "GET_CURRENT_USER_FAIL":
             return { ...state, isLoading: false, isVerified: false, error: action.payload }
 

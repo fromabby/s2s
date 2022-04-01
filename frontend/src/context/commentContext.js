@@ -26,21 +26,21 @@ export const CommentContextProvider = props => {
             dispatchUser({ type: "GET_CURRENT_USER_SUCCESS", payload: data })
         }
         catch (error) {
-            dispatchUser({ type: "GET_CURRENT_USER_FAIL", payload: error })
+            dispatchUser({ type: "GET_CURRENT_USER_FAIL", payload: error.response.data.message })
             dispatchUser({ type: "CLEAR_ERRORS" })
         }
     }
 
-    const setUser = async (user, slug) => {
+    const createUser = async (user, slug) => {
         try {
-            dispatchUser({ type: "SET_CURRENT_USER_REQUEST " })
+            dispatchUser({ type: "CREATE_USER_REQUEST " })
 
             const { data } = await axios.post(`/api/v1/viewer/create/${slug}`, { full_name: user.name, otp: user.otp }, config)
 
-            dispatchUser({ type: "SET_CURRENT_USER_SUCCESS", payload: data })
+            dispatchUser({ type: "CREATE_USER_SUCCESS", payload: data })
 
         } catch (error) {
-            dispatchUser({ type: "SET_CURRENT_USER_FAIL", payload: error })
+            dispatchUser({ type: "CREATE_USER_FAIL", payload: error.response.data.message })
             dispatchUser({ type: "CLEAR_ERRORS" })
         }
     }
@@ -56,13 +56,9 @@ export const CommentContextProvider = props => {
             const { data } = await axios.post(`/api/v1/viewer/verify`, { email: email, post_id: post_id }, config)
 
             dispatchUser({ type: "VERIFY_USER_SUCCESS", payload: data })
-            dispatchUser({ type: "VERIFY_USER_RESET" })
 
         } catch (error) {
-            console.log(error)
-            dispatchUser({ type: "VERIFY_USER_FAIL", payload: error })
-            dispatchUser({ type: "CLEAR_ERRORS" })
-            dispatchUser({ type: "VERIFY_USER_RESET" })
+            dispatchUser({ type: "VERIFY_USER_FAIL", payload: error.response.data.message })
         }
     }
 
@@ -75,7 +71,7 @@ export const CommentContextProvider = props => {
             dispatchUser({ type: "GET_ALL_COMMENTS_FOR_ADMIN_SUCCESS", payload: data.responses })
         }
         catch (error) {
-            dispatchUser({ type: "GET_ALL_COMMENTS_FOR_ADMIN_FAIL", payload: error })
+            dispatchUser({ type: "GET_ALL_COMMENTS_FOR_ADMIN_FAIL", payload: error.response.data.message })
             dispatchUser({ type: "CLEAR_ERRORS" })
         }
     }
@@ -87,7 +83,7 @@ export const CommentContextProvider = props => {
             dispatchUser({ type: "GET_ALL_COMMENTS_SUCCESS", payload: data.responses })
         }
         catch (error) {
-            dispatchUser({ type: "GET_ALL_COMMENTS_FAIL", payload: error })
+            dispatchUser({ type: "GET_ALL_COMMENTS_FAIL", payload: error.response.data.message })
             dispatchUser({ type: "CLEAR_ERRORS" })
         }
     }
@@ -98,7 +94,7 @@ export const CommentContextProvider = props => {
             dispatchUser({ type: "ADD_COMMENT_SUCCESS", payload: data.response })
         }
         catch (error) {
-            dispatchUser({ type: "ADD_COMMENT_FAIL", payload: error })
+            dispatchUser({ type: "ADD_COMMENT_FAIL", payload: error.response.data.message })
             dispatchUser({ type: "CLEAR_ERRORS" })
         }
     }
@@ -113,7 +109,7 @@ export const CommentContextProvider = props => {
             dispatchUser({ type: "UPDATE_COMMENT_SUCCESS", payload: newAllComments })
         }
         catch (error) {
-            dispatchUser({ type: "UPDATE_COMMENT_FAIL", payload: error })
+            dispatchUser({ type: "UPDATE_COMMENT_FAIL", payload: error.response.data.message })
             dispatchUser({ type: "CLEAR_ERRORS" })
         }
     }
@@ -124,7 +120,7 @@ export const CommentContextProvider = props => {
             dispatchUser({ type: "DELETE_COMMENT_SUCCESS", payload: id })
         }
         catch (error) {
-            dispatchUser({ type: "DELETE_COMMENT_FAIL", payload: error })
+            dispatchUser({ type: "DELETE_COMMENT_FAIL", payload: error.response.data.message })
             dispatchUser({ type: "CLEAR_ERRORS" })
         }
     }
@@ -136,11 +132,10 @@ export const CommentContextProvider = props => {
             dispatchUser({ type: "DELETE_COMMENT_SUCCESS", payload: id })
         }
         catch (error) {
-            dispatchUser({ type: "DELETE_COMMENT_FAIL", payload: error })
+            dispatchUser({ type: "DELETE_COMMENT_FAIL", payload: error.response.data.message })
             dispatchUser({ type: "CLEAR_ERRORS" })
         }
     }
-
 
     useEffect(() => {
         let isMounted = true
@@ -152,7 +147,7 @@ export const CommentContextProvider = props => {
     }, [])
 
     return (
-        <CommentContext.Provider value={{ commentState, verifyUser, setUser, cancelVerification, getCurrentUser, updateComment, adminDeleteComment, getAllComments, getAllCommentsForAdmin, addComment, deleteComment }}>
+        <CommentContext.Provider value={{ dispatchUser, commentState, verifyUser, createUser, cancelVerification, getCurrentUser, updateComment, adminDeleteComment, getAllComments, getAllCommentsForAdmin, addComment, deleteComment }}>
             {props.children}
         </CommentContext.Provider>
     )
