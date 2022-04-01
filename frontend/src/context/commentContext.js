@@ -59,6 +59,7 @@ export const CommentContextProvider = props => {
             dispatchUser({ type: "VERIFY_USER_RESET" })
 
         } catch (error) {
+            console.log(error)
             dispatchUser({ type: "VERIFY_USER_FAIL", payload: error })
             dispatchUser({ type: "CLEAR_ERRORS" })
             dispatchUser({ type: "VERIFY_USER_RESET" })
