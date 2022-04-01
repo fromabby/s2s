@@ -38,71 +38,60 @@ const Contact = ({ title }) => {
   ];
 
   return (
-    <div className="bg_image content-container">
+    <>
       <Metadata title={title} />
 
-      <div id="contact">
-        <div className="main_content">
-          <br />
-          <h1 style={{ fontSize: "3.5vw" }} className="text-center">
-            Contact Us
-          </h1>
-          <div style={{ fontSize: "2vw" }} className="info">
-            Get in touch and let us know how we can help
-          </div>
+      <div className="bg_image content-container">
+        <div id="contact">
+          <div className="main_content">
+            <br />
+            <h1 style={{ fontSize: "3.5vw" }} className="text-center">
+              Contact Us
+            </h1>
+            <div style={{ fontSize: "2vw" }} className="info">
+              Get in touch and let us know how we can help
+            </div>
 
-          <div className="flex-container-contact">
-            <div className="flex-item-contact" id="div-contact">
-              <a href="mailto:streetstoschools.org@gmail.com" target="_blank">
-                <img
-                  src="/images/ContactUs_Gmail.png"
-                  alt="gmail"
-                  style={{ width: "100%" }}
-                />
-              </a>
+            <div className="flex-container-contact">
+              <div className="flex-item-contact" id="div-contact">
+                <a href="mailto:streetstoschools.org@gmail.com" target="_blank">
+                  <img
+                    src="/images/ContactUs_Gmail.png"
+                    alt="gmail"
+                    style={{ width: "100%" }}
+                  />
+                </a>
+              </div>
+              <div className="flex-item-contact" id="div-contact">
+                <a
+                  href="https://www.facebook.com/StreetstoSchoolsProject/"
+                  target="_blank"
+                >
+                  <img
+                    src="/images/ContactUs_FB.png"
+                    alt="fb"
+                    style={{ width: "100%" }}
+                  />
+                </a>
+              </div>
+              <div className="flex-item-contact" id="div-contact">
+                <a
+                  href="https://www.instagram.com/streetstoschools.project/"
+                  target="_blank"
+                >
+                  <img
+                    src="/images/ContactUs_IG.png"
+                    alt="ig"
+                    style={{ width: "100%" }}
+                  />
+                </a>
+              </div>
             </div>
-            <div className="flex-item-contact" id="div-contact">
-              <a
-                href="https://www.facebook.com/StreetstoSchoolsProject/"
-                target="_blank"
-              >
-                <img
-                  src="/images/ContactUs_FB.png"
-                  alt="fb"
-                  style={{ width: "100%" }}
-                />
-              </a>
-            </div>
-            <div className="flex-item-contact" id="div-contact">
-              <a
-                href="https://www.instagram.com/streetstoschools.project/"
-                target="_blank"
-              >
-                <img
-                  src="/images/ContactUs_IG.png"
-                  alt="ig"
-                  style={{ width: "100%" }}
-                />
-              </a>
-            </div>
+            <br />
           </div>
-          <br />
         </div>
       </div>
-    </div>
-  );
-};
-
-const FrequentlyAskedQuestions = ({ faqs }) => {
-  return (
-    <Accordion className="container">
-      {faqs.map((faq, index) => (
-        <Accordion.Item eventKey={index}>
-          <Accordion.Header>{faq.question}</Accordion.Header>
-          <Accordion.Body>{faq.answer}</Accordion.Body>
-        </Accordion.Item>
-      ))}
-    </Accordion>
+    </>
   );
 };
 

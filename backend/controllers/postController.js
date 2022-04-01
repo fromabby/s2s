@@ -1,113 +1,121 @@
-const ErrorHandler = require('../utils/errorHandler')
-const catchAsyncErrors = require('../middlewares/catchAsyncErrors')
-const Post = require('../models/post')
-const Response = require('../models/response')
-const cloudinary = require('cloudinary').v2
+const ErrorHandler = require("../utils/errorHandler");
+const catchAsyncErrors = require("../middlewares/catchAsyncErrors");
+const Post = require("../models/post");
+const Response = require("../models/response");
+const cloudinary = require("cloudinary").v2;
 
 //*for about us content
 exports.createPost = catchAsyncErrors(async (req, res, next) => {
+  const images = req.files;
 
-    const images = req.files
+  const post = await Post.create({ ...req.body, images });
 
-    const post = await Post.create({ ...req.body, images })
-
-    res.status(201).json({
-        success: true,
-        message: "New post created!",
-        post
-    })
-})
+  res.status(201).json({
+    success: true,
+    message: "New post created!",
+    post,
+  });
+});
 
 exports.getAllPosts = catchAsyncErrors(async (req, res, next) => {
-    const posts = await Post.find()
+  const posts = await Post.find();
 
-    res.status(200).json({
-        success: true,
-        posts
-    })
-})
+  res.status(200).json({
+    success: true,
+    posts,
+  });
+});
 
 exports.getSinglePost = catchAsyncErrors(async (req, res, next) => {
-    const post = await Post.findById(req.params.id)
+  const post = await Post.findById(req.params.id);
 
-    if (!post) { return next(new ErrorHandler('Post not found', 404)) }
+  if (!post) {
+    return next(new ErrorHandler("Post not found", 404));
+  }
 
-
-    res.status(200).json({
-        success: true,
-        post
-    })
-})
+  res.status(200).json({
+    success: true,
+    post,
+  });
+});
 
 exports.updatePost = catchAsyncErrors(async (req, res, next) => {
-    let post = await Post.findById(req.params.id)
+  let post = await Post.findById(req.params.id);
 
-    if (!post) { return next(new ErrorHandler('Post not found', 404)) }
+  if (!post) {
+    return next(new ErrorHandler("Post not found", 404));
+  }
 
-    let images = req.files
+  let images = req.files;
 
-    const oldImages = post.images
-    const length = oldImages && oldImages.length
-    let ids = []
+  const oldImages = post.images;
+  const length = oldImages && oldImages.length;
+  let ids = [];
 
-    for (let i = 0; i < length; i++) {
-        ids.push(oldImages[i].filename)
+  for (let i = 0; i < length; i++) {
+    ids.push(oldImages[i].filename);
+  }
+
+  if (images == null || images == "") {
+    images = post.images;
+  } else {
+    if (ids.length != 0) {
+      for (let x = 0; x < ids.length; x++) {
+        cloudinary.uploader.destroy(ids[x], { resource_type: "raw" });
+      }
     }
+  }
+  var oldDateObj = new Date();
+  var newDateObj = new Date();
+  newDateObj.setTime(oldDateObj.getTime() +  131400 * 60 * 1000);
 
-    if (images == null || images == '') {
-        images = post.images
-    } else {
-        if (ids.length != 0) {
-            for (let x = 0; x < ids.length; x++) {
-                cloudinary.uploader.destroy(ids[x],
-                    { resource_type: 'raw' })
-            }
-        }
+  let expiresAt = req.body.isArchived ? newDateObj : null;
+
+  post = await Post.findByIdAndUpdate(
+    req.params.id,
+    { ...req.body, expiresAt, images, updatedAt: new Date(Date.now()) },
+    {
+      new: true,
+      runValidators: true,
+      useFindAndModify: false,
     }
+  );
 
+  console.log(post);
 
-    let expiresAt = req.body.isArchived ? new Date(Date.now()) : null
-
-    post = await Post.findByIdAndUpdate(req.params.id, { ...req.body, expiresAt, images, updatedAt: new Date(Date.now()) }, {
-        new: true,
-        runValidators: true,
-        useFindAndModify: false
-    });
-
-    console.log(post)
-
-    res.status(200).json({
-        success: true,
-        post
-    })
-})
+  res.status(200).json({
+    success: true,
+    post,
+  });
+});
 
 exports.deletePost = catchAsyncErrors(async (req, res, next) => {
-    const post = await Post.findById(req.params.id)
+  const post = await Post.findById(req.params.id);
 
-    if (!post) { return next(new ErrorHandler('Post not found', 404)) }
+  if (!post) {
+    return next(new ErrorHandler("Post not found", 404));
+  }
 
-    await Response.deleteMany({ post: req.params.id })
+  await Response.deleteMany({ post: req.params.id });
 
-    const images = post.images
-    const length = images.length
-    let ids = []
+  const images = post.images;
+  const length = images.length;
+  let ids = [];
 
-    for (let i = 0; i < length; i++) {
-        ids.push(images[i].filename)
+  for (let i = 0; i < length; i++) {
+    ids.push(images[i].filename);
+  }
+
+  if (ids.length != 0) {
+    for (let x = 0; x < ids.length; x++) {
+      cloudinary.uploader.destroy(ids[x], { resource_type: "raw" });
     }
+  }
 
-    if (ids.length != 0) {
-        for (let x = 0; x < ids.length; x++) {
-            cloudinary.uploader.destroy(ids[x],
-                { resource_type: 'raw' })
-        }
-    }
+  await post.remove();
 
-    await post.remove()
-
-    res.status(200).json({
-        success: true,
-        message: 'About is deleted successfully',
-    })
-})
+  res.status(200).json({
+    success: true,
+    message: "About is deleted successfully",
+  });
+});

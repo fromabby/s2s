@@ -4,6 +4,7 @@ import formatDate from '../../../formatDate'
 
 const BlogCard = (props) => {
 
+    console.log(props)
     const { title, content, images, author, _id: id, createdAt } = props.post
 
     const spliceContent = (content) => {

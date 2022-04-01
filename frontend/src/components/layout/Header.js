@@ -6,7 +6,10 @@ const Header = () => {
   const location = useLocation();
 
   return (
-    <Nav className="navbar navbar-custom navbar-light navbar-expand-lg">
+    <Nav
+      className="navbar navbar-custom navbar-light navbar-expand-lg"
+      style={{ height: "10vh" }}
+    >
       <Link className="navbar-brand" to="/">
         <img src="/images/logo.png" width="100" height="80" alt="STS Logo" />
       </Link>

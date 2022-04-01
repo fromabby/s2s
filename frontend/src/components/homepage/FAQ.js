@@ -37,7 +37,7 @@ const FrequentlyAskedQuestions = () => {
   return (
     <div className="bg_image content-container" style={{minHeight: '90vh'}}>
       <div className="d-flex flex-column container">
-        <h1 className="text-center" style={{ fontSize: "3.5vw" }}>
+        <h1 className="text-center" style={{ fontSize: "3.5vw", marginBottom: '75px' }}>
           Frequently Asked Questions
         </h1>
         <Accordion>

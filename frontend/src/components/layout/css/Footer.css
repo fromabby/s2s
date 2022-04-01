@@ -117,7 +117,7 @@ h2 {
 }
 
 .content-container {
-  min-height: calc(100vh - 361px);
+  min-height: 90vh;
   display: flex;
   justify-content: center;
   align-items: center;

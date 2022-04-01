@@ -23,7 +23,6 @@ body {
   overflow-y: auto;
 }
 
-
 .nav-active {
   border-top: 1px solid black;
   border-bottom: 1px solid black;
@@ -64,7 +63,7 @@ body {
 }
 
 .content-container {
-  min-height: calc(100vh - 361px);
+  min-height: 90vh;
   display: flex;
   justify-content: center;
   align-items: center;

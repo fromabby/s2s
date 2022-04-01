@@ -23,6 +23,14 @@
     background-color: none;
   }
 
+  .content-container {
+    min-height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+
   #div-contact{
     background-color: none;
     background: none;
