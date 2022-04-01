@@ -18,20 +18,11 @@ body {
   padding-top: 20px;
   border-right: 1px solid black;
   position: fixed;
-  overflow-y: scroll;
   top: 0;
   bottom: 0;
+  overflow-y: auto;
 }
 
-.sidenav::-webkit-scrollbar {
-  display: none;
-}
-
-/* Hide scrollbar for IE, Edge and Firefox */
-.sidenav {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
-}
 
 .nav-active {
   border-top: 1px solid black;
