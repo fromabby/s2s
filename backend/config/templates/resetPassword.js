@@ -1,5 +1,5 @@
-    module.exports = ({ link, website }) => {
-        return `<div style="width:100%!important;background-color:#ececec;margin-top:0;margin-bottom:0;margin-right:0;margin-left:0;padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;font-family:HelveticaNeue,sans-serif">
+module.exports = ({ link, website }) => {
+    return `<div style="width:100%!important;background-color:#ececec;margin-top:0;margin-bottom:0;margin-right:0;margin-left:0;padding-top:0;padding-bottom:0;padding-right:0;padding-left:0;font-family:HelveticaNeue,sans-serif">
         <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#ececec">
             <tbody>
                 <tr style="border-collapse:collapse">
@@ -43,16 +43,15 @@
 
                                     </td>
                                 </tr>
-                                
-                                <tr style="border-collapse:collapse">
-                                    <td width="640" align="center" bgcolor="#FDDA76" style="font-family:HelveticaNeue,sans-serif;border-collapse:collapse">
-                                        <div align="center" style="text-align:center;display: flex;justify-content: center;align-items: center; padding-bottom: 10px;">
-                                            <a href=${website} target="_blank" style="font-size:36px; color:#467AAC; text-decoration:none; font-family:'calibri', arial, verdana; display:block; margin:20px 0px;">
-                                                <img style="max-width: 40px;" src="https://res.cloudinary.com/streets2schools/image/upload/v1648845030/websiteContentImages/Footer_Logo_miib8q.png" alt="logo"> <span style="font-size: 40px;">Streets To Schools</span>
-                                            </a><br />
-                                        </div>
-                                    </td>
-                                </tr>
+                              
+                            <tr style="border-collapse:collapse">
+                                <td width="640" align="center" bgcolor="#FDDA76" style="font-family:HelveticaNeue,sans-serif;border-collapse:collapse; margin-left: auto">
+                                    <a href=${website} target="_blank" style="font-size:36px; color:#467AAC; text-decoration:none; font-family:'calibri', arial, verdana; display:block; margin: 20px 0px 0px 0px">
+                                            <img style="max-width: 70px;" src="https://res.cloudinary.com/streets2schools/image/upload/v1648845030/websiteContentImages/Footer_Logo_miib8q.png" alt="logo"> 
+                                        </a>
+                                    <span style="font-size: 40px;color:#467AAC">Streets To Schools</span>
+                                </td>
+                            </tr>
 
                                 <tr style="border-collapse:collapse">
                                     <td width="640" height="30" bgcolor="#ffffff" style="font-family:HelveticaNeue,sans-serif;border-collapse:collapse"></td>
@@ -138,4 +137,4 @@
             </tbody>
         </table>
     </div>`
-    }
+}

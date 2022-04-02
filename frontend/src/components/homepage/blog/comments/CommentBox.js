@@ -9,7 +9,7 @@ const CommentBox = ({ post_id }) => {
     const [email, setEmail] = useState('')
     const [verified, setVerified] = useState(false)
 
-    const { commentState, verifyUser, addComment } = useContext(CommentContext)
+    const { commentState, verifyUser, addComment, dispatchUser } = useContext(CommentContext)
 
     const { currentUser, isLoading, isSlug, slug, isVerified, error } = commentState
 
@@ -17,10 +17,14 @@ const CommentBox = ({ post_id }) => {
     const alert = useAlert()
 
     useEffect(() => {
+        dispatchUser({type: "RESET_SLUG"})
+    }, [])
+
+    useEffect(() => {
         if (isSlug) {
-            console.log(`/verify/${slug}`)
             if (currentUser.user.status === 0) {
                 navigate(`/verify/${slug}`)
+                alert.success('An OTP has been sent to your email.')
             } else {
                 setVerified(true)
             }

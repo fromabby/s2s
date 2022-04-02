@@ -1,6 +1,12 @@
 const commentReducer = (state, action) => {
     switch (action.type) {
         //current user
+        case "RESET_SLUG":
+            return {
+                ...state,
+                isSlug: false
+            }
+            
         case "VERIFY_USER_REQUEST":
             return {
                 ...state,

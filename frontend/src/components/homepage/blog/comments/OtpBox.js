@@ -23,11 +23,11 @@ const OtpBox = () => {
             dispatchUser({ type: "CLEAR_ERRORS" })
         }
 
-        if (currentUser?.success) {
+        if (isVerified) {
             navigate(`/blog/${currentUser.user.post_id}`)
             alert.success('You may now leave a comment!')
         }
-    }, [currentUser, isVerified, createError])
+    }, [isVerified, createError])
 
     const submitHandler = e => {
         e.preventDefault()

@@ -23,6 +23,7 @@ export const CommentContextProvider = props => {
         dispatchUser({ type: "GET_CURRENT_USER_REQUEST" })
         try {
             const { data } = await axios.get('/api/v1/viewer')
+            
             dispatchUser({ type: "GET_CURRENT_USER_SUCCESS", payload: data })
         }
         catch (error) {
