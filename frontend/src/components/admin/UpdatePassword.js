@@ -14,12 +14,16 @@ const UpdatePassword = ({ title }) => {
     const [confirmPassword, setConfirmPassword] = useState('')
 
     const { auth, updatePassword } = useContext(AuthContext)
-    const { loading, isUpdated, error } = auth
+    const { loading, isUpdated, error, user } = auth
 
     useEffect(() => {
         if (isUpdated) {
             alert.success('Password has been updated.')
-            navigate('/admin/me')
+            if(user.role === 'contributor') {
+                navigate('/admin/me')
+            } else {
+                navigate('/admin/banner')
+            }
         }
 
         if (error) {
