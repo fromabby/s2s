@@ -36,20 +36,22 @@ const OtpBox = () => {
     }
 
     return (
-        <div>
+        <div className="loginDiv">
             <Metadata title={`Verify your account`} />
-            <Form className="container mt-2" onSubmit={submitHandler}>
-                <Form.Group className="mb-3">
+            <Form className="loginForm" onSubmit={submitHandler}>
+                <Form.Group className="inputField">
                     <Form.Label>Enter OTP</Form.Label>
-                    <Form.Control type="text" name="otp" placeholder="xxxxxx" value={otp} onChange={e => setOtp(e.target.value)} required/>
+                    <Form.Control type="text" name="otp" placeholder="xxxxxx" value={otp} onChange={e => setOtp(e.target.value)} required />
                 </Form.Group>
-                <Form.Group className="mb-3">
+                <Form.Group className="inputField">
                     <Form.Label>Enter your name</Form.Label>
-                    <Form.Control type="text" name="name" placeholder="Juan Dela Cruz" value={name} onChange={e => setName(e.target.value)} required/>
+                    <Form.Control type="text" name="name" placeholder="Juan Dela Cruz" value={name} onChange={e => setName(e.target.value)} required />
                 </Form.Group>
-                <Button variant="primary" type="submit" disabled={isLoading ? true : false}>
-                    Submit
-                </Button>
+                <div className='d-flex flex-column container align-items-center my-2'>
+                    <button type="submit" className='login-button' disabled={isLoading ? true : false} >
+                        Submit
+                    </button>
+                </div>
             </Form>
         </div>
     )
