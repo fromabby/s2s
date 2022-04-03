@@ -24,6 +24,8 @@ const RecordList = ({ title }) => {
   const { record, deleteRecord } = useContext(RecordContext);
   const { loading: deleteLoading, isDeleted, error } = record;
 
+  console.log(auth)
+
   useEffect(() => {
     const fetchData = async () => {
       try {

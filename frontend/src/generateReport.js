@@ -7,7 +7,7 @@ import formatDate from "./formatDate";
 import logo from "./sts_log.png";
 
 // define a generatePDF function that accepts a tickets argument
-const generatePDF = ({records, user}) => {
+const generatePDF = ({ records, user }) => {
   // initialize jsPDF
   const doc = new jsPDF();
 
@@ -30,19 +30,20 @@ const generatePDF = ({records, user}) => {
     tableRows.push(recordData);
   });
   doc.setFontSize(8);
-  doc.text(formatDate(Date.now()), 15, 5);
-  doc.text(user.name, 15, 5);
+  doc.text(formatDate(Date.now()).toUpperCase(), 15, 5);
+  doc.text(`${user.name.first_name?.toUpperCase()} ${user.name.last_name?.toUpperCase()}`, 15, 10);
+  doc.text("streetstoschools.org@gmail.com".toUpperCase(), 15, 15);
 
-  doc.addImage(logo, "PNG", 94, 15, 25, 25);
+
+  doc.addImage(logo, "PNG", 90, 18, 30, 30);
   doc.setFontSize(12);
   doc.setFont("calibri");
   // ticket title. and margin-top + margin-left
 
-  doc.text("STREETS TO SCHOOLS", 15, 30);
-  doc.text("DONATION REPORT", 15, 35);
+  doc.text("STREETS TO SCHOOLS", 83, 53);
+  doc.text("DONATION REPORT", 86, 58);
 
-  doc.text("streetstoschools.org@gmail.com", 15, 40);
-  doc.autoTable(tableColumn, tableRows, { startY: 50 });
+  doc.autoTable(tableColumn, tableRows, { startY: 65 });
 
   // we define the name of our PDF file.
   doc.save("report.pdf");
