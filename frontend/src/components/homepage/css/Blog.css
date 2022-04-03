@@ -52,7 +52,16 @@
 }
 
 .recent1 > * {
+  min-width: 300px;
   flex-basis: 28%;
+}
+
+@media screen and (max-width: 875px) {
+  .recent1 > * {
+    flex-basis: 70%;
+  }
+
+
 }
 
 .searchField {
