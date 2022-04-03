@@ -1,10 +1,10 @@
 import React, { useContext, useEffect } from "react";
 import { useAlert } from "react-alert";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import AuthContext from "../../context/authContext";
 import { Button, Form } from "react-bootstrap";
+import Load from "../layout/Load";
 import Metadata from "../layout/Metadata";
-
 
 const MyProfile = ({ title }) => {
   const alert = useAlert();
@@ -22,11 +22,11 @@ const MyProfile = ({ title }) => {
     <div>
       <Metadata title={title} />
       {loading ? (
-        <p>Loading...</p>
+        <Load />
       ) : (
         <>
-          <h1>My Profile</h1>
-          <div className="container mt-2">
+          <div className="loginDiv" style={{ marginTop: "-50px" }}>
+            <h3>My Profile</h3>
             <Form.Group className="mb-3">
               <Form.Label>Email address</Form.Label>
               <Form.Control type="email" value={user.email} disabled />
@@ -43,18 +43,25 @@ const MyProfile = ({ title }) => {
               <Form.Label>Role</Form.Label>
               <Form.Control type="text" value={user.role} disabled />
             </Form.Group>
-            <div className="mb-3">
-              <Link to="/admin/me/update" className="me-2">
-                <Button variant="primary" className="primary">
-                  Update Profile
-                </Button>
-              </Link>
-              <Link to="/admin/password/update">
-                <Button variant="success" className="success">
-                  Update Password
-                </Button>
-              </Link>
-            </div>
+
+            <Link to="/admin/me/update">
+              <Button
+                variant="primary"
+                className="admin-button primary"
+                style={{ width: "fit-content" }}
+              >
+                Update Profile
+              </Button>
+            </Link>
+            <Link to="/admin/password/update">
+              <Button
+                variant="success"
+                className="admin-button"
+                style={{ width: "fit-content" }}
+              >
+                Update Password
+              </Button>
+            </Link>
           </div>
         </>
       )}
