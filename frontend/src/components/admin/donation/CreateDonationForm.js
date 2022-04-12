@@ -77,7 +77,7 @@ const CreateDonationForm = ({ title }) => {
                 </Form.Group>
                 <Form.Group className="mb-3">
                     <Form.Label>QR Code</Form.Label>
-                    <Form.Control type="file" name={qrCode} accept="image/*" onChange={onChange} />
+                    <Form.Control type="file" name={qrCode} accept="image/*" onChange={onChange} required />
                 </Form.Group>
                 <Button variant="primary" type="submit" disabled={loading ? true : false} >
                     Submit

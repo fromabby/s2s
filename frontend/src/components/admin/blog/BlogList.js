@@ -5,11 +5,12 @@ import { Button, Table, Form } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import PostContext from '../../../context/postContext'
 import { useAlert } from 'react-alert'
+import Metadata from '../../layout/Metadata'
 import Blog from './Blog'
 import './Blog.css'
 import Load from '../../layout/Load'
 
-const BlogList = () => {
+const BlogList = ({ title }) => {
 
     const { posts: data, updateData: updateItem, archiveData: archivePost, deleteData: deletePost } = useContext(PostContext)
     const { posts: postList, isLoading } = data
@@ -216,25 +217,28 @@ const BlogList = () => {
 
 
     return (
-        isLoading ? <Load />
-            :
-            <div className='manage-post-div'>
-                <div className='create-button'>
-                    <Link to="/admin/blog/new">
-                        <Button variant="success" className="success">Add New Post</Button>
-                    </Link>
-                </div>
-                <MDBDataTableV5
-                    hover
-                    entriesOptions={[5, 20, 25]}
-                    entries={5}
-                    pagesAmount={4}
-                    data={setData()}
-                    fullPagination
-                    searchTop
-                    searchBottom={false}
-                />
-            </div>
+        <>
+            <Metadata title={title} />
+            {isLoading ? <Load />
+                :
+                <div className='manage-post-div'>
+                    <div className='create-button'>
+                        <Link to="/admin/blog/new">
+                            <Button variant="success" className="success">Add New Post</Button>
+                        </Link>
+                    </div>
+                    <MDBDataTableV5
+                        hover
+                        entriesOptions={[5, 20, 25]}
+                        entries={5}
+                        pagesAmount={4}
+                        data={setData()}
+                        fullPagination
+                        searchTop
+                        searchBottom={false}
+                    />
+                </div>}
+        </>
     )
 }
 

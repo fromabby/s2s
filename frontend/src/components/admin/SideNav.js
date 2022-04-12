@@ -1,18 +1,15 @@
 import React, { useEffect, useContext } from 'react'
 import { useAlert } from 'react-alert'
-import { Button } from 'react-bootstrap'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import AuthContext from '../../context/authContext'
 
-
 const SideNav = () => {
+    const location = useLocation()
+    const alert = useAlert()
+    const navigate = useNavigate()
 
     const { auth, logout } = useContext(AuthContext)
-    const { loading, user, loadError } = auth
-
-    const location = useLocation()
-
-    const alert = useAlert()
+    const { user, loadError } = auth
 
     useEffect(() => {
         if (loadError) {
@@ -20,11 +17,7 @@ const SideNav = () => {
         }
     }, [user, loadError])
 
-
-    const navigate = useNavigate()
-
     const logoutUser = async () => {
-
         await logout()
         navigate('/login')
     }
@@ -37,7 +30,7 @@ const SideNav = () => {
             {user?.role === 'admin' &&
                 <div className={location.pathname.includes('/admin/user') && 'nav-active'}>
                     <Link to="/admin/user" className="nav-link">
-                        Manage Users
+                        Manage Contributors
                     </Link>
                 </div>
             }
@@ -69,7 +62,6 @@ const SideNav = () => {
                 </Link>
             </div>
             <div className={location.pathname.includes('/admin/registration') && 'nav-active'}>
-
                 <Link
                     exact
                     to="/admin/registration"
@@ -79,14 +71,11 @@ const SideNav = () => {
                 </Link>
             </div>
             <div className={location.pathname.includes('/admin/donation') && 'nav-active'}>
-
                 <Link to="/admin/donation" className="nav-link">
                     Manage Donation
                 </Link>
             </div>
-
             <div className={location.pathname.includes('/admin/record') && 'nav-active'}>
-
                 <Link to="/admin/record" className="nav-link">
                     Manage Records
                 </Link>
@@ -102,7 +91,7 @@ const SideNav = () => {
                 </Link>
             </div>
             <div className="nav-link">
-                <a onClick={logoutUser}>
+                <a className="nav-link" onClick={logoutUser} style={{ border: 'none', cursor: 'pointer' }}>
                     Log Out
                 </a>
             </div>

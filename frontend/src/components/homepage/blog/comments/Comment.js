@@ -5,9 +5,11 @@ import { Button } from 'react-bootstrap'
 const Comment = ({ comment }) => {
     const { commentState, deleteComment } = useContext(CommentContext)
 
-    // status 0 = newly posted, unread
-    // status 1 = approved
-    // status 2 = denied
+    const deleteHandler = (id) => {
+        if(window.confirm('Are you sure you want to delete?')) {
+            deleteComment(id)
+        }
+    }
 
     return (
         <>
@@ -20,7 +22,7 @@ const Comment = ({ comment }) => {
                     {
                         commentState &&
                             commentState.currentUser?.user?.email === (comment.user ? comment.user.email : 'Deleted account') ?
-                            <Button className='btn btn-danger' onClick={() => deleteComment(comment._id)}>Delete</Button> :
+                            <Button className='btn btn-danger' onClick={() => deleteHandler(comment._id)}>Delete</Button> :
                             ''
                     }
                     {/* {commentState?.currentUser?.email === commenter &&

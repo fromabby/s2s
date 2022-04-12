@@ -19,11 +19,9 @@ const UpdatePassword = ({ title }) => {
     useEffect(() => {
         if (isUpdated) {
             alert.success('Password has been updated.')
-            if(user.role === 'contributor') {
-                navigate('/admin/me')
-            } else {
-                navigate('/admin/banner')
-            }
+            setOldPassword('')
+            setPassword('')
+            setConfirmPassword('')
         }
 
         if (error) {
