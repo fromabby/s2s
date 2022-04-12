@@ -85,7 +85,7 @@ const SideNav = () => {
                     Manage Profile
                 </Link>
             </div>
-            <div className={location.pathname.includes('/admin/update') && 'nav-active'}>
+            <div className={location.pathname.includes('/admin/password/update') && 'nav-active'}>
                 <Link to="/admin/password/update" className="nav-link">
                     Change Password
                 </Link>

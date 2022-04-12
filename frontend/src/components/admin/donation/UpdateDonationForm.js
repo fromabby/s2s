@@ -107,7 +107,7 @@ const UpdateDonationForm = ({ title }) => {
                     <Form.Group className="mb-3" style={{ width: '500px' }}>
                         <Form.Label>QR Code</Form.Label>
                         {oldQrCode && <img src={oldQrCode} height="100" />}
-                        <Form.Control type="file" name={qrCode} accept="image/*" onChange={onChange} required />
+                        <Form.Control type="file" name={qrCode} accept="image/*" onChange={onChange} />
                     </Form.Group>
                     <Button variant="primary" type="submit" disabled={loading ? true : false} >
                         Submit
