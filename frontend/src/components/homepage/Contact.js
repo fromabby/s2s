@@ -45,10 +45,10 @@ const Contact = ({ title }) => {
         <div id="contact">
           <div className="main_content">
             <br />
-            <h1 style={{ fontSize: "3.5vw" }} className="text-center">
+            <h1 style={{ fontSize: "3.5rem" }} className="text-center">
               Contact Us
             </h1>
-            <div style={{ fontSize: "2vw" }} className="info">
+            <div style={{ fontSize: "1.5rem" }} className="info">
               Get in touch and let us know how we can help
             </div>
 

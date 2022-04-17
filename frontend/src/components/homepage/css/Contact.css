@@ -18,6 +18,15 @@
     display: flex;
     justify-content: center;
   }
+
+  @media screen and (max-width: 800px) {
+    .flex-container-contact {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+  }
   
   .flex-item-contact{
     background-color: none;
@@ -32,6 +41,7 @@
 
 
   #div-contact{
+    width: 150px;
     background-color: none;
     background: none;
   }

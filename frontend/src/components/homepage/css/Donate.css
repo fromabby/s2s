@@ -23,6 +23,17 @@
   align-items: center;
 }
 
+@media screen and (max-width: 600px) {
+  .image-container-donate {
+    display: flex;
+    flex-direction: column !important;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+
+}
+
 .donate{
     margin: 25px;
 }
