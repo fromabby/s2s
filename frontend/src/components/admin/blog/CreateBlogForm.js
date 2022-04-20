@@ -84,10 +84,11 @@ const CreateBlogForm = ({ title }) => {
             required
           >
             <option value={null}>Select Category</option>
-            <option value="Environment">Environment</option>
+            <option value="Call For Help">Call For Help</option>
             <option value="Children’s rights">Children’s rights</option>
-            <option value="Partnerships">Partnerships</option>
+            <option value="Environment">Environment</option>
             <option value="Health">Health</option>
+            <option value="Partnerships">Partnerships</option>
           </Form.Select>
         </Form.Group>
 

@@ -37,6 +37,17 @@ const SideNav = () => {
           </Link>
         </div>
       )}
+
+      {user.role === "contributor" && (
+        <div
+          className={location.pathname.includes("/admin/me") && "nav-active"}
+        >
+          <Link to="/admin/me" className="nav-link">
+            Manage Profile
+          </Link>
+        </div>
+      )}
+
       <div
         className={location.pathname.includes("/admin/banner") && "nav-active"}
       >
@@ -99,16 +110,6 @@ const SideNav = () => {
         </Link>
       </div>
 
-      {user.role === "contributor" && (
-        <div
-          className={location.pathname.includes("/admin/me") && "nav-active"}
-        >
-          <Link to="/admin/me" className="nav-link">
-            Manage Profile
-          </Link>
-        </div>
-      )}
-
       <div
         className={
           location.pathname.includes("/admin/password/update") && "nav-active"
@@ -129,7 +130,7 @@ const SideNav = () => {
       </div>
     </div>
   ) : (
-    <Load />
+    ""
   );
 };
 
