@@ -51,7 +51,7 @@ export const AuthContextProvider = props => {
             dispatch({ type: "LOAD_USER_SUCCESS", payload: data.user })
 
         } catch (error) {
-            dispatch({ type: "LOAD_USER_FAIL", payload: error.response.data.message })
+            dispatch({ type: "LOAD_USER_FAIL", payload: error.response?.data.message })
             dispatch({ type: "CLEAR_ERRORS" })
         }
     }

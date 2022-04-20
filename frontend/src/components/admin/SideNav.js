@@ -2,6 +2,7 @@ import React, { useEffect, useContext } from "react";
 import { useAlert } from "react-alert";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import AuthContext from "../../context/authContext";
+import Load from "../layout/Load";
 
 const SideNav = () => {
   const location = useLocation();
@@ -22,7 +23,7 @@ const SideNav = () => {
     navigate("/login");
   };
 
-  return (
+  return user && user?.role ? (
     <div className="sidenav">
       <Link to="/admin">
         <img id="sidenav-logo" src="/images/logo.png" />
@@ -127,6 +128,8 @@ const SideNav = () => {
         </a>
       </div>
     </div>
+  ) : (
+    <Load />
   );
 };
 

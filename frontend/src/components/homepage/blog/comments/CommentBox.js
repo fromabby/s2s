@@ -43,12 +43,25 @@ const CommentBox = ({ post_id }) => {
     }
   };
 
+  let words = ["pota", "fuck", "wtf"];
+
   const postComment = async () => {
     try {
       if (comment) {
-        addComment(comment, post_id);
-        setComment("");
-        alert.success(`Comment has been posted. Subject for approval`);
+        //filter
+        var fail = false;
+        words.forEach((word) => {
+          if (comment.toLocaleLowerCase().includes(word.toLocaleLowerCase())) {
+            fail = true;
+          }
+        });
+        if (!fail) {
+          addComment(comment, post_id);
+          setComment("");
+          alert.success(`Comment has been posted. Subject for approval`);
+        } else {
+          alert.error("Please use appropriate words!");
+        }
       }
     } catch (error) {
       alert.error("cannot post comment");

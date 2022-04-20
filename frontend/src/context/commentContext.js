@@ -27,7 +27,7 @@ export const CommentContextProvider = props => {
             dispatchUser({ type: "GET_CURRENT_USER_SUCCESS", payload: data })
         }
         catch (error) {
-            dispatchUser({ type: "GET_CURRENT_USER_FAIL", payload: error.response.data.message })
+            dispatchUser({ type: "GET_CURRENT_USER_FAIL", payload: error.response?.data.message })
             dispatchUser({ type: "CLEAR_ERRORS" })
         }
     }
@@ -59,7 +59,7 @@ export const CommentContextProvider = props => {
             dispatchUser({ type: "VERIFY_USER_SUCCESS", payload: data })
 
         } catch (error) {
-            dispatchUser({ type: "VERIFY_USER_FAIL", payload: error.response.data.message })
+            dispatchUser({ type: "VERIFY_USER_FAIL", payload: error?.response?.data.message })
         }
     }
 
@@ -72,7 +72,7 @@ export const CommentContextProvider = props => {
             dispatchUser({ type: "GET_ALL_COMMENTS_FOR_ADMIN_SUCCESS", payload: data.responses })
         }
         catch (error) {
-            dispatchUser({ type: "GET_ALL_COMMENTS_FOR_ADMIN_FAIL", payload: error.response.data.message })
+            dispatchUser({ type: "GET_ALL_COMMENTS_FOR_ADMIN_FAIL", payload: error?.response?.data.message })
             dispatchUser({ type: "CLEAR_ERRORS" })
         }
     }
