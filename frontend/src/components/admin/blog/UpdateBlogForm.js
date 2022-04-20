@@ -71,7 +71,7 @@ const UpdateBlogForm = ({ title }) => {
     }
   };
 
-  console.log(images);
+  console.log(images, post.images)
 
   return isLoading ? (
     <Load />
@@ -134,51 +134,48 @@ const UpdateBlogForm = ({ title }) => {
         </Form.Group>
         {post?.images && (
           <Form.Group className="mb-3">
-            {images?.map(
-              (image) =>
-                image?.path && (
-                  <img
-                    src={image.path}
-                    alt={image.path}
-                    style={{ height: "200px", width: "auto" }}
-                  />
-                )
-            )}
+            <Form.Label className="d-block">Select Images</Form.Label>
+            {images?.map((image) => (
+              <img
+                src={image.path || URL.createObjectURL(image)}
+                alt={image.path || image.name}
+                style={{ height: "200px", width: "auto" }}
+              />
+            ))}
           </Form.Group>
         )}
 
-        {showInput ? (
-          <Form.Group className="mb-3">
-            <Form.Label>Change Images</Form.Label>
-            <Form.Control
-            //   value={images}
-              type="file"
-              multiple
-              onChange={(e) => setImages(Array.from(e.target.files))}
-            />
-            <div>
-              <Button onClick={() => setShowInput((oldValue) => !oldValue)}>
-                Save
-              </Button>
-              <Button
-                onClick={() => {
-                  setShowInput((oldValue) => !oldValue);
-                  setImages(post?.images);
-                }}
-              >
-                Cancel
-              </Button>
-            </div>
-          </Form.Group>
-        ) : (
-          <Button onClick={() => setShowInput((oldValue) => !oldValue)}>
-            Change Image
-          </Button>
-        )}
+        <Form.Group className="mb-3">
+          <Form.Label
+            htmlFor="image"
+            style={{
+              textDecoration: "underline",
+            }}
+          >
+            Click here to select images
+          </Form.Label>
+          <Form.Control
+            id="image"
+            type="file"
+            multiple
+            onChange={(e) => setImages(Array.from(e.target.files))}
+            style={{ display: "none" }}
+          />
+          {
+            images.every(image => image.name) &&
+            <Button
+              variant="danger"
+              onClick={() => setImages(post.images)}
+              className="d-block"
+            >
+              Reset Image
+            </Button>
+          }
+        </Form.Group>
 
         <div className="d-flex flex-row justify-content-end">
           <Button variant="success" type="submit">
-            Submit
+            Update
           </Button>
         </div>
       </Form>
