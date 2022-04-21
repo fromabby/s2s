@@ -80,6 +80,7 @@ import CommentList from "./components/admin/comment/CommentList";
 import Load from "./components/layout/Load";
 import FrequentlyAskedQuestions from "./components/homepage/FAQ";
 import ErrorPage from "./components/ErrorPage";
+import ApprovedCommentList from "./components/admin/comment/ApprovedCommentList";
 
 const ScrollToTop = ({ children }) => {
   const location = useLocation();
@@ -163,6 +164,11 @@ const App = () => {
                         path="/admin/comment"
                         element={<CommentList title={"Manage Comments"} />}
                       />
+                      <Route
+                        path="/admin/approved-comment"
+                        element={<ApprovedCommentList title={"Manage Approved Comments"} />}
+                      />
+                      
                     </Route>
                   </Routes>
                 </CommentContextProvider>
@@ -364,9 +370,9 @@ const App = () => {
           </AuthContextProvider>
         </ScrollToTop>
       </div>
-      <Routes>
+      {/* <Routes>
         <Route path="*" element={<ErrorPage />} />
-      </Routes>
+      </Routes> */}
     </Router>
   );
 };

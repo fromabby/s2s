@@ -71,6 +71,13 @@ const SideNav = () => {
         </Link>
       </div>
       <div
+        className={location.pathname.includes("/admin/approved-comment") && "nav-active"}
+      >
+        <Link to="/admin/approved-comment" className="nav-link">
+          Manage Approved Comments
+        </Link>
+      </div>
+      <div
         className={location.pathname.includes("/admin/comment") && "nav-active"}
       >
         <Link to="/admin/comment" className="nav-link">

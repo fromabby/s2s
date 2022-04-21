@@ -163,7 +163,7 @@ const UpdateBlogForm = ({ title }) => {
             style={{ display: "none" }}
           />
           {
-            images.every(image => image.name) &&
+            images?.every(image => image.name) &&
             <Button
               variant="danger"
               onClick={() => setImages(post.images)}

@@ -7,12 +7,14 @@ import Metadata from "../../layout/Metadata";
 import formatDate from "../../../formatDate";
 import Load from "../../layout/Load";
 
-const CommentList = ({ title }) => {
+const ApprovedCommentList = ({ title }) => {
   const { commentState, updateComment, adminDeleteComment } =
     useContext(CommentContext);
   const { allComments, isLoading } = commentState;
 
   const alert = useAlert();
+
+
 
   const updateItem = (comment) => {
     updateComment(comment, !comment.status);
@@ -73,7 +75,7 @@ const CommentList = ({ title }) => {
     };
     allComments &&
       allComments
-        .filter(comment => comment.status !== 1)
+        .filter(comment => comment.status === 1)
         .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
         .forEach((comment, index) => {
           const { user, createdAt, content, status, _id: id } = comment;
@@ -87,18 +89,11 @@ const CommentList = ({ title }) => {
               actions: (
                 <div>
                   <Button
-                    variant="success"
-                    className="success admin-button"
-                    onClick={() => updateItem(comment, status)}
-                  >
-                    Approve
-                  </Button>
-                  <Button
                     variant="danger"
                     className="danger admin-button"
                     onClick={() => deleteItem(id)}
                   >
-                    Deny
+                    Delete
                   </Button>
                 </div>
               ),
@@ -129,4 +124,4 @@ const CommentList = ({ title }) => {
   );
 };
 
-export default CommentList;
+export default ApprovedCommentList;

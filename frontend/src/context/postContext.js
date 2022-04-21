@@ -33,9 +33,7 @@ export const PostContextProvider = props => {
         dispatchPost({ type: "GET_ALL_POST_REQUEST" })
         try {
             const { data } = await axios.get('/api/v1/posts')
-            let sortedPostList = data.posts.sort(function (a, b) {
-                return new Date(b.createdAt) - new Date(a.createdAt);
-            });
+            let sortedPostList = data.posts
             dispatchPost({ type: "GET_ALL_POST_SUCCESS", payload: sortedPostList })
         }
         catch (error) {
@@ -80,7 +78,7 @@ export const PostContextProvider = props => {
             const newPostList = posts.posts
             newPostList.splice(postIndex, 1, data.post)
             let sortedPostList = newPostList.sort(function (a, b) {
-                return new Date(b.createdAt) - new Date(a.createdAt);
+                return a.createdAt - b.createdAt;
             });
             dispatchPost({ type: "UPDATE_POST_SUCCESS", payload: sortedPostList })
         }
@@ -95,9 +93,7 @@ export const PostContextProvider = props => {
             const postIndex = posts.posts.findIndex(postData => post._id === postData._id)
             const newPostList = posts.posts
             newPostList.splice(postIndex, 1, newPost)
-            let sortedPostList = newPostList.sort(function (a, b) {
-                return new Date(b.createdAt) - new Date(a.createdAt);
-            });
+            let sortedPostList = newPostList
 
             dispatchPost({ type: "UPDATE_POST_SUCCESS", payload: sortedPostList })
         }
