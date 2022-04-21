@@ -41,7 +41,7 @@ const UpdatePassword = ({ title }) => {
   };
 
   return (
-    <div>
+    <div className="loginDiv">
       <Metadata title={title} />
       <Form className="loginForm" onSubmit={submitHandler}>
         <Form.Group className="inputField">
