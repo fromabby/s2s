@@ -49,7 +49,7 @@ module.exports = ({ otp, website }) => {
                                     <a href=${website} target="_blank" style="font-size:36px; color:#467AAC; text-decoration:none; font-family:'calibri', arial, verdana; display:block; margin: 20px 0px 0px 0px">
                                             <img style="max-width: 70px;" src="https://res.cloudinary.com/streets2schools/image/upload/v1648845030/websiteContentImages/Footer_Logo_miib8q.png" alt="logo"> 
                                         </a>
-                                    <span style="font-size: 40px;color:#467AAC">Streets To Schools</span>
+                                    <span style="font-size: 40px;color:#467AAC">Streets to Schools</span>
                                 </td>
                             </tr>
 
