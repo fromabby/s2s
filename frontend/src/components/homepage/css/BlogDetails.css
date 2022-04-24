@@ -2,6 +2,12 @@
     padding: 50px;
 }
 
+@media screen and (max-width: 600px) {
+    .content-body {
+        padding: 10px;
+    }
+}
+
 .container-md {
     background-color: white;
     margin: 0px auto;

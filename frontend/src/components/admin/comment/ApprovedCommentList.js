@@ -6,6 +6,7 @@ import { MDBDataTableV5 } from "mdbreact";
 import Metadata from "../../layout/Metadata";
 import formatDate from "../../../formatDate";
 import Load from "../../layout/Load";
+import { Link } from "react-router-dom";
 
 const ApprovedCommentList = ({ title }) => {
   const { commentState, updateComment, adminDeleteComment } =
@@ -13,8 +14,6 @@ const ApprovedCommentList = ({ title }) => {
   const { allComments, isLoading } = commentState;
 
   const alert = useAlert();
-
-
 
   const updateItem = (comment) => {
     updateComment(comment, !comment.status);
@@ -75,29 +74,29 @@ const ApprovedCommentList = ({ title }) => {
     };
     allComments &&
       allComments
-        .filter(comment => comment.status === 1)
+        .filter((comment) => comment.status === 1)
         .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
         .forEach((comment, index) => {
           const { user, createdAt, content, status, _id: id } = comment;
-            data.rows.push({
-              id: index + 1,
-              email: user?.email,
-              name: user?.full_name,
-              response: content,
-              date: formatDate(createdAt),
-              status: status === 1 ? "Approved" : "For Approval",
-              actions: (
-                <div>
-                  <Button
-                    variant="danger"
-                    className="danger admin-button"
-                    onClick={() => deleteItem(id)}
-                  >
-                    Delete
-                  </Button>
-                </div>
-              ),
-            });
+          data.rows.push({
+            id: index + 1,
+            email: user?.email,
+            name: user?.full_name,
+            response: content,
+            date: formatDate(createdAt),
+            status: status === 1 ? "Approved" : "For Approval",
+            actions: (
+              <div>
+                <Button
+                  variant="danger"
+                  className="danger admin-button"
+                  onClick={() => deleteItem(id)}
+                >
+                  Delete
+                </Button>
+              </div>
+            ),
+          });
         });
 
     return data;
@@ -109,16 +108,31 @@ const ApprovedCommentList = ({ title }) => {
       {isLoading ? (
         <Load />
       ) : (
-        <MDBDataTableV5
-          hover
-          entriesOptions={[5, 20, 25]}
-          entries={5}
-          pagesAmount={4}
-          data={setData()}
-          fullPagination
-          searchTop
-          searchBottom={false}
-        />
+        <>
+          <div style={{ margin: "10px" }}>
+            <Link to="/admin/comment">
+              <Button variant="primary" className="primary">
+                For Approval
+              </Button>
+            </Link>
+            <Link to="/admin/approved-comment">
+              <Button variant="success" className="success" disabled>
+                Approved
+              </Button>
+            </Link>
+          </div>
+
+          <MDBDataTableV5
+            hover
+            entriesOptions={[5, 20, 25]}
+            entries={5}
+            pagesAmount={4}
+            data={setData()}
+            fullPagination
+            searchTop
+            searchBottom={false}
+          />
+        </>
       )}
     </>
   );

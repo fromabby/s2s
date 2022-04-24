@@ -5,6 +5,7 @@ const { isVerified } = require('../middlewares/auth')
 const user = require('../controllers/userController')
 
 router.route('/viewer').get(isVerified, user.getCurrentUser)
+router.route('/viewer/logout').delete(isVerified, user.logout)
 router.route('/viewer/verify').post(user.verifyUserEmail)
 router.route('/viewer/create/:token').post(user.saveUser)
 

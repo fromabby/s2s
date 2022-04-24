@@ -7,7 +7,13 @@ exports.createResponse = catchAsyncErrors(async (req, res, next) => {
     const { _id: userId } = req.user
     const postId = req.params.post_id
 
+    const responses = await Response.find({user: userId})
+
+    const count = responses.map(response => new Date(response.createdAt).getDate() === new Date(Date.now()).getDate()).length
+
+    if(count > 20) { return next(new ErrorHandler('Exceeded max comment for the day', 404)) }
     const response = await Response.create({ ...req.body, user: userId, post: postId, createdAt: new Date(Date.now()) })
+
 
     await response.populate('user')
 

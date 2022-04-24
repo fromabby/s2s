@@ -8,12 +8,14 @@ const sendToken = (user, userType, statusCode, res) => {
     expiry = 60 * 1000 * 15;
   }
 
+  console.log(userType)
+
   // Create Jwt Token
   const token = currentUser.getJwtToken();
 
   // Options for cookie
   const options = {
-    expires: new Date(Date.now() + process.env.COOKIE_EXPIRES_TIME * expiry),
+    expires: new Date(Date.now() +  expiry),
     httpOnly: true,
   };
 
