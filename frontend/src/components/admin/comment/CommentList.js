@@ -116,18 +116,16 @@ const CommentList = ({ title }) => {
         <Load />
       ) : (
         <>
-          <div style={{ margin: "10px" }}>
-            <Link to="/admin/comment">
+            <Link to="/admin/comment" style={{ margin: "10px" }}>
               <Button variant="primary" className="primary" disabled>
                 For Approval
               </Button>
             </Link>
-            <Link to="/admin/approved-comment">
+            <Link to="/admin/approved-comment" style={{ margin: "10px" }}>
               <Button variant="success" className="success">
                 Approved
               </Button>
             </Link>
-          </div>
 
           <MDBDataTableV5
             hover

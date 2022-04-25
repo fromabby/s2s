@@ -59,6 +59,6 @@ const words = ["2 girls 1 cup", "2g1c", "4r5e", "5h1t", "5hit", "a$$", "a$$hole"
   "Popo",
   "Lintik",
   "Hayop ka",
-  "Animal ka"]
+  "Animal ka", "Tangina", "Tangna","Tangi", "gagi"]
 
 export default words
