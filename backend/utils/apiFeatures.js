@@ -5,13 +5,13 @@ class APIFeatures {
     }
 
     search() {
-        const name = this.queryStr.name ? {
+        const keyword = this.queryStr.title ? {
             title: {
-                $regex: this.queryStr.name,
+                $regex: this.queryStr.title,
                 $options: 'i' // i means case insensitive
             }
         } : {}
-        this.query = this.query.find({ ...name })
+        this.query = this.query.find({ ...keyword })
         return this
     }
 
@@ -19,7 +19,7 @@ class APIFeatures {
         const queryCopy = { ...this.queryStr }
 
         // Removing fields from the query string
-        const removeFields = ['keyword', 'limit', 'page']
+        const removeFields = ['title', 'limit', 'page']
         removeFields.forEach(el => delete queryCopy[el])
 
         // Advanced filter not yet applied
