@@ -6,8 +6,8 @@
 
 #blog {
   display: flex;
+  max-width: 100vw;
   flex-direction: column;
-
   align-items: center;
   justify-content: center;
   margin-bottom: 3%;
@@ -118,15 +118,16 @@
   }
 
   .searchField {
+    margin: 10px 0px;
     width: 100%;
     border-radius: 10px;
-    height: 40px;
     box-shadow: none;
+    height: 40px;
   }
 
   .selectField {
     margin: 10px 0px;
-    width: auto;
+    width: 100%;
     border-radius: 10px;
     box-shadow: none;
     height: 40px;

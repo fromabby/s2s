@@ -20,7 +20,7 @@
 
 @media screen and (max-width: 800px) and (min-width: 500px) {
     .content-container {
-        height: 1000px;
+        min-height: 1000px;
     }
 }
 
