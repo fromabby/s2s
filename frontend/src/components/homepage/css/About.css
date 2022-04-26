@@ -46,6 +46,13 @@
   padding: 25px;
 }
 
+@media screen and (max-width: 600px) {
+  .about-us-body {
+    padding: 0;
+  }
+  
+}
+
 @media screen and (max-width: 1250px) {
   .sts-about {
     display: flex;
@@ -69,7 +76,6 @@
   text-align: justify;
   max-width: 1320px;
   min-height: 50vh;
-
 }
 
 .about-card-div {

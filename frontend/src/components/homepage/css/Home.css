@@ -46,8 +46,16 @@
 
 #featured_title {
   font-size: 30px;
-  text-align: left;
+  text-align: justify;
   padding-top: 15px;
+}
+
+@media screen and (max-width: 600px) {
+  #featured_title {
+    font-size: 30px;
+    text-align: start;
+    padding-top: 15px;
+  }
 }
 
 #featured_date_author {

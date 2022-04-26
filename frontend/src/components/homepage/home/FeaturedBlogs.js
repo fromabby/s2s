@@ -20,7 +20,7 @@ const FeaturedBlogs = ({ featuredPost, subFeaturedPost }) => {
                             src={images[0].path}
                             alt="featured pic"
                         />
-                        <h1 id="featured_title" style={{ textAlign: "justify" }}>
+                        <h1 id="featured_title">
                             {title}
                         </h1>
                         <p

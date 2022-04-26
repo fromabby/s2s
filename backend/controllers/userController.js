@@ -24,7 +24,7 @@ exports.verifyUserEmail = catchAsyncErrors(async (req, res, next) => {
     } else {
         const otp = Math.floor(100000 + Math.random() * 9000)
 
-        const slug = jwt.sign({ email: req.body.email, otp, post_id: req.body.post_id }, process.env.ACCOUNT_TOKEN, { expiresIn: '15m' })
+        const slug = jwt.sign({ email: req.body.email, otp, post_id: req.body.post_id }, process.env.ACCOUNT_TOKEN, { expiresIn: '2m' })
         
         try {
             const message = await otpTemplate({ otp, website: process.env.HOST })
