@@ -1,39 +1,45 @@
 class APIFeatures {
-    constructor(query, queryStr) {
-        this.query = query
-        this.queryStr = queryStr
-    }
 
-    search() {
-        const keyword = this.queryStr.title ? {
-            title: {
-                $regex: this.queryStr.title,
-                $options: 'i' // i means case insensitive
-            }
-        } : {}
-        this.query = this.query.find({ ...keyword })
-        return this
-    }
+  constructor(query, queryStr) {
+    this.query = query;
+    this.queryStr = queryStr;
+  }
 
-    filter() {
-        const queryCopy = { ...this.queryStr }
 
-        // Removing fields from the query string
-        const removeFields = ['title', 'limit', 'page']
-        removeFields.forEach(el => delete queryCopy[el])
+  search() {
+    const keyword = this.queryStr.title
+      ? {
+          title: {
+            $regex: this.queryStr.title,
+            $options: "i", // i means case insensitive
+          },
+        }
+      : {};
+    this.query = this.query.find({ ...keyword });
 
-        // Advanced filter not yet applied
+    return this;
+  }
 
-        this.query = this.query.find(queryCopy)
-        return this
-    }
-    pagination(resPerPage) {
-        const currentPage = Number(this.queryStr.page) || 1
-        const skip = resPerPage * (currentPage - 1)
+  filter() {
+    const queryCopy = { ...this.queryStr };
 
-        this.query = this.query.limit(resPerPage).skip(skip)
-        return this
-    }
+    // Removing fields from the query string
+    const removeFields = ["title", "limit", "page"];
+    removeFields.forEach((el) => delete queryCopy[el]);
+
+    // Advanced filter not yet applied
+    this.query = this.query.find(queryCopy);
+    return this;
+  }
+  pagination(resPerPage) {
+    const currentPage = Number(this.queryStr.page) || 1;
+    const skip = resPerPage * (currentPage - 1);
+
+    this.query = this.query.limit(resPerPage).skip(skip);
+    return this;
+  }
+
+
 }
 
-module.exports = APIFeatures
+module.exports = APIFeatures;

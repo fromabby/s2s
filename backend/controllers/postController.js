@@ -19,7 +19,7 @@ exports.createPost = catchAsyncErrors(async (req, res, next) => {
 });
 
 exports.getAllPosts = catchAsyncErrors(async (req, res, next) => {
-    const resPerPage = 5
+    const resPerPage = 9
 
     const postCount = await Post.countDocuments()
 

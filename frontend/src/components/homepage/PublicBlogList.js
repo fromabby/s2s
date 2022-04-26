@@ -74,6 +74,7 @@ const PublicBlogList = ({ title }) => {
         setCurrentPage(pageNumber)
     }
 
+
     return loading ? (
         <Load />
     ) : (
