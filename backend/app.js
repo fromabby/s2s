@@ -26,15 +26,17 @@ app.use('/api/v1', post)
 app.use('/api/v1', response)
 app.use('/api/v1', record)
 
-/*
+
 if(process.env.NODE_ENV === 'PRODUCTION'){
     app.use(express.static(path.join(__dirname, '../frontend/build')))
     app.get('*', (req,res)=>{
         res.sendFile(path.resolve(__dirname, '../frontend/build/index.html'))
     })
 }
-*/
+
+
 // Middleware to handle errors
+
 app.use(errorMiddleware)
 
 module.exports = app
