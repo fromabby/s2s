@@ -52,7 +52,7 @@ const DonateModal = ({ donationDetails }) => {
       <div className="image-container-donate">
         {donationDetails.length > 0 ? (
           donationDetails.map((donation) => (
-            <div className="donate" onClick={() => donation?.bank_name.toLowerCase() === "gcash" ? setShowFirst(true) : setShowSecond(true)}>
+            <div className="donate" onClick={() => donationDetails.length > 1 ? (donation?.bank_name.toLowerCase() === "gcash" ? setShowFirst(true) : setShowSecond(true)) : setShowFirst(true) }>
               <img
                 src={
                   donation?.bank_name.toLowerCase() === "gcash"

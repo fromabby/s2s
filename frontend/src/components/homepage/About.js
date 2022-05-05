@@ -55,7 +55,7 @@ const About = ({ title }) => {
 
           <div className="sts-about container-md">
             <div className="sts-image-logo">
-              <img id="aboutus-img" src="/images/Footer_logo.png" />
+              <img id="aboutus-img" src="/images/Footer_Logo.png" />
             </div>
             <div className="sts-text">
               <p style={{ fontSize: "20px" }}>
