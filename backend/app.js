@@ -6,7 +6,7 @@ const path = require('path')
 const errorMiddleware = require('./middlewares/errors')
 
 // Setting up config file
-//if(process.env.NODE_ENV !== 'PRODUCTION') require('dotenv').config({ path: 'backend/config/config.env' })
+if(process.env.NODE_ENV !== 'PRODUCTION') require('dotenv').config({ path: 'backend/config/config.env' })
 
 app.use(express.json())
 app.use(cookieParser())
@@ -33,7 +33,6 @@ if(process.env.NODE_ENV === 'PRODUCTION'){
         res.sendFile(path.resolve(__dirname, '../frontend/build/index.html'))
     })
 }
-
 
 // Middleware to handle errors
 

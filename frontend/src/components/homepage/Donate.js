@@ -41,7 +41,8 @@ const Donate = ({ title }) => {
 const DonateModal = ({ donationDetails }) => {
   const [showFirst, setShowFirst] = useState(false);
   const [showSecond, setShowSecond] = useState(false);
-  console.log(donationDetails)
+  const [bankDetails, setBankDetails] = useState(null);
+
 
   return (
     <div className="donation-modal">
@@ -52,15 +53,19 @@ const DonateModal = ({ donationDetails }) => {
       <div className="image-container-donate">
         {donationDetails.length > 0 ? (
           donationDetails.map((donation) => (
-            <div className="donate" onClick={() => donationDetails.length > 1 ? (donation?.bank_name.toLowerCase() === "gcash" ? setShowFirst(true) : setShowSecond(true)) : setShowFirst(true) }>
+            <div className="donate" onClick={() => {
+              setBankDetails(donation)
+              setShowFirst(true)
+            } }>
+            {/* <div className="donate" onClick={() => donationDetails.length > 1 ? (donation?.bank_name.toLowerCase() === "gcash" ? setShowFirst(true) : setShowSecond(true)) : setShowFirst(true) }> */}
               <img
                 src={
-                  donation?.bank_name.toLowerCase() === "gcash"
+                  donation?.bank_name?.toLowerCase() === "gcash"
                     ? "./images/gcash.png"
                     : "/images/bpi.png"
                 }
                 alt={
-                  donation?.bank_name.toLowerCase() === "gcash"
+                  donation?.bank_name?.toLowerCase() === "gcash"
                     ? "Gcash"
                     : "BPI"
                 }
@@ -87,38 +92,35 @@ const DonateModal = ({ donationDetails }) => {
             <h3>No links available</h3>
           )} */}
       </div>
-
-      {donationDetails?.length > 0 &&
-        donationDetails?.map((donation, index) => (
           <Modal
             size="lg"
             centered
-            show={index === 0 ? showFirst : showSecond}
+            show={showFirst}
             onHide={() =>
-              index === 0 ? setShowFirst(false) : setShowSecond(false)
+              setShowFirst(false)
             }
             aria-labelledby="example-modal-sizes-title-lg"
           >
             <Modal.Header closeButton>
               <Modal.Title id="example-modal-sizes-title-lg">
-                How to Donate ({donation.bank_name})
+                How to Donate ({bankDetails?.bank_name})
               </Modal.Title>
             </Modal.Header>
             <Modal.Body className="modalBody">
               <div className="d-flex align-items-center justify-content-center">
-                <img src={donation.qr_code[0].path} className="img-fluid" />
+                <img src={bankDetails?.qr_code[0].path} className="img-fluid" />
               </div>
               <div className="p-lg-2 donate-instructions">
-                <p>{donation.instructions}</p>
-                <p>{donation.account_details.account_name}</p>
-                <p>{donation.account_details.account_number}</p>
-                <a href={donation.donation_link} target="_blank">
+                <p>{bankDetails?.instructions}</p>
+                <p>{bankDetails?.account_details.account_name}</p>
+                <p>{bankDetails?.account_details.account_number}</p>
+                <a href={bankDetails?.donation_link} target="_blank">
                   Donation form
                 </a>
               </div>
             </Modal.Body>
           </Modal>
-        ))}
+
     </div>
   );
 };
